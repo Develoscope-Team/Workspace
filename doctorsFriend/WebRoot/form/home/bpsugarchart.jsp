@@ -87,32 +87,28 @@ table.a {
 		<font size="+2"><u>Name : <span id="patient_name"></span></u></font>
 		</div><div class="col-6 text-right">
 		<font size="+2"><u>Date : <span id="date1"></span> To <span id="date2"></span> </u></font>
-		</div></div>
-<<<<<<< HEAD
+		</div>
+		</div>
+ <br />
 			<u><center><font size="+3">B.P </font> <font size="+2">( रक्तदाब )</font><font size="+3"> & Diabetes </font><font size="+2">(मधुमेह)</font><font size="+3"> Chart</font></center></u>
-=======
-			<font size="+3"><u><center>B.P ( रक्तिाब ) & Diabetes(मधुमेह) Chart</center></u></font>
->>>>>>> 5e22ce58b0aebc32fecfd31a3dc5b079c59425b4
+
+			
+
 			
 			 <br />
 			<table class="table" style="border: 1px solid black">
 				<thead>
 					<tr>
-<<<<<<< HEAD
+
 						<th style="text-align: center;" scope="col"><h4>No.</h4><h6>(क्रमांक)</h6></th>
 						<th style="text-align: center" scope="col"><h4>Date</h4><h6>(दिनांक)</h6></th>
 						<th style="text-align: center;" scope="col"><h4>Time</h4><h6>(वेळ)</h6></th>
 						<th style="text-align: center" scope="col"><h4>B.p</h4><h6>(रक्तदाब)</h6></th>
 						<th style="text-align: center" scope="col"><h4>Sugar</h4><h6>(मधुमेह)</h6></th>
 						<th style="text-align: center" scope="col"><h4>Medicine</h4><h6>(औषध)</h6></th>
-=======
-						<th style="text-align: center;" scope="col">No.</th>
-						<th style="text-align: center" scope="col">Date(दिनाांक)</th>
-						<th style="text-align: center;" scope="col">Time(वेळ)</th>
-						<th style="text-align: center" scope="col">B.P</th>
-						<th style="text-align: center" scope="col">Sugar</th>
-						<th style="text-align: center" scope="col">Medicine( औषध)</th>
->>>>>>> 5e22ce58b0aebc32fecfd31a3dc5b079c59425b4
+
+						
+
 						
 						
 					</tr>

@@ -87,30 +87,26 @@ table.a {
 		<font size="+2"><u>Name : <span id="patient_name"></span></u></font>
 		</div><div class="col-6 text-right">
 		<font size="+2"><u>Date : <span id="date1"></span> To <span id="date2"></span> </u></font>
-		</div></div>
-<<<<<<< HEAD
+		</div>
+		 <br /></div>
+
 			<u><center><font size="+3">Temperature Chart</font> <font size="+2">( ताप मोजमाप तक्ता )</font></center></u>
-=======
-			<font size="+3"><u><center>Temperature Chart ( ताप मोजमाप तक्ता )</center></u></font>
->>>>>>> 5e22ce58b0aebc32fecfd31a3dc5b079c59425b4
+
+		
 			
 			 <br />
 			<table class="table" style="border: 1px solid black">
 				<thead>
 					<tr>
-<<<<<<< HEAD
+
 						<th style="text-align: center;" scope="col"><h4>No.</h4><h6>(क्रमांक)</h6></th>
 						<th style="text-align: center" scope="col"><h4>Date</h4><h6>(दिनांक)</h6></th>
 						<th style="text-align: center;" scope="col"><h4>Time</h4><h6>(वेळ)</h6></th>
 						<th style="text-align: center" scope="col"><h4>Temp</h4><h6>(ताप)</h6></th>
 						<th style="text-align: center" scope="col"><h4>Medicine</h4><h6>(औषध)</h6></th>
-=======
-						<th style="text-align: center;" scope="col">No.</th>
-						<th style="text-align: center" scope="col">Date(दिनाांक)</th>
-						<th style="text-align: center;" scope="col">Time(वेळ)</th>
-						<th style="text-align: center" scope="col">Temp(ताप )</th>
-						<th style="text-align: center" scope="col">Medicine( औषध)</th>
->>>>>>> 5e22ce58b0aebc32fecfd31a3dc5b079c59425b4
+
+					
+
 						
 						
 					</tr>
@@ -168,7 +164,7 @@ table.a {
 	 	  html += '<td><input type="text" class="form-control Visit ID d-flex flex-column-fluid" name="visitId" id="visitId-' + i + '" style="background-color:#FFFFFF; border:0px; width: 120px;text-align:center" disabled>  </input></td>';
 	 	  html += '<td><input type="text" class="form-control Visit Date d-flex flex-column-fluid" id="visitDate-' + i +'" name="visitDate" style="background-color:#FFFFFF; border:0px; width: 140px " disabled></input></td>';
 	 	  html += '<td><input type="text" class="form-control Complaint d-flex flex-column-fluid" name="complaint" id="complaint-' + i + '" style="background-color:#FFFFFF; border:0px; width: 205px " disabled></input></td>';
-	 	  html += '<td><textarea class="form-control Diagosis d-flex flex-column-fluid" name="diagnosis" id="diagnosis-' + i + '" style="background-color:#FFFFFF; border:0px; width: 550px; height:100px" disabled></textarea></td>';
+	 	  html += '<td><textarea class="form-control Diagosis d-flex flex-column-fluid" name="diagnosis" id="diagnosis-' + i + '" style="background-color:#FFFFFF; border:0px; width: 500px; height:100px" disabled></textarea></td>';
 	 	  $('.table_body').append(html);
 	
 	 }

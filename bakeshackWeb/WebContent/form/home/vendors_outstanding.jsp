@@ -89,7 +89,7 @@ table.a {
 		<div class=" " id="card_Report">
 			
 			<div class=" mr-10 " >
-			<font size="+2"><u><center>Name: <span class=" " id="finish"></span></center></u></font></div><br />
+			<font size="+2"><u><center>Vendors Outstanding <span class=" " id="finish"></span></center></u></font></div><br />
 			<table class="table" style="border: 1px solid black">
 				<thead>
 					<tr>

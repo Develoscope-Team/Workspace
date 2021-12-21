@@ -202,7 +202,7 @@ public class ConnectDataBean {
 		Connection con = null;
 		CallableStatement cs = null;
 		ResultSet rs = null;
-		String school_code = "", school_name = "", school_url = "", common_db_flag;
+		String school_code = "", school_name = "", school_url = "", common_db_flag="";
 		int school_id;
 
 		JSONObject resultjson = new JSONObject();

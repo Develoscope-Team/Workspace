@@ -154,16 +154,16 @@ table.a {
 								</div>
 							</div>
 							
-								<div class="card card-custom gutter-b">
+							<!-- 	<div class="card card-custom gutter-b">
 									<div class="card-body">
 									<div class="quick-search quick-search-inline ml-20 w-300px "
 								id="kt_quick_search_inline">
-								<!--begin::Form-->
+								begin::Form
 								<form method="get" class="quick-search-form">
 									<div class="input-group rounded bg-light">
 										<div class="input-group-prepend">
 											<span class="input-group-text"> <span
-												class="svg-icon svg-icon-lg"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/Search.svg-->
+												class="svg-icon svg-icon-lg"> begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/Search.svg
 													<svg xmlns="http://www.w3.org/2000/svg"
 														xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
 														height="24px" viewBox="0 0 24 24" version="1.1">
@@ -177,7 +177,7 @@ table.a {
 															d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
 															fill="#000000" fill-rule="nonzero" />
 															</g>
-														</svg> <!--end::Svg Icon-->
+														</svg> end::Svg Icon
 											</span>
 											</span>
 										</div>
@@ -190,21 +190,21 @@ table.a {
 										</div>
 									</div>
 								</form>
-								<!--end::Form-->
-								<!--begin::Search Toggle-->
+								end::Form
+								begin::Search Toggle
 								<div id="kt_quick_search_toggle" data-toggle="dropdown"
 									data-offset="0px,1px"></div>
-								<!--end::Search Toggle-->
-								<!--begin::Dropdown-->
+								end::Search Toggle
+								begin::Dropdown
 								<div
 									class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
 									<div class="quick-search-wrapper scroll" data-scroll="true"
 										data-height="350" data-mobile-height="200"></div>
 								</div>
-								<!--end::Dropdown-->
+								end::Dropdown
 							</div>
 							<br />
-										<!--begin: Datatable-->
+										begin: Datatable
 										<table data-toggle="table" class='a'
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
@@ -227,8 +227,8 @@ table.a {
 														<th class="col-sm-1 text-center" data-field="Expiry Date"
 														data-sortable="true"> Expiry Date</th>
 													
-													<!-- <th class="col-sm-3 text-center" data-field="Action"
-														data-sortable="false">Action</th> -->
+													<th class="col-sm-3 text-center" data-field="Action"
+														data-sortable="false">Action</th>
 
 
 												</tr>
@@ -239,9 +239,9 @@ table.a {
 
 											</tbody>
 										</table>
-										<!--end: Datatable-->
+										end: Datatable
 									</div>
-								</div>
+								</div> -->
 							
 
 						</div>

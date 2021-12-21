@@ -45,8 +45,8 @@ try {
 											<div class="row text-info">
 
 												<img id="logo" alt="Logo"
-													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/src.png"
-													class="logo-default max-h-100px" />
+													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/gif/src.png"
+													class="logo-default max-h-100px"  />
 
 												<div class="col-md-8 text-center">
 													<h1 class="font-weight-bolder" style="font-size: 40px;">SHREE
@@ -108,11 +108,17 @@ try {
 											<p class="">
 												Received amount of <span
 													class="amount font-weight:500 font-decoration:underline mr-3">
-													... </span>Rs from Mr/Mrs <span
+													... </span>Rs. from Mr/Mrs <span
 													class="received_by font-weight:500 font-decoration:underline">
-													... </span> for the Consultation fees & Other Charges. <span
-													class="extraContent font-weight:500 font-decoration:underline">
-													__________________ </span>.
+													... </span> for the Consultation fees against-invoice no: <span
+													class="invoice_no font-weight:500 font-decoration:underline">
+													__________________ </span> Invoice Amount: <span
+													class="invoice_amt font-weight:500 font-decoration:underline">
+													__________________ </span> rs. Payment mode:<span
+													class="payment_mode font-weight:500 font-decoration:underline">
+													__________________ </span> Balance Amount: <span
+													class="balance_amt font-weight:500 font-decoration:underline">
+													__________________ </span> rs. & other charges___________.
 
 											</p>
 
@@ -121,7 +127,7 @@ try {
 											</div>
 											<div class="col-md-10 text-right" style="font-size: 20px">
 												<img id="logo" alt="Logo"
-													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/sign.png"
+													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/gif/sign.png"
 													class="logo-default max-h-80px" />
 											</div>
 											<div class="col-md-11 text-right" style="font-size: 20px;">
@@ -177,6 +183,10 @@ $.ajax({
 		 $('#receipt_no').text(row.receipt_no);
 		 $('#date1').text(row.payment_date);
 		 $('.amount').text(row.paid_amount);
+		 $('.invoice_no').text(row.invoice_id);
+		 $('.payment_mode').text(row.payment_mode);
+		 $('.invoice_amt').text(row.invoice_total);
+		 $('.balance_amt').text(row.balance_amount);
     }
     
 });	

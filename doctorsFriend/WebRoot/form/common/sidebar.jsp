@@ -224,7 +224,7 @@
 										<span class="menu-text">Purchase Entry</span>										
 									</a>
 								</li> 
-<<<<<<< HEAD
+
 								<li class="menu-item" aria-haspopup="true">
 									<a href="./mr_entry_screen.jsp" class="menu-link">
 										<i class="menu-bullet menu-bullet-line">
@@ -233,8 +233,7 @@
 										<span class="menu-text">Medical Represantative Entry</span>										
 									</a>
 								</li> 
-=======
->>>>>>> 5e22ce58b0aebc32fecfd31a3dc5b079c59425b4
+
 								
 								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">

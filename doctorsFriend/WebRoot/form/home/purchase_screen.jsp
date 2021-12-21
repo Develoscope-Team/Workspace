@@ -965,7 +965,7 @@ $('#add_user').click(function () {
 		        url: base +  "/dssAPI/dfapi/getMedicineDetails",
 		        success:function(data)
 		        {
-		        	alert(id);
+		        	//alert(id);
 		            const row = data.find(d => d.medicine_id ==id);
 		            $('#product-'+ matches).val(row.medicine_name);
 		            $("#unit-"+ matches).val( row.medicine_category);
@@ -1038,8 +1038,10 @@ $('#add_user').click(function () {
 					 });
 					
 				var jsonString = JSON.stringify(productList);
-				alert(jsonString);
-				  $.ajax({
+				//alert(jsonString);
+			if(vendors_code != " "){
+				
+				$.ajax({
 						url : base + "/dssAPI/dfapi/insertUpdatePurchaseDetails",
 						type : "post",
 						dataType : "json",
@@ -1047,9 +1049,7 @@ $('#add_user').click(function () {
 						data : {
 							"vendors_code" : vendors_code,
 							"order_date" : order_date,
-							
 							"order_code" : order_code,
-							
 							"amount" : amount,
 							"discount" : discount,
 							"payment_mode" : payment_mode,
@@ -1153,10 +1153,10 @@ $('#add_user').click(function () {
 
 						});  
 				
+					 }
 				  
 				  
-				  
-				  
+					 window.location.reload();	 
 				  
 				  
 		})		

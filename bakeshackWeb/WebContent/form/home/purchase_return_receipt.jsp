@@ -24,7 +24,7 @@
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 </head>
-<body id="kt_body"
+<body  onafterprint="printP()" id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 
@@ -473,7 +473,7 @@
 		         	 
 		         	if(bank == '')
 		         		{
-		         		alert("please select the bank");
+		         		/* alert("please select the bank"); */
 		         	
 		         		  $("#bankModel").modal();
 		         		}
@@ -702,8 +702,7 @@
 				    window.location.reload();
 				
 				
-			}
-					)
+			})
 					$("#sudo1").click(function(){
 				/* alert("hi"); */
 				$("#print_button1").hide();
@@ -716,8 +715,10 @@
 				    window.location.reload();
 				
 				
+			})
+			function printP(){
+						window.location.reload();
 			}
-					)
 	</script>
 </body>
 </html>

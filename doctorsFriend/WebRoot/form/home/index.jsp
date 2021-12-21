@@ -378,8 +378,7 @@ var base='<%=base%>';
 	
 	
 	
-	$
-			.ajax({
+	$.ajax({
 				url : base + "/dssAPI/dfapi/getTodayVisitedPatient",
 				type : "post",
 				dataType : "json",
@@ -407,7 +406,7 @@ var base='<%=base%>';
 	var visit_count;
 
 	var dashboard_month = [];
-	var dashboard_months_sale = [];
+	var dashboard_months_sale = [0,0,0,0,0,0,0,0,0,0,0,0];
 	var month_count = 0;
 	
 	$.ajax({
@@ -422,41 +421,20 @@ var base='<%=base%>';
 			if (data != null) {
 				data.forEach(function(e) {
 					month_count++;
-					//month_sale_sum += parseInt(e.monthly_sum);
+					
 					dashboard_month.push(e.production_to_month);
-					dashboard_months_sale.push(e.monthly_sum);
+					dashboard_months_sale[e.production_to_month - 1] =   e.monthly_sum;
 
 				})
 			}
 		}
 	});
-	
-	alert(dashboard_month);
-	alert(dashboard_months_sale);
-	
-	
-	/* 
-	$.ajax({
-		url : base + "/dssAPI/dfapi/getVisitCount",
-		type : "post",
-		dataType : "json",
-		async : false,
-		data : {
-			"flag" : 1
-		},
-		success : function(data) {
-			if (data != null) {
-				visit_count = data;
-			}
-		}
-	}); */
-
 	for (var i = 0; i < dashboard_months_sale.length; i++) {
 		if (dashboard_months_sale.length < 12) {
 			dashboard_months_sale.push(0);
 		}
 	}
-
+	const warning = '#FFA800';
 	console.log(visit_count)
 
 	var KTApexChartsDemo = function() {
@@ -464,16 +442,10 @@ var base='<%=base%>';
 		var demos = function() {
 			const apexChart = "#chart_2";
 			var options = {
-				series : [ {
-					name : 'Month Sale',
-					data : dashboard_months_sale
-				}, {
-					name : 'Month Purchase',
-					data : dashboard_months_sale
-				}  , {
-								name: 'Free Cash Flow',
+				series : [  {
+								name: 'No. of Patients Visited',
 								data: dashboard_months_sale
-							} ],
+							}  ],
 				chart : {
 					type : 'bar',
 					height : 350
@@ -481,7 +453,7 @@ var base='<%=base%>';
 				plotOptions : {
 					bar : {
 						horizontal : false,
-						columnWidth : '100%',
+						columnWidth : '50%',
 						endingShape : 'rounded'
 					},
 				},
@@ -507,11 +479,12 @@ var base='<%=base%>';
 				tooltip : {
 					y : {
 						formatter : function(val) {
-							return "$ " + val + " thousands"
+							//return "₹ " + val + " thousands"
+							return " " + val 
 						}
 					}
 				},
-			/* colors: [success, warning]  */
+		 colors: [ warning]   
 			};
 
 			var chart = new ApexCharts(document.querySelector(apexChart),
