@@ -173,7 +173,7 @@ table.a {
 																</ul>
 															</div>
 														</li>
-														<li class="menu-item menu-item-open menu-item-here menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+														<li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
 															<a href="javascript:;" class="menu-link menu-toggle">
 																<span class="svg-icon menu-icon">
 																	<!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/Thunder-move.svg-->

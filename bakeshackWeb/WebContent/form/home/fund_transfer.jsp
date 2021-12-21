@@ -119,41 +119,7 @@ try {
 
 																			</select>
 																		</div>
-
-																		
-																			
-																			
-																					<!-- <div class="form-group bank_deatails1">
-																						<label>Bank Name</label><span class="text-danger"
-																							id="type">*</span> <input type="text"
-																							name="Bank_name" id="Bank_name"
-																							class="form-control form-control-solid"
-																							placeholder="Bank Name" required /> <span
-																							class="msg text-danger" id="type1"> </span>
-																					</div>
-																				
-																				
-																					<div class="form-group bank_deatails11">
-																						<label>Account No</label><span class="text-danger"
-																							id="type">*</span> <input type="text"
-																							name="account_no" id="account_no"
-																							class="form-control form-control-solid"
-																							placeholder="Account No" required /> <span
-																							class="msg text-danger" id="type1"> </span>
-																					</div>
-																				
-																			
-																				
-																					<div class="form-group bank_deatails111">
-																						<label>IFSC Code</label><span class="text-danger"
-																							id="type">*</span> <input type="text"
-																							name="IFSC_code" id="IFSC_code"
-																							class="form-control form-control-solid"
-																							placeholder="IFSC Code" required /> <span
-																							class="msg text-danger" id="type1"> </span>
-																					</div> -->
-																				
-																				
+						
 																					<div class="form-group bank_deatails1111">
 																						<label>Account Holder Name</label><span
 																							class="text-danger" id="type">*</span> <input
@@ -163,11 +129,7 @@ try {
 																							placeholder="Account Holder Name" required /> <span
 																							class="msg text-danger" id="type1"> </span>
 																					</div>
-																				
-																			
-																	
-
-																	</div>
+																		</div>
 																	<span
 																		class="svg-icon svg-icon-primary svg-icon-4x ml-10"><svg
 																			xmlns="http://www.w3.org/2000/svg"
@@ -243,39 +205,7 @@ try {
 																		</div>
 
 																		
-																		
-																		<!-- <div class="form-group bank_details2">
-																						<label>Bank Name</label><span class="text-danger"
-																							id="type">*</span> <input type="text"
-																							name="Bank_name" id="Bank_name1"
-																							class="form-control form-control-solid"
-																							placeholder="Bank Name" required /> <span
-																							class="msg text-danger" id="type1"> </span>
-																					</div>
-																				
-																				
-																					<div class="form-group bank_details22">
-																						<label>Account No</label><span class="text-danger"
-																							id="type">*</span> <input type="text"
-																							name="account_no" id="account_no1"
-																							class="form-control form-control-solid"
-																							placeholder="Account No" required /> <span
-																							class="msg text-danger" id="type1"> </span>
-																					</div>
-																				
-																			
-																				
-																					<div class="form-group bank_details222">
-																						<label>IFSC Code</label><span class="text-danger"
-																							id="type">*</span> <input type="text"
-																							name="IFSC_code" id="IFSC_code1"
-																							class="form-control form-control-solid"
-																							placeholder="IFSC Code" required /> <span
-																							class="msg text-danger" id="type1"> </span>
-																					</div> -->
-																				
-																				
-																					<div class="form-group bank_details2222">
+																		<div class="form-group bank_details2222">
 																						<label>Account Holder Name</label><span
 																							class="text-danger" id="type">*</span> <input
 																							type="text" name="account_holder_name"
@@ -886,7 +816,7 @@ try {
 			
 				var sender_current_amount1 = sender_current_amount;
 				
-				if(sender_current_amount1 < amount)
+				if(sender_current_amount1 > amount)
 				{
 					alert("Insufficient funds");
 				} else{

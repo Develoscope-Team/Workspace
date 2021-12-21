@@ -25,7 +25,7 @@
 		<div class="d-flex flex-column flex-root">
 			<!--begin::Login-->
 			<div class="login login-3 login-signin-on d-flex flex-row-fluid" id="kt_login">
-				<div class="d-flex flex-center bgi-size-cover bgi-no-repeat flex-row-fluid" style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack016.jpg);">
+				<div class="d-flex flex-center bgi-size-cover bgi-no-repeat flex-row-fluid" style=" opacity: 4; background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack016.jpg);">
 				<div class ="p-3 mb-2 bg-transparent text-dark " >
 					<div class="login-form text-center text-black p-7 position-relative overflow-hidden ">
 						<!--begin::Login Header-->

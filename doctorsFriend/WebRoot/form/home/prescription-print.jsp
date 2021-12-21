@@ -55,6 +55,7 @@ table.a {
 												<h4 class="ml-2 font-weight-bolder">7775999536 |
 													9822786831(Whatsapp)</h4>
 											</div>
+											</br>
 										</div>
 
 										<!-- <div class="border-bottom bg-info " style="border: 1px solid black;"></div> -->
@@ -254,15 +255,15 @@ table.a {
 							<div class="row footer1">
 								<div class="col-md-12  text-center mt-3  style="font-size: 20px;"">
 									<div class="row justify-content-center  ">
-										<h6 class="font-weight-bold ">वेळ :</h6>
-										<h6>
+										<h4 class="font-weight-bold ">वेळ :</h4>
+										<h4>
 											<span id="time">सकाळी ९ ते १.३०</span> <span>सायं. ४
 												ते ८ वाजता.</span>	
-										</h6>
+										</h4>
 										</div>
 									
 									<div class="  ">
-											<h6   id="notice">दवाखाना रविवारी सुद्धा चालू राहील</h6>
+											<h4   id="notice">दवाखाना रविवारी सुद्धा चालू राहील</h4>
 									</div>
 									
 								
