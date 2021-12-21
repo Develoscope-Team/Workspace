@@ -374,7 +374,7 @@
 																	</table>
 																</div>
 															</div>
-															<div class="row">
+															<!-- <div class="row">
 
 																<div class="col-lg-12 text-right">
 
@@ -382,7 +382,7 @@
 																		class="btn font-weight-bold btn-primary ">Calculate</button>
 
 																</div>
-															</div>
+															</div> -->
 
 
 
@@ -829,7 +829,7 @@
 									$('#toBePaid-' + k).val(row.balance_amount);
 									$('#visitId-' + k).val(row.sales_and_order_id);
 									$('#paymentId-' + k).val(row.order_code);
-							
+									$('#nowPaying-' + k).val('00');
 								}
 						});
 			 	}
@@ -847,23 +847,16 @@
 			
 	        	   var amount =  $("#total_amount").val();	   
 	     	      $('#grand_total').val(Grand_Total + parseInt(amount));     
-			
-	
-			 var calculate_price_total = parseInt($("#partially_paid_amount").val());
-		  for(var j = 1 ;j<=l ;j++)
+				 var calculate_price_total = parseInt($("#partially_paid_amount").val());
+		      for(var j = 1 ;j<=l ;j++)
 			 {
-			  var calculate_price = $("#nowPaying-"+i).val();
+			  var calculate_price = $("#nowPaying-"+j).val();
 			        calculate_price_total += parseInt(calculate_price);
-			       // alert(calculate_price_total);
 	    	    	document.getElementById('paid_amount').value = calculate_price_total;
-	    	    	
 	    	    	var total =  $("#grand_total").val();	
 	    	    	var total1 =  $("#paid_amount").val();	
 				 document.getElementById('balance_amount').value = parseInt(total)-parseInt(total1); 
-		}
-		
-		
-			
+		      }
 				}
 		
 				 	function checkedBox(i){
@@ -973,26 +966,14 @@
 			  
 				 $('.add_product #product-'+ i).dblclick(function () {
 					   mname=(this.id);
-					   
 					  var str = mname;
 			           matches = str.match(/(\d+)/);
-			           
 					  $("#medicineModel").modal();
-					
 					});
 			
 				 $('#raw_qty- '+ i).change(function () {
-					 
-				
 					 var raw_qty = $(this).val();
-					
-				
-					 
 				 })
-				 
-				 
-				 
-				 
 				 $.ajax({
 						url : base + "/bakeshackAPI/api/getUnitDetails",
 						type : "post",
@@ -1015,11 +996,9 @@
 				
 				 $('.add_product').on('click','.btn_delete',function(){
 				$(this).closest('tr').remove();	
-				
 				 var calculate_total =0;
 				 for(var j = 1 ;j<table_len ;j++)
 				 {
-					 
 					 if($("#unit_total-"+j).val() != null){
 					 var calculate_unit_total =  $("#unit_total-"+j).val();	 
 					 calculate_total += parseInt(calculate_unit_total);
@@ -1029,18 +1008,13 @@
 					 document.getElementById('balance_amount').value = calculate_total-calculate_total;
 					 }
 				 }
-				
 				});
 				});
 				
 		 var calculate_total =0;
-				
 		function weightConverter(i,valNum) {
-			
-			
 			 var calculate_unit_price = $("#unit_rate-"+i).val();
 			 $("#unit_total-"+i).val(calculate_unit_price*valNum); 
-			
 			 var calculate_total =0;
 			 for(var j = 1 ;j<table_len ;j++)
 			 {
@@ -1051,12 +1025,7 @@
 				 document.getElementById('partially_paid_amount').value = calculate_total;
 				 document.getElementById('balance_amount').value = calculate_total-calculate_total;
 			 }
-			
-		
-			
 				}
-				
-		
 		 $.ajax({
 				url : base + "/bakeshackAPI/api/getBankDetails",
 				type : "post",
@@ -1066,12 +1035,10 @@
 				success:function(data)
 			    {
 					data.forEach((element)=> {
-						
 					        $('#received_bank').append($(document.createElement('option')).prop({
 				                value: element.bank_id,
 				                text: element.bank_name
 				            }))
-						
 					});   
 			    }
 			});	
@@ -1084,12 +1051,10 @@
 				success:function(data)
 			    {
 					data.forEach((element)=> {
-						
 					        $('#received_bank_for_check').append($(document.createElement('option')).prop({
 				                value: element.bank_id,
 				                text: element.bank_name
 				            }))
-						
 					});   
 			    }
 			});	
@@ -1102,12 +1067,10 @@
 				success:function(data)
 			    {
 					data.forEach((element)=> {
-						
 					        $('#upi_id').append($(document.createElement('option')).prop({
 				                value: element.upi_name,
 				                text: element.upi_name
 				            }))
-						
 					});   
 			    }
 			});	
@@ -1124,11 +1087,8 @@
 					success:function(data)
 				    {
 						const row = data.find(d => d.bank_id == bank);
-							
-						    
 						       $('#branch_name').val(row.branch);
 					 			$('#account_no').val(row.account_no);  
-						
 				    }
 				});	
 		});
@@ -1141,7 +1101,6 @@
 			var invoice_total = amount1-discount;
 			$('#total_amount').val(invoice_total);
 			$('#partially_paid_amount').val(invoice_total);
-			
 			});
 		
 		$('#paymentMode').change(function(){
@@ -1324,27 +1283,21 @@ function update(id){
 
 
 $('#calculate_total').click(function() {
-	
-	
 	 var calculate_paid = $('#partially_paid_amount').val();;
-
 	for(i=1; i <= j ; i++)
 	{
-if ($("#id-"+i).prop('checked')==true){ 
+     if ($("#id-"+i).prop('checked')==true){ 
 	 var calculate_invoice_paid = $("#nowPaying-"+i).val();
 	  calculate_paid = parseInt(calculate_paid) + parseInt(calculate_invoice_paid);
-	
 	 $('#paid_amount').val(calculate_paid);
 	 var calculate_grand_total =  $("#grand_total").val();
 	 var calculate_balance = parseInt(calculate_grand_total) - parseInt(calculate_paid);
-	
 		$('#balance_amount').val(calculate_balance);
 }
 }
 });
 
-
-		var balance_amount = 0;
+var balance_amount = 0;
 $('#add_sales_order').click(function() {
 					
 			var customer_code = $('#customer_code').val();
@@ -1429,9 +1382,6 @@ $('#add_sales_order').click(function() {
 			 var productList = [];
 			 $("table tbody tr").each(function(index) {
 			 	if($(this).find('.product').val() != null){
-			 		
-			       
-			         
 			 		 productList.push({ 
 			         "product": $(this).find('.Product').val(),
 			         "unit": $(this).find('.Unit').val(),
@@ -1443,10 +1393,6 @@ $('#add_sales_order').click(function() {
 			 });
 			
 		var jsonString = JSON.stringify(productList);
-									
-				
-									
-									
 									  $.ajax({
 										url : base + "/bakeshackAPI/api/insertUpdateSalesAndOrderDetails",
 										type : "post",
@@ -1511,12 +1457,6 @@ $('#add_sales_order').click(function() {
 												});
 									    	}
 										});	 
-									
-									
-								 
-									
-									
-									
 									  $.ajax({
 										    url : base + "/bakeshackAPI/api/insertUpdateInvoice",
 											type : "post",
@@ -1553,17 +1493,11 @@ $('#add_sales_order').click(function() {
 
 														var msg = "Invoice Data inserted/Updated Successfully.";
 														alert(msg);
-														
-														
-
 													}
 												}
 											}
 
 										}); 
-									  
-									
-									 
 										 for(i=1; i <= j ; i++)
 										{
 									 if ($("#id-"+i).prop('checked')==true){ 
@@ -1575,14 +1509,8 @@ $('#add_sales_order').click(function() {
 										   var a6 = $("#visitId-"+i).val();
 										   var a7 = $("#toBePaid-"+i).val();
 										   var a10= $("#paymentId-"+i).val();
-										  
 										   var a8 = parseInt(a5) + parseInt(a1);
 										   var a9 = parseInt(a4) - parseInt(a8);
-										   
-										
-										
-										   
-										   
 									   $.ajax({
 												 url : base + "/bakeshackAPI/api/insertUpdateInvoice",
 												type : "post",
@@ -1619,20 +1547,11 @@ $('#add_sales_order').click(function() {
 
 															var msg = "OutStanding Invoice Data inserted/Updated Successfully.";
 															alert(msg);
-															
-															
-
 														}
 													}
 												}
 
 											});   
-										   
-										   
-										  /*  alert("partially_paid_amount" + a8);
-										   alert("balance_amount" + a9);
-										   alert("sales_and_order_id" + a6); */
-										 
 										  $.ajax({
 												url : base + "/bakeshackAPI/api/updateSalesAndOrderDetails",
 												type : "post",
@@ -1659,27 +1578,15 @@ $('#add_sales_order').click(function() {
 
 															var msg = "Sales & Order Data Updated Successfully.";
 															alert(msg);
-															
-															
-
 														}
 													}
 												}
 
 											});  
-										  
-										   
-										   
 										 }
 										} 
-										
-									 
 										  if (confirm("Do You Wish To Print Invoice!")) {
-												
-											  //var url = "receipt.jsp";
-											  
 										 		var url = "sales_order_receipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&transaction_id=' + transaction_id;
-
 											  window.location.assign(url);
 												 } else {
 													  window.location.reload();

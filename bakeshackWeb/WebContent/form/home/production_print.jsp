@@ -24,7 +24,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 </head>
-<body id="kt_body"
+<body  onafterprint="printP()" id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 	
@@ -337,13 +337,14 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 	
 		
 			$("#print_button1").click(function(){
-			
 				$("#print_button").hide();
 				window.print();
-				
-				
-			}
-					)
+			})
+			
+			
+			function printP(){
+				window.location.reload();
+	}
 	</script>
 </body>
 </html>

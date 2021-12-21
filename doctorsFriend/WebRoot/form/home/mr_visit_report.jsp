@@ -155,7 +155,7 @@ table.a {
 			 html += "<td class='text-center'>"+row.mr_name+"</td>"; 
 			 html += "<td class='text-center'>"+row.mr_code+"</td>";
 			 html += "<td class='text-center'>"+row.mobile_no+"</td>"; 
-			 html += "<td class='text-center'>"+row.company_name+"</td><td class='text-center'>";
+			 html += "<td class='text-center'>"+row.company_name+"</td><td class='text-left '>";
 			 
 			 const parsedData = JSON.parse(row["product_list"]);
 			 $(parsedData).each(function(index) {

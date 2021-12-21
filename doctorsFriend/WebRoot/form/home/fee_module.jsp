@@ -144,7 +144,7 @@ try {
 										</div>
 									</div>
 
-									<div class="row">
+									<div class="row" id="grand_total_field">
 										<div class="col-lg-6">
 											<div class="form-group" id="amount_div">
 												<label>Grand Total</label> <span class="text-danger"
@@ -162,7 +162,7 @@ try {
 											</div>
 										</div>
 									</div>
-									<div class="row">
+									<div class="row" id="grand_total_field1" >
 										<div class="col-lg-6">
 											<div class="form-group" id="amount_div">
 												<label>Balance Amount</label> <span class="text-danger"
@@ -193,7 +193,7 @@ try {
 											<div class="col-lg-6 offset-3">
 
 												<button type="button" id="addPayment1" onclick="printP()"
-													class="btn font-weight-bold btn-primary ">Submit</button>
+													class="btn font-weight-bold btn-primary ml-40 ">Submit</button>
 												<button type="button" id="cancel"
 													class="btn font-weight-bold btn-secondary">Cancel</button>
 											</div>
@@ -225,6 +225,8 @@ try {
 	 $('#cheque_div').hide();
 	 $('.card').hide();
 	 $('#calculate_total').hide();
+	 $('#grand_total_field1').hide();
+	 $('#grand_total_field').hide();
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const patient_code = urlParams.get('pcode');
@@ -319,8 +321,12 @@ try {
 				if(j > 0){
 					 $('.card').show();
 					 $('#calculate_total').show();
+					 $('#grand_total_field1').show();
+					 $('#grand_total_field').show();
 				}else{
 					 $('.card').hide();
+					 $('#grand_total_field1').hide();
+					 $('#grand_total_field').hide();
 				}
 				for(var i = 0; i < j; i++){
 				 	  var html = '';
@@ -420,7 +426,7 @@ $('#addPayment1').click(function() {
 		var patient_code = $('#patient_code').val();
 		var payment_date   = today;
 		var payment_mode =  $('#paymentMode').val();
-		alert(payment_mode);
+		//alert(payment_mode);
 		var flag 		  = 1; // Addition
 		for(i=0; i <= j ; i++)
 		{

@@ -616,14 +616,9 @@ $('#add ').click(function () {
 		
 	var jsonString = JSON.stringify(productList);
 	
-	alert(mr_name);
-	alert(mr_code);
-	alert(visit_date);
-	alert(company_name);
-	alert(mobile_no);
-	alert(jsonString);
 	
-	
+	if(mr_code != "")
+	{
 	
 	$.ajax({
 		url : base + "/dssAPI/dfapi/insertUpdatemrvisit",
@@ -659,8 +654,12 @@ $('#add ').click(function () {
 		}
 
 	}); 
+	 window.location.reload();	 
+	}
 	
-	
+	else{
+		alert("Please Add Medical Represenatative Details!")
+	}
 	
 	 
  })

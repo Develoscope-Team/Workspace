@@ -213,11 +213,7 @@ table.a {
 		<!--end::Page-->
 	</div>
 	<!--end::Main-->
-<<<<<<< HEAD
-   
-=======
 
->>>>>>> 5e22ce58b0aebc32fecfd31a3dc5b079c59425b4
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
 
 	<script type="text/javascript">

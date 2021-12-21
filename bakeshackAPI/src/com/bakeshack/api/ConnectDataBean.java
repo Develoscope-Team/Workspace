@@ -3040,9 +3040,9 @@ public class ConnectDataBean {
 			while (rs.next()) {
 				JSONObject resultjson = new JSONObject();
 
-				resultjson.put("order_date", rs.getString(1));
-				resultjson.put("days", rs.getString(2));
-				resultjson.put("day_wise_sum", rs.getString(3));
+				
+				resultjson.put("days", rs.getString(1));
+				resultjson.put("day_wise_sum", rs.getString(2));
 
 				jarr.put(resultjson);
 			}
@@ -3094,9 +3094,9 @@ public class ConnectDataBean {
 			while (rs.next()) {
 				JSONObject resultjson = new JSONObject();
 
-				resultjson.put("order_date", rs.getString(1));
-				resultjson.put("days", rs.getString(2));
-				resultjson.put("day_wise_sum", rs.getString(3));
+			
+				resultjson.put("days", rs.getString(1));
+				resultjson.put("day_wise_sum", rs.getString(2));
 
 				jarr.put(resultjson);
 			}

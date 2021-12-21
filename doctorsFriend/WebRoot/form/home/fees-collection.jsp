@@ -228,10 +228,9 @@
 							<div class="row">
 								
 								<div class="col-lg-6 offset-3">
-									<!-- <button type="button" id="addPayment" 
-										class="btn font-weight-bold btn-primary mr-2">Submit</button> -->
+									
 										<button type="button" id="addPayment1" onclick="printP()"
-										class="btn font-weight-bold btn-primary ">Submit</button>
+										class="btn font-weight-bold btn-primary ml-40">Submit</button>
 									<button type="reset" class="btn font-weight-bold btn-secondary">Cancel</button>
 								</div>
 							</div>
@@ -268,6 +267,11 @@
 	 $('#cheque_div').hide();
 	 $('#calculate_total').hide();
 	 $('#amount_div1').hide();
+	 $('#amount').val('00'); 
+	 $('#invoice_total').val('00'); 
+	 $('#invoice_paid_total').val('00');
+	 $('#paid_amount').val('00');
+	 $('#balance_amount').val('00');
 	 
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
