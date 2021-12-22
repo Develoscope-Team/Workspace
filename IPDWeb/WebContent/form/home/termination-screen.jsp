@@ -27,8 +27,7 @@ try {
 
 	
 					
-						<div
-							class="container ">
+						<div class="container ">
 							
 									<h2 class="text-gray font-weight-bold my-2 mr-5">Termination Screen</h2>
 
