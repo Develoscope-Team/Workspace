@@ -94,6 +94,23 @@ try {
 							<!--begin::Row-->
 							<div class="row">
 								<div class="col-xl-5">
+								
+								<!-- <div class="card card-custom gutter-b">
+											<div class="card-header">
+												<div class="card-title">
+													<h3 class="card-label">Pie Chart 1</h3>
+												</div>
+											</div>
+											<div class="card-body">
+												<div id="kt_flotcharts_81" style="height: 250px;"></div>
+											</div>
+										</div> -->
+								
+								
+								
+								
+								
+								
 									<!--begin::Tiles Widget 1-->
 									<div class="card card-custom gutter-b card-stretch">
 										<!--begin::Header-->
@@ -112,8 +129,8 @@ try {
 										<div class="card-body d-flex flex-column px-0">
 											<!--begin::Chart-->
 											<!-- <div id="kt_tiles_widget_1_chart" data-color="danger" style="height: 125px"></div> -->
-										 <div id="chart_12" data-color="danger"
-												style="height: 25%; width: 35%" ></div> 
+										 <div id="chart_12" data-color="danger" style="height: 300px;">
+												 </div> 
 												<!-- <div id="chart_12"></div> -->
 											<!--end::Chart-->
 											<!--begin::Items-->
@@ -629,6 +646,7 @@ function showSlides() {
 
 	
 	
+		
 	<script src="//www.amcharts.com/lib/3/amcharts.js"></script>
 	<script src="//www.amcharts.com/lib/3/serial.js"></script>
 	<script src="//www.amcharts.com/lib/3/radar.js"></script>
@@ -907,8 +925,8 @@ function showSlides() {
 						width : 380,
 						type : 'pie',
 					},
-					labels : subcategory,
-					responsive : [ {
+					labels : subcategory
+					/* responsive : [ {
 						breakpoint : 480,
 						options : {
 							chart : {
@@ -918,7 +936,7 @@ function showSlides() {
 								position : 'bottom'
 							}
 						}
-					} ],
+					} ], */
 				/* colors: [primary, success, warning, danger, info] */
 				};
 
@@ -1165,6 +1183,14 @@ function showSlides() {
 		$('#updateRecipe').click(function() {
 
 		}) */
+		
+		
+		
+		setTimeout(function() { 
+			  alert("$premium$");
+			}, 1);	
+		
+
 	</script>
 </body>
 </html>

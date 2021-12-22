@@ -1,4 +1,4 @@
-<%@page import="com.faces.VO_Face"%>
+ <%@page import="com.faces.VO_Face"%>
 		<div id="kt_header_mobile" class="header-mobile header-mobile-fixed">
 			<!--begin::Logo-->
 			<a href="./index.jsp">
@@ -7,12 +7,12 @@
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
 			<div class="d-flex align-items-center">
-				<button class="btn p-0 burger-icon rounded-0 burger-icon-left" id="kt_aside_tablet_and_mobile_toggle">
+				<button class="btn p-0 burger-icon rounded-0 burger-icon-left" id="kt_header_mobile_toggle">
 					<span></span>
 				</button>
 				<button class="btn btn-hover-text-primary p-0 ml-3" id="kt_header_mobile_topbar_toggle">
 					<span class="svg-icon svg-icon-xl">
-						<!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/User.svg-->
+						<!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 								<polygon points="0 0 24 0 24 24 0 24" />
@@ -26,3 +26,4 @@
 			</div>
 			<!--end::Toolbar-->
 		</div>
+ 
