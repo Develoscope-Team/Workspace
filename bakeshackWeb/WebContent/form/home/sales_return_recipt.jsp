@@ -202,7 +202,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 												id="amount_in_word1"></span>
 										</div>
 										<div class="col-3 text-right">
-											<label> Advance/Partial Paid :</label>
+											<label> Refund Amount :</label>
 										</div>
 										<div class="col-2 text-center">
 											<span class=" font-weight-bolder" id="total_paid"></span>
