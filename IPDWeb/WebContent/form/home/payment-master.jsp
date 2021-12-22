@@ -49,22 +49,26 @@ table.a {
 								<div class="card card-custom">
 									<form class="form" id="kt_form_1">
 										<div class="card-body">
-											<div class="row">
-												<div class="col-xl-6">
+											
+												
 													<div class="form-group">
-														<label>Payment Mode</label> <input type="text"
+														<label>Payment Mode :</label> <input type="text"
 															id="payment_mode" class="form-control form-control-solid"
 															placeholder="Enter Payment Mode" />
+															<span class="form-text text-muted">Please Enter Payment Mode.</span>
 													</div>
-												</div>
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Bank</label> <input type="text"
-															id="bank" class="form-control form-control-solid"
-															placeholder="Enter Bank" />
-													</div>
-												</div>
-											</div>
+											
+												
+												<div class="form-group">
+																		<label>Bank Name :</label><span class="text-danger">*	</span>
+																		<select class="form-control form-control-solid"
+																			name="bank_name" id="bank_name">
+																			<option value="" disabled selected hidden>Select Bank Name</option>
+																		</select>
+																	</div>
+													
+											
+											
 									</div>
 										<div class="text-center">
 											<button type="button" id="addProduct"
@@ -96,10 +100,10 @@ table.a {
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=225	 id="table-id">
+											data-scroll="false" data-height=335	 id="table-id">
 											<thead>
 												<tr>
-													<th class="col-sm-1 text-center" data-field="sr-no"
+													<th class="col-sm-3 text-center" data-field="sr-no"
 														data-sortable="true">Sr No</th>
 													<th class="col-sm-3 text-center" data-field="payment-mode"
 														data-sortable="true">Payment Mode</th>

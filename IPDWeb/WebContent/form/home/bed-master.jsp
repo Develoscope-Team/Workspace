@@ -37,7 +37,7 @@ table.a {
 	<div class="container">
 
 							<h2
-								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Bed
+								class="d-flex align-items-center text-dark font-weight-bold my-2 mr-5">Bed
 								Master</h2>
 								
 
@@ -54,17 +54,17 @@ table.a {
 																	<div class="col-xl-6">
 															<div class="form-group">
 																<label>Bed No</label> <input type="text"
-																	id="Bed_No"
+																	id="bed_no"
 																	class="form-control form-control-solid"
-																	placeholder="Enter Bed NO" />
+																	placeholder="Enter Bed No" />
 															</div>
 															</div>
 															<div class="col-xl-6">
 															<div class="form-group">
 																<label>Room No</label> <input type="text"
-																	id="Room_No"
+																	id="room_no"
 																	class="form-control form-control-solid"
-																	placeholder="Enter Room NO" />
+																	placeholder="Enter Room No" />
 															</div>
 															</div>
 															</div>
@@ -73,8 +73,8 @@ table.a {
 															<div class="text-center">
 																<button type="submit" id="addRemark"
 																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
-																<button type="submit" id="updateRemark"
-																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Update</button>
+																<!-- <button type="submit" id="updateRemark"
+																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Update</button> -->
 																<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; "
 																	id="cancel">Cancel</button>
 															</div>
@@ -87,22 +87,17 @@ table.a {
 									</div>
 								</div>
 
-							
-							<div class="col-xl-12 offset-xl-0 ">
+							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
-
-								<div class="input-icon ml-10" style = "width: 30%;">
+									<div class="input-icon ml-10" style = "width: 30%;">
 																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
 																<span>
 																	<i class="flaticon2-search-1 text-muted"></i>
 																</span>
 															</div>
-								<br />
-
-
-								
-
+											<br />
+										<!--begin: Datatable-->
 										<table data-toggle="table" class='a'
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
@@ -110,29 +105,25 @@ table.a {
 											data-scroll="false" data-height=550 id="table-id">
 											<thead>
 												<tr>
-													<th class="col-sm-1 text-center " data-field="NO"
-														data-sortable="true">No</th>
-													<th class="col-sm-4 text-center" data-field="Beds_Number"
-														data-sortable="true">Beds Number</th>
-													<th class="col-sm-4 text-center" data-field="Room_Number"
-														data-sortable="true">Beds Number</th>
-													<th class="col-sm-2 text-center" data-field="Action"
-														data-sortable="true">Action</th>
-
+													<th class="col-sm-1 text-center" data-field="sr-no"
+														data-sortable="true">Sr No</th>
+													<th class="col-sm-1 text-center" data-field="bed-no"
+														data-sortable="true">Bed No</th>
+													<th class="col-sm-1 text-center" data-field="room-no"
+														data-sortable="true">Room No</th>
+												    <th class="col-sm-2 text-center" data-field="action"
+														data-sortable="false">Action</th>
 												</tr>
 
 											</thead>
 											<tbody class="data">
-
-
 											</tbody>
 										</table>
-
+										<!--end: Datatable-->
 									</div>
-
 								</div>
-
 							</div>
+
 						</div>
 						</div>
 					
@@ -175,7 +166,7 @@ table.a {
 	var base='<%=base%>';  
 	
 	
-	$('#updateRemark').hide();
+	$('#updateBank').hide();
 	</script>
 </body>
 </html>

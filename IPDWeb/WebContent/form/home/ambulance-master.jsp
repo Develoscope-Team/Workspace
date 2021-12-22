@@ -38,40 +38,39 @@ table.a {
 
 	<div class="container">
 
-		 <h2
-								class="d-flex align-items-center text-gray font-weight-bold my-2 mr-5">Ambulance
-								Master</h2> 
+		 <h2 class="d-flex align-items-center text-gray font-weight-bold my-2 mr-5">Ambulance Master</h2> 
 
-
-	
 			<div class="card card-custom gutter-b">
 				<div class="card-body">
 					<div class="example mb-10">
-						
+					<div class="example-preview">
 							<div class="card card-custom">
 								<form class="form" id="kt_form_1">
 									<div class="card-body">
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group">
-													<label>Ambulance No</label> <input type="text"
+													<label>Ambulance No :</label> <input type="text"
 														id="ambulance_no" class="form-control form-control-solid"
 														placeholder="Enter Ambulance No" />
 												</div>
 											</div>
 											<div class="col-xl-6">
-												<div class="form-group">
-													<label>Ambulance Purchase Date</label> <input type="text"
-														id="ambulance_purchase_date"
-														class="form-control form-control-solid"
-														placeholder="Enter Ambulance Purchase Date" />
-												</div>
-											</div>
+																	<div class="form-group">
+																		<label>Ambulance Purchase Date :</label> <input type="date"
+																			data-date-inline-picker="true"
+																			class="form-control form-control-solid "
+																			placeholder="DD/MM/YYYY" name="ambulance_purchase_date"
+																			id="ambulance_purchase_date" />
+
+																	</div>
+
+																</div>
 										</div>
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group">
-													<label>Price</label><input type="text" id="price"
+													<label>Price :</label><input type="text" id="price"
 														class="form-control form-control-solid"
 														placeholder="Enter Price" />
 
@@ -79,7 +78,7 @@ table.a {
 											</div>
 											<div class="col-xl-6">
 												<div class="form-group">
-													<label>Purchase Place</label> <input type="text"
+													<label>Purchase Place :</label> <input type="text"
 														id="purchase_place"
 														class="form-control form-control-solid"
 														placeholder="Enter Purchase Place" />
@@ -90,15 +89,18 @@ table.a {
 
 									</div>
 									<div class="text-center">
-										<button type="button" id="addProduct"
+										<button type="button" id="addAmbulance"
 											class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
-
+									<button type="submit" id="updateAmbulance"
+												class="btn btn-primary mr-2"
+												style="background-color: #AB48FF;">Update</button>
 										<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; "id="cancel">Cancel</button>
 									</div>
 								</form>
 								<!--end::Form-->
 							</div>
 						
+					</div>
 					</div>
 				</div>
 			</div>
@@ -123,14 +125,14 @@ table.a {
 							<tr>
 								<th class="col-sm-1 text-center" data-field="sr-no"
 									data-sortable="true">Sr No</th>
-								<th class="col-sm-3 text-center" data-field="ambulance-no"
+								<th class="col-sm-2 text-center" data-field="ambulance-no"
 									data-sortable="true">Ambulance No</th>
-								<th class="col-sm-3 text-center"
+								<th class="col-sm-2 text-center"
 									data-field="ambulance-purchase-date" data-sortable="true">Ambulance
 									Purchase Date</th>
-								<th class="col-sm-3 text-center" data-field="price"
+								<th class="col-sm-2 text-center" data-field="price"
 									data-sortable="true">Price</th>
-								<th class="col-sm-3 text-center" data-field="purchase-place"
+								<th class="col-sm-2 text-center" data-field="purchase-place"
 									data-sortable="true">Purchase Place</th>
 								<th class="col-sm-3 text-center" data-field="action"
 									data-sortable="true">Action</th>
@@ -153,7 +155,7 @@ table.a {
 	</div>
 
 	<!--begin::Footer-->
-	<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+	<div style="position: fixed; bottom: 0; width: 100%;" class="fixed ">
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
 	<!--end::Footer-->
@@ -189,13 +191,283 @@ table.a {
 	<script type="text/javascript">
 	
 	var basePath='<%=basePath%>';    
-	var base='<%=base%>';
+	var base='<%=base%>';  
+	
+	
+	$('#updateAmbulance').hide();
+	$("#addAmbulance").show();
+	
+		$('#addAmbulance').click(function() {
 
-		$('#updateAdvice').hide();
+							var ambulance_no = $('#ambulance_no').val();
+							var ambulance_purchase_date = $('#ambulance_purchase_date').val();
+							var price = $('#price').val();
+							var purchase_place = $('#purchase_place').val();
+							var flag = 1; // Addition
+
+						if(ambulance_no != ""){
+							$.ajax({
+								// http://localhost:8080/ipdAPI/ipdapi/insertUpdateAmbulance
+								url : base +"/ipdAPI/ipdapi/insertUpdateAmbulance",
+								
+								type : "post",
+								dataType : "json",
+								async : false,
+								data : {
+									"ambulance_no" : ambulance_no,
+                                    "ambulance_purchase_date" : ambulance_purchase_date,
+                                    "price" : price,
+                                    "purchase_place" : purchase_place,
+									"flag" : flag
+								},
+								
+								error : function(xhr) {
+									var msg = "Data insertion failed Error : "
+											+ xhr.status
+											+ " "
+											+ xhr.statusText;
+									alert(msg);
+								},
+								success : function(response) {
+									if (response != null) {
+
+										if (response >= 1) {
+
+											var msg = "Ambulance Data inserted Successfully.";
+											alert(msg);
+											
+										} 
+									}
+								}
+
+							});
+						}
+
+						})
+
+		"use strict";
+		//Class definition
+		
+		var ambulance_id;
+var html = "";
+
+$.ajax({
+	
+	url : base +"/ipdAPI/ipdapi/getAmbulance",
+	
+	type : "post",
+	dataType : "json",
+	async : false,
+	data : {"ambulance_id": ambulance_id},
+	success:function(data)
+	{
+		
+		const row = data.find(d => d.ambulance_id == ambulance_id);
+		data.forEach((row)=> {
+			alert(ambulance_id);
+			
+			html +="<tr id= tr-id-2 class= tr-class-2>"
+			html += "<td>"+row.ambulance_id+"</td>"; 
+			 html += "<td>"+row.ambulance_no+"</td>";
+	            html += "<td>"+row.ambulance_purchase_date+"</td>";
+	            html += "<td>"+row.price+"</td>";
+	            html += "<td>"+row.purchase_place+"</td>";
+	         
+     	       	 html += '<td><a href="javascript:update('+row.ambulance_id+');" class="btn_ambulance btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"/></g></svg></span>'
+         
+
+     	       	+ '<a href="javascript:deleteById('+row.ambulance_id+');" class="btn_ambulance btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
+	            html +="</tr>"
+		
+		});
+		 $(".data").html(html);
+	}
+	
+});	
+
+$(document).ready(function (){
+	   var table = $('#table-id').DataTable();
+	   
+	  
+	});
+
+		 
+		 function update(id){
+			 
+				$('.btn_ambulance').hide();
+				
+
+				
+				$('#updateAmbulance').show();
+				$("#addAmbulance").hide();
+				
+				$.ajax({
+			        type:"POST",
+			        dataType: "json",
+			        data:{"ambulance_id": id},
+					async : false,
+					url : base +"/ipdAPI/ipdapi/getAmbulance",
+			        success:function(data)
+			        {
+			        	
+			            const row = data.find(d => d.ambulance_id == id);
+			           
+			            $("#ambulance_no").val(row.ambulance_no);
+			        	$("#ambulance_purchase_date").val(row.ambulance_purchase_date);
+			        	$("#price").val(row.price);
+			        	$("#purchase_place").val(row.purchase_place);
+			        	
+			        }
+			     });
+				
+				 
+				 // let update_by_id = temp_edit_id;
+				 // console.log(update_by_id);
+				 
+				 
+				$('#updateAmbulance')
+				.click(
+						function() {
+							 
+							
+							var ambulance_no = $('#ambulance_no').val();
+							var ambulance_purchase_date = $('#ambulance_purchase_date').val();
+							var price = $('#price').val();
+							var purchase_place = $('#purchase_place').val();;
+							//alert(purchase_place);
+							
+							var flag = 2; // Addition
+
+							$.ajax({
+								url : base +"/ipdAPI/ipdapi/insertUpdateAmbulance",
+								
+										type : "post",
+										dataType : "json",
+										async : false,
+										data : {
+											
+											"ambulance_no" : ambulance_no,
+											"ambulance_purchase_date" : ambulance_purchase_date,
+											"price" : price,
+											"purchase_place" : purchase_place,
+											
+											"flag" : flag,
+											"ambulance_id": ambulance_id
+										},
+										
+										error : function(xhr) {
+											var msg = "(Data updation failed. Error : "
+													+ xhr.status
+													+ " "
+													+ xhr.statusText;
+											alert(msg);
+										},
+										success : function(response) {
+											if (response != null) {
+
+												if (response >= 1) {
+
+													var msg = "Ambulance Data updated Successfully.";
+													alert(msg);
+
+												} 
+											}
+										}
+								   
+									});
+			   
+
+						})
+		 
+		 }
+				
+	
+
+	"use strict";
+		 
+		$('#cancel')
+		.click(
+				function() {		
+				window.location.reload();
+				})
+		 
+		// Delete data by ambulance_id
+		function deleteById(id){
+			if (confirm("Press OK to confirm!")) {
+			$.ajax({
+				url : base + "/ipdAPI/ipdapi/insertUpdateAmbulance",
+				
+				type : "post",
+				dataType : "json",
+				async : false,
+				data : {
+					"ambulance_no": "",
+                    "ambulance_purchase_date": "",
+                    "price": "",
+                    "purchase_place": "",
+					"ambulance_id" : id,
+					"flag" : 3
+				},
+				
+				error : function(xhr) {
+					var msg = "Data deletion failed. Error : "
+							+ xhr.status
+							+ " "
+							+ xhr.statusText;
+					alert(msg);
+				},
+				success : function(response) {
+					if (response != null) {
+
+						if (response >=1) {
+
+							var msg = "Ambulance Data deleted Successfully.";
+							alert(msg);
+							location.reload(true);
+
+						} 
+					}
+				}
+
+			});
+			} else {
+				  window.location.reload();
+			  }
+		}
+		$(document).ready(function(){
+
+			  // Search all columns
+			  $('#txt_searchall').keyup(function(){
+			    // Search Text
+			    var search = $(this).val();
+
+			    // Hide all table tbody rows
+			    $('table tbody tr').hide();
+
+			    // Count total search result
+			    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
+
+			    if(len > 0){
+			      // Searching text in columns and show match row
+			      $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
+			        $(this).closest('tr').show();
+			      });
+			    }else{
+			      $('.notfound').show();
+			    }
+
+			  });
+
+			});
+		$.expr[":"].contains = $.expr.createPseudo(function(arg) {
+			   return function( elem ) {
+			     return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+			   };
+			});
+
 	</script>
 </body>
 </html>
-
 
 <%
 } catch (Exception e) {

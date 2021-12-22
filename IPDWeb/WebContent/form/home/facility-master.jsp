@@ -44,32 +44,32 @@ table.a {
 		
 				<h2 class="text-gray font-weight-bold my-2 mr-5">Facility Master</h2>
 
-		
-							
-							<div class="card card-custom gutter-b">
+		     <div class="row">
+				<div class="col-xl-6">			
+				<div class="card card-custom gutter-b">
 					<div class="card-body">
 						<div class="example mb-10">
 							<div class="example-preview">
 								<div class="card card-custom">
 									<form class="form" id="kt_form_1">
 										<div class="card-body">
-											<div class="row">
-												<div class="col-xl-6">
+											
+												
 													<div class="form-group">
-														<label>Facility Name</label><input type="text"
+														<label>Facility Name :</label><input type="text"
 															id="facility_name" class="form-control form-control-solid"
 															placeholder="Enter Facility Name" />
 
 													</div>
-												</div>
-												<div class="col-xl-6">
+												
+												
 													<div class="form-group">
-														<label>Amount Charges</label> <input type="text"
+														<label>Amount Charges :</label> <input type="text"
 															id="amount_charges" class="form-control form-control-solid"
 															placeholder="Enter Amount Charges" />
 													</div>
-												</div>
-											</div>
+												
+											
 															</div>
 															
 															<div class="text-center">
@@ -88,6 +88,7 @@ table.a {
 										</div>
 									</div>
 								</div>
+							</div>
 								<div class="col-xl-6 ">
 								
 								<div class="card card-custom gutter-b">
@@ -105,16 +106,16 @@ table.a {
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=225 id="table-id">
+											data-scroll="false" data-height=330 id="table-id">
 											<thead>
 												<tr>
-													<th class="col-sm-1 text-center" data-field="sr-no"
+													<th class="col-sm-3 text-center" data-field="sr-no"
 														data-sortable="true">Sr No</th>
 													<th class="col-sm-3 text-center" data-field="facility-name"
 														data-sortable="true">Facility Name </th>
 													<th class="col-sm-3 text-center" data-field="amount-charges"
 														data-sortable="true">Amount Charges</th>
-													<th class="col-sm-2 text-center" data-field="action"
+													<th class="col-sm-3 text-center" data-field="action"
 														data-sortable="false">Action</th>
 
 
@@ -133,7 +134,7 @@ table.a {
 							</div>
 							
 							</div>
-						
+					
 		<!--end::Container-->
 </div>
 		<!--end::Content-->

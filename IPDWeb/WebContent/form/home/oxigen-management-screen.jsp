@@ -61,17 +61,23 @@ table.a {
 										
 											<div class="row">
 												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Ward </label> <input type="text"
-															id="ward" class="form-control form-control-solid" />
-													</div>
-												</div>												<div class="col-xl-6">
-													<div class="form-group">
-														<label>No of Oxigen</label> <input type="number"
-															id="noofOxigen" class="form-control form-control-solid" />
-													</div>
-												</div>
-											</div>
+																	<div class="form-group">
+																		<label>Ward</label><span class="text-danger">*</span>
+																		<select class="form-control form-control-solid"
+																			name="ward" id="ward" placeholder="Enter Ward">
+																			<option value="" disabled selected hidden>Select Ward</option>
+																		</select>
+																		<span class="form-text text-muted">Please Enter Ward.</span>
+																	</div>
+																</div>												
+															<div class="col-xl-6">
+													          <div class="form-group">
+														      <label>No of Oxigen</label> <input type="number"
+															  id="noofOxigen" class="form-control form-control-solid" placeholder="Enter No Of Oxigen"/>
+															  <span class="form-text text-muted">Please Enter No Of Oxigen.</span>
+													       </div>
+												        </div>
+											         </div>
 											<div class="row">
 												<div class="col-lg-6">
 																	<div class="form-group">
@@ -80,6 +86,7 @@ table.a {
 																			class="form-control form-control-solid "
 																			placeholder="DD/MM/YYYY" name="date"
 																			id="date" />
+																			<span class="form-text text-muted">Please Enter Date.</span>
 																	</div>
 																</div>
 												<div class="col-xl-6">
@@ -88,8 +95,9 @@ table.a {
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "
-																				name="available" id="available" /><span
+																				name="available" id="available" placeholder="Enter Availability"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Available.</span>
 																		</div>
 
 																	</div>

@@ -41,7 +41,7 @@ try {
 													<form class="form" id="kt_form_1">
 														
 															<div class="row">
-																<div class="col-xl-6">
+																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label>Built</label><span class="text-danger"></span>
 																		<div class="typeahead">
@@ -54,7 +54,7 @@ try {
 																	</div>
 
 																</div>
-																<div class="col-xl-6">
+																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label>Pulse</label><span class="text-danger"></span>
 																		<div class="typeahead">
@@ -67,9 +67,9 @@ try {
 																	</div>
 
 																</div>
-															</div>
-															<div class="row">
-																<div class="col-lg-6">
+															
+															
+																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label>Blood Pressure</label> <input type="text"
 																			class="form-control form-control-solid"
@@ -77,7 +77,7 @@ try {
 																			id="type2"> </span>
 																	</div>
 																</div>
-																<div class="col-lg-6">
+																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label>RR</label> <input type="text"
 																			class="form-control form-control-solid"
@@ -87,7 +87,7 @@ try {
 																</div>
 															</div>
 															<div class="row">
-																<div class="col-lg-6">
+																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label>Pallor</label>
 																		<input type="text"
@@ -96,7 +96,7 @@ try {
 																			id="type2"> </span>
 																	</div>
 																</div>
-																<div class="col-xl-6">
+																<div class="col-xl-3">
 																	<div class="form-group">
 																		<label>Cyanosis</label>
 																		<input type="text"
@@ -107,9 +107,8 @@ try {
 																	</div>
 
 																</div>
-															</div>
-															<div class="row">
-																<div class="col-lg-6">
+															
+																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label>Leterus</label>
 																		<input type="text"
@@ -119,7 +118,9 @@ try {
 
 																	</div>
 																</div>
-										               <div class="col-xl-6">
+																
+																
+										               <div class="col-xl-3">
 																	<div class="form-group">
 																		<label>Clubbing</label>
 																		<input type="text"
@@ -132,10 +133,10 @@ try {
 																
 																
 															</div>
-															
+															</div>	
 															
 															<div class="row">
-																<div class="col-lg-6">
+																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label>Peripheral Pulse</label>
 																		<input type="text"
@@ -144,7 +145,7 @@ try {
 																			id="type2"> </span>
 																	</div>
 																</div>
-										                       <div class="col-xl-6">
+										                       <div class="col-xl-3">
 																	<div class="form-group">
 																		<label>Temprature</label>
 																		<input type="degree"
@@ -154,12 +155,8 @@ try {
 
 																	</div>
 																</div>
-																
-																
-															</div>
-
-														<div class="row">
-																<div class="col-lg-6">
+														
+																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label>SPO2</label> <input type="number"
 																			class="form-control form-control-solid"
@@ -167,7 +164,7 @@ try {
 																			id="type2"> </span>
 																	</div>
 																</div>
-										                <div class="col-xl-6">
+										                <div class="col-xl-3">
 																	<div class="form-group">
 																		<label>Eruption</label><span class="text-danger"></span>
 																		<div class="typeahead">
@@ -183,6 +180,7 @@ try {
 															</div>
 													
 													</div>
+													
 													<div class ="row">
 										               <div class="col-lg-3">
 																	<div class="form-group">

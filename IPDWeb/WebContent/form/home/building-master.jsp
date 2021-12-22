@@ -38,179 +38,181 @@ table.a {
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 
 
-	
 
-	<div
-		class="container">
-		
-				<h2 class="text-gray font-weight-bold my-2 mr-5">Building Master</h2>
-				
 
-	
+	<div class="container">
 
-	
-		
+		<h2 class="text-gray font-weight-bold my-2 mr-5">Building Master</h2>
 
-			
-				<div class="card card-custom gutter-b">
-					<div class="card-body">
-						<div class="example mb-10">
-							<div class="example-preview">
-								<div class="card card-custom">
-									<form class="form" id="kt_form_1">
-										<div class="card-body">
-											<div class="row">
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Building Name</label> <input type="text"
-															id="building_name" class="form-control form-control-solid"
-															placeholder="Enter Building Name" />
-													</div>
-												</div>
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Building Floors</label> <input type="text"
-															id="building_floors" class="form-control form-control-solid"
-															placeholder="Enter Building Floors" />
-													</div>
-												</div>
+
+		<div class="card card-custom gutter-b">
+			<div class="card-body">
+				<div class="example mb-10">
+					<div class="example-preview">
+						<div class="card card-custom">
+							<form class="form" id="kt_form_1">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Building Name :</label> <input type="text"
+													id="building_name" class="form-control form-control-solid"
+													placeholder="Enter Building Name" />
 											</div>
-											<div class="row">
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Building Count</label><input type="text"
-															id="building_count" class="form-control form-control-solid"
-															placeholder="Enter Building Count" />
-
-													</div>
-												</div>
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Wards</label><input type="text"
-															id="wards" class="form-control form-control-solid"
-															/>
-
-													</div>
-												</div>
-											</div>
-
-											<div class="row">
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Floors</label><input type="text"
-															id="floors"
-															class="form-control form-control-solid" />
-
-													</div>
-												</div>
-												<div class="form-group col-xl-6">
-													<label>Rooms</label><input type="text"
-														id="rooms" class="form-control form-control-solid"
-														placeholder="Enter Rooms" />
-
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Operation Theater</label><input type="text"
-															id="operation_theater"
-															class="form-control form-control-solid" />
-
-													</div>
-												</div>
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>ICU</label><input type="text"
-															id="icu"
-															class="form-control form-control-solid" />
-
-													</div>
-												</div>
-											</div>
-											
-
-																			<div class="text-center">
-											<button type="button" id="addProduct"
-												class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
-
-											<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; "id="cancel">Cancel</button>
 										</div>
-									</form>
-									<!--end::Form-->
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Building Floors :</label> <input type="text"
+													id="building_floors"
+													class="form-control form-control-solid"
+													placeholder="Enter Building Floors" />
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Building Count :</label><input type="text"
+													id="building_count" class="form-control form-control-solid"
+													placeholder="Enter Building Count" />
+
+											</div>
+										</div>
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Wards :</label><span class="text-danger">*</span> <select
+													class="form-control form-control-solid" name="wards"
+													id="wards">
+													<option value="" disabled selected hidden>Select
+														Wards</option>
+												</select>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Floors :</label><span class="text-danger">*</span> <select
+													class="form-control form-control-solid" name="floors"
+													id="floors">
+													<option value="" disabled selected hidden>Select
+														Floors</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Rooms :</label><span class="text-danger">*</span> <select
+													class="form-control form-control-solid" name="rooms"
+													id="rooms">
+													<option value="" disabled selected hidden>Select
+														Rooms</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Operation Theater :</label><input type="text"
+													id="operation_theater"
+													class="form-control form-control-solid" />
+
+											</div>
+										</div>
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>ICU :</label><input type="text" id="icu"
+													class="form-control form-control-solid" />
+
+											</div>
+										</div>
+									</div>
+
+
+									<div class="text-center">
+										<button type="button" id="addProduct"
+											class="btn btn-primary mr-2"
+											style="background-color: #AB48FF;">Submit</button>
+
+										<button type="button" class="btn btn-primary mr-2"
+											style="background-color: #AB48FF;" id="cancel">Cancel</button>
+									</div>
 								</div>
-							</div>
+							</form>
+
+							<!--end::Form-->
 						</div>
 					</div>
 				</div>
 			</div>
-								<div class="card card-custom gutter-b mt-10">
-									<div class="card-body">
-										<div class="input-icon ml-10" style="width: 30%;">
-											<input type="text" class="form-control form-control-solid"
-												placeholder="Search..." id="txt_searchall" /> <span>
-												<i class="flaticon2-search-1 text-muted"></i>
-											</span>
-										</div>
-										<br />
-										<!--begin: datatable-->
-										<table data-toggle="table" class='a'
-											data-classes="table table-hover table-condensed "
-											data-striped="true" data-sort-name="Quality"
-											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=550 id="table-id">
-											<thead>
-												<tr>
-													<th class="col-sm-1 text-center" data-field="sr-no"
-														data-sortable="true">Sr No</th>
-													<th class="col-sm-1 text-center" data-field="building-name"
-														data-sortable="true">Building Name</th>
-													<th class="col-sm-1 text-center" data-field="building-floors"
-														data-sortable="true">Building Floors</th>
-													<th class="col-sm-1 text-center" data-field="building-count"
-														data-sortable="true">Building Count</th>
-													<th class="col-sm-1 text-center" data-field="wards"
-														data-sortable="true">Wards</th>
-													<th class="col-sm-1 text-center" data-field="floors"
-														data-sortable="true">Floors</th>
-													<th class="col-sm-1 text-center" data-field="rooms"
-														data-sortable="true">Rooms</th>
-													<th class="col-sm-1 text-center" data-field="operation-theater"
-														data-sortable="true">Operation Theater</th>
-													<th class="col-sm-1 text-center" data-field="icu"
-														data-sortable="true">ICU</th>
-													<th class="col-sm-1 text-center" data-field="action"
-														data-sortable="true">Action</th>
-													
-
-												</tr>
-
-											</thead>
-											<tbody class="data">
-
-
-											</tbody>
-										</table>
-										<!--end: datatable-->
-									</div>
-									
-								</div>
-					
-
-		
-		
-		<!--end::Container-->
-
-
-		<!--end::Content-->
-		<!--begin::Footer-->
-		<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
-			<jsp:include page="../common/footer.jsp"></jsp:include>
 		</div>
-		<!--end::Footer-->
 
-	
+		<div class="card card-custom gutter-b mt-10">
+			<div class="card-body">
+				<div class="input-icon ml-10" style="width: 30%;">
+					<input type="text" class="form-control form-control-solid"
+						placeholder="Search..." id="txt_searchall" /> <span> <i
+						class="flaticon2-search-1 text-muted"></i>
+					</span>
+				</div>
+				<br />
+				<!--begin: datatable-->
+				<table data-toggle="table" class='a'
+					data-classes="table table-hover table-condensed "
+					data-striped="true" data-sort-name="Quality" data-sort-order="desc"
+					data-pagination="false" data-scroll="false" data-height=550
+					id="table-id">
+					<thead>
+						<tr>
+							<th class="col-sm-1 text-center" data-field="sr-no"
+								data-sortable="true">Sr No</th>
+							<th class="col-sm-2 text-center" data-field="building-name"
+								data-sortable="true">Building Name</th>
+							<th class="col-sm-2 text-center" data-field="building-floors"
+								data-sortable="true">Building Floors</th>
+							<th class="col-sm-2 text-center" data-field="building-count"
+								data-sortable="true">Building Count</th>
+							<th class="col-sm-2 text-center" data-field="wards"
+								data-sortable="true">Wards</th>
+							<th class="col-sm-2 text-center" data-field="floors"
+								data-sortable="true">Floors</th>
+							<th class="col-sm-2 text-center" data-field="rooms"
+								data-sortable="true">Rooms</th>
+							<th class="col-sm-2 text-center" data-field="operation-theater"
+								data-sortable="true">Operation Theater</th>
+							<th class="col-sm-2 text-center" data-field="icu"
+								data-sortable="true">ICU</th>
+							<th class="col-sm-2 text-center" data-field="action"
+								data-sortable="true">Action</th>
+
+
+						</tr>
+
+					</thead>
+					<tbody class="data">
+
+
+
+
+					</tbody>
+				</table>
+				<!--end: datatable-->
+			</div>
+		</div>
+	</div>
+
+
+	<!--end::Container-->
+
+
+
+	<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+	</div>
 	<!--end::Page-->
+
 
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">

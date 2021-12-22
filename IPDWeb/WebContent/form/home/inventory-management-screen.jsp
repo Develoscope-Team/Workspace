@@ -53,24 +53,22 @@ table.a {
 										<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Product Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="productname" id="productname" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
+																		<label>Product Name :</label> <input type="text"
+																			id="product_name"
+																			class="form-control form-control-solid"
+																			placeholder="Enter Product Name" />
+																			<span class="form-text text-muted">Please Enter Product Name.</span>
 																	</div>
 
 																</div>
 																
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Quantity</label> <input type="number"
-																			class="form-control form-control-solid"
-																			id="quantity" /> <span class="msg text-danger"
+																		<label>Quantity :</label> <input type="number"
+																			class="form-control form-control-solid" id="quantity"
+																			placeholder="Enter Quantity" /><span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Quantity.</span>
 
 																	</div>
 
@@ -82,42 +80,39 @@ table.a {
 
 									                       <div class="row">
 																
-															<div class="col-xl-6">
+															<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Request Date</label> <input type="requestDate"
+																		<label>Request Date :</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="requestDate"
-																			id="requestDate" />
-
+																			placeholder="DD/MM/YYYY" name="request_date"
+																			id="request_date" />
+																			<span class="form-text text-muted">Please Enter Request Date.</span>
 																	</div>
-
 																</div>
 																																
-																<div class="col-xl-6">
+																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Aproval Date</label> <input type="aprovalDate"
+																		<label>Aproval Date :</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="aprovalDate"
-																			id="aprovalDate" />
-
+																			placeholder="DD/MM/YYYY" name="aproval_date"
+																			id="aproval_date" />
+																			<span class="form-text text-muted">Please Enter Aproval Date.</span>
 																	</div>
-
 																</div>
 															</div>
 											<div class="row">
 																
-															<div class="col-xl-6">
+															<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Dispatch Date</label> <input type="dispatchDate"
+																		<label>Dispatch Date :</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="dispatchDate"
-																			id="dispatchDate" />
-
+																			placeholder="DD/MM/YYYY" name="dispatch_date"
+																			id="dispatch_date" />
+																			<span class="form-text text-muted">Please Enter Dispatch Date.</span>
 																	</div>
-
 																</div>
 																</div>
 										<div class="card-body" style="overflow-x: auto;">
@@ -135,15 +130,19 @@ table.a {
 																		</tr>
 																	</thead>
 
-																	<tbody class="productName" id="productName"></tbody>
+																	<tbody class="add_product" id="add-product"></tbody>
 
 
 																</table>
 															</div>
+															<div class="text-right mb-5 mr-22">
+															<button type="button" id="add"
+																class="btn btn-mr2" style="background-color:#AB48FF; ">Add</button>
+														</div>
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>State Adulted By Name</label><span class="text-danger"></span>
+																		<label>State Adulted By Name :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "

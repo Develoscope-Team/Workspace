@@ -44,38 +44,32 @@ table.a {
 		
 				<h2 class="text-gray font-weight-bold my-2 mr-5">Designation Master</h2>
 			
-
-	
-
-	
-
-							
 							<div class="row">
 								<div class="col-xl-6">
 									<div class="card card-custom gutter-b">
 										<div class="card-body">
 											<div class="example mb-10">
-												
+												<div class="example-preview">
 													<div class="card card-custom">
 														<form class="form" id="kt_form_1">
 															<div class="card-body">
-																<div class="row">
-												<div class="col-xl-6">
+																
+												
 													<div class="form-group">
-														<label>Designation Name</label><input type="text"
+														<label>Designation Name :</label><input type="text"
 															id="designation_name" class="form-control form-control-solid"
 															placeholder="Enter Designation Name" />
 														</div>
-													</div>
-													<div class="col-xl-6">
+													
+													
 													<div class="form-group">
-														<label>Designation Code</label> <input type="text"
+														<label>Designation Code :</label> <input type="text"
 															id="designation_code" class="form-control form-control-solid"
 															placeholder="Enter Designation Code" />
 													</div>
-												</div>
 												
-											</div>
+												
+										
 										</div>
 															
 															<div class="text-center">
@@ -89,7 +83,7 @@ table.a {
 														</form>
 														<!--end::Form-->
 													</div>
-											
+											</div>
 											</div>
 										</div>
 									</div>
@@ -111,16 +105,16 @@ table.a {
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=225 id="table-id">
+											data-scroll="false" data-height=330 id="table-id">
 											<thead>
 												<tr>
-													<th class="col-sm-1 text-center" data-field="sr-no"
+													<th class="col-sm-3 text-center" data-field="sr-no"
 														data-sortable="true">Sr No</th>
 													<th class="col-sm-3 text-center" data-field="designation-name"
 														data-sortable="true">Designation Name</th>
 													<th class="col-sm-3 text-center" data-field="designation-code"
 														data-sortable="true">Designation Code</th>
-													<th class="col-sm-2 text-center" data-field="action"
+													<th class="col-sm-3 text-center" data-field="action"
 														data-sortable="false">Action</th>
 
 

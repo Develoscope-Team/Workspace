@@ -43,14 +43,11 @@ try {
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Name Of Employee</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="nameOfEmployee" id="nameOfEmployee" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
+																		<label>Name Of Employee</label> <input type="text"
+																			id="name_of_employee"
+																			class="form-control form-control-solid"
+																			placeholder="Enter Name Of Employee" />
+																			<span class="form-text text-muted">Please Enter Name Of Employee.</span>
 																	</div>
 
 																</div>
@@ -61,6 +58,7 @@ try {
 																			class="form-control form-control-solid "
 																			placeholder="DD/MM/YYYY" name="month"
 																			id="month" />
+																			<span class="form-text text-muted">Please Enter Manth.</span>
 
 																	</div>
 
@@ -72,18 +70,20 @@ try {
 																		<label>Days Of Attendence</label> <input type="Date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="daysOfAttendence"
-																			id="daysOfAttendence" />
+																			placeholder="DD/MM/YYYY" name="days_of_attendence"
+																			id="days_of_attendence" />
+																			<span class="form-text text-muted">Please Enter Days Of Attendence.</span>
 
 																	</div>
 
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Total</label> <input type="number"
+																		<label>Total</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="total" /> <span class="total"
+																			id="total" placeholder="Enter Total" /> <span class="total"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Total.</span>
 																	</div>
 																</div>
 															</div>
@@ -93,15 +93,17 @@ try {
 																		<label>Tax Deduction</label>
 																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="taxDeduction"></textarea>
+																			id="tax_deduction" placeholder="Enter Tax deduction"></textarea>
+																			<span class="form-text text-muted">Please Enter Tax Deduction.</span>
 																	</div>
 																</div>
 															<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Total Salary</label> <input type="number"
+																		<label>Total Salary</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="totalSalary" /> <span class="totalSalary"
+																			id="totalSalary" placeholder="Enter Total Salary"/> <span class="totalSalary"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Total Salary.</span>
 																	</div>
 																</div>
 																</div>
@@ -113,6 +115,7 @@ try {
 																			class="form-control form-control-solid "
 																			placeholder="DD/MM/YYYY" name="date"
 																			id="date" />
+																			<span class="form-text text-muted">Please Enter Date.</span>
 
 																	</div>
 
@@ -123,11 +126,12 @@ try {
 																
 															<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Audiunce Deduction</label><span class="text-danger"></span>
+																		<label>Audience Deduction</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "
-																				name="audiunceDeduction" id="audiunceDeduction" /> 
+																				name="audience_deduction" id="audiunce_deduction" placeholder="Enter Audience Deduction"/> 
+																				<span class="form-text text-muted">Please Enter Audience Deduction.</span>
 																		</div>
 
 																	</div>

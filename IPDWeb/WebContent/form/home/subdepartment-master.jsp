@@ -50,27 +50,31 @@ table.a {
 									<div class="card card-custom gutter-b">
 										<div class="card-body">
 											<div class="example mb-10">
-												
+												<div class="example-preview">
 													<div class="card card-custom">
 														<form class="form" id="kt_form_1">
 															<div class="card-body">
-																<div class="row">
-												<div class="col-xl-6">
+																
+											
 													<div class="form-group">
-														<label>Sub Department Name</label><input type="text"
+														<label>Sub Department Name :</label><input type="text"
 															id="sub_department_name" class="form-control form-control-solid"
 															placeholder="Enter SubDepartment Name" />
+															
+															<span class="form-text text-muted">Please Enter Sub Department Name.</span>
 
 													</div>
-												</div>
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Department Name</label> <input type="text"
-															id="department_name" class="form-control form-control-solid"
-															placeholder="Enter Department Name" />
-													</div>
-												</div>
-											</div>
+												<div class="form-group">
+																		<label>Department Name :</label><span class="text-danger">*	</span>
+																		<select class="form-control form-control-solid"
+																			name="department_name" id="department_name">
+																			<option value="" disabled selected hidden>Select Department Name</option>
+																		</select>
+																	</div>
+												
+													
+												
+											
 															</div>
 															
 															<div class="text-center">
@@ -84,6 +88,7 @@ table.a {
 														<!--end::Form-->
 													</div>
 												</div>
+											</div>
 											</div>
 										</div>
 									</div>
@@ -105,16 +110,16 @@ table.a {
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=225 id="table-id">
+											data-scroll="false" data-height=335 id="table-id">
 											<thead>
 												<tr>
-													<th class="col-sm-1 text-center" data-field="Sr-No"
+													<th class="col-sm-3 text-center" data-field="sr-no"
 														data-sortable="true">Sr No</th>
 													<th class="col-sm-3 text-center" data-field="sub-department-name"
-														data-sortable="true">Sub Department Name</th>
+														data-sortable="true">Sub Dep Name</th>
 													<th class="col-sm-3 text-center" data-field="department-name"
-														data-sortable="true">Department Name</th>
-													<th class="col-sm-2 text-center" data-field="Action"
+														data-sortable="true">Dep Name</th>
+													<th class="col-sm-3 text-center" data-field="action"
 														data-sortable="false">Action</th>
 
 
@@ -129,7 +134,7 @@ table.a {
 										<!--end: Datatable-->
 									</div>
 								</div>
-							</div>
+							
 							</div>
 							
 							</div>
