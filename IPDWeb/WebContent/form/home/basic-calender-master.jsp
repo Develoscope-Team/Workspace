@@ -57,23 +57,26 @@ table.a {
 													<div class="card card-custom">
 														<form class="form" id="kt_form_1">
 															<div class="card-body">
-																<div class="row">
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Calender</label><input type="text"
-															id="calender" class="form-control form-control-solid"
-															placeholder="Enter Calender" />
+																
+												
+																	<div class="form-group">
+																		<label>Calender :</label> <input type="date"
+																			data-date-inline-picker="true"
+																			class="form-control form-control-solid "
+																			 name="date"
+																			id="date" />
 
-													</div>
-												</div>
-												<div class="col-xl-6">
+																	</div>
+
+															
+												
+												
 													<div class="form-group">
-														<label>Add Event</label> <input type="text"
+														<label>Add Event :</label> <input type="text"
 															id="add_event" class="form-control form-control-solid"
 															placeholder="Enter Add Event" />
 													</div>
-												</div>
-											</div>
+											
 															</div>
 															
 															<div class="text-center">
@@ -108,13 +111,13 @@ table.a {
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=225 id="table-id">
+											data-scroll="false" data-height=330 id="table-id">
 											<thead>
 												<tr>
 													<th class="col-sm-1 text-center" data-field="sr-no"
 														data-sortable="true">Sr No</th>
 													<th class="col-sm-3 text-center" data-field="calender"
-														data-sortable="true">Calender</th>
+														data-sortable="true">Calender </th>
 													<th class="col-sm-3 text-center" data-field="add-event"
 														data-sortable="true">Add Event</th>
 													<th class="col-sm-2 text-center" data-field="action"
@@ -137,13 +140,16 @@ table.a {
 							
 							</div>
 					
-		
+		<!--end::Container-->
+</div>
+		<!--end::Content-->
+		<!--begin::Footer-->
+		<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+			<jsp:include page="../common/footer.jsp"></jsp:include>
+		</div>
+		<!--end::Footer-->
 
-
-		
-		
-
-	</div>
+	
 	<!--end::Page-->
 
 	<!--begin::Scrolltop-->
@@ -171,6 +177,14 @@ table.a {
 	<script
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
 
+<script type="text/javascript">
+	
+	var basePath='<%=basePath%>';    
+	var base='<%=base%>';  
+	
+	
+	$('#updateUPI').hide();
+	</script>
 
 
 </body>

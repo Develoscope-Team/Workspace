@@ -43,26 +43,21 @@ try {
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Employee Entry</label><span class="text-danger"></span>
-																		 <div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="employeeEntry" id="employee_entry" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
+																		<label>Employee Name :</label> <input type="text"
+																			id="employee_name"
+																			class="form-control form-control-solid"
+																			placeholder="Enter Employee Name" />
+																			<span class="form-text text-muted">Please Enter Employee Name.</span>
 																	</div>
 
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Employee Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="employeeName" id="employee_name" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+																		<label>Employee Entry :</label> <input type="text"
+																			id="employee_entry"
+																			class="form-control form-control-solid"
+																			placeholder="Enter Employee Entry" />
+																			<span class="form-text text-muted">Please Employee Entry.</span>
 
 																	</div>
 
@@ -71,26 +66,64 @@ try {
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Employee DOB</label> <input type="employeeDOB"
+																		<label>Employee Birth Date :</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="employee_dob"
-																			id="employee_dob" />
+																			placeholder="DD/MM/YYYY" name="employee_birth_date"
+																			id="employee_birth_date" />
+																			<span class="form-text text-muted">Please Enter Employee Birth Date.</span>
 																	</div>
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Mobile No</label> <input type="number"
-																			class="form-control form-control-solid"
-																			id="mobileNo" /> <span class="msg text-danger"
-																			id="type2"> </span>
+																	<label>Designation :</label><span class="text-danger">*</span>
+																		<select class="form-control form-control-solid"
+																			name="designation" id="designation">
+																			<option value="" disabled selected hidden>Select
+																				Designation</option>
+																		</select>
+																		<span class="form-text text-muted">Please Enter Designation.</span>
+																		
 																	</div>
 																</div>
 															</div>
 															<div class="row">
+															<div class="col-lg-6">
+																	<div class="form-group">
+																	<label>Qualification :</label><span class="text-danger">*</span>
+																		<select class="form-control form-control-solid"
+																			name="qualification" id="qualification">
+																			<option value="" disabled selected hidden>Select Qualification</option>
+																		</select>
+																		<span class="form-text text-muted">Please Enter Qualification.</span>
+																		
+																	</div>
+																</div>
+																
+																<div class="col-lg-6">
+											                      <div class="form-group">
+												                    <label>Adhar No :</label> <input type="text"
+													                   class="form-control form-control-solid" id="adhar_no" /><span
+														               class="msg text-danger" id="type2" placeholder="Enter Adhar No"> </span>
+														               <span class="form-text text-muted">Please Enter Adhar No.</span>
+											                    </div>
+										                     </div>
+														</div>
+														<div class="row">
+															<div class="col-lg-6">
+																	<div class="form-group">
+															<label>Mobile No :</label> <input type="text"
+																			class="form-control form-control-solid"
+																			id="mobile_no" placeholder="Enter Mobile No"/> <span class="msg text-danger"
+																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Mobile No.</span>
+																	  </div>
+																	</div>
+																
+															
 																 <div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Blood Group</label><span class="text-danger">*</span>
+																		<label>Blood Group :</label><span class="text-danger">*</span>
 																		<select class="form-control form-control-solid"
 																			name="bloodGroup" id="bloodGroup">
 																			<option value="Select Blood Group">Select Blood Group</option>
@@ -103,15 +136,46 @@ try {
 																			<option value="O+">O Positive</option>
 																			<option value="O-">O Negative</option>
 																		</select>
+																		<span class="form-text text-muted">Please Enter Blood Group.</span>
 																	</div>
 																</div>
+																</div>
+																<div class="row">
+																<div class="col-xl-6">
+																		<!--begin::Input-->
+																		<div class="form-group">
+																			<label>Email :</label>
+																			<input type="email" class="form-control form-control-solid form-control-lg" name="email" placeholder="Email" value="john.wick@reeves.com" />
+																			<span class="form-text text-muted">Please enter your email address.</span>
+																		</div>
+																		<!--end::Input-->
+																	</div>
+																	
+																<!-- <div class="col-xl-6">
+																<div class="form-group">
+																			<label>Email ID</label>
+																			<input type="email" class="form-control form-control-solid form-control-lg" name="email" placeholder="Email" value="john.wick@reeves.com" />
+																			<span class="form-text text-muted">Please enter your email address.</span>
+																		</div>
+																		</div>
+																		-->
 																
+																<!-- <div class="col-xl-6">
+																	<div class="form-group">
+														<label>Email Id 
+														<span class="text-danger">*</span></label>
+														<input type="email" class="form-control form-control-solid" id="email_id" placeholder="Enter Email Id " />
+														<span class="form-text text-muted">Please Enter Email Address.</span>
+													</div>
+
+																</div> -->
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Address</label>
+																		<label>Address :</label>
 																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="address"></textarea>
+																			id="address" placeholder="Enter Address"></textarea>
+																			<span class="form-text text-muted">Please Enter Address.</span>
 																	</div>
 																</div>
 																
@@ -121,273 +185,220 @@ try {
 																
 										               <div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Joining Date</label> <input type="date"
+																		<label>Joining Date :</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid"
-																			id="Joining_date" />
+																			id="joining_date"/>
+																			<span class="form-text text-muted">Please Enter Joining Date.</span>
 																	</div>
 																</div>
+			
+															
 																
-																
-															
-															
-															
-															
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Adhar No</label> <input type="number"
+																		<label>Resign Date :</label> <input type="date"
+																			data-date-inline-picker="true"
 																			class="form-control form-control-solid"
-																			id="adharNo" /> <span class=""
-																			id="type2"> </span>
+																			id="resign_date" />
+																			<span class="form-text text-muted">Please Enter Resign Date.</span>
 																	</div>
 																</div>
 																</div>
 																<div class="row">
-										               <div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Email Id</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="emailId" id="emailId" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
-																	</div>
-
-																</div>
-																
-															
-
-														
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Resign Date</label> <input type="date"
-																			data-date-inline-picker="true"
+																		<label>Salary :</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="Resign_date" />
-																	</div>
-																</div>
-																</div>
-																
-																<div class="row">
-										                   <div class="col-lg-6">
-																	<div class="form-group">
-																		<label>Designation</label>
-																		<textarea rows="1"
-																			class="form-control form-control-solid"
-																			id="designation"></textarea>
-																	</div>
-																</div>
-																
-															
-															
-															
-																<div class="col-lg-6">
-																	<div class="form-group">
-																		<label>Salary</label> <input type="number"
-																			class="form-control form-control-solid"
-																			id="salary" /> <span class=""
+																			id="salary" placeholder="Enter Salary"/> <span class=""
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Salary.</span>
 																	</div>
 																</div>
-										               </div>
+										              
 										               
-										               <div class="row">
+										              
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>No Of Anual Leaves</label><span class="text-danger"></span>
+																		<label>No Of Anual Leaves :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "
-																				name="noOfAnualLeaves" id="noOfAnualLeaves" /> 
+																				name="no_of_nual_leaves" id="no_of_nual_leaves" placeholder="Enter No Of Anual Leaves"/>
+																				<span class="form-text text-muted">Please Enter No Of Anual Leaves.</span> 
+																		</div>
+
+																	</div>
+																	</div>
+																	</div>
+															<div class="row">
+																<div class="col-xl-6">
+																	<div class="form-group">
+																		<label>Allowns :</label><span class="text-danger"></span>
+																		<div class="typeahead">
+																			<input type="text"
+																				class="form-control form-control-solid "
+																				name="allowns" id="allowns" placeholder="Enter Allowns"/>
+																				<span class="form-text text-muted">Please Enter Allowns.</span> 
 																		</div>
 
 																	</div>
 																</div>
-																
-															
-															
-																<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Qualification</label><span class="text-danger"></span>
+																   <div class="col-xl-6">
+																	  <div class="form-group">
+																		<label>Insurance Details :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "
-																				name="qualification" id="qualification" /> 
-																		</div>
-
-																	</div>
-
-																</div>
-																</div>
-																
-																<div class="row">
-										                       <div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Allowns</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="allowns" id="allowns" /> 
-																		</div>
-
-																	</div>
-																</div>
-															
-															
-																
-																<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Insurance Details</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="insuranceDetails" id="insuranceDetails" /><span
+																				name="insurance_details" id="insurance_details" placeholder="Enter Insurance Details"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Insurance Details.</span>
 																		</div>
 
 																	</div>
 
 																</div>
 																</div>
-																<div class="row">
+															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Tax Deduction</label>
+																		<label>Tax Deduction :</label>
 																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="taxDeduction"></textarea>
+																			id="tax_deduction" placeholder="Enter Tax Deduction"></textarea>
+																			<span class="form-text text-muted">Please Enter Tax Deduction.</span>
 																	</div>
 																</div>
-															
-															
+																 <div class="col-xl-6">
+																	<div class="form-group">
+																		<label>No Of Days Weekly :</label><span class="text-danger"></span>
+																		<div class="typeahead">
+																			<input type="text"
+																				class="form-control form-control-solid "
+																				name="noOfDaysWeekly" id="no_of_days_weekly" placeholder="Enter No Of Days Weekly"/> 
+																				<span class="form-text text-muted">Please Enter No Of Days Weekly.</span>
+																		</div>
+
+																	</div>
 																	
+																</div>
+																</div>
+																<div class="row">
+																 <div class="col-xl-6">
+																	<div class="form-group">
+																		<label>City :</label><span class="text-danger"></span>
+																		<div class="typeahead">
+																			<input type="text"
+																				class="form-control form-control-solid "
+																				name="city" id="city" placeholder="Enter City"/> 
+																				<span class="form-text text-muted">Please Enter City.</span>
+																		</div>
+
+																	</div>
+																</div>
+																
+				                                                  <div class="col-xl-6">
+																	<div class="form-group">
+																		<label>District :</label><span class="text-danger"></span>
+																		<div class="typeahead">
+																			<input type="text"
+																				class="form-control form-control-solid "
+																				name="district" id="district" placeholder="Enter District"/> 
+																				<span class="form-text text-muted">Please Enter District.</span>
+																		</div>
+
+																	</div>
+																</div>
+																</div>
+														    <div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>No Of Days Weekly</label><span class="text-danger"></span>
+																		<label>State :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "
-																				name="noOfDaysWeekly" id="noOfDaysWeekly" /> 
-																		</div>
+																				name="state" id="state" placeholder="Enter State"/>
+																				
+																<span class="form-text text-muted">Please Enter State.</span>
+																</div>
 
 																	</div>
 																</div>
-
-																</div>
-																<div class="row">
-																<div class="col-xl-6">
+																
+																
+															      <div class="col-lg-6">
+									                                <label>Upload Document Files :</label>
+														             <div class="dropzone dropzone-multi" id="kt_dropzone_4" placeholder="Upload Document Files">
+																       <div class="dropzone-panel mb-lg-0 mb-2">
+																	    <a class="dropzone-select btn btn-light-primary font-weight-bold btn-sm">Attach files</a>
+																	    <a class="dropzone-upload btn btn-light-primary font-weight-bold btn-sm">Upload All</a>
+																	    <a class="dropzone-remove-all btn btn-light-primary font-weight-bold btn-sm">Remove All</a>
+																	    <span class="form-text text-muted">Please Enter Upload Document Files.</span>
+																     </div>
+									                               </div>
+									                             
+									                             </div>
+									                             </div>
+									                          <div class="row">
+																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>City</label><span class="text-danger"></span>
+																		<label>Bank Name :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "
-																				name="city" id="city" /> 
-																		</div>
+																				name="bank_name" id="bank_name" placeholder="Enter Bank Name"/>
+																				
+																<span class="form-text text-muted">Please Enter Bank Name.</span>
+																</div>
 
 																	</div>
 																</div>
-
-															
-															
-															<div class="col-xl-6">
+																 <div class="col-lg-6">
 																	<div class="form-group">
-																		<label>District</label><span class="text-danger"></span>
+																		<label>Bank Holder Name :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "
-																				name="district" id="district" /> 
-																		</div>
-
-																	</div>
-																</div>
-																</div>
-																<div class="row">
-															<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>State</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="state" id="state" /> 
-																		</div>
-
-																	</div>
-																</div>
-															
-															
-															
-															
-															<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Upload Document</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="uploadDocument" id="uploadDocument" /> 
-																		</div>
-
-																	</div>
-																</div>
-																</div>
-																<div class="row">
-															<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Bank Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="bankName" id="bankName" /><span
+																				name="bankHolderName" id="bankHolderName" placeholder="Enter Bank Holder Name"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Bank Holder Name.</span>
 																		</div>
 
 																	</div>
 
 																</div>
-														
-														
-														
-														<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Bank Holder Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="bankHolderName" id="bankHolderName" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
-																	</div>
-
-																</div>
-																</div>
+															</div>
 																<div class="row">
-														<div class="col-lg-6">
-																	<div class="form-group">
-																		<label>Account No</label> <input type="number"
-																			class="form-control form-control-solid"
-																			id="accountNo" /> <span class=""
-																			id="type2"> </span>
-																	</div>
+														           <div class="col-lg-6">
+																	 <div class="form-group">
+																		<label>Account No :</label><span class="number"></span>
+																		<div class="typeahead">
+																			<input type="digit"
+																				class="form-control form-control-solid "
+																				name="accountNo" id="accountNo" placeholder="Enter Account No"/>
+																				
+																<span class="form-text text-muted">Please Enter Account No.</span>
 																</div>
-														
-														
-														
-														<div class="col-xl-6">
+
+																	</div>
+																   </div>
+														         <div class="col-lg-6">
 																	<div class="form-group">
-																		<label>IFSC</label><span class="text-danger"></span>
+																		<label>IFSC :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "
-																				name="ifsc" id="ifsc" /><span
+																				name="ifsc" id="ifsc" placeholder="Enter IFSC Code"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter IFSC.</span>
 																		</div>
 
 																	</div>
 
 																</div>
+																</div>	
 																</div>
+																
 														<div class="text-center">
 											<button type="button" id="addProduct"
 												class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
@@ -401,8 +412,12 @@ try {
 										
 									</div>
 								</div>
-							</div>
-
+						
+<!--begin::Footer-->
+		<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+			<jsp:include page="../common/footer.jsp"></jsp:include>
+		</div>
+		<!--end::Footer-->
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->

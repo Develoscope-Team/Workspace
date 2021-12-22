@@ -37,34 +37,27 @@ try {
 											<div class="example-preview">
 												<div class="card card-custom">
 													<form class="form" id="kt_form_1">
-														<div class=" ">
+														
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Employee Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="employeeName" id="employeeName" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
+																		<label>Employee Name</label> <input type="text"
+																			id="employee_name"
+																			class="form-control form-control-solid"
+																			placeholder="Enter Employee Name" />
+																			<span class="form-text text-muted">Please Enter Employee Name.</span>
 																	</div>
 
 																</div>
 																<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Employee Id</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="employeeId" id="employeeId" /><span
-																				class="msg text-danger" id="type1"> </span>
+																		<!--begin::Input-->
+																		<div class="form-group">
+																			<label>Email Id</label>
+																			<input type="email" class="form-control form-control-solid " name="email" placeholder="Enter Email" value="@gmail.com" />
+																			<span class="form-text text-muted">Please enter your email address.</span>
 																		</div>
-
+																		
 																	</div>
-
-																</div>
 															</div>
 															<div class="row">
 															 <div class="col-xl-6">
@@ -72,8 +65,9 @@ try {
 																		<label>Current Designation</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="currentDesignation" id="currentDesignation" /> 
+																				class="form-control form-control-solid "
+																				name="current_designation" id="current_designation" placeholder="Enter Current Designation"/> 
+																				<span class="form-text text-muted">Please Enter Your Current Designation.</span>
 																		</div>
 
 																	</div>
@@ -83,22 +77,24 @@ try {
 																		<label>After Pramotion Designation</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="apd" id="apd" /> 
+																				class="form-control form-control-solid "
+																				name="apd" id="apd" placeholder="Enter After Pramotion Designation"/> 
+																				<span class="form-text text-muted">Please Enter Your Pramotion Designation.</span>
 																		</div>
 
 																	</div>
 																</div>
 																
 																</div>
-																									<div class="row">
-															 <div class="col-xl-6">
-																	<div class="form-group">
+																	<div class="row">
+															         <div class="col-xl-6">
+																	    <div class="form-group">
 																		<label>Current Salary</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="currentSalary" id="currentSalary" /> 
+																				class="form-control form-control-solid "
+																				name="current_salary" id="current_salary" placeholder="Enter Current Salary" /> 
+																				<span class="form-text text-muted">Please Enter Your Current Salary.</span>
 																		</div>
 																	</div>
 																</div>
@@ -107,8 +103,9 @@ try {
 																		<label>Increament Salary</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="increamentSalary" id="increamentSalary" /> 
+																				class="form-control form-control-solid "
+																				name="increament_salary" id="increament_salary" placeholder="Enter Increament Salary"/> 
+																				<span class="form-text text-muted">Please Enter Your Increament Salary.</span>
 																		</div>
 
 																	</div>
@@ -121,18 +118,23 @@ try {
 																		<label>Allowen</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="allowen" id="allowen" /> 
+																				class="form-control form-control-solid "
+																				name="allowen" id="allowen" placeholder="Enter Allowen"/> 
+																				<span class="form-text text-muted">Please Enter Your Allowen.</span>
 																		</div>
 
 																	</div>
 																</div>
-																<div class="col-lg-6">
+																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label> Deduction</label>
-																		<textarea rows="2"
-																			class="form-control form-control-solid"
-																			id="deduction"></textarea>
+																		<label>Deduction</label><span class="text-danger"></span>
+																		<div class="typeahead">
+																			<input type="text"
+																				class="form-control form-control-solid "
+																				name="deduction" id="deduction" placeholder="Enter Deduction"/> 
+																				<span class="form-text text-muted">Please Enter Your Deduction.</span>
+																		</div>
+
 																	</div>
 																</div>
 																</div>

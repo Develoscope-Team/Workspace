@@ -43,80 +43,90 @@ try {
 															<div class="row">
 																<div class="col-xl-3">
 																	<div class="form-group">
-																		<label>Date</label> <input type="date"
+																		<label>Date :</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
 																			placeholder="DD/MM/YYYY" name="date"
-																			id="date" />
+																			id="date" placeholder="Enter Date" />
+																			<span class="form-text text-muted">Please Enter Date.</span>
 
 																	</div>
 
 																</div>
 																<div class="col-lg-3">
 																	<div class="form-group">
-																		<label>Driver No</label> <input type="number"
+																		<label>Driver No :</label> <input type="number"
 																			class="form-control form-control-solid"
-																			id="driver_no" /> <span class="msg text-danger"
+																			id="driver_no" placeholder="Enter Driver No"/> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Driver No.</span>
 																	</div>
 																</div>
 															
-															
-																<div class="col-lg-3">
+															<div class="col-lg-3">
 																	<div class="form-group">
-																		<label>Mobile No</label> <input type="number"
-																			class="form-control form-control-solid"
-																			id="mobile_no" /> <span class="msg text-danger"
-																			id="type2"> </span>
-																	</div>
-																</div>
-																<div class="col-lg-3">
-																	<div class="form-group">
-																		<label for="appt">Incoming Time</label><span class="text-danger"></span>
+																		<label for="appt">Incoming Time :</label><span class="text-danger"></span>
 																	    <div class="typeahead">
                                                                         <input type="time" class="form-control form-control-solid" id="incoming_time" name="incoming_time"
                                                                         min="00:00" max="24:00" >
+                                                                        <span class="form-text text-muted">Please Enter Incoming Time.</span>
 																	</div>
 																</div>
 															</div>
-																</div>
-																<div class="row">
-                                                              <div class="col-lg-6">
+																<div class="col-lg-3">
                                                               <div class="form-group">
-																		<label for="appt">Outgoing Time</label><span class="text-danger"></span>
+																		<label for="appt">Outgoing Time :</label><span class="text-danger"></span>
 																	    <div class="typeahead">
                                                                         <input type="time" class="form-control form-control-solid" id="outgoing_time" name="outgoing_time"
                                                                         min="00:00" max="24:00" >
+                                                                        <span class="form-text text-muted">Please Enter Outgoing Time.</span>
 																	</div>
 																</div>
                                                               </div>
+																</div>
+																<div class="row">
+																
+																
+																<div class="col-lg-6">
+																	<div class="form-group">
+																		<label>Mobile No :</label> <input type="number"
+																			class="form-control form-control-solid"
+																			id="mobile_no" placeholder="Enter Mobile No"/> <span class="msg text-danger"
+																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Mobile No.</span>
+																	</div>
+																</div>
+                                                              
                                                               
                                                               
                                                               <div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Location/Address</label>
+																		<label>Location/Address :</label>
 																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="location_address"></textarea>
+																			id="location_address"placeholder="Enter Location Address"></textarea>
+																			<span class="form-text text-muted">Please Enter Location/Address.</span>
 																	</div>
 																</div>
                                                               </div>
                                                               <div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Reason</label>
+																		<label>Reason :</label>
 																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="reason"></textarea>
+																			id="reason"placeholder="Enter Reason"></textarea>
+																			<span class="form-text text-muted">Please Enter Reason.</span>
 																	</div>
 																</div>
 																
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Ambulance No</label> <input type="text"
+																		<label>Ambulance No :</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="ambulance_no" /> <span class="msg text-danger"
+																			id="ambulance_no" placeholder="Enter Ambulance No"/> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Ambulance No.</span>
 
 																	</div>
 
@@ -127,19 +137,21 @@ try {
 																
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Charges</label> <input type="text"
+																		<label>Charges :</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="charges" /> <span class="msg text-danger"
+																			id="charges" placeholder="Enter Charges"/> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Charges.</span>
 
 																	</div>
 
 																</div>	
 																<div class="col-xl-6">
-													<div class="form-group">
-														<label>Doctor Name</label> <input type="text"
-															id="doctor_name" class="form-control form-control-solid"
-															placeholder="Enter Doctor Name" />
+													               <div class="form-group">
+														            <label>Doctor Name :</label> <input type="text"
+															         id="doctor_name" class="form-control form-control-solid"
+															         placeholder="Enter Doctor Name" />
+															         <span class="form-text text-muted">Please Enter Doctor Name.</span>
 													</div>
 												</div>
 															</div>
@@ -157,7 +169,12 @@ try {
 									</div>
 								</div>
 							</div>
-
+						<!--begin::Footer-->
+		<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+			<jsp:include page="../common/footer.jsp"></jsp:include>
+		</div>
+		<!--end::Footer-->
+						
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->

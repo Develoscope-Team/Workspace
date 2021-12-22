@@ -51,31 +51,27 @@ table.a {
 								<form class="form" id="kt_form_1">
 									
 										                  <div class="row">
-																<div class="col-xl-6">
+																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Purchase Date</label> <input type="purchaseDate"
+																		<label>Purchase Date:</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="purchaseDate"
-																			id="purchaseDate" />
-
+																			placeholder="DD/MM/YYYY" name="purchase_date"
+																			id="purchase_date" />
+																			<span class="form-text text-muted">Please Enter Purchase Date.</span>
 																	</div>
-
 																</div>
 																
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>VendorsName</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="vendorsName" id="vendorsName" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
+																		<label>Vendors Name</label> <input type="text"
+																			id="vendors_name"
+																			class="form-control form-control-solid"
+																			placeholder="Enter Vendors Name" />
+																			<span class="form-text text-muted">Please Enter Vendors Name.</span>
 																	</div>
 
-																</div>												
+																</div>											
 																
 															</div>
 										
@@ -85,41 +81,40 @@ table.a {
 																
 															<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Vendors GST No</label> <input type="number"
+																		<label>Vendors GST No</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="vendorsGSTNo" /> <span class="msg text-danger"
+																			id="vendors_gst_no" placeholder="Enter Vendors GST Number" /> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Vendors GST No.</span>
+																	
 																	</div>
 																</div>
 																																
 																
 															
 											
-											<div class="col-xl-6">
+											                   <div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Vendors Add</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="vendorsAdd" id="vendorsAdd" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
+																		<label>Vendors Address</label>
+																		<textarea rows="1"
+																			class="form-control form-control-solid"
+																			id="vendors_address" placeholder="Enter Vendors Address"></textarea>
+																			<span class="form-text text-muted">Please Enter Vendors Address.</span>
 																	</div>
-
 																</div>
 																
 															<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Mobile No</label> <input type="number"
+																		<label>Mobile No</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="mobileNo" /> <span class="msg text-danger"
+																			id="mobile_no" placeholder="Enter Mobile Number" /> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Mobile No.</span>
+																	
 																	</div>
 																</div>
-																
 																</div>
-										<div class="card-body" style="overflow-x: auto;">
+										                     <div class="card-body" style="overflow-x: auto;">
 
 																<table class="table" id="Mtable">
 																	<thead>
@@ -139,7 +134,11 @@ table.a {
 
 																</table>
 															</div>
-											
+											<div class="text-right mb-5 mr-22">
+																<button type="button" id="add"
+																	class="btn font-weight-bold btn-primary ">ADD
+																</button>
+															</div>
 									<div class="text-center"><br><br>
 									
 										<button type="button" class="btn btn-info" id="purchase">Purchase</button>

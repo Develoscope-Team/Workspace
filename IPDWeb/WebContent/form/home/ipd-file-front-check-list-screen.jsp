@@ -47,8 +47,9 @@ try {
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "
-																				name="patientName" id="patientName" /><span
+																				name="patientName" id="patientName" placeholder="Enter Patient Name"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Patient Name.</span>
 																		</div>
 
 																	</div>
@@ -57,11 +58,11 @@ try {
 																
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Date Of Admission</label> <input type="dateOfAdmission"
-																			data-date-inline-picker="true"
-																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="dateOfAdmission"
-																			id="dateOfAdmission" />
+																		<label>IPD No/MRD No</label> <input type="number"
+																			class="form-control form-control-solid"
+																			id="ipdNo" placeholder="Enter IPD No/MRD No" /> <span class="msg text-danger"
+																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter IPD No MRD No.</span>
 
 																	</div>
 
@@ -70,23 +71,24 @@ try {
 																
 															</div>
 															<div class="row">
-																<div class="col-xl-6">
+																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>IPD No/MRD No</label> <input type="number"
-																			class="form-control form-control-solid"
-																			id="ipdNo" /> <span class="msg text-danger"
-																			id="type2"> </span>
-
+																		<label>Date Of Admission:</label> <input type="date"
+																			data-date-inline-picker="true"
+																			class="form-control form-control-solid "
+																			placeholder="DD/MM/YYYY" name="date_of_admission"
+																			id="date_of_admission" />
+																			<span class="form-text text-muted">Please Enter Date Of Admission.</span>
 																	</div>
-
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Date Of Discharge</label> <input type="dateOfDischarge"
+																		<label>Date Of Discharge:</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="dateOfDischarge"
-																			id="dateOfDischarge" />
+																			placeholder="DD/MM/YYYY" name="date_of_discharge"
+																			id="date_of_discharge" />
+																			<span class="form-text text-muted">Please Enter Date Of Discharge.</span>
 
 																	</div>
 
@@ -211,7 +213,7 @@ try {
 																
 														<div class="text-center">
 											<button type="button" id="addProduct"
-												class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
+												class="btn btn-primary mr-2" style="background-color: #AB48FF;  ">Submit</button>
 
 											<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; " id="cancel">Cancel</button>
 										</div>

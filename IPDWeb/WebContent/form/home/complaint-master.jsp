@@ -36,9 +36,7 @@ table.a {
 	
 	<div class="container">
 
-							<h2
-								class="d-flex align-items-center text-purple font-weight-bold my-1 mr-3">Complaints
-								Master</h2>
+							<h2 class="d-flex align-items-center text-purple font-weight-bold my-2 mr-5">Complaints Master</h2>
 
 							<div class="row">
 								<div class="col-xl-12 offset-xl-0">

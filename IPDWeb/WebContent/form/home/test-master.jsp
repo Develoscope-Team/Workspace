@@ -39,142 +39,137 @@ table.a {
 
 
 
-	<div
-		class="container">
-		
-				<h2 class="text-gray font-weight-bold my-2 mr-5">Test Master</h2>
-				
-			
-				<div class="card card-custom gutter-b">
-					<div class="card-body">
-						<div class="example mb-10">
-							<div class="example-preview">
-								<div class="card card-custom">
-									<form class="form" id="kt_form_1">
-										<div class="card-body">
-											<div class="row">
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Department</label> <input type="text"
-															id="department" class="form-control form-control-solid"
-															placeholder="Enter Department" />
-													</div>
-												</div>
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Sub Department</label> <input type="text"
-															id="sub_department" class="form-control form-control-solid"
-															placeholder="Enter Sub Department" />
-													</div>
-												</div>
+	<div class="container">
+
+		<h2 class="text-gray font-weight-bold my-2 mr-5">Test Master</h2>
+
+
+		<div class="card card-custom gutter-b">
+			<div class="card-body">
+				<div class="example mb-10">
+					<div class="example-preview">
+						<div class="card card-custom">
+							<form class="form" id="kt_form_1">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Department :</label><span class="text-danger">*</span>
+												<select class="form-control form-control-solid"
+													name="department" id="department">
+													<option value="" disabled selected hidden>Select
+														Department</option>
+												</select> <span class="form-text text-muted">Please Select
+													Department.</span>
 											</div>
-											<div class="row">
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Test</label><input type="text"
-															id="test" class="form-control form-control-solid"
-															placeholder="Enter Test" />
-
-													</div>
-												</div>
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Charges</label> <input type="text"
-															id="charges" class="form-control form-control-solid"
-															placeholder="Enter Charges" />
-													</div>
-												</div>
+										</div>
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Sub Department :</label><span class="text-danger">*</span>
+												<select class="form-control form-control-solid"
+													name="sub_department" id="sub_department">
+													<option value="" disabled selected hidden>Select
+														SubDepartment</option>
+												</select> <span class="form-text text-muted">Please Select
+													SubDepartment.</span>
 											</div>
-
-											
-											
-											
-
-
-
-
-
-
-
-											
-
-
-
-
-
 										</div>
-										<div class="text-center">
-											<button type="button" id="addProduct"
-												class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
+									</div>
+									<div class="row">
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Test :</label><input type="text" id="test"
+													class="form-control form-control-solid"
+													placeholder="Enter Test" /> <span
+													class="form-text text-muted">Please Enter Test.</span>
 
-											<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; " id="cancel">Cancel</button>
+											</div>
 										</div>
-									</form>
-									<!--end::Form-->
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Charges :</label> <input type="text" id="charges"
+													class="form-control form-control-solid"
+													placeholder="Enter Charges" /> <span
+													class="form-text text-muted">Please Enter Charges.</span>
+											</div>
+										</div>
+									</div>
+
 								</div>
-							</div>
+								<div class="text-center">
+									<button type="button" id="addProduct"
+										class="btn btn-primary mr-2"
+										style="background-color: #AB48FF;">Submit</button>
+
+									<button type="button" class="btn btn-primary mr-2"
+										style="background-color: #AB48FF;" id="cancel">Cancel</button>
+								</div>
+							</form>
+							<!--end::Form-->
 						</div>
 					</div>
 				</div>
-			
-
-								<div class="card card-custom gutter-b">
-									<div class="card-body">
-										<div class="input-icon ml-10" style="width: 30%;">
-											<input type="text" class="form-control form-control-solid"
-												placeholder="Search..." id="txt_searchall" /> <span>
-												<i class="flaticon2-search-1 text-muted"></i>
-											</span>
-										</div>
-										<br />
-										<!--begin: datatable-->
-										<table data-toggle="table" class='a'
-											data-classes="table table-hover table-condensed "
-											data-striped="true" data-sort-name="Quality"
-											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=550 id="table-id">
-											<thead>
-												<tr>
-													<th class="col-sm-1 text-center" data-field="sr-no"
-														data-sortable="true">Sr No</th>
-													<th class="col-sm-3 text-center" data-field="department"
-														data-sortable="true">Department</th>
-													<th class="col-sm-3 text-center" data-field="sub-department"
-														data-sortable="true">Sub Department</th>
-													<th class="col-sm-3 text-center" data-field="test"
-														data-sortable="true">Test</th>
-													<th class="col-sm-3 text-center" data-field="charges"
-														data-sortable="true">Charges</th>
-													<th class="col-sm-3 text-center" data-field="action"
-														data-sortable="true">Action</th>
-													
-													
-
-												</tr>
-
-											</thead>
-											<tbody class="data">
-
-
-											</tbody>
-										</table>
-										<!--end: datatable-->
-									</div>
-								</div>
-					
-
+			</div>
 		</div>
-		<!--end::Container-->
 
 
-		<!--end::Content-->
-		<!--begin::Footer-->
-		<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
-			<jsp:include page="../common/footer.jsp"></jsp:include>
+		<div class="card card-custom gutter-b">
+			<div class="card-body">
+				<div class="input-icon ml-10" style="width: 30%;">
+					<input type="text" class="form-control form-control-solid"
+						placeholder="Search..." id="txt_searchall" /> <span> <i
+						class="flaticon2-search-1 text-muted"></i>
+					</span>
+				</div>
+				<br />
+				<!--begin: datatable-->
+				<table data-toggle="table" class='a'
+					data-classes="table table-hover table-condensed "
+					data-striped="true" data-sort-name="Quality" data-sort-order="desc"
+					data-pagination="false" data-scroll="false" data-height=550
+					id="table-id">
+					<thead>
+						<tr>
+							<th class="col-sm-1 text-center" data-field="sr-no"
+								data-sortable="true">Sr No</th>
+							<th class="col-sm-2 text-center" data-field="department"
+								data-sortable="true">Department</th>
+							<th class="col-sm-2 text-center" data-field="sub-department"
+								data-sortable="true">Sub Department</th>
+							<th class="col-sm-2 text-center" data-field="test"
+								data-sortable="true">Test</th>
+							<th class="col-sm-2 text-center" data-field="charges"
+								data-sortable="true">Charges</th>
+							<th class="col-sm-2 text-center" data-field="action"
+								data-sortable="true">Action</th>
+
+
+
+						</tr>
+
+					</thead>
+					<tbody class="data">
+
+
+					</tbody>
+				</table>
+				<!--end: datatable-->
+			</div>
 		</div>
-		<!--end::Footer-->
+
 
 	</div>
+	<!--end::Container-->
+
+
+	<!--end::Content-->
+	<!--begin::Footer-->
+	<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+	</div>
+	<!--end::Footer-->
+
+	
 	<!--end::Page-->
 
 	<!--begin::Scrolltop-->

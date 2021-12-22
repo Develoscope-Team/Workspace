@@ -43,27 +43,21 @@ try {
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Employee Entry</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="employeeEntry" id="employee_entry" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
+																		<label>Employee Name</label> <input type="text"
+																			id="employee_name"
+																			class="form-control form-control-solid"
+																			placeholder="Enter Employee Name" />
+																			<span class="form-text text-muted">Please Enter Employee Name.</span>
 																	</div>
 
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Employee Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="employeeName" id="employee_name" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
+																		<label>Employee Entry</label> <input type="text"
+																			id="employee_entry"
+																			class="form-control form-control-solid"
+																			placeholder="Enter Employee Entry" />
+																			<span class="form-text text-muted">Please Enter Employee Entry.</span>
 																	</div>
 
 																</div>
@@ -71,29 +65,33 @@ try {
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Employee DOB</label> <input type="employeeDOB"
+																		<label>Employee Birth Date:</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="employee_dob"
-																			id="employee_dob" />
+																			placeholder="DD/MM/YYYY" name="employee_birth_date"
+																			id="employee_birth_date" />
+																			<span class="form-text text-muted">Please Enter Employee Birth Date.</span>
 																	</div>
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Employee Mobile No</label> <input type="number"
+																		<label>Employee Mobile No</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="employee_mobile_no" /> <span class="msg text-danger"
+																			id="employee_mobile_no" placeholder="Enter Employee Mobile Number" /> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Employee Mobile No.</span>
+																	
 																	</div>
 																</div>
 															</div>
 															<div class="row">
 															<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Employee Address</label>
+																		<label>Address</label>
 																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="employeeAddress"></textarea>
+																			id="address" placeholder="Enter Address"></textarea>
+																			<span class="form-text text-muted">Please Enter Address.</span>
 																	</div>
 																</div>
 															<div class="col-xl-6">
@@ -101,8 +99,9 @@ try {
 																		<label>Employee Joining Date</label> <input type="Date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="employeejoiningDate"
-																			id="employeejoiningDate" />
+																			placeholder="DD/MM/YYYY" name="employee_joining_date"
+																			id="employee_joining_date" />
+																			<span class="form-text text-muted">Please Enter Employee Joining Date.</span>
 
 																	</div>
 
@@ -113,8 +112,9 @@ try {
 																	<div class="form-group">
 																		<label>Employee Adhar No</label> <input type="number"
 																			class="form-control form-control-solid"
-																			id="employee_adhar_no" /> <span class="msg text-danger"
+																			id="employee_adhar_no" placeholder="Enter Employee Adhar No" /> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Employee Adhar No.</span>
 																	</div>
 																</div>
 																
@@ -123,25 +123,24 @@ try {
 													
 															
 																<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Email Id</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="emailId" id="emailId" /><span
-																				class="msg text-danger" id="type1"> </span>
+																		<!--begin::Input-->
+																		<div class="form-group">
+																			<label>Email Id</label>
+																			<input type="email" class="form-control form-control-solid " name="email" placeholder="Enter Email" value="@gmail.com" />
+																			<span class="form-text text-muted">Please Enter Your Email Id.</span>
+																			
 																		</div>
-
+																		
 																	</div>
-</div>
 																</div>
 																<div class="row">
-										               <div class="col-lg-6">
+										                        <div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Salary</label> <input type="number"
+																		<label>Salary</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="salary" /> <span class="msg text-danger"
+																			id="salary" placeholder="Enter Salary"/> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Salary.</span>
 																	</div>
 																</div>
 																
@@ -149,11 +148,12 @@ try {
 																
 															<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Resign Date</label> <input type="resignDate"
+																		<label>Resign Date</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="resignDate"
-																			id="resignDate" />
+																			placeholder="DD/MM/YYYY" name="resign_date"
+																			id="resign_date" />
+																			<span class="form-text text-muted">Please Enter Resign Date.</span>
 
 																	</div>
 
@@ -165,58 +165,58 @@ try {
 																		<label>Tax Deduction</label>
 																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="tax_deduction"></textarea>
+																			id="tax_deduction" placeholder="Enter Tax Deduction"></textarea>
+																			<span class="form-text text-muted">Please Enter Tax Deduction.</span>
 																	</div>
 																</div>
 																		
-																<div class="col-lg-6">
-																	<div class="form-group">
-																		<label>Tax Deduction</label>
-																		<textarea rows="1"
-																			class="form-control form-control-solid"
-																			id="tax_deduction"></textarea>
-																	</div>
-																</div>
-																</div>
-																<div class="row">
-										               <div class="col-xl-6">
+																<div class="col-xl-6">
 																	<div class="form-group">
 																		<label>No Of Anual Leaves</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "
-																				name="no_of_anual_leaves" id="no_of_anual_leaves" /> 
+																				name="no_of_nual_leaves" id="no_of_nual_leaves"  placeholder="Enter No Of Anual Leaves"/>
+																				<span class="form-text text-muted">Please Enter No Of Anual Leaves.</span> 
 																		</div>
 
 																	</div>
+																	</div>
 																</div>
-																
-																<div class="col-xl-6">
+																<div class="row">
+										                           <div class="col-xl-6">
 																	<div class="form-group">
 																		<label>No Of Days Weekly</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid "
-																				name="no_of_days_weekly" id="no_of_days_weekly" /> 
+																				name="no_of_days_weekly" id="no_of_days_weekly" placeholder="Enter No Of Days Weekly" />
+																				<span class="form-text text-muted">Please Enter No Of Days Weekly.</span> 
 																		</div>
 
 																	</div>
+																	</div>
+                                                                <div class="col-xl-6">
+																	<div class="form-group">
+																		<label>Upload Document Option</label><span class="text-danger">*</span>
+																		<select class="form-control form-control-solid"
+																			name="upload_document_option" id="upload_document_option">
+																			<option value="" disabled selected hidden>Select Upload Doc Option</option>
+																		</select>
+																		<span class="form-text text-muted">Please Enter Upload Document .</span> 
+																	</div>
 																</div>
-</div>
+                                                             </div>
 														
 															
-															<div class="row">
-															<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Document Upload Option</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="pdf"
-																				class="form-control form-control-solid "
-																				name="documentUploadOption" id="documentUploadOption" /> 
-																		</div>
+															<div class="text-center">
+											<button type="button" id="addProduct"
+												class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
 
-																	</div>
-																</div>
+											<button type="button" class="btn btn-primary mr-2" style="background-color:#AB48FF; " id="cancel">Cancel</button>
+										</div>
+													
+															
 																
 																</div>
 
@@ -241,18 +241,12 @@ try {
 
 															
 														</div>
-														<div class="text-center">
-											<button type="button" id="addProduct"
-												class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
-
-											<button type="button" class="btn btn-primary mr-2" style="background-color:#AB48FF; " id="cancel">Cancel</button>
-										</div>
+														
 													
 													<!--end::Form-->
 												</div>
 											
-										
-									</div>
+							
 							
 
 	<!--begin::Scrolltop-->

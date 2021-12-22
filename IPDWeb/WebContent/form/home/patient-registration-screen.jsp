@@ -43,80 +43,75 @@ try {
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Patient Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="patientName" id="patientName" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+														<label>Patient Name</label><input type="text"
+															id="patient_name" class="form-control form-control-solid"
+															placeholder="Enter Patient Name" />
+															<span class="form-text text-muted">Please Enter Patient Name.</span>
 
-																	</div>
-
+													</div>
+												
 																</div>
-																<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Email Id</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="emailId" id="emailId" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
-																	</div>
-
+																<div class="col-lg-6">
+																	
+																	<label>Button:</label><br>
+																		<button type="button" id="previous health history"
+												                         class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Previous Health History</button>
+																		<span class="form-text text-muted">Please Click On Button.</span>
+																	
 																</div>
 															</div>
 															<div class="row">
+																<div class="col-xl-6">
+																		<!--begin::Input-->
+																		<div class="form-group">
+																			<label>Email Id</label>
+																			<input type="email" class="form-control form-control-solid " name="email_id" placeholder="Enter Email" value="@gmail.com" />
+																			<span class="form-text text-muted">Please Enter Email Id.</span>
+																		</div>
+																		<!--end::Input-->
+																	</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Mobile No</label> <input type="number"
+															<label>Adhar No</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="mobileNo" /> <span class="msg text-danger"
+																			id="adhar_no" placeholder="Enter Adhar No" /> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Adhar No.</span>
+																	  </div>
 																	</div>
-																</div>
-																<div class="col-lg-6">
-																	<div class="form-group">
-																		<label>Adhar No</label> <input type="number"
-																			class="form-control form-control-solid"
-																			id="adharNo" /> <span class="msg text-danger"
-																			id="type2"> </span>
-																	</div>
-																</div>
 															</div>
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
 																		<label>Address</label>
-																		<textarea rows="2"
+																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="address"></textarea>
+																			id="address" placeholder="Enter Address"></textarea>
+																			<span class="form-text text-muted">Please Enter Address No.</span>
 																	</div>
 																</div>
-																<div class="col-xl-6">
+																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Employee DOB</label> <input type="employeeDOB"
+																		<label>Birth Date Of Employee</label> <input type="date"
 																			data-date-inline-picker="true"
-																			class="form-control form-control-solid form-control-lg"
-																			placeholder="DD/MM/YYYY" name="employee_dob"
-																			id="employee_dob" />
-
+																			class="form-control form-control-solid"
+																			id="birth_date_of_employee" />
+																			<span class="form-text text-muted">Please Enter Birth Date Of Employee.</span>
 																	</div>
-
 																</div>
 															</div>
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Age</label> <input type="number"
+																		<label>Age</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="age" /> <span class="msg text-danger"
+																			id="age" placeholder="Enter The Age "/> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Age.</span>
+																			
 																	</div>
 																</div>
-										               <div class="col-xl-6">
+										                        <div class="col-xl-6">
 																	<div class="form-group">
 																		<label>Gender</label><span class="text-danger">*</span>
 																		<select class="form-control form-control-solid"
@@ -125,6 +120,7 @@ try {
 																			<option value="Male">Male</option>
 																			<option value="Female">Female</option>
 																		</select>
+																		<span class="form-text text-muted">Please Enter Gender.</span>
 
 																	</div>
 																</div>
@@ -138,7 +134,7 @@ try {
 																	<div class="form-group">
 																		<label>Blood Group</label><span class="text-danger">*</span>
 																		<select class="form-control form-control-solid"
-																			name="bloodGroup" id="bloodGroup">
+																			name="blood_group" id="blood_group">
 																			<option value="Select Blood Group">Select Blood Group</option>
 																			<option value="A+">A Positive</option>
 																			<option value="A-">A Negative</option>
@@ -149,15 +145,17 @@ try {
 																			<option value="O+">O Positive</option>
 																			<option value="O-">O Negative</option>
 																		</select>
+																		<span class="form-text text-muted">Please Enter Blood Group.</span>
 																	</div>
 																</div>
-										               <div class="col-xl-6">
+										                         <div class="col-xl-6">
 																	<div class="form-group">
 																		<label>City</label><span class="text-danger">*</span>
 																		<select class="form-control form-control-solid"
 																			name="city" id="city">
 																			<option value="Select Gender">Select City</option>
 																		</select>
+																		<span class="form-text text-muted">Please Enter City.</span>
 
 																	</div>
 																</div>
@@ -173,14 +171,16 @@ try {
 																			name="district" id="district">
 																			<option value="Select District">Select District</option>
 																		</select>
+																		<span class="form-text text-muted">Please Enter District.</span>
 																	</div>
 																</div>
-										               <div class="col-xl-6">
+										                        <div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Insurence No</label> <input type="number"
+																		<label>Insurance No</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="insurenceNo" /> <span class="msg text-danger"
+																			id="insurenceNo" placeholder="Enter Insurance No"/> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Insurance No.</span>
 
 																	</div>
 																</div>
@@ -189,69 +189,63 @@ try {
 															</div>
 															
 															<div class="row">
-																<div class="col-xl-6">
-																	<div class="form-group">
-																		<button type="button" id="previous health history"
-												                         class="btn btn-primary mr-2">Previous Health History</button>
-
-																	</div>
-																</div>
+																
 										               <div class="col-lg-6">
 																	<div class="form-group">
 																		<label>Relative Name</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="relativeName" id="relativeName" /><span
+																				class="form-control form-control-solid "
+																				name="relative_name" id="relative_name" placeholder="Relative Name" /><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Relative Name.</span>
+																				
 																		</div>
 																	</div>
 																</div>
-																
-																
-															</div>
-															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Relative Mobile No</label> <input type="number"
+																		<label>Relative Mobile No</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="relativeMobileNo" /> <span class="msg text-danger"
+																			id="relative_mobile_no" placeholder="Relative Mobile No"/> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Relative Mobile No.</span>
 																	</div>
 																</div>
+																</div>
+														<div class="row">
 										                       <div class="col-xl-6">
 																	<div class="form-group">
 																		<label>Relative Address</label>
-																		<textarea rows="2"
+																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="relativeAddress"></textarea>
-
+																			id="relativeaddress" placeholder="Enter Relative Address"></textarea>
+																			<span class="form-text text-muted">Please Enter Relative Address.</span>
 																	</div>
 																</div>
-															</div>
-															
-																<div class="row">
-																<div class="col-xl-6">
+															        <div class="col-xl-6">
 																	<div class="form-group">
 																		<label>Relation</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="relation" id="relation" /><span
+																				class="form-control form-control-solid "
+																				name="relation" id="relation" placeholder="Relation"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Relation.</span>
 																		</div>
-
-																	</div>
-
+                                                                   </div>
+                                                                 </div>
 																</div>
+															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
 																		<label>Occupation</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="occupation" id="occupation" /><span
+																				class="form-control form-control-solid "
+																				name="occupation" id="occupation" placeholder="Enter Occupation"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Occupation.</span>
 																		</div>
 
 																	</div>

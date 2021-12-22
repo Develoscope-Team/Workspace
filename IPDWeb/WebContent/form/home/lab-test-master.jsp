@@ -47,50 +47,51 @@ table.a {
 				<h2 class="text-gray font-weight-bold my-2 mr-5">Lab Test Master</h2>
 				
 							<div class="row">
-								<div class="col-xl-7">
+								<div class="col-xl-6">
 									<div class="card card-custom gutter-b">
 										<div class="card-body">
 											<div class="example mb-10">
-												
+												<div class="example-preview">
 													<div class="card card-custom">
 														<form class="form" id="kt_form_1">
 															<div class="card-body">
-																<div class="row">
-												<div class="col-xl-6">
+												
 													<div class="form-group">
-														<label>Test Name</label><input type="text"
+														<label>Test Name :</label><input type="text"
 															id="test_name" class="form-control form-control-solid"
 															placeholder="Enter Test Name" />
+															<span class="form-text text-muted">Please Enter Test Name.</span>
 
 													</div>
-												</div>
-												<div class="col-xl-6">
+												
+												
 													<div class="form-group">
-														<label>Sub Department</label> <input type="text"
+														<label>Sub Department :</label> <input type="text"
 															id="sub_department" class="form-control form-control-solid"
 															placeholder="Enter Sub Department" />
+															<span class="form-text text-muted">Please Enter Sub Department.</span>
 													</div>
-												</div>
-											</div>
+											
+											
 															</div>
 															
 															<div class="text-center">
 																<button type="button" id="addUPI"
 																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
-																<button type="submit" id="updateUPI"
-																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Update</button>
+																<!-- <button type="submit" id="updateUPI"
+																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Update</button> -->
 																<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; "
 																	id="cancel">Cancel</button>
 															</div>
 														</form>
 														<!--end::Form-->
 													</div>
-												
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-5 ">
+								<div class="col-xl-6 ">
 								
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -107,16 +108,16 @@ table.a {
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=200 id="table-id">
+											data-scroll="false" data-height=335 id="table-id">
 											<thead>
 												<tr>
-													<th class="col-sm-1 text-center" data-field="sr-no"
+													<th class="col-sm-3 text-center" data-field="sr-no"
 														data-sortable="true">Sr No</th>
 													<th class="col-sm-3 text-center" data-field="test-name"
 														data-sortable="true">Test Name </th>
 													<th class="col-sm-3 text-center" data-field="sub-department"
-														data-sortable="true">Sub Department</th>
-													<th class="col-sm-2 text-center" data-field="action"
+														data-sortable="true">Floor Number</th>
+													<th class="col-sm-3 text-center" data-field="action"
 														data-sortable="false">Action</th>
 
 
@@ -135,10 +136,9 @@ table.a {
 							</div>
 							
 							</div>
-						</div>
+						
 		<!--end::Container-->
-
-
+</div>
 		<!--end::Content-->
 		<!--begin::Footer-->
 		<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
@@ -146,7 +146,7 @@ table.a {
 		</div>
 		<!--end::Footer-->
 
-	</div>
+	
 	<!--end::Page-->
 
 	<!--begin::Scrolltop-->
@@ -173,6 +173,15 @@ table.a {
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
 	<script
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
+
+<script type="text/javascript">
+	
+	var basePath='<%=basePath%>';    
+	var base='<%=base%>';  
+	
+	
+	$('#updateUPI').hide();
+	</script>
 
 
 </body>

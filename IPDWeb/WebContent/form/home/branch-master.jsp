@@ -37,7 +37,7 @@ table.a {
 	<div class="container">
 
 							<h2
-								class="d-flex align-items-center text-purple font-weight-bold my-1 mr-3">Branch
+								class="d-flex align-items-center text-purple font-weight-bold my-2 mr-5">Branch
 								Master</h2>
 
 							<div class="row">

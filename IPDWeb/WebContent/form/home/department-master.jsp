@@ -50,22 +50,22 @@ table.a {
 								<div class="card card-custom">
 									<form class="form" id="kt_form_1">
 										<div class="card-body">
-											<div class="row">
-												<div class="col-xl-6">
+											
+												
 													<div class="form-group">
-														<label>Department Name</label> <input type="text"
+														<label>Department Name :</label> <input type="text"
 															id="department_name" class="form-control form-control-solid"
 															placeholder="Enter Department Name" />
 													</div>
-												</div>
-												<div class="col-xl-6">
+											
+											
 													<div class="form-group">
-														<label>Department Code</label> <input type="text"
+														<label>Department Code :</label> <input type="text"
 															id="department_code" class="form-control form-control-solid"
 															placeholder="Enter Department Code" />
 													</div>
-												</div>
-											</div>
+												
+											
 										</div>
 										<div class="text-center">
 											<button type="button" id="addProduct"
@@ -82,34 +82,34 @@ table.a {
 				</div>
 			</div>
 							<div class="col-xl-6 ">
- 
+								
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
-										<div class="input-icon ml-20" style="width: 40%;">
-											<input type="text" class="form-control form-control-solid"
-												placeholder="Search..." id="txt_searchall" /> <span>
-												<i class="flaticon2-search-1 text-muted"></i>
-											</span>
-										</div>
-										<br />
-										<!--begin: datatable-->
+									<div class="input-icon ml-10" style = "width: 30%;">
+																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
+																<span>
+																	<i class="flaticon2-search-1 text-muted"></i>
+																</span>
+															</div>
+							<br />
+									
+										<!--begin: Datatable-->
 										<table data-toggle="table" class='a'
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=225 id="table-id">
+											data-scroll="false" data-height=330 id="table-id">
 											<thead>
 												<tr>
 													<th class="col-sm-1 text-center" data-field="sr-no"
 														data-sortable="true">Sr No</th>
-													<th class="col-sm-1 text-center" data-field="department-name"
-														data-sortable="true">Department Name</th>	
+													<th class="col-sm-3 text-center" data-field="department-name"
+														data-sortable="true">Department Name </th>
 													<th class="col-sm-3 text-center" data-field="department-code"
 														data-sortable="true">Department Code</th>
 													<th class="col-sm-3 text-center" data-field="action"
-														data-sortable="true">Action</th>
-													
-													
+														data-sortable="false">Action</th>
+
 
 												</tr>
 
@@ -119,19 +119,24 @@ table.a {
 
 											</tbody>
 										</table>
-										<!--end: datatable-->
+										<!--end: Datatable-->
 									</div>
 								</div>
-						</div>
-</div>
-
+							
+							</div>
+							
+							</div>
+					
 		<!--end::Container-->
-
 </div>
-	
-	<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+		<!--end::Content-->
+		<!--begin::Footer-->
+		<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
 			<jsp:include page="../common/footer.jsp"></jsp:include>
 		</div>
+		<!--end::Footer-->
+
+	
 	<!--end::Page-->
 
 	<!--begin::Scrolltop-->
@@ -159,7 +164,14 @@ table.a {
 	<script
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
 
-
+<script type="text/javascript">
+	
+	var basePath='<%=basePath%>';    
+	var base='<%=base%>';  
+	
+	
+	$('#updateUPI').hide();
+	</script>
 
 
 </body>

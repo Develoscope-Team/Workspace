@@ -61,9 +61,9 @@ table.a {
 															<div class="col-xl-6">
 															<div class="form-group">
 																<label>Branch Name</label> <input type="text"
-																	id="branch"
+																	id="branch_name"
 																	class="form-control form-control-solid"
-																	placeholder="Enter Branch" />
+																	placeholder="Enter Branch Name" />
 															</div>
 															</div>
 															</div>
@@ -73,7 +73,7 @@ table.a {
 																<label>Account Holder Name</label> <input type="text"
 																	id="account_holder_name"
 																	class="form-control form-control-solid"
-																	placeholder="Enter Account holder Name" />
+																	placeholder="Enter Account Holder Name" />
 															</div>
 															</div>
 															<div class="col-xl-6">
@@ -102,12 +102,13 @@ table.a {
 															<div class="col-xl-6">
 															<div class="form-group">
 																<label>IFSC Code</label> <input type="text"
-																	id="IFSC_code"
+																	id="ifsc_code"
 																	class="form-control form-control-solid"
 																	placeholder="Enter IFSC code " />
 															</div>
 															</div>
 															</div>
+															<div class="row">
 															<div class="col-xl-6">
 															<div class="form-group">
 																<label>Opening Amount </label> <input type="text"
@@ -118,7 +119,7 @@ table.a {
 															</div>
 															
 														</div>
-														
+														</div>
 														<div class="text-center">
 															<button type="button" id="addBank"
 																class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
@@ -152,25 +153,23 @@ table.a {
 											data-scroll="false" data-height=550 id="table-id">
 											<thead>
 												<tr>
-													<th class="col-sm-1 text-center" data-field="NO"
-														data-sortable="true">No</th>
-													<th class="col-sm-2 text-center" data-field="Bank-Name"
+													<th class="col-sm-1 text-center" data-field="sr-no"
+														data-sortable="true">Sr No</th>
+													<th class="col-sm-2 text-center" data-field="bank-name"
 														data-sortable="true">Bank Name</th>
-													
-														<th class="col-sm-3 text-center" data-field="Holder-Name"
-														data-sortable="true">Holder Name</th>
-														<th class="col-sm-1 text-center" data-field="Account-Type"
-														data-sortable="true">Account Type</th>
-														<th class="col-sm-3 text-center" data-field="Account-No"
-														data-sortable="true">Account No</th>
-														
-													<th class="col-sm-3 text-center" data-field="Branch-Name"
+													<th class="col-sm-3 text-center" data-field="branch-name"
 														data-sortable="true">Branch-Name</th>
-													<th class="col-sm-3 text-center" data-field="IFSC-Code"
+														<th class="col-sm-3 text-center" data-field="account-holder-name"
+														data-sortable="true">Account Holder Name</th>
+														<th class="col-sm-1 text-center" data-field="account-type"
+														data-sortable="true">Account Type</th>
+														<th class="col-sm-3 text-center" data-field="account-no"
+														data-sortable="true">Account No</th>
+													<th class="col-sm-3 text-center" data-field="ifsc-code"
 														data-sortable="true">IFSC-Code</th>	
-														<th class="col-sm-3 text-center" data-field="Opening-Amount"
+														<th class="col-sm-3 text-center" data-field="opening-amount"
 														data-sortable="true">Opening-Amount</th>
-													<th class="col-sm-2 text-center" data-field="Action"
+													<th class="col-sm-2 text-center" data-field="action"
 														data-sortable="false">Action</th>
 												</tr>
 

@@ -60,17 +60,17 @@ table.a {
 													<div class="card card-custom">
 														<form class="form" id="kt_form_1">
 															<div class="card-body">
-																<div class="row">
-												<div class="col-xl-6">
+																
+												
 													<div class="form-group">
-														<label>Clinical Notes</label><input type="text"
+														<label>Clinical Notes :</label><input type="text"
 															id="clinical_notes" class="form-control form-control-solid"
 															placeholder="Enter Clinical Notes" />
 
 													</div>
-												</div>
 												
-											</div>
+												
+											
 															</div>
 															
 															<div class="text-center">
@@ -125,22 +125,21 @@ table.a {
 
 											</tbody>
 										</table>
-										<!--end: Datatable-->
+										<!--end: datatable-->
 									</div>
 								</div>
-							
-							</div>
-							
-							</div>
-						
+						</div>
+        </div>
+
 		<!--end::Container-->
 
+         </div>
+	
+	     <div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+			<jsp:include page="../common/footer.jsp"></jsp:include>
+		 </div>
+	   <!--end::Page-->
 
-		<!--end::Content-->
-		
-
-	</div>
-	<!--end::Page-->
 
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">

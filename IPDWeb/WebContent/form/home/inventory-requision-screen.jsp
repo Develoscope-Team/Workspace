@@ -53,14 +53,11 @@ table.a {
 										<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Required Product Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="requiredProductname" id="requiredProductname" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
+																		<label>Required Product Name</label> <input type="text"
+																			id="required_product_name"
+																			class="form-control form-control-solid"
+																			placeholder="Enter Required Product Name" />
+																			<span class="form-text text-muted">Please Enter Required Product Name.</span>
 																	</div>
 
 																</div>
@@ -68,13 +65,15 @@ table.a {
 																<div class="col-xl-6">
 																	<div class="form-group">
 																		<label>Required Quantity</label> <input type="number"
-																			class="form-control form-control-solid"
-																			id="requiredQuantity" /> <span class="msg text-danger"
+																			class="form-control form-control-solid" id="required_quantity"
+																			placeholder="Enter Required Quantity" /><span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Required Quantity.</span>
 
 																	</div>
 
 																</div>																
+																															
 																
 															</div>
 										
@@ -86,25 +85,25 @@ table.a {
 																		<label>Requested By</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="requestedBy" id="requestedBy" /><span
+																				class="form-control form-control-solid " placeholder="Enter Requested By"
+																				name="requested_by" id="requested_by" /><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Requested By.</span>
 																		</div>
 
 																	</div>
 
 																</div>
 																
-																<div class="col-xl-6">
+																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Date Of Request</label> <input type="dateOfRequest"
+																		<label>Date Of Request:</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid "
-																			placeholder="DD/MM/YYYY" name="dateOfRequest"
-																			id="dateOfRequest" />
-
+																			placeholder="DD/MM/YYYY" name="date_of_request"
+																			id="date_of_request" />
+																			<span class="form-text text-muted">Please Enter Date Of Request.</span>
 																	</div>
-
 																</div>
 															</div>
 											

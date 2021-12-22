@@ -46,9 +46,10 @@ try {
 																		<label>Post Morton Id</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="postMortonId" id="postMortonId" /><span
+																				class="form-control form-control-solid "
+																				name="post_morton_id" id="post_morton_id" placeholder="Enter Post Morton Id" /><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Post Morton Id.</span>
 																		</div>
 
 																	</div>
@@ -56,29 +57,23 @@ try {
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Patient Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="patientName" id="patientNamne" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-
-																	</div>
+														         <label>Patient Name</label> <input type="text"
+															      id="patient_name" class="form-control form-control-solid"
+															       placeholder="Enter Patient Name" />
+															       <span class="form-text text-muted">Please Enter Patient Name.</span>
+													            </div>
 
 																</div>
 															</div>
 															<div class="row">
-																<div class="col-lg-6">
+																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Doctors Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="doctorsName" id="doctorsName" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-																	</div>
+														         <label>Doctor Name</label> <input type="text"
+															      id="doctor_name" class="form-control form-control-solid"
+															       placeholder="Enter Doctor Name" />
+															       <span class="form-text text-muted">Please Enter Doctor Name.</span>
+													            </div>
+
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
@@ -86,9 +81,34 @@ try {
 																	    <div class="typeahead">
                                                                         <input type="time" class="form-control form-control-solid" id="pmt" name="pmt"
                                                                         min="00:00" max="24:00" >
+                                                                        <span class="form-text text-muted">Please Enter Post Morton Time.</span>
 																	</div>
 																</div>
 															</div>
+															</div>
+															<div class="row">
+																<div class="col-lg-6">
+																	<div class="form-group">
+																		<label>Date Of Death:</label> <input type="date"
+																			data-date-inline-picker="true"
+																			class="form-control form-control-solid "
+																			placeholder="DD/MM/YYYY" name="date_of_death"
+																			id="date_of_death" />
+																			<span class="form-text text-muted">Please Enter Date Of Death.</span>
+																	</div>
+																</div>
+																<div class="col-lg-6">
+																	<div class="form-group">
+																		<label>Reason Of Death:</label> <input type="date"
+																			data-date-inline-picker="true"
+																			class="form-control form-control-solid "
+																			placeholder="DD/MM/YYYY" name="reason_of_death"
+																			id="reason_of_death" />
+																			<span class="form-text text-muted">Please Enter Reason Of Death.</span>
+																	</div>
+																</div>
+																
+															
 															</div>
 															<div class="row">
 																<div class="col-lg-6">
@@ -96,28 +116,8 @@ try {
 																		<label>Post Morton Details</label>
 																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="postMortonDetails"></textarea>
-																	</div>
-																</div>
-																<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Date Of Death</label> <input type="dateOfDeath"
-																			data-date-inline-picker="true"
-																			class="form-control form-control-solid form-control-lg"
-																			placeholder="DD/MM/YYYY" name="dateOfDeath"
-																			id="dateOfDeath" />
-
-																	</div>
-
-																</div>
-															</div>
-															<div class="row">
-																<div class="col-lg-6">
-																	<div class="form-group">
-																		<label>Reason Of Death</label>
-																		<textarea rows="1"
-																			class="form-control form-control-solid"
-																			id="reasonOfDeath"></textarea>
+																			id="post_morton_details" placeholder="Enter Post Morton Details"></textarea>
+																			<span class="form-text text-muted">Please Enter Post Morton Details.</span>
 																	</div>
 																</div>
 										              <div class="col-lg-6">
@@ -126,6 +126,7 @@ try {
 																	    <div class="typeahead">
                                                                         <input type="time"class="form-control form-control-solid" id="pdt" name="pdt"
                                                                         min="00:00" max="24:00" >
+                                                                        <span class="form-text text-muted">Please Enter Patient Death Time.</span>
 																	</div>
 																</div>
 																
@@ -140,6 +141,7 @@ try {
 																	    <div class="typeahead">
                                                                         <input type="time" class="form-control form-control-solid" id="dbetim" name="dbetim"
                                                                         min="00:00" max="24:00" >
+                                                                        <span class="form-text text-muted">Please Enter Dead Body Entry Time In Time.</span>
 																	</div>
 																</div>
 																
@@ -150,44 +152,40 @@ try {
 															
 															
 																<div class="col-lg-6">
+																	
 																	<div class="form-group">
-																		<label>Post Morton Dr Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="postMortomDrName" id="postMortomDrName" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
-																	</div>
+														         <label>Post Morton Dr Name</label> <input type="text"
+															      id="post_morton_dr_name" class="form-control form-control-solid"
+															       placeholder="Enter Post Morton Dr Name" />
+															       <span class="form-text text-muted">Please Enter Post Morton Dr Name.</span>
+													            </div>
+
+																
 																</div>
 															</div>
 															<div class="row">
 										                      <div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Relative Name</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="relativeName" id="relativeName" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+														         <label>Relative Name</label> <input type="text"
+															      id="relative_name" class="form-control form-control-solid"
+															       placeholder="Enter Relative Name" />
+															       <span class="form-text text-muted">Please Enter Relative Name.</span>
+													            </div>
 
-																	</div>
 																</div>
 																
 														
 
 													
 													
-																<div class="col-lg-6">
+																		<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Birth Marks On Dead Body</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid "
-																				name="bmodb" id="bmodb" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+																		<label>Birth Marks On Dead Body</label><span class="text-danger">*</span>
+																		<select class="form-control form-control-solid"
+																			name="birth_marks_on_dead_body" id="birth_marks_on_dead_body">
+																			<option value="" disabled selected hidden>Select Birth Marks On Dead Body</option>
+																		</select>
+																		 <span class="form-text text-muted">Please Enter Birth Marks On Dead Body.</span>
 																	</div>
 																</div>
 										          
