@@ -9,7 +9,6 @@
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
-		
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
