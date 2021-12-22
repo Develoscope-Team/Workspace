@@ -38,11 +38,10 @@ table.a {
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 
 	
-		<div
-		class="container">
+		<div class="container">
 		
 		
-				<h2 class="text-gray font-weight-bold my-2 mr-5">Designation Master</h2>
+				<h2 class="text-gray font-weight-bold my-2 mr-3">Designation Master</h2>
 			
 
 	
@@ -58,25 +57,22 @@ table.a {
 												
 													<div class="card card-custom">
 														<form class="form" id="kt_form_1">
-															<div class="card-body">
-																<div class="row">
-												<div class="col-xl-6">
+															
 													<div class="form-group">
 														<label>Designation Name</label><input type="text"
 															id="designation_name" class="form-control form-control-solid"
 															placeholder="Enter Designation Name" />
-														</div>
+														
 													</div>
-													<div class="col-xl-6">
-													<div class="form-group">
+													
 														<label>Designation Code</label> <input type="text"
 															id="designation_code" class="form-control form-control-solid"
 															placeholder="Enter Designation Code" />
 													</div>
 												</div>
 												
-											</div>
-										</div>
+											
+										
 															
 															<div class="text-center">
 																<button type="button" id="addUPI"

@@ -28,7 +28,7 @@ try {
 						<div
 							class="container">
 							
-									<h2 class="text-gray font-weight-bold my-2 mr-5">Pramotion Screen</h2>
+									<h2 class="text-gray font-weight-bold my-1 mr-3">Promotion Screen</h2>
 
 
 								<div class="card card-custom gutter-b">
@@ -37,15 +37,15 @@ try {
 											<div class="example-preview">
 												<div class="card card-custom">
 													<form class="form" id="kt_form_1">
-														<div class=" ">
+														
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
 																		<label>Employee Name</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="employeeName" id="employeeName" /><span
+																				class="form-control form-control-solid"
+																				name="employee_Name" id="employe_eName" /><span
 																				class="msg text-danger" id="type1"> </span>
 																		</div>
 
@@ -57,8 +57,8 @@ try {
 																		<label>Employee Id</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="employeeId" id="employeeId" /><span
+																				class="form-control form-control-solid "
+																				name="employee_Id" id="employee_Id" /><span
 																				class="msg text-danger" id="type1"> </span>
 																		</div>
 
@@ -72,19 +72,19 @@ try {
 																		<label>Current Designation</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="currentDesignation" id="currentDesignation" /> 
+																				class="form-control form-control-solid "
+																				name="current_designation" id="current_designation" /> 
 																		</div>
 
 																	</div>
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>After Pramotion Designation</label><span class="text-danger"></span>
+																		<label>After Promotion Designation</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="apd" id="apd" /> 
+																				class="form-control form-control-solid "
+																				name="apd" id="apd" />
 																		</div>
 
 																	</div>
@@ -97,18 +97,18 @@ try {
 																		<label>Current Salary</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
+																				class="form-control form-control-solid "
 																				name="currentSalary" id="currentSalary" /> 
 																		</div>
 																	</div>
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Increament Salary</label><span class="text-danger"></span>
+																		<label>Increment Salary</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="increamentSalary" id="increamentSalary" /> 
+																				class="form-control form-control-solid "
+																				name="increment_salary" id="increment_salary" /> 
 																		</div>
 
 																	</div>
@@ -118,32 +118,35 @@ try {
 																<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Allowen</label><span class="text-danger"></span>
+																		<label>Allowens</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
+																				class="form-control form-control-solid "
 																				name="allowen" id="allowen" /> 
 																		</div>
 
 																	</div>
 																</div>
-																<div class="col-lg-6">
+																
+																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label> Deduction</label>
-																		<textarea rows="2"
-																			class="form-control form-control-solid"
-																			id="deduction"></textarea>
+																		<label> Deduction</label><span class="text-danger"></span>
+																		<div class="typeahead">
+																			<input type="text"
+																				class="form-control form-control-solid "
+																				name="deduction" id="eduction" />
 																	</div>
 																</div>
 																</div>
 																
 															
-														<div class="text-center">
+																<div class="text-center">
 											<button type="button" id="addProduct"
 												class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
 
-											<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; "  id="cancel">Cancel</button>
+											<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; " id="cancel">Cancel</button>
 										</div>
+</div>
 													</form>
 													<!--end::Form-->
 												</div>

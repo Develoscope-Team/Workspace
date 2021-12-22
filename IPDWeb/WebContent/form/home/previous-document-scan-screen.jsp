@@ -56,10 +56,11 @@ try {
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>File Date</label><span class="text-danger"></span>
-																		<div class="typeahead">
-                                                                        <input type="time" class="form-control form-control-solid" id="pmt" name="pmt"
-                                                                        min="00:00" max="24:00" >
+																		<label>File Date</label><input type="date"
+																			data-date-inline-picker="true"
+																			class="form-control form-control-solid "
+																			placeholder="DD/MM/YYYY" name="date"
+																			id="date" />
 																		</div>
 
 																	</div>
@@ -87,12 +88,11 @@ try {
 															
 											
 														<div class="text-center">
-														<button type="button" id="addProduct"
-												class="btn btn-primary mr-2">Save</button>
+														
 											<button type="button" id="addProduct"
-												class="btn btn-primary mr-2">Submit</button>
+												class="btn btn-primary mr-2" style="background-color: #AB48FF;">Submit</button>
 
-											<button type="button" class="btn btn-secondary" id="cancel">Cancel</button>
+											<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF;">Cancel</button>
 										</div>
 													</form>
 													<!--end::Form-->

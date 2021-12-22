@@ -36,91 +36,124 @@ table.a {
 	
 	<div class="container">
 
-							<h2
-					class="d-flex align-items-center text-purple font-weight-bold my-1 mr-3">UPI
-								Master</h2>
+					 <h2
+					class="d-flex align-items-center text-dark font-weight-bold my-1 mr-4">Medicine
+								Master</h2> 
 
 							<div class="row">
-								<div class="col-xl-6">
-									<div class="card card-custom gutter-b">
-										<div class="card-body ">
-											<div class="example mb-10">
-												<div class="example-preview">
-													<div class="card card-custom">
-														<form class="form" id="kt_form_1">
-															<div class="card-body">
+							<div class="col-xl-12 offset-xl-0">
+								<div class="card card-custom gutter-b">
+									<div class="card-body">
+										<div class="example mb-10">
+											<div class="example-preview">
+												<div class="card card-custom">
+													<form class="form" id="kt_form_1">
+														<div class="card-body">
+														<div class="row">
+																	<div class="col-xl-6">
 															<div class="form-group">
-																	<label>UPI Name:</label><span class="text-danger"
-																		id="type"></span> <input type="text"
-																		name="upi_name" id="upi_name"
-																		class="form-control form-control-solid"
-																		placeholder="Enter UPI Name" required />
-																</div>
-																
+																<label>Medicine Name :</label> <input type="text"
+																	id="medidine_name"
+																	class="form-control form-control-solid"
+																	placeholder="Enter Medicine Name" />
 															</div>
-															<div class="text-center">
-																<button type="submit" id="addComplaint"
-																	class="btn btn-primary mr-2" style="background-color: #AB48FF;">Submit</button>
-																<button type="submit" id="updateComplaint"
-																	class="btn btn-primary mr-2">Update</button>
-																<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF;"
-																	id="cancel">Cancel</button>
 															</div>
-														</form>
-														<!--end::Form-->
-													</div>
+															<div class="col-xl-6">
+															<div class="form-group">
+																<label>Medicine Type :</label> <input type="text"
+																	id="medicine_type"
+																	class="form-control form-control-solid"
+																	placeholder="Enter Medicine Type" />
+															</div>
+															</div>
+															</div>
+															<div class="row">
+																	<div class="col-xl-6">
+															<div class="form-group">
+																<label>Medicine Category :</label> <input type="text"
+																	id="medicine_category"
+																	class="form-control form-control-solid"
+																	placeholder="Enter Medicine Category" />
+															</div>
+															</div>
+															<div class="col-xl-6">
+															<div class="form-group">
+																<label>Io Special :</label> <input type="text"
+																	id="io_special"
+																	class="form-control form-control-solid"
+																	placeholder="Io Special"" />
+																		
+																		
+																</select>
+															</div>
+															</div>
+															</div>
+															
+															
+														</div>
+														<div class="text-center">
+															<button type="button" id="addBank"
+								class="btn btn-primary mr-2" style="background-color: #AB48FF; " id="submit">Submit</button>
+														</button>
+															<button type="submit" id="updateBank"
+																class="btn btn-primary mr-2">Update</button>
+															<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF;" id="cancel">Cancel</button>
+														</div>
+													</form>
+													<!--end::Form-->
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-
-						
-							
-								<div class="col-xl-6 offset-xl-0 ">
+							</div>
+							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
-
-								<div class="input-icon ml-10" style = "width: 60%;">
+									<div class="input-icon ml-10" style = "width: 30%;">
 																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
 																<span>
 																	<i class="flaticon2-search-1 text-muted"></i>
 																</span>
 															</div>
-								<br />
-
-								
-
+											<br />
+										<!--begin: Datatable-->
 										<table data-toggle="table" class='a'
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=240 id="table-id">
+											data-scroll="false" data-height=550 id="table-id">
 											<thead>
 												<tr>
 													<th class="col-sm-1 text-center" data-field="sr-no"
-														data-sortable="true">Sr No</th>
-													<th class="col-sm-3 text-center"
-														data-field="upi_name" data-sortable="true">UPI Name</th>
+														data-sortable="true">Sr-No</th>
+													<th class="col-sm-2 text-center" data-field="medicine-no"
+														data-sortable="true">Medicine Name</th>
 													
+														<th class="col-sm-3 text-center" data-field="medicine-type"
+														data-sortable="true">Medicine Type</th>
+														<th class="col-sm-1 text-center" data-field="medicine-category"
+														data-sortable="true">Medicine Category</th>
+														<th class="col-sm-3 text-center" data-field="io-special"
+														data-sortable="true">IO Special</th>
+														
+														
+														
 													<th class="col-sm-2 text-center" data-field="action"
-														data-sortable="true">Action</th>
-
+														data-sortable="false">Action</th>
 												</tr>
 
 											</thead>
 											<tbody class="data">
-
-
 											</tbody>
 										</table>
-
+										<!--end: Datatable-->
 									</div>
-
 								</div>
 							</div>
+
 						</div>
-							</div>
+						</div>
 					
 				<!--begin::Footer-->
 				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
@@ -161,7 +194,7 @@ table.a {
 	var base='<%=base%>';  
 	
 	
-	$('#updateComplaint').hide();
+	$('#updateBank').hide();
 	</script>
 </body>
 </html>

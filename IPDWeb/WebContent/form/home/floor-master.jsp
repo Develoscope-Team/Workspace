@@ -39,10 +39,9 @@ table.a {
 
 	
 	
-		<div
-		class="container">
+		<div class="container">
 		
-				<h2 class="text-gray font-weight-bold my-2 mr-5">Floor Master</h2>
+				<h2 class="text-gray font-weight-bold my-2 mr-3">Floor Master</h2>
 
 		
 							
@@ -50,27 +49,27 @@ table.a {
 								<div class="col-xl-6">
 									<div class="card card-custom gutter-b">
 										<div class="card-body">
-											<div class="example mb-10">
-												
+											<div class="example mb-3">
+												<div class="example-preview">
 													<div class="card card-custom">
 														<form class="form" id="kt_form_1">
 															<div class="card-body">
-																<div class="row">
-												<div class="col-xl-6">
+																
+												
 													<div class="form-group">
 														<label>Building Name</label> <input type="text"
 															id="building_name" class="form-control form-control-solid"
 															placeholder="Enter Building Name" />
 													</div>
-												</div>
-												<div class="col-xl-6">
+											
+												
 													<div class="form-group">
 														<label>Floor Number</label> <input type="text"
 															id="floor_number" class="form-control form-control-solid"
 															placeholder="Enter Floor Number" />
 													</div>
-												</div>
-											</div>
+												
+											
 					
 
 
@@ -88,7 +87,7 @@ table.a {
 														</form>
 														<!--end::Form-->
 													</div>
-												
+												</div>
 											</div>
 										</div>
 									</div>
@@ -97,7 +96,7 @@ table.a {
 								
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
-									<div class="input-icon ml-10" style = "width: 20%;">
+									<div class="input-icon ml-10" style = "width: 60%;">
 																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
 																<span>
 																	<i class="flaticon2-search-1 text-muted"></i>
@@ -110,7 +109,7 @@ table.a {
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=225 id="table-id">
+											data-scroll="false" data-height=270 id="table-id">
 											<thead>
 												<tr>
 													<th class="col-sm-1 text-center" data-field="sr-no"

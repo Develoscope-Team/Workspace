@@ -36,97 +36,130 @@ table.a {
 	
 	<div class="container">
 
-							<h2
-					class="d-flex align-items-center text-purple font-weight-bold my-1 mr-3">UPI
-								Master</h2>
+					 <h2
+					class="d-flex align-items-center text-dark font-weight-bold my-1 mr-4">Global Notice
+								Master</h2> 
 
 							<div class="row">
-								<div class="col-xl-6">
-									<div class="card card-custom gutter-b">
-										<div class="card-body ">
-											<div class="example mb-10">
-												<div class="example-preview">
-													<div class="card card-custom">
-														<form class="form" id="kt_form_1">
-															<div class="card-body">
+							<div class="col-xl-12 offset-xl-0">
+								<div class="card card-custom gutter-b">
+									<div class="card-body">
+										<div class="example mb-10">
+											<div class="example-preview">
+												<div class="card card-custom">
+													<form class="form" id="kt_form_1">
+														<div class="card-body">
+														<div class="row">
+																	<div class="col-xl-6">
 															<div class="form-group">
-																	<label>UPI Name:</label><span class="text-danger"
-																		id="type"></span> <input type="text"
-																		name="upi_name" id="upi_name"
-																		class="form-control form-control-solid"
-																		placeholder="Enter UPI Name" required />
+																<label>Notice Name :</label> <input type="text"
+																	id="notice_name"
+																	class="form-control form-control-solid"
+																	placeholder="Enter notice name" />
+															</div>
+															</div>
+															<div class="col-xl-6">
+															<div class="form-group">
+																<label>Notice Description : </label> <input type="text"
+																	id="notice_description"
+																	class="form-control form-control-solid"
+																	placeholder="fotice description" />
+															</div>
+															</div>
+															</div>
+															<div class="row">
+															<div class="col-xl-6">		
+															<div class="form-group">
+																<label>From Date  :</label> <input type="date"
+																			data-date-inline-picker="true"
+																			class="form-control form-control-solid "
+																			placeholder="DD/MM/YYYY" name="date"
+																			id="date" />
+                                                                        </div>
+															</div>
+															
+															
+															<div class="col-xl-6">
+															<div class="form-group">
+																<label>Till Date :</label> <input type="date"
+																			data-date-inline-picker="true"
+																			class="form-control form-control-solid "
+																			placeholder="DD/MM/YYYY" name="date"
+																			id="date" />
 																</div>
-																
 															</div>
-															<div class="text-center">
-																<button type="submit" id="addComplaint"
-																	class="btn btn-primary mr-2" style="background-color: #AB48FF;">Submit</button>
-																<button type="submit" id="updateComplaint"
-																	class="btn btn-primary mr-2">Update</button>
-																<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF;"
-																	id="cancel">Cancel</button>
 															</div>
-														</form>
-														<!--end::Form-->
-													</div>
+															</div>
+															</div>
+															
+														<div class="text-center">
+															<button type="button" id="addBank"
+																class="btn btn-primary mr-2" style="background-color: #AB48FF">Submit</button>
+															<button type="submit" id="updateBank"
+																class="btn btn-primary mr-2">Update</button>
+															<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF">Cancel</button>
+														</div>
+													</form>
+													<!--end::Form-->
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-
+							</div>
 						
-							
-								<div class="col-xl-6 offset-xl-0 ">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
-
-								<div class="input-icon ml-10" style = "width: 60%;">
+									<div class="input-icon ml-10" style = "width: 60%;">
 																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
 																<span>
 																	<i class="flaticon2-search-1 text-muted"></i>
 																</span>
 															</div>
-								<br />
-
-								
-
+											<br />
+										<!--begin: Datatable-->
 										<table data-toggle="table" class='a'
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=240 id="table-id">
+											data-scroll="false" data-height=225 id="table-id">
 											<thead>
 												<tr>
 													<th class="col-sm-1 text-center" data-field="sr-no"
 														data-sortable="true">Sr No</th>
-													<th class="col-sm-3 text-center"
-														data-field="upi_name" data-sortable="true">UPI Name</th>
+													<th class="col-sm-2 text-center" data-field="notice-name"
+														data-sortable="true">Notice Name</th>
 													
-													<th class="col-sm-2 text-center" data-field="action"
-														data-sortable="true">Action</th>
-
+														<th class="col-sm-3 text-center" data-field="notice-description"
+														data-sortable="true">Notice decription</th>
+														<th class="col-sm-1 text-center" data-field="from-date"
+														data-sortable="true">From Dtae</th>
+														<th class="col-sm-3 text-center" data-field="till-date"
+														data-sortable="true">Till Date</th>
+														
+													
+													<th class="col-sm-2 text-center" data-field="Action"
+														data-sortable="false">Action</th>
 												</tr>
 
 											</thead>
 											<tbody class="data">
-
-
 											</tbody>
 										</table>
-
+										<!--end: Datatable-->
 									</div>
-
 								</div>
-							</div>
+							
+
 						</div>
-							</div>
+						</div>
 					
 				<!--begin::Footer-->
 				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
 				</div>
 				<!--end::Footer-->
+			
 			
 
 
@@ -161,7 +194,7 @@ table.a {
 	var base='<%=base%>';  
 	
 	
-	$('#updateComplaint').hide();
+	$('#updateBank').hide();
 	</script>
 </body>
 </html>
