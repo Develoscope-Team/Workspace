@@ -52,7 +52,7 @@ table.a {
 														<div class="row">
 																	<div class="col-xl-6">
 															<div class="form-group">
-																<label>Bank Name :</label> <input type="text"
+																<label>Bank Name</label> <input type="text"
 																	id="bank_name"
 																	class="form-control form-control-solid"
 																	placeholder="Enter Recipe Name" />
@@ -60,7 +60,7 @@ table.a {
 															</div>
 															<div class="col-xl-6">
 															<div class="form-group">
-																<label>Branch Name :</label> <input type="text"
+																<label>Branch Name</label> <input type="text"
 																	id="branch"
 																	class="form-control form-control-solid"
 																	placeholder="Enter Branch" />
@@ -70,7 +70,7 @@ table.a {
 															<div class="row">
 																	<div class="col-xl-6">
 															<div class="form-group">
-																<label>Account Holder Name :</label> <input type="text"
+																<label>Account Holder Name</label> <input type="text"
 																	id="account_holder_name"
 																	class="form-control form-control-solid"
 																	placeholder="Enter Account holder Name" />
@@ -78,7 +78,7 @@ table.a {
 															</div>
 															<div class="col-xl-6">
 															<div class="form-group">
-																<label>Account Type :</label> <select
+																<label>Account Type</label> <select
 																	class="form-control form-control-solid" name="account" id="acc_type">
 																	<option value="" disabled selected hidden>Select
 																		Acccount</option>
@@ -93,7 +93,7 @@ table.a {
 															<div class="row">
 																	<div class="col-xl-6">
 															<div class="form-group">
-																<label>Account No :</label> <input type="text"
+																<label>Account No </label> <input type="text"
 																	id="account_no"
 																	class="form-control form-control-solid"
 																	placeholder="Enter Account No." />
@@ -101,17 +101,16 @@ table.a {
 															</div>
 															<div class="col-xl-6">
 															<div class="form-group">
-																<label>IFSC Code :</label> <input type="text"
-																	id="ifsc_code"
+																<label>IFSC Code</label> <input type="text"
+																	id="IFSC_code"
 																	class="form-control form-control-solid"
-																	placeholder="Enter ifsc_code " />
+																	placeholder="Enter IFSC code " />
 															</div>
 															</div>
 															</div>
-															<div class="row">
 															<div class="col-xl-6">
 															<div class="form-group">
-																<label>Opening Amount : </label> <input type="text"
+																<label>Opening Amount </label> <input type="text"
 																	id="opening_amount"
 																	class="form-control form-control-solid"
 																	placeholder="Enter Opening Amount" />
@@ -119,14 +118,13 @@ table.a {
 															</div>
 															
 														</div>
-														</div>
+														
 														<div class="text-center">
-															<button type="button" id="addbank"
-																class="btn btn-primary mr-2" style="background-color: #AB48FF">Submit</button>
-															<button type="submit" id="updatebank"
-																class="btn btn-primary mr-2"
-																style="background-color: #AB48FF">Update</button>
-															<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF">Cancel</button>
+															<button type="button" id="addBank"
+																class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
+															<button type="submit" id="updateBank"
+																class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Update</button>
+															<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; " id="cancel">Cancel</button>
 														</div>
 													</form>
 													<!--end::Form-->
@@ -218,316 +216,23 @@ table.a {
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/features/custom/spinners.js"></script>
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
-	<script
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
+	<script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
+	
 
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';  
 	
 	
-	$('#updatebank').hide();
-	$("#addbank").show();
-	
-		 $('#addbank').click(function() {
-
-							var bank_name = $('#bank_name').val();
-							var branch_name = $('#branch').val();
-							var account_holder_name = $('#account_holder_name').val();
-							var account_type = $('#account_type ').val();
-							var account_no = $('#account_no ').val();
-							var ifsc_code = $('#ifsc_code ').val();
-							var opening_amount = $('#opening_amount ').val();
-							var flag = 1; // Addition
-
-						if(bank_name != "" ){
-							$.ajax({
-								// http://localhost:8080/ipdAPI/ipdapi/insertUpdateAdvice
-								url : base +"/ipdAPI/ipdapi/insertUpdateBank",
-								
-								type : "post",
-								dataType : "json",
-								async : false,
-								data : {
-									"bank_name" : bank_name,
-                                    "branch_name" : branch_name,
-                                    "account_holder_name" : account_holder_name,
-                                    "account_type" : account_type,
-                                    "account_no " : account_no ,
-                                    "ifsc_code" : ifsc_code,
-                                    "opening_amount" : opening_amount,
-									"flag" : flag
-								},
-								
-								error : function(xhr) {
-									var msg = "Data insertion failed Error : "
-											+ xhr.status
-											+ " "
-											+ xhr.statusText;
-									alert(msg);
-								},
-								success : function(response) {
-									if (response != null) {
-
-										if (response >= 1) {
-
-											var msg = "Bank Data inserted Successfully.";
-											alert(msg);
-
-										} 
-									}
-								}
-
-							});
-						}
-
-						})
-
-		"use strict";
-		//Class definition 
-		
-		
-		
-					
-		
-		var bank_id;
-var html = "";
-
-$.ajax({
-	
-	url : base +"/ipdAPI/ipdapi/getBank",
-	
-	type : "post",
-	dataType : "json",
-	async : false,
-	data : {"bank_id": bank_id},
-	success:function(data)
-	{
-		
-		const row = data.find(d => d.bank_id == branch_id);
-		data.forEach((row)=> {
-			html +="<tr id= tr-id-2 class= tr-class-2>"
-				html += "<td>"+row.bank_id+"</td>"; 
-			html += "<td>"+row.bank_name+"</td>"; 
-			 html += "<td>"+row.branch_name+"</td>";
-	            html += "<td>"+row.account_holder_name+"</td>";
-	            html += "<td>"+row.account_type+"</td>"; 
-				 html += "<td>"+row.account_no+"</td>";
-		            html += "<td>"+row.ifsc_code+"</td>";
-		            html += "<td>"+row.opening_account+"</td>";
-			          
-	          
-     	       	 html += '<td><a href="javascript:update('+row.bank_id+');" class="btn_bank btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"/></g></svg></span>'
-         
-
-     	       	+ '<a href="javascript:deleteById('+row.branch_id+');" class="btn_branch btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
-	            html +="</tr>"
-		
-		});
-		 $(".data").html(html);
-	}
-	
-});	
-
-$(document).ready(function (){
-	   var table = $('#table-id').DataTable();
-	   
-	  
-	});
-
-		 
-		 function update(id){
-			 
-				$('.btn_bank').hide();
-				
-				$('#updatebank').show();
-				$("#addbank").hide();
-				
-				$.ajax({
-			        type:"POST",
-			        dataType: "json",
-			        data:{"bank_id": id},
-					async : false,
-					url : base +"/ipdAPI/ipdapi/getBank",
-			        success:function(data)
-			        {
-			        	
-			            const row = data.find(d => d.bank_id ==id);
-			           
-			            $("#bank_name").val(row.bank_name);
-			        	$("#branch_name").val(row.branch_name);
-			        	 $("#account_holder_name").val(row.account_holder_name);
-				        	$("#account_type").val(row.account_type);
-				        	
-					    $("#account_no").val(row.account_no);
-					        	$("#ifsc_code").val(row.ifsc_code);
-					        	$("#opening_amount").val(row.opening_amount);
-					        	
-			        	
-					        
-			        }
-			     });
-				
-				 
-				 // let update_by_id = temp_edit_id;
-				 // console.log(update_by_id);
-				$('#updatebank')
-				.click(
-						function() {
-							 
-							
-							var advice_name = $('#bank_name').val();
-							var advice_desc = $('#branch_name').val();
-							var account_holder_name= $('#account_holder_name').val();
-							var account_type = $('#account_type').val();
-							var account_no= $('#account_no').val();
-							var ifsc_code = $('#ifsc_code').val();
-							var opening_amount = $('#opening_amount').val();
-							
-							
-							var flag = 2; // Addition
-
-							$.ajax({
-								url : base +"/ipdAPI/ipdapi/insertUpdateBank",
-								
-										type : "post",
-										dataType : "json",
-										async : false,
-										data : {
-											"bank_name" : bank_name,
-											"branch_name" : branch_name,
-											"account_holder_name" :account_holder_name,
-											"account_type" : account_type,
-											"account_no" :account_no,
-											"ifsc_code" :ifsc_code,
-											"opening_amount" : opening_amount,
-											
-											
-											
-											"flag" : flag,
-											"bank_id": id
-										},
-										error : function(xhr) {
-											var msg = "(Data updation failed. Error : "
-													+ xhr.status
-													+ " "
-													+ xhr.statusText;
-											alert(msg);
-										},
-										success : function(response) {
-											if (response != null) {
-
-												if (response >= 1) {
-
-													var msg = "Bank Data updated Successfully.";
-													alert(msg);
-
-												} 
-											}
-										}
-								   
-									});
-			   
-
-						})
-		 
-		 }
-		 
-	
-
-	"use strict";
-		 
-		$('#cancel')
-		.click(
-				function() {		
-				window.location.reload();
-				})
-		 
-		// Delete data by bank_id
-		function deleteById(id){
-			if (confirm("Press OK to confirm!")) {
-			$.ajax({
-				url : base + "/ipdAPI/ipdapi/insertUpdateBank",
-				
-				type : "post",
-				dataType : "json",
-				async : false,
-				data : {
-					"bank_name": "",
-                    "branch_name": "", 
-					"account_holder_name" : "",
-					"account_type": "",
-                    "account_no": "", 
-					"ifsc_code" : "",
-					"opening_amount" : "",
-					
-					"flag" : 3
-				},
-				
-				error : function(xhr) {
-					var msg = "Data deletion failed. Error : "
-							+ xhr.status
-							+ " "
-							+ xhr.statusText;
-					alert(msg);
-				},
-				success : function(response) {
-					if (response != null) {
-
-						if (response >=1) {
-
-							var msg = "Bank Data deleted Successfully.";
-							alert(msg);
-							location.reload(true);
-
-						} 
-					}
-				}
-
-			});
-			} else {
-				  window.location.reload();
-			  }
-		}
-		$(document).ready(function(){
-
-			  // Search all columns
-			  $('#txt_searchall').keyup(function(){
-			    // Search Text
-			    var search = $(this).val();
-
-			    // Hide all table tbody rows
-			    $('table tbody tr').hide();
-
-			    // Count total search result
-			    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
-
-			    if(len > 0){
-			      // Searching text in columns and show match row
-			      $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
-			        $(this).closest('tr').show();
-			      });
-			    }else{
-			      $('.notfound').show();
-			    }
-
-			  });
-
-			});
-		$.expr[":"].contains = $.expr.createPseudo(function(arg) {
-			   return function( elem ) {
-			     return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-			   };
-			});
-
+	$('#updateBank').hide();
 	</script>
 </body>
 </html>
 
+
 <%
-} catch (Exception e) {
-Logger.log(dbConnVar, "" + e);
-}
+	} catch (Exception e) {
+		Logger.log(dbConnVar, "" + e);
+	}
 %>

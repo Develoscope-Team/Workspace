@@ -101,14 +101,14 @@ table.a {
 												<label class="checkbox"> <input type="checkbox"
 													id="isPrintable" /> <span></span> Is Printable
 												</label>
-									<div class="checkbox-inline mb-5">
+											</div>
+
+											<div class="checkbox-inline mb-5">
 												<label class="checkbox"> <input type="checkbox"
 													id="isSpecial" /> <span></span> Is Special
 												</label>
 											</div>
-		</div>
 
-											
 
 											<div class="card-footer">
 												<div class="row">

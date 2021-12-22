@@ -34,14 +34,14 @@ table.a {
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/bg/bg-9.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 	
-	<div class="container">
+	<div class="container-fluid offset-1">
 
 							<h2
 								class="d-flex align-items-center text-purple font-weight-bold my-1 mr-3">User
 								Master</h2>
 
 							<div class="row">
-								<div class="col-xl-12">
+								<div class="col-xl-10">
 									<div class="card card-custom gutter-b">
 										<div class="card-body ">
 											<div class="example mb-10">
@@ -49,60 +49,36 @@ table.a {
 													<div class="card card-custom">
 														<form class="form" id="kt_form_1">
 															<div class="card-body">
-															
-															<div class="row">
-																	<div class="col-xl-6">
 															<div class="form-group">
-																	<label>User Name :</label><span class="text-danger"
-																		id="type"></span> <input type="text"
-																		name="user_name" id="user_name"
+																	<label>User Name</label><span class="text-danger"
+																		id="type">*</span> <input type="text"
+																		name="User Name" id="User_Name"
 																		class="form-control form-control-solid"
 																		placeholder="Enter User Name" required />
-																		</div>
-																		</div>
-																		<div class="col-xl-6">
-															<div class="form-group">
-																		<label>Email id :</label><span class="text-danger"
-																		id="type"></span> <input type="text"
-																		name="email_id" id="email_id"
+																		<label>Email id</label><span class="text-danger"
+																		id="type">*</span> <input type="text"
+																		name="Email id" id="Email_id"
 																		class="form-control form-control-solid"
-																		placeholder="Enter Email Id" required />
-																		</div>
-																		</div>
-																		</div>
-																		<div class="row">
-																	<div class="col-xl-6">
-															<div class="form-group">
-																		<label>Login id :</label><span class="text-danger"
-																		id="type"></span> <input type="text"
-																		name="login _id" id="login_id"
+																		placeholder="Enter Email id" required />
+																		<label>Login id</label><span class="text-danger"
+																		id="type">*</span> <input type="text"
+																		name="login id" id="Login_id"
 																		class="form-control form-control-solid"
-																		placeholder="Enter Login Id" required />
-																		</div>
-																		</div>
+																		placeholder="Enter Login id" required />
 																		
-																		<div class="col-xl-6">
-															<div class="form-group">
-																		<label>Password :</label><span class="text-danger"
-																		id="type"></span> <input type="text"
+																		<label>Password</label><span class="text-danger"
+																		id="type">*</span> <input type="text"
 																		name="Password" id="Password"
 																		class="form-control form-control-solid"
 																		placeholder="Enter Password" required />
 																		
-																		</div>
-																		</div>
-																		</div>
-																		<div class="row">
-																		<div class="col-xl-6">
-															<div class="form-group">
-																		<label>Confirm Password :</label><span class="text-danger"
-																		id="type"></span> <input type="text"
-																		name="confirm password" id="confirm_password"
+																		<label>Confirm Password</label><span class="text-danger"
+																		id="type">*</span> <input type="text"
+																		name="Confirm Password" id="Confirm_Password"
 																		class="form-control form-control-solid"
 																		placeholder="Enter Confirm Password" required />
 																</div>
-																</div>
-															</div>
+																
 															</div>
 															<div class="text-center">
 																<button type="submit" id="addComplaint"
@@ -122,18 +98,58 @@ table.a {
 								</div>
 
 							</div>
-							
-								<div class="card card-custom gutter-b">
-									<div class="card-body">
-									<div class="input-icon ml-10" style = "width: 70%;">
-																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
-																<span>
-																	<i class="flaticon2-search-1 text-muted"></i>
-																</span>
-															</div>
-											
+							<div class="col-xl-10">
+								<div class="quick-search quick-search-inline ml-20 w-300px "
+									id="kt_quick_search_inline">
+									<!--begin::Form-->
+									<form method="get" class="quick-search-form">
+										<div class="input-group rounded bg-light">
+											<div class="input-group-prepend">
+												<span class="input-group-text"> <span
+													class="svg-icon svg-icon-lg"> <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
+														<svg xmlns="http://www.w3.org/2000/svg"
+															xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+															height="24px" viewBox="0 0 24 24" version="1.1">
+															<g stroke="none" stroke-width="1" fill="none"
+																fill-rule="evenodd">
+																<rect x="0" y="0" width="24" height="24" />
+																<path
+																d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+																fill="#000000" fill-rule="nonzero" opacity="0.3" />
+																<path
+																d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+																fill="#000000" fill-rule="nonzero" />
+															</g>
+														</svg> <!--end::Svg Icon-->
+												</span>
+												</span>
+											</div>
+											<input type="text" class="form-control h-45px "
+												id="txt_searchall" placeholder="Search..." />
+											<div class="input-group-append">
+												<span class="input-group-text"> <i
+													class="quick-search-close ki ki-close icon-sm text-muted"></i>
+												</span>
+											</div>
+										</div>
+									</form>
+									<!--end::Form-->
+									<!--begin::Search Toggle-->
+									<div id="kt_quick_search_toggle" data-toggle="dropdown"
+										data-offset="0px,1px"></div>
+									<!--end::Search Toggle-->
+									<!--begin::Dropdown-->
+									<div
+										class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
+										<div class="quick-search-wrapper scroll" data-scroll="true"
+											data-height="350" data-mobile-height="200"></div>
+									</div>
+									<!--end::Dropdown-->
+								</div>
+								<br />
 
-								
+								<div class="card card-custom gutter-b">
+									<div class="card-body-fluid">
 
 										<table data-toggle="table" class='a'
 											data-classes="table table-hover table-condensed "
@@ -142,14 +158,14 @@ table.a {
 											data-scroll="false" data-height=550 id="table-id">
 											<thead>
 												<tr>
-													<th class="col-sm-1 text-center" data-field="sr-no"
-														data-sortable="true"> Sr No</th>
+													<th class="col-sm-1 text-center" data-field="NO"
+														data-sortable="true">No</th>
 													<th class="col-sm-3 text-center"
-														data-field="user-name" data-sortable="true">User Name</th>
+														data-field="User Name" data-sortable="true">User Name</th>
 													<th class="col-sm-3 text-center"
-														data-field="email-id" data-sortable="true">Email Id</th>
+														data-field="Email id" data-sortable="true">Email id</th>
 													
-													<th class="col-sm-2 text-center" data-field="action"
+													<th class="col-sm-2 text-center" data-field="Action"
 														data-sortable="true">Action</th>
 
 												</tr>
@@ -160,13 +176,12 @@ table.a {
 
 											</tbody>
 										</table>
-										</div>
 
-									
+									</div>
+
 								</div>
-						
-						
-					
+							</div>
+						</div>
 					
 				<!--begin::Footer-->
 				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">

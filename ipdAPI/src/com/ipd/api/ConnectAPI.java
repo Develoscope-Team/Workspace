@@ -53,74 +53,18 @@ public class ConnectAPI {
 	}
 
 	@POST
-	@Path("/getBank")
+	@Path("/getAdvice")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String getbank() {
+	public String getAdvice() {
 
 		ConnectDataBean bean = null;
 		String beanData = null;
 		try {
 
 			bean = new ConnectDataBean();
-			beanData = bean.getBank().toString();
-//				Logger.log("IPD","beandata:: "+beanData);
-
-		} catch (Exception e) {
-			System.out.println(e);
-			Logger.log("IPD", e);
-		}
-
-		return beanData;
-	}
-
-	
-	
-	@POST
-	@Path("/insertUpdateBank")
-	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public int insertUpdateBank(@FormParam("bank_name") String bank_name,
-			@FormParam("branch_name") String branch_name, @FormParam("account_holder_name") String account_holder_name,
-			@FormParam("account_type") String account_type,
-					@FormParam("account_no") int account_no, @FormParam("ifsc_code") String ifsc_code,
-					@FormParam("opening_amount") int opening_amount,
-			@FormParam("flag") int flag) {
-		ConnectDataBean bean = null;
-		int beanData = 0;
-		try {
-
-			Logger.log("IPD", "bank_name:: " + bank_name);
-
-			bean = new ConnectDataBean();
-			beanData = bean.insertUpdateBank(bank_name, branch_name, account_holder_name, account_type, account_no,ifsc_code,opening_amount, flag);
-			
-			Logger.log("IPD", "beandata:: " + beanData);
-
-			if (beanData > 0) {
-
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			Logger.log("IPD", e);
-		}
-
-		return beanData;
-	}
-
-	@POST
-	@Path("/getBank")
-	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String getBank() {
-
-		ConnectDataBean bean = null;
-		String beanData = null;
-		try {
-
-			bean = new ConnectDataBean();
-			beanData = bean.getBank().toString();
-//				Logger.log("IPD","beandata:: "+beanData);
+			beanData = bean.getAdvice().toString();
+//				Logger.log("BAFNA","beandata:: "+beanData);
 
 		} catch (Exception e) {
 			System.out.println(e);

@@ -1,7 +1,7 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -13,12 +13,9 @@
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
@@ -36,117 +33,108 @@ table.a {
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/bg/bg-9.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
+	
 	<div class="container">
 
-		<h2
-			class="d-flex align-items-center text-purple font-weight-bold my-1 mr-3">Complaints
-			Master</h2>
+							<h2
+								class="d-flex align-items-center text-purple font-weight-bold my-1 mr-3">Complaints
+								Master</h2>
 
-		<div class="row">
-			<div class="col-xl-6 offset-xl-0">
-				<div class="card card-custom gutter-b">
-					<div class="card-body">
-
-						<div class="example mb-6">
-							<div class="example-preview">
-								<div class="card card-custom">
-									<form class="form" id="kt_form_1">
-										<div class="card-body">
-
-
-											<div class="form-group">
-												<label>Complaint Name :</label> <input type="text"
-													id="complaint_name" class="form-control form-control-solid"
-													placeholder="Enter Complaint Name" />
-											</div>
-
-
-											<div class="form-group">
-												<label>Complaint Details :</label> <input type="text"
-													id="complaint details"
-													class="form-control form-control-solid"
-													placeholder="Enter Complaint Details" />
-											</div>
-
-
-
-											<div class="text-center">
-												<button type="submit" id="addComplaint"
-													class="btn btn-primary mr-2"
-													style="background-color: #AB48FF;">Submit</button>
-												<button type="submit" id="updateComplaint"
-													class="btn btn-primary mr-2"
-													style="background-color: #AB48FF;">Update</button>
-												<button type="button" class="btn btn-primary mr-2"
-													style="background-color: #AB48FF;" id="cancel">Cancel</button>
-
-
+							<div class="row">
+								<div class="col-xl-12 offset-xl-0">
+									<div class="card card-custom gutter-b">
+										<div class="card-body ">
+											<div class="example mb-10">
+												<div class="example-preview">
+													<div class="card card-custom">
+														<form class="form" id="kt_form_1">
+															<div class="card-body">
+																<div class="form-group">
+																	<label>Complaint Name</label><span class="text-danger"
+																		id="type">*</span> <input type="text"
+																		name="complaint_name" id="complaint_name"
+																		class="form-control form-control-solid"
+																		placeholder="Enter Complaint Name" required />
+																</div>
+																<div class="form-group">
+																	<label>Complaint Detail</label><span
+																		class="text-danger" id="type">*</span>
+																	<textarea name="complaint_detail" id="complaint_detail"
+																		class="form-control form-control-solid" rows="1"
+																		required></textarea>
+																</div>
+															</div>
+															<div class="text-center">
+																<button type="submit" id="addComplaint"
+																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
+																<button type="submit" id="updateComplaint"
+																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Update</button>
+																<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; "
+																	id="cancel">Cancel</button>
+															</div>
+														</form>
+														<!--end::Form-->
+													</div>
+												</div>
 											</div>
 										</div>
-									</form>
-									<!--end::Form-->
+									</div>
+								</div>
+
+						
+							<div class="col-xl-12 offset-xl-0 ">
+								<div class="card card-custom gutter-b">
+									<div class="card-body">
+
+								<div class="input-icon ml-10" style = "width: 30%;">
+																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
+																<span>
+																	<i class="flaticon2-search-1 text-muted"></i>
+																</span>
+															</div>
+								<br />
+
+								
+
+										<table data-toggle="table" class='a'
+											data-classes="table table-hover table-condensed "
+											data-striped="true" data-sort-name="Quality"
+											data-sort-order="desc" data-pagination="false"
+											data-scroll="false" data-height=550 id="table-id">
+											<thead>
+												<tr>
+													<th class="col-sm-1 text-center" data-field="sr-no"
+														data-sortable="true">Sr No</th>
+													<th class="col-sm-3 text-center"
+														data-field="complaint_name" data-sortable="true">Complaint
+														Name</th>
+													<th class="col-sm-3 text-center"
+														data-field="complaint_detail" data-sortable="true">Complaint
+														Detail</th>
+													<th class="col-sm-2 text-center" data-field="action"
+														data-sortable="true">Action</th>
+
+												</tr>
+
+											</thead>
+											<tbody class="data">
+
+
+											</tbody>
+										</table>
+
+									</div>
+
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-
-
-
-			<div class="col-xl-6 ">
-				<div class="card card-custom gutter-b">
-					<div class="card-body">
-
-						<div class="input-icon ml-10" style="width: 30%;">
-							<input type="text" class="form-control form-control-solid"
-								placeholder="Search..." id="txt_searchall" /> <span> <i
-								class="flaticon2-search-1 text-muted"></i>
-							</span>
 						</div>
-						<br />
-
-						<table data-toggle="table" class='a'
-							data-classes="table table-hover table-condensed "
-							data-striped="true" data-sort-name="Quality"
-							data-sort-order="desc" data-pagination="false"
-							data-scroll="false" data-height=280 id="table-id">
-							<thead>
-								<tr>
-									<th class="col-sm-3 text-center" data-field="sr-no"
-										data-sortable="true">Sr No</th>
-									<th class="col-sm-3 text-center" data-field="complaint_name"
-										data-sortable="true">Complaint Name</th>
-									<th class="col-sm-3 text-center" data-field="complaint_detail"
-										data-sortable="true">Complaint Detail</th>
-									<th class="col-sm-3 text-center" data-field="action"
-										data-sortable="true">Action</th>
-
-								</tr>
-
-							</thead>
-							<tbody class="data">
-							</tbody>
-						</table>
-
-					</div>
+				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
 				</div>
-
-			</div>
-
-
-		</div>
-
-
-	</div>
-
-	<!--begin::Footer-->
-	<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
-		<jsp:include page="../common/footer.jsp"></jsp:include>
-	</div>
-	<!--end::Footer-->
-
+				<!--end::Footer-->
+			
 
 
 	<!--begin::Scrolltop-->
@@ -167,20 +155,20 @@ table.a {
 		</span>
 	</div>
 
-	<script type="text/javascript"
+<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/features/custom/spinners.js"></script>
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
-	<script
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
+	<script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
+	
 
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	
 	var basePath='<%=basePath%>';    
-	var base='<%=base%>';
-
-		$('#updateComplaint').hide();
+	var base='<%=base%>';  
+	
+	
+	$('#updateComplaint').hide();
 	</script>
 </body>
 </html>
