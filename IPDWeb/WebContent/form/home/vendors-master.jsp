@@ -45,27 +45,24 @@ table.a {
 		
 				<h2 class="text-gray font-weight-bold my-2 mr-5">Vendors Master</h2>
 				
-		
-
-		
 				<div class="card card-custom gutter-b">
 					<div class="card-body">
 						<div class="example mb-10">
-							
+							<div class="example-preview">
 								<div class="card card-custom">
 									<form class="form" id="kt_form_1">
 										<div class="card-body">
 											<div class="row">
 												<div class="col-xl-6">
 													<div class="form-group">
-														<label>Vendor Name</label> <input type="text"
+														<label>Vendor Name :</label> <input type="text"
 															id="vendor_name" class="form-control form-control-solid"
 															placeholder="Enter Vendor Name" />
 													</div>
 												</div>
 												<div class="col-xl-6">
 													<div class="form-group">
-														<label>Vendor Bank Name</label> <input type="text"
+														<label>Vendor Bank Name :</label> <input type="text"
 															id="vendor_bank_name" class="form-control form-control-solid"
 															placeholder="Enter Vendor Bank Name" />
 													</div>
@@ -74,7 +71,7 @@ table.a {
 											<div class="row">
 												<div class="col-xl-6">
 													<div class="form-group">
-														<label>Vendor Email</label><input type="text"
+														<label>Vendor Email :</label><input type="text"
 															id="vendor_email" class="form-control form-control-solid"
 															placeholder="Enter Vendor Email" />
 
@@ -82,7 +79,7 @@ table.a {
 												</div>
 												<div class="col-xl-6">
 													<div class="form-group">
-														<label>Vendor Account Holder Name</label><input type="text"
+														<label>Vendor Account Holder Name :</label><input type="text"
 															id="vendor_account_holder_name" class="form-control form-control-solid"
 															placeholder="Enter Vendor Account Holder Name" />
 
@@ -93,7 +90,7 @@ table.a {
 											<div class="row">
 												<div class="col-xl-6">
 													<div class="form-group">
-														<label>Vendor Mobile No</label><input type="text"
+														<label>Vendor Mobile No :</label><input type="text"
 															id="vendor_mobile_no"
 															class="form-control form-control-solid" 
 															placeholder="Enter Vendor Mobile No" />
@@ -101,7 +98,7 @@ table.a {
 													</div>
 												</div>
 												<div class="form-group col-xl-6">
-													<label>Vendor Account No</label><input type="text"
+													<label>Vendor Account No :</label><input type="text"
 														id="vendor_account_no" class="form-control form-control-solid"
 														placeholder="Enter Vendor Account No" />
 
@@ -110,7 +107,7 @@ table.a {
 											<div class="row">
 												<div class="col-xl-6">
 													<div class="form-group">
-														<label>Vendor Adhar No</label><input type="text"
+														<label>Vendor Adhar No :</label><input type="text"
 															id="vendor_adhar_no"
 															class="form-control form-control-solid" placeholder="Enter Vendor Adhar No"/>
 
@@ -118,7 +115,7 @@ table.a {
 												</div>
 												<div class="col-xl-6">
 													<div class="form-group">
-														<label>IFSC Code</label><input type="text"
+														<label>IFSC Code :</label><input type="text"
 															id="ifsc_code"
 															class="form-control form-control-solid" 
 															placeholder="Enter IFSC Code"/>
@@ -128,15 +125,15 @@ table.a {
 											</div>
 											
 											<div class="row">
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Vendor Address</label>
-														<textarea id="vendor_address"
-															class="form-control form-control-solid" rows="1"></textarea>
-													</div>
+												
+												<div class="form-group col-xl-6">
+													<label>Vendor Address :</label><input type="text"
+														id="vendor_address" class="form-control form-control-solid"
+														placeholder="Enter Vendor Address" />
+
 												</div>
 												<div class="form-group col-xl-6">
-													<label>Branch Name</label><input type="text"
+													<label>Branch Name :</label><input type="text"
 														id="branch_name" class="form-control form-control-solid"
 														placeholder="Enter Branch Name" />
 
@@ -145,14 +142,14 @@ table.a {
 											<div class="row">
 												<div class="col-xl-6">
 													<div class="form-group">
-														<label>Vendor GST No</label><input type="text"
+														<label>Vendor GST No :</label><input type="text"
 															id="vendor_gst_no"
 															class="form-control form-control-solid" placeholder="Enter Vendor Gst No"/>
 
 													</div>
 												</div>
 												<div class="form-group col-xl-6">
-													<label>City</label><input type="text"
+													<label>City :</label><input type="text"
 														id="city" class="form-control form-control-solid"
 														placeholder="Enter City" />
 
@@ -163,7 +160,7 @@ table.a {
 											<div class="row">
 												<div class="col-xl-6">
 													<div class="form-group">
-														<label>District</label><input type="text"
+														<label>District :</label><input type="text"
 															id="district"
 															class="form-control form-control-solid" placeholder="Enter District"/>
 
@@ -171,17 +168,6 @@ table.a {
 												</div>
 												
 											</div>
-
-
-
-
-
-
-
-											
-
-
-
 
 										</div>
 										<div class="text-center">
@@ -194,6 +180,7 @@ table.a {
 									<!--end::Form-->
 								</div>
 							
+						</div>
 						</div>
 					</div>
 				</div>
@@ -260,7 +247,7 @@ table.a {
 								</div>
 							
 
-		
+		</div>
 		<!--end::Container-->
 
 
@@ -271,7 +258,7 @@ table.a {
 		</div>
 		<!--end::Footer-->
 
-	</div>
+	
 	<!--end::Page-->
 
 	<!--begin::Scrolltop-->

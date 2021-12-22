@@ -43,26 +43,20 @@ try {
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Chief Complaint</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="cheifComplaint" id="cheifComplaint" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+																		<label>Chief Complaint :</label><input type="text"
+															id="chief_complaint" class="form-control form-control-solid"
+															placeholder="Enter Chief Complaint" />
+															<span class="form-text text-muted">Please Enter Chief Complaint.</span>
 
 																	</div>
 
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Associated Illness</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="associatedIllness" id="associatedIllness" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+																		<label>Associated Illness :</label><input type="text"
+															id="associated_illness" class="form-control form-control-solid"
+															placeholder="Enter Associated Illness" />
+															<span class="form-text text-muted">Please Enter Associated Illness.</span>
 
 																	</div>
 
@@ -71,48 +65,36 @@ try {
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Relivant Investigation</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="relivantInvestigation" id="relivantInvestigation" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+																		<label>Relivant Investigation :</label><input type="text"
+															id="relivant_investigation" class="form-control form-control-solid"
+															placeholder="Enter Relivant Investigation" />
+															<span class="form-text text-muted">Please Enter Relivant Investigation.</span>
 																	</div>
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Allergies</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="allergies" id="allergies" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+																		<label>Allergies :</label><input type="text"
+															id="allergies" class="form-control form-control-solid"
+															placeholder="Enter Allergies" />
+															<span class="form-text text-muted">Please Enter Allergies.</span>
 																	</div>
 																</div>
 															</div>
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Vaccination History</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="vaccinationHistory" id="vaccinationHistory" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+																		<label>Vaccination History :</label><input type="text"
+															id="vaccination_history" class="form-control form-control-solid"
+															placeholder="Enter Vaccination History" />
+															<span class="form-text text-muted">Please Enter Vaccination History.</span>
 																	</div>
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Gyno And Obs History</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="gynoAndObsHistory" id="gynoAndObsHistory" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+																		<label>Gyno And Obs History :</label><input type="text"
+															id="gyno_and_obs_history" class="form-control form-control-solid"
+															placeholder="Enter Gyno And Obs History" />
+															<span class="form-text text-muted">Please Enter Gyno And Obs History.</span>
 
 																	</div>
 
@@ -121,24 +103,18 @@ try {
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Other</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="other" id="other" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+																		<label>Other :</label><input type="text"
+															id="other" class="form-control form-control-solid"
+															placeholder="Enter Other" />
+															<span class="form-text text-muted">Please Enter Other.</span>
 																	</div>
 																</div>
 										               <div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Current Treatment</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="currentTreatment" id="currentTreatment" /><span
-																				class="msg text-danger" id="type1"> </span>
-																		</div>
+																		<label>Current Treatement :</label><input type="text"
+															id="current_treatment" class="form-control form-control-solid"
+															placeholder="Enter Current Treatment" />
+															<span class="form-text text-muted">Please Enter Current Treatement.</span>
 
 																	</div>
 																</div>
@@ -147,21 +123,15 @@ try {
 															</div>
 															
 															
-															<div class="row">
-																<div class="col-lg-4">
-																	<div class="form-group">
-																		<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="add" id="add" />
-																		</div>
-																		</div>
+															
 																		
 																		
-																<button type="button" id="add"
-																	class="btn btn-primary mr-2" style="background-color: #AB48FF; "style="height:40px;width:150px">ADD Template</button>
+																<button type="button" id="addtemplate"
+												class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Add Template</button>
+
 																	
 																
-										               </div>
+										               
 																
 																
 															<div class="card-body" style="overflow-x: auto;">
@@ -208,7 +178,11 @@ try {
 									</div>
 								</div>
 							</div>
-
+<!--begin::Footer-->
+		<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+			<jsp:include page="../common/footer.jsp"></jsp:include>
+		</div>
+		<!--end::Footer-->
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->

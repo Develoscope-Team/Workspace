@@ -46,16 +46,16 @@ table.a {
 	
 							
 							<div class="row">
-								<div class="col-xl-7">
+								<div class="col-xl-6">
 									<div class="card card-custom gutter-b">
 										<div class="card-body">
 											<div class="example mb-10">
-												
+												<div class="example-preview">
 													<div class="card card-custom">
 														<form class="form" id="kt_form_1">
 															<div class="card-body">
 																<div class="form-group">
-																	<label>Ward Type</label><span class="text-danger"
+																	<label>Ward Type :</label><span class="text-danger"
 																		id="type">*</span> <input type="text" name="ward_type"
 																		id="ward_type" class="form-control form-control-solid"
 																		placeholder="Enter Ward Type" required /> <span
@@ -78,7 +78,8 @@ table.a {
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-5 ">
+								</div>
+								<div class="col-xl-6 ">
 								
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -95,14 +96,14 @@ table.a {
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=200 id="table-id">
+											data-scroll="false" data-height=225 id="table-id">
 											<thead>
 												<tr>
 													<th class="col-sm-1 text-center" data-field="sr-no"
-														data-sortable="true">No</th>
+														data-sortable="true">Sr No</th>
 													<th class="col-sm-3 text-center" data-field="ward-type"
 														data-sortable="true">Ward Type</th>
-													<th class="col-sm-2 text-center" data-field="action"
+													<th class="col-sm-3 text-center" data-field="action"
 														data-sortable="false">Action</th>
 
 
@@ -118,9 +119,11 @@ table.a {
 									</div>
 								</div>
 							
-							</div>
 							
-							</div>
+							
+							
+						</div>
+						</div>
 						</div>
 		<!--end::Container-->
 
@@ -132,7 +135,7 @@ table.a {
 		</div>
 		<!--end::Footer-->
 
-	</div>
+	
 	<!--end::Page-->
 
 	<!--begin::Scrolltop-->
@@ -165,16 +168,21 @@ table.a {
 <script type="text/javascript">
 	
 	var basePath='<%=basePath%>';    
-	var base='<%=base%>';
-
-		$('#updateUPI').hide();
+	var base='<%=base%>';  
+	
+	
+	$('#updateUPI').hide();
 	</script>
+
+
 </body>
 </html>
-
 
 <%
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);
 }
 %>
+
+
+

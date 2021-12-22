@@ -37,154 +37,147 @@ table.a {
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/bg/bg-9.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 
-	
 
-	<div
-		class="container">
-		
-				<h2 class="text-gray font-weight-bold my-2 mr-5">Room Master</h2>
-	
-				<div class="card card-custom gutter-b">
-					<div class="card-body">
-						<div class="example mb-10">
-							
-								<div class="card card-custom">
-									<form class="form" id="kt_form_1">
-										<div class="card-body">
-											<div class="row">
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Room Name</label> <input type="text"
-															id="room_name" class="form-control form-control-solid"
-															placeholder="Enter Room Name" />
-													</div>
-												</div>
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Ward</label> <input type="text"
-															id="ward" class="form-control form-control-solid"
-															placeholder="Enter Ward" />
-													</div>
-												</div>
+
+	<div class="container">
+
+		<h2 class="text-gray font-weight-bold my-2 mr-5">Room Master</h2>
+
+		<div class="card card-custom gutter-b">
+			<div class="card-body">
+				<div class="example mb-10">
+					<div class="example-preview">
+						<div class="card card-custom">
+							<form class="form" id="kt_form_1">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Room Name :</label> <input type="text" id="room_name"
+													class="form-control form-control-solid"
+													placeholder="Enter Room Name" />
 											</div>
-											<div class="row">
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Room No</label><input type="text"
-															id="room_no" class="form-control form-control-solid"
-															placeholder="Enter Room No" />
-
-													</div>
-												</div>
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Number Of Beds</label> <input type="text"
-															id="number_of_beds" class="form-control form-control-solid"
-															placeholder="Enter Number Of Beds" />
-													</div>
-												</div>
-											</div>
-
-											<div class="row">
-												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Room Type</label><input type="text"
-															id="room_type"
-															class="form-control form-control-solid" 
-															placeholder="Enter Room Type"/>
-
-													</div>
-												</div>
-												
-											</div>
-										
-											
-
-
-
-
-
-
-
-											
-
-
-
-
 										</div>
-										<div class="text-center">
-											<button type="button" id="addProduct"
-												class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
-
-											<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; " id="cancel">Cancel</button>
+										<div class="col-xl-6">
+											<div class="form-group">
+																		<label>Wards :</label><span class="text-danger">*</span>
+																		<select class="form-control form-control-solid"
+																			name="wards" id="wards">
+																			<option value="" disabled selected hidden>Select Wards</option>
+																		</select>
+																	</div>
 										</div>
-									</form>
-									<!--end::Form-->
-								</div>
-							
-						</div>
-					</div>
-				</div>
-
-								<div class="card card-custom gutter-b">
-									<div class="card-body">
-										<div class="input-icon ml-10" style="width: 30%;">
-											<input type="text" class="form-control form-control-solid"
-												placeholder="Search..." id="txt_searchall" /> <span>
-												<i class="flaticon2-search-1 text-muted"></i>
-											</span>
-										</div>
-										<br />
-										<!--begin: datatable-->
-										<table data-toggle="table" class='a'
-											data-classes="table table-hover table-condensed "
-											data-striped="true" data-sort-name="Quality"
-											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=550 id="table-id">
-											<thead>
-												<tr>
-													<th class="col-sm-1 text-center" data-field="sr_no"
-														data-sortable="true">Sr No</th>
-													<th class="col-sm-3 text-center" data-field="room-name"
-														data-sortable="true">Room Name</th>
-													<th class="col-sm-3 text-center" data-field="ward"
-														data-sortable="true">Ward</th>
-													<th class="col-sm-3 text-center" data-field="room-no"
-														data-sortable="true">Room No</th>
-													<th class="col-sm-3 text-center" data-field="number-of-beds"
-														data-sortable="true">Number Of Beds</th>
-													<th class="col-sm-3 text-center" data-field="room-type"
-														data-sortable="true">Room Type</th>
-													<th class="col-sm-3 text-center" data-field="action"
-														data-sortable="true">Action</th>
-													
-													
-
-												</tr>
-
-											</thead>
-											<tbody class="data">
-
-
-											</tbody>
-										</table>
-										<!--end: datatable-->
 									</div>
+									<div class="row">
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Room No :</label><input type="text" id="room_no"
+													class="form-control form-control-solid"
+													placeholder="Enter Room No" />
+
+											</div>
+										</div>
+										<div class="col-xl-6">
+											<div class="form-group">
+												<label>Number Of Beds :</label> <input type="text"
+													id="number_of_beds" class="form-control form-control-solid"
+													placeholder="Enter Number Of Beds" />
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-xl-6">
+										<div class="form-group">
+																		<label>Room Type :</label><span class="text-danger">*</span>
+																		<select class="form-control form-control-solid"
+																			name="room_type" id="room_type">
+																			<option value="" disabled selected hidden>Select Room Type</option>
+																		</select>
+																	</div>
+											
+										</div>
+
+									</div>
+
 								</div>
-						
+								<div class="text-center">
+									<button type="button" id="addProduct"
+										class="btn btn-primary mr-2"
+										style="background-color: #AB48FF;">Submit</button>
 
+									<button type="button" class="btn btn-primary mr-2"
+										style="background-color: #AB48FF;" id="cancel">Cancel</button>
+								</div>
+							</form>
+							<!--end::Form-->
+						</div>
+
+					</div>
+
+				</div>
+			</div>
 		</div>
-		<!--end::Container-->
+
+		<div class="card card-custom gutter-b">
+			<div class="card-body">
+				<div class="input-icon ml-10" style="width: 30%;">
+					<input type="text" class="form-control form-control-solid"
+						placeholder="Search..." id="txt_searchall" /> <span> <i
+						class="flaticon2-search-1 text-muted"></i>
+					</span>
+				</div>
+				<br />
+				<!--begin: datatable-->
+				<table data-toggle="table" class='a'
+					data-classes="table table-hover table-condensed "
+					data-striped="true" data-sort-name="Quality" data-sort-order="desc"
+					data-pagination="false" data-scroll="false" data-height=550
+					id="table-id">
+					<thead>
+						<tr>
+							<th class="col-sm-2 text-center" data-field="sr_no"
+								data-sortable="true">Sr No</th>
+							<th class="col-sm-2 text-center" data-field="room-name"
+								data-sortable="true">Room Name</th>
+							<th class="col-sm-2 text-center" data-field="ward"
+								data-sortable="true">Ward</th>
+							<th class="col-sm-2 text-center" data-field="room-no"
+								data-sortable="true">Room No</th>
+							<th class="col-sm-2 text-center" data-field="number-of-beds"
+								data-sortable="true">Number Of Beds</th>
+							<th class="col-sm-2 text-center" data-field="room-type"
+								data-sortable="true">Room Type</th>
+							<th class="col-sm-2 text-center" data-field="action"
+								data-sortable="true">Action</th>
 
 
-		<!--end::Content-->
-		<!--begin::Footer-->
-		<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
-			<jsp:include page="../common/footer.jsp"></jsp:include>
+
+						</tr>
+
+					</thead>
+					<tbody class="data">
+
+
+					</tbody>
+				</table>
+				<!--end: datatable-->
+			</div>
 		</div>
-		<!--end::Footer-->
+
 
 	</div>
+	<!--end::Container-->
+
+
+	<!--end::Content-->
+	<!--begin::Footer-->
+	<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+	</div>
+	<!--end::Footer-->
+
+
 	<!--end::Page-->
 
 	<!--begin::Scrolltop-->

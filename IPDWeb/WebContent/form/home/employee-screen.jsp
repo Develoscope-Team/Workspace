@@ -30,7 +30,7 @@ try {
 						<div
 							class="container ">
 							
-									<h2 class="text-gray font-weight-bold my-2 mr-5">Employe Screen</h2>
+									<h2 class="text-gray font-weight-bold my-2 mr-5">Employee Screen</h2>
 
 							
 								<div class="card card-custom gutter-b">
@@ -43,12 +43,13 @@ try {
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Employee Entry</label><span class="text-danger"></span>
+																		<label>Employee Name :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="employeeEntry" id="employee_entry" /><span
+																				class="form-control form-control-solid "
+																				name="employee_name" id="employee_name" placeholder="Enter Employee Name"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Upload Employee Name.</span>
 																		</div>
 
 																	</div>
@@ -56,12 +57,13 @@ try {
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Employee Name</label><span class="text-danger"></span>
+																		<label>Employee Entry :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="employeeName" id="employee_name" /><span
+																				class="form-control form-control-solid "
+																				name="employee_entry" id="employee_entry" placeholder="Enter Employee Entry"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Employee Entry.</span>
 																		</div>
 
 																	</div>
@@ -71,38 +73,41 @@ try {
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Employee DOB</label> <input type="employeeDOB"
+																		<label>Employee DOB :</label> <input type="date"
 																			data-date-inline-picker="true"
-																			class="form-control form-control-solid form-control-lg"
-																			placeholder="DD/MM/YYYY" name="employee_dob"
-																			id="employee_dob" />
+																			class="form-control form-control-solid"
+																			id="employee_date_of_birth" placeholder="Enter Employee DOB"/>
+																			<span class="form-text text-muted">Please Enter Employee DOB.</span>
 																	</div>
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Employee Mobile No</label> <input type="number"
+																		<label>Employee Mobile No :</label> <input type="text"
 																			class="form-control form-control-solid"
-																			id="employee_mobile_no" /> <span class="msg text-danger"
+																			id="employee_mobile_no" placeholder="Enter Employee Mobile No"/> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Employee Mobile No.</span>
 																	</div>
 																</div>
 															</div>
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Employee Adhar No</label> <input type="number"
+																		<label>Employee Adhar No :</label> <input type="number"
 																			class="form-control form-control-solid"
-																			id="employee_adhar_no" /> <span class="msg text-danger"
+																			id="employee_adhar_no" placeholder="Enter Employee Adhar No"/> <span class="msg text-danger"
 																			id="type2"> </span>
+																			<span class="form-text text-muted">Please Enter Employee Adhar No.</span>
 																	</div>
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Qualification</label><span class="text-danger"></span>
+																		<label>Qualification :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="qualification" id="qualification" /> 
+																				class="form-control form-control-solid "
+																				name="qualification" id="qualification" placeholder="Enter Qualification"/>
+																				<span class="form-text text-muted">Please Enter Qualification.</span> 
 																		</div>
 
 																	</div>
@@ -112,19 +117,21 @@ try {
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Address</label>
-																		<textarea rows="2"
+																		<label>Address :</label>
+																		<textarea rows="1	"
 																			class="form-control form-control-solid"
-																			id="address"></textarea>
+																			id="address" placeholder="Enter Address"></textarea>
+																			<span class="form-text text-muted">Please Enter Address.</span>
 																	</div>
 																</div>
 										               <div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Allowens</label><span class="text-danger"></span>
+																		<label>Allowens :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="allowens" id="allowens" /> 
+																				class="form-control form-control-solid "
+																				name="allowens" id="allowens" placeholder="Enter Allowens"/>
+																				<span class="form-text text-muted">Please Enter Allowens.</span> 
 																		</div>
 
 																	</div>
@@ -137,19 +144,21 @@ try {
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Tax Deduction</label>
-																		<textarea rows="2"
+																		<label>Tax Deduction :</label>
+																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="tax_deduction"></textarea>
+																			id="tax_deduction" placeholder="Enter Tax Deduction"></textarea>
+																			<span class="form-text text-muted">Please Enter Tax Deduction.</span>
 																	</div>
 																</div>
 										               <div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Designation</label><span class="text-danger"></span>
+																		<label>Designation :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="designation" id="designation" /> 
+																				class="form-control form-control-solid "
+																				name="designation" id="designation" placeholder="Enter Designation"/>
+																				<span class="form-text text-muted">Please Enter Designation.</span> 
 																		</div>
 
 																	</div>
@@ -161,19 +170,21 @@ try {
 														<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Salary</label>
-																		<textarea rows="2"
+																		<label>Salary :</label>
+																		<textarea rows="1"
 																			class="form-control form-control-solid"
-																			id="salary"></textarea>
+																			id="salary" placeholder="Enter Salary"></textarea>
+																			<span class="form-text text-muted">Please Enter Salary.</span>
 																	</div>
 																</div>
 										               <div class="col-xl-6">
 																	<div class="form-group">
-																		<label>No Of Anual Leaves</label><span class="text-danger"></span>
+																		<label>No Of Anual Leaves :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="no_of_anual_leaves" id="no_of_anual_leaves" /> 
+																				class="form-control form-control-solid "
+																				name="no_of_anual_leaves" id="no_of_anual_leaves" placeholder="Enter No Of Anual Leaves"/> 
+																				<span class="form-text text-muted">Please Enter No Of Anual Leaves.</span>
 																		</div>
 
 																	</div>
@@ -185,21 +196,23 @@ try {
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>No Of Days Weekly</label><span class="text-danger"></span>
+																		<label>No Of Days Weekly :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="no_of_days_weekly" id="no_of_days_weekly" /> 
+																				class="form-control form-control-solid "
+																				name="no_of_days_weekly" id="no_of_days_weekly" placeholder="Enter No Of Days Weekly"/>
+																				<span class="form-text text-muted">Please Enter No Of Days Weekly.</span> 
 																		</div>
 
 																	</div>
 																</div>
 										               <div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Joining Date</label> <input type="date"
+																		<label>Joining Date :</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid"
 																			id="Joining_date" />
+																			<span class="form-text text-muted">Please Enter Joining Date.</span>
 																	</div>
 																</div>
 																
@@ -208,19 +221,21 @@ try {
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Resign Date</label> <input type="date"
+																		<label>Resign Date :</label> <input type="date"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid"
 																			id="Resign_date" />
+																			<span class="form-text text-muted">Please Enter Resign Date.</span>
 																	</div>
 																</div>
 										                       <div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Spouse</label><span class="text-danger"></span>
+																		<label>Spouse :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="spouse" id="spouse" /> 
+																				class="form-control form-control-solid "
+																				name="spouse" id="spouse" placeholder="Enter Spouse"/> 
+																				<span class="form-text text-muted">Please Enter Spouse.</span>
 																		</div>
 
 																	</div>
@@ -230,12 +245,13 @@ try {
 																<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Child Name1</label><span class="text-danger"></span>
+																		<label>Child Name1 :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="childName1" id="childName1" /><span
+																				class="form-control form-control-solid "
+																				name="childName1" id="childName1" placeholder="Enter Child Name1"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Child Name1.</span>
 																		</div>
 
 																	</div>
@@ -243,12 +259,13 @@ try {
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Child Name2</label><span class="text-danger"></span>
+																		<label>Child Name2 :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="childName2" id="childName2" /><span
+																				class="form-control form-control-solid "
+																				name="childName2" id="childName2" placeholder="Enter Child Name2"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Child Name2.</span>
 																		</div>
 
 																	</div>
@@ -259,12 +276,13 @@ try {
 																	<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Father Name</label><span class="text-danger"></span>
+																		<label>Father Name :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="fatherName" id="fatherName" /><span
+																				class="form-control form-control-solid "
+																				name="fatherName" id="fatherName" placeholder="Enter Father Name"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Father Name.</span>
 																		</div>
 
 																	</div>
@@ -272,12 +290,13 @@ try {
 																</div>
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Mother Name</label><span class="text-danger"></span>
+																		<label>Mother Name :</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="motherName" id="motherName" /><span
+																				class="form-control form-control-solid "
+																				name="motherName" id="motherName" placeholder="Enter Mother Name"/><span
 																				class="msg text-danger" id="type1"> </span>
+																				<span class="form-text text-muted">Please Enter Mother Name.</span>
 																		</div>
 
 																	</div>
@@ -285,28 +304,30 @@ try {
 																</div>
 															</div>
 															<div class="row">
-															<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Upload Document</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="uploadDocument" id="uploadDocument" /> 
-																		</div>
-
-																	</div>
-																</div>
-																<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Upload Image</label><span class="text-danger"></span>
-																		<div class="typeahead">
-																			<input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="uploadImage" id="uploadImage" /> 
-																		</div>
-
-																	</div>
-																</div>
+															<div class="col-lg-6">
+									                                <label>Upload Document Files :</label>
+														             <div class="dropzone dropzone-multi" id="kt_dropzone_4" placeholder="Upload Document Files">
+																       <div class="dropzone-panel mb-lg-0 mb-2">
+																	    <a class="dropzone-select btn btn-light-primary font-weight-bold btn-sm">Attach files</a>
+																	    <a class="dropzone-upload btn btn-light-primary font-weight-bold btn-sm">Upload All</a>
+																	    <a class="dropzone-remove-all btn btn-light-primary font-weight-bold btn-sm">Remove All</a>
+																	    <span class="form-text text-muted">Please Enter Upload Document Files.</span>
+																     </div>
+									                               </div>
+									                             
+									                             </div>
+																<div class="col-lg-6">
+									                                <label>Upload Images  :</label>
+														             <div class="dropzone dropzone-multi" id="kt_dropzone_4" placeholder="Upload Images">
+																       <div class="dropzone-panel mb-lg-0 mb-2">
+																	    <a class="dropzone-select btn btn-light-primary font-weight-bold btn-sm">Attach files</a>
+																	    <a class="dropzone-upload btn btn-light-primary font-weight-bold btn-sm">Upload All</a>
+																	    <a class="dropzone-remove-all btn btn-light-primary font-weight-bold btn-sm">Remove All</a>
+																	    <span class="form-text text-muted">Please Enter Upload Images.</span>
+																     </div>
+									                               </div>
+									                             
+									                             </div>
 
 															
 														
@@ -342,7 +363,11 @@ try {
 									</div>
 								</div>
 							</div>
-
+<!--begin::Footer-->
+		<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+			<jsp:include page="../common/footer.jsp"></jsp:include>
+		</div>
+		<!--end::Footer-->
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->

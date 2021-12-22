@@ -47,51 +47,59 @@ table.a {
 				<div class="card card-custom gutter-b">
 					<div class="card-body">
 						<div class="example mb-10">
+						<div class="example-preview">
 							<div class="card card-custom">
 									<form class="form" id="kt_form_1">
 										<div class="card-body">
 											<div class="row">
 												<div class="col-xl-6">
 													<div class="form-group">
-														<label>Ward Code</label> <input type="text"
+														<label>Ward Code :</label> <input type="text"
 															id="ward_code" class="form-control form-control-solid"
 															placeholder="Enter Ward Code" />
+															<span class="form-text text-muted">Please Select Ward Code.</span>
 													</div>
 												</div>
 												<div class="col-xl-6">
 													<div class="form-group">
-														<label>Ward Name</label> <input type="text"
+														<label>Ward Name :</label> <input type="text"
 															id="ward_name" class="form-control form-control-solid"
 															placeholder="Enter Ward Name" />
+															<span class="form-text text-muted">Please Select Ward Name.</span>
 													</div>
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Ward Type</label><input type="text"
-															id="ward_type" class="form-control form-control-solid"
-															placeholder="Enter Ward Type" />
-
-													</div>
-												</div>
+																	<div class="form-group">
+																		<label>Ward Type :</label><span class="text-danger">*</span>
+																		<select class="form-control form-control-solid"
+																			name="ward_type" id="ward_type">
+																			<option value="" disabled selected hidden>Select Ward Type</option>
+																		</select>
+																		<span class="form-text text-muted">Please Select Ward Type.</span>
+																	</div>
+																</div>
 												<div class="form-group col-xl-6">
-													<label>Number Of Rooms</label><input type="text"
+													<label>Number Of Rooms :</label><input type="text"
 														id="number_of_rooms" class="form-control form-control-solid"
 														placeholder="Enter Number Of Rooms" />
+														<span class="form-text text-muted">Please Select Number Of Rooms.</span>
 
 												</div>
 											</div>
 
 											<div class="row">
 												<div class="col-xl-6">
-													<div class="form-group">
-														<label>Floor</label><input type="text"
-															id="floor"
-															class="form-control form-control-solid" placeholder="Enter Floor"/>
-
-													</div>
-												</div>
+																	<div class="form-group">
+																		<label>Floor :</label><span class="text-danger">*</span>
+																		<select class="form-control form-control-solid"
+																			name="floor" id="floor">
+																			<option value="" disabled selected hidden>Select Floor</option>
+																		</select>
+																		<span class="form-text text-muted">Please Select Floor.</span>
+																	</div>
+																</div>
 												
 											</div>
 										
@@ -105,6 +113,8 @@ table.a {
 									</form>
 									<!--end::Form-->
 								</div>
+						
+						</div>
 						
 						</div>
 					</div>
@@ -156,7 +166,7 @@ table.a {
 									</div>
 								</div>
 
-		
+		</div>
 		<!--end::Container-->
 
 
@@ -167,7 +177,7 @@ table.a {
 		</div>
 		<!--end::Footer-->
 
-	</div>
+	
 	<!--end::Page-->
 
 	<!--begin::Scrolltop-->
@@ -194,8 +204,6 @@ table.a {
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
 	<script
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-
-
 
 
 </body>
