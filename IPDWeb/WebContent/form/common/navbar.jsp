@@ -35,10 +35,11 @@ table.a {
 							<!--begin::Container-->
 							<div class="container">
 								<!--begin::Left-->
-								<div class="d-none d-lg-flex align-items-center mr-3" >
+								<div class="d-none d-lg-flex align-items-center mr-3">
 									<!--begin::Logo-->
-									<a href="index.html" class="mr-20 ml-5" >
-									<img alt="Logo" src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/logos/LogoFinal.png" class="logo-default max-h-90px">
+									<a href="index.html" class="mr-20">
+									<img alt="Logo"
+										src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/logos/logo-letter-1.png" class="max-h-40px" />
 									</a>
 									<!--end::Logo-->
 								</div>

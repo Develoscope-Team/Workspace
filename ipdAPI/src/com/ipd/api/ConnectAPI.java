@@ -21,7 +21,9 @@ import jdk.nashorn.internal.parser.JSONParser;
 
 @Path("/ipdapi")
 public class ConnectAPI {
-
+	
+	
+	
 	@POST
 	@Path("/insertUpdateAdvice")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -62,7 +64,7 @@ public class ConnectAPI {
 
 			bean = new ConnectDataBean();
 			beanData = bean.getAdvice().toString();
-//				Logger.log("IPD","beandata:: "+beanData);
+//				Logger.log("BAFNA","beandata:: "+beanData);
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -72,109 +74,5 @@ public class ConnectAPI {
 		return beanData;
 	}
 
-	//Bank
-	@POST
-
-	@Path("/insertUpdateBank")
-
-	@Produces(MediaType.TEXT_PLAIN)
-
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public int insertUpdateBank(@FormParam("bank_name") String bank_name,
-
-			@FormParam("account_holder_name") String account_holder_name, @FormParam("account_no") String account_no,
-
-			@FormParam("IFSC_code") String IFSC_code, @FormParam("branch") String branch,
-
-			@FormParam("acc_type") String acc_type, @FormParam("opening_amount") String opening_amount,
-
-			@FormParam("bank_id") int bank_id, @FormParam("flag") int flag) {
-		ConnectDataBean bean = null;
-		int beanData = 0;
-		try {
-			System.out.println("I am here");
-			bean = new ConnectDataBean();
-			beanData = bean.insertUpdateBank(bank_name, account_holder_name, account_no, IFSC_code, branch, acc_type,
-					opening_amount, bank_id, flag);
-
-			if (beanData > 0) {
-
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			Logger.log("IPD", e);
-		}
-
-		return beanData;
-	}
-
-	@POST
-	@Path("/getBank")
-	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String getBank() {
-
-		ConnectDataBean bean = null;
-		String beanData = null;
-		try {
-
-			bean = new ConnectDataBean();
-			beanData = bean.getAdvice().toString();
-//				Logger.log("IPD","beandata:: "+beanData);
-
-		} catch (Exception e) {
-			System.out.println(e);
-			Logger.log("IPD", e);
-		}
-
-		return beanData;
-	}
-
-	/*
-	 * // Bank Master
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/insertUpdateBank")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public int
-	 * insertUpdateBank(@FormParam("bank_name") String bank_name,
-	 * 
-	 * @FormParam("account_holder_name") String
-	 * account_holder_name, @FormParam("account_no") String account_no,
-	 * 
-	 * @FormParam("IFSC_code") String IFSC_code, @FormParam("branch") String branch,
-	 * 
-	 * @FormParam("acc_type") String acc_type, @FormParam("opening_amount") String
-	 * opening_amount,
-	 * 
-	 * @FormParam("bank_id") int bank_id, @FormParam("flag") int flag) {
-	 * ConnectDataBean bean = null; int beanData = 0; try {
-	 * System.out.println("I am here"); bean = new ConnectDataBean(); beanData =
-	 * bean.insertUpdateBank(bank_name, account_holder_name, account_no, IFSC_code,
-	 * branch, acc_type, opening_amount, bank_id, flag);
-	 * 
-	 * if (beanData > 0) {
-	 * 
-	 * } } catch (Exception e) { System.out.println(e); Logger.log("IPD", e); }
-	 * 
-	 * return beanData; }
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/getBankDetails")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public String
-	 * getBankDetails() { ConnectDataBean bean = null; String beanData = null; try {
-	 * 
-	 * bean = new ConnectDataBean(); beanData = bean.getBankDetails().toString();
-	 * 
-	 * } catch (Exception e) { System.out.println(e); Logger.log("IPD", e); } return
-	 * beanData; }
-	 */
-
+	
 }

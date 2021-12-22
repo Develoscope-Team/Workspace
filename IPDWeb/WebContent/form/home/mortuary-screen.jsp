@@ -43,7 +43,7 @@ try {
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>Post Morton Id :</label><span class="text-danger"></span>
+																		<label>Post Morton Id</label><span class="text-danger"></span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid form-control-lg"

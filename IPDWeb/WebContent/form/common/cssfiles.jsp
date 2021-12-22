@@ -15,7 +15,7 @@ try
 <base href="">
 		<meta charset="utf-8" />
 		<link rel="shortcut icon"
-	href="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/logos/LogoFinal.png" />
+	href="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/logos/logo-letter-3.png" />
 		<title>IPD-OPD</title>
 		<meta name="description" content="Updates and statistics" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
