@@ -11,6 +11,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 	try {
 %>
 <head>
+<jsp:include page="../common/mobile-header.jsp"></jsp:include>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
