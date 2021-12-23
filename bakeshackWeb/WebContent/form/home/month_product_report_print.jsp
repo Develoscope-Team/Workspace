@@ -41,34 +41,7 @@ table.a {
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 	
-	<div id="kt_header_mobile" class="header-mobile">
-		<!--begin::Toolbar-->
-		<div class="d-flex align-items-center">
-			<button class="btn p-0 burger-icon burger-icon-left ml-4"
-				id="kt_header_mobile_toggle">
-				 
-			</button>
-			<button class="btn btn-icon btn-hover-transparent-white p-0 ml-3"
-				id="kt_header_mobile_topbar_toggle">
-				<span class="svg-icon svg-icon-xl"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/User.svg-->
-					<svg xmlns="http://www.w3.org/2000/svg"
-						xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-						height="24px" viewBox="0 0 24 24" version="1.1">
-							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-								<polygon points="0 0 24 0 24 24 0 24" />
-								<path
-							d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
-							fill="#000000" fill-rule="nonzero" opacity="0.3" />
-								<path
-							d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
-							fill="#000000" fill-rule="nonzero" />
-							</g>
-						</svg> <!--end::Svg Icon-->
-				</span>
-			</button>
-		</div>
-		<!--end::Toolbar-->
-	</div>
+	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="col-xl-10 mt-20 offset-1 ">
 	<div class="card card-custom gutter-b ">
@@ -171,14 +144,10 @@ table.a {
 			},
 		success:function(data)
 	    {
-			/* alert("invoice_code"); */
+			
 			const row = data.find(d => d.product_name == product_name);
 			data.forEach((row)=> {
-				//var d = new Date(row.product_name);
-				/* alert(row.product_name); */
-				//let month = d.getMonth()+1;
 				j++;
-				/* alert(j); */
 			});
 			
 		}
@@ -186,7 +155,6 @@ table.a {
 				for(var i = 1; i <= j; i++){
 				 	  var html = '';
 				 	  html += '<tr>'
-					 // html += '<td>' + i + '</td>';
 			 	      html += '<td><input type="text-left" class=" " id="product_name-' + i +'" name="product_name" style="background-color:#FFFFFF; border:0px; width: 100px; text-align:center" disabled></td>';
 				 	  html += '<td><input type="text" class=" " id="jan-' + i +'" name="jan" style="background-color:#FFFFFF; border:0px; width: 50px; text-align:center" disabled></td>';
 			 		  html += '<td><input type="text" class=" " id="feb-' + i +'" name="feb" style="background-color:#FFFFFF; border:0px; width: 50px; text-align:center" disabled></td>';
@@ -200,8 +168,6 @@ table.a {
 			 	      html += '<td><input type="text" class=" " id="oct-' + i +'" name="oct" style="background-color:#FFFFFF; border:0px; width: 50px; text-align:center" disabled></td>';
 			 	      html += '<td><input type="text" class=" " id="nov-' + i +'" name="nov" style="background-color:#FFFFFF; border:0px; width: 50px; text-align:center" disabled></td>';
 			 	      html += '<td><input type="text" class=" " id="dec-' + i +'" name="dec" style="background-color:#FFFFFF; border:0px; width: 50px; text-align:center" disabled></td>';
-
-			 		  //  html += '<td><a type="button"   onClick="nextPage(' + i + ')";  id="nextPage-' + i +'" class="btn_edit btn font-weight-bold btn-primary btn-icon btn-primary text-center"  style="border:0px; width:50px; text-align:center; " ><i class="la la-edit"></i></a>';
 				 	 html += '</tr>';
 				 	  $('.table_body').append(html);
 		}
@@ -214,40 +180,28 @@ table.a {
 					dataType : "json",
 					async : false,
 					data : {
-					
 						},
 					success:function(data)
 				    {
-						/* alert("invoice_code"); */
 						const row = data.find(d => d.product_name == product_name);
 						data.forEach((row)=> {
 							k++;
 							$('#product_name-'+k).val(row.product_name);
 						});
-						
 					}
 				});	
-				
-				
-				
-				$.ajax({
 					url : base + "/bakeshackAPI/api/getMontProductDetails",
 					type : "post",
 					dataType : "json",
 					async : false,
 					data : {
-					
 						},
 					success:function(data)
 				    {
-						/* alert("invoice_code"); */
 						const row = data.find(d => d.product_name == product_name);
 						data.forEach((row)=> {	
-							
 							var d = new Date(row.product_name);
-							/*  alert(row.product_name);  */
 							let month = d.getMonth()+1;
-				/* alert(row.entry_date); */
 				for(var i = 1; i <= j; i++){
 					var product_name = $('#product_name-'+i).val()
 					if(product_name == row.entry_date)
@@ -295,50 +249,7 @@ table.a {
 					}
 				});	
 				
-				
-				
-				
-				
-				
-				
-				/* alert("month" + month +"-"+row.product_name); */
-	 //    	html +="<tr id= tr-id-2 class= tr-class-2>"
-/* 			html += "<td>"+row.product_name+"</td>"; 
- */			/*  html += "<td>"+row.entry_date+"</td>";
-	     	 if(month == 1){
-	     		 html += "<td>"+row.distributed_quantity+"</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     				           
-	     		 }     
-	     	 else if(month == 11){
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+row.distributed_quantity+"</td>";
- html += "<td>"+"-"+ "</td>";
-		           
- }            
-	          /*   html += "<td>"+row.payment_mode+"</td>"; */
-	           
-	            
-	 	       //	 html +="</tr>" */
+
 			
 	$(document).ready(function(){
 		  // Search all columns
