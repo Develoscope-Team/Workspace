@@ -141,7 +141,7 @@ table.a {
 											<thead>
 												<tr>
 													<th class="col-sm-1 text-center" data-field="sr-no"
-														data-sortable="true">Sr No</th>
+														data-sortable="true">No</th>
 													<th class="col-sm-3 text-center"
 														data-field="branch-name" data-sortable="true">Branch Name</th>
 													<th class="col-sm-3 text-center"
@@ -156,6 +156,9 @@ table.a {
 														data-field="State" data-sortable="true">State</th>
 														<th class="col-sm-3 text-center"
 														data-field="phone-no" data-sortable="true">Phone_no</th>
+													
+													
+													
 													<th class="col-sm-2 text-center" data-field="building-address"
 														data-sortable="true">Building Address</th>
 

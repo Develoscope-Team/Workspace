@@ -26,51 +26,22 @@ table, th, td {
 	background-color: #ffffff;
 }
 </style>
-
+<style>
+table.a {
+	table-layout: auto;
+	width: 100%;
+}
+</style>
 </head>
-<jsp:include page="../common/mobile-header.jsp"></jsp:include>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/bg/bg-9.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 
-<div class="  d-flex flex-column flex-root offset-1">
-		<!--begin::Page-->
-		<div class="d-flex flex-row flex-column page">
-			<!--begin::Wrapper-->
-			<div class="d-flex flex-column flex-row wrapper"
-				id="kt_wrapper">
-				
-				
-				<div class="content d-flex flex-column flex-column"
-					id="kt_content">
-						<!--begin::Subheader-->
-					<div class="subheader py-2 py-lg-12 subheader-transparent"
-						id="kt_subheader">
-						<div
-							class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-							<!--begin::Info-->
-							<div class="d-flex align-items-center flex-wrap mr-1">
-								<!--begin::Heading-->
-								<div class="d-flex flex-column">
-									 <!--begin::Title
-									<h2 class="text-white font-weight-bold my-2 mr-5">Advice
-										Master</h2>
-									end::Title-->
-
-								</div>
-								<!--end::Heading-->
-							</div>
-							<!--end::Info-->
-
-						</div>
-					</div>
-					<!--end::Subheader-->
-					<div class="  d-flex ">
 	<div class="container ">
 
 		<h2
 			class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Advice
-			Master</h2> 
+			Master</h2>
 		<div class="row">
 			<div class="col-xl-6 offset-xl-0">
 				<div class="card card-custom gutter-b">
@@ -154,16 +125,13 @@ table, th, td {
 			</div>
 		</div>
 	</div>
-</div>
-</div>
+
 	<!--begin::Footer-->
 	<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
 	<!--end::Footer-->
-</div>
-		</div>
-	</div>
+
 
 
 	<!--begin::Scrolltop-->

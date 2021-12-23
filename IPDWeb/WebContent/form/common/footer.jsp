@@ -11,3 +11,5 @@
 	</div>
 	<!--end::Container-->
 </div>
+</body>
+</html>

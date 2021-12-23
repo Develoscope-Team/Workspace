@@ -20,7 +20,7 @@ try {
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <style>
-table, th, td {	
+table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
@@ -41,7 +41,7 @@ table.a {
 				<h2 class="d-flex align-items-center text-gray font-weight-bold my-2 mr-5">Asset Master</h2>
 		
          		<div class="card card-custom gutter-b">
-					<div class="card-body">	
+					<div class="card-body">
 						<div class="example mb-10">
 							<div class="example-preview">
 								<div class="card card-custom">

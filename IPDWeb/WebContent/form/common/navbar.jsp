@@ -39,7 +39,7 @@ table.a {
 									<!--begin::Logo-->
 									<a href="index.html" class="mr-20">
 									<img alt="Logo"
-										src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/logos/LogoFinal.png" class="max-h-100px" />
+										src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/logos/logo-letter-1.png" class="max-h-40px" />
 									</a>
 									<!--end::Logo-->
 								</div>
