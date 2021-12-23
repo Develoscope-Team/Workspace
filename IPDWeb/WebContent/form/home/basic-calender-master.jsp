@@ -44,10 +44,6 @@ table.a {
 		<div class="container">
 				<h2 class="text-gray font-weight-bold my-2 mr-5">Basic Calender Master</h2>
 			
-	
-		
-
-							
 							<div class="row">
 								<div class="col-xl-6">
 									<div class="card card-custom gutter-b">

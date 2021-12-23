@@ -2,7 +2,7 @@
 		<div id="kt_header_mobile" class="header-mobile header-mobile-fixed">
 						<!--begin::Logo-->
 						<a href="index.html">
-							<img alt="Logo" src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/logos/logo-letter-10.png" class="max-h-30px" />
+							<img alt="Logo" src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/logos/LogoFinal.png" class="max-h-30px" />
 						</a>
 						<!--end::Logo-->
 						<!--begin::Toolbar-->
