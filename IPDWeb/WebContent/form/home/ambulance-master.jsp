@@ -32,6 +32,7 @@ table.a {
 }
 </style>
 </head>
+<jsp:include page="../common/mobile-header.jsp"></jsp:include>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/bg/bg-9.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
