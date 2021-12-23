@@ -26,34 +26,7 @@ try {
 	<!--begin::Main-->
 
 	<!--begin::Header Mobile-->
-	<div id="kt_header_mobile" class="header-mobile">
-		<!--begin::Toolbar-->
-		<div class="d-flex align-items-center">
-			<button class="btn p-0 burger-icon burger-icon-left ml-4"
-				id="kt_header_mobile_toggle">
-				<span></span>
-			</button>
-			<button class="btn btn-icon btn-hover-transparent-white p-0 ml-3"
-				id="kt_header_mobile_topbar_toggle">
-				<span class="svg-icon svg-icon-xl"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/User.svg-->
-					<svg xmlns="http://www.w3.org/2000/svg"
-						xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-						height="24px" viewBox="0 0 24 24" version="1.1">
-							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-								<polygon points="0 0 24 0 24 24 0 24" />
-								<path
-							d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
-							fill="#000000" fill-rule="nonzero" opacity="0.3" />
-								<path
-							d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
-							fill="#000000" fill-rule="nonzero" />
-							</g>
-						</svg> <!--end::Svg Icon-->
-				</span>
-			</button>
-		</div>
-		<!--end::Toolbar-->
-	</div>
+	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
@@ -94,24 +67,7 @@ try {
 							<!--begin::Row-->
 							<div class="row">
 								<div class="col-xl-5">
-								
-								<!-- <div class="card card-custom gutter-b">
-											<div class="card-header">
-												<div class="card-title">
-													<h3 class="card-label">Pie Chart 1</h3>
-												</div>
-											</div>
-											<div class="card-body">
-												<div id="kt_flotcharts_81" style="height: 250px;"></div>
-											</div>
-										</div> -->
-								
-								
-								
-								
-								
-								
-									<!--begin::Tiles Widget 1-->
+							<!--begin::Tiles Widget 1-->
 									<div class="card card-custom gutter-b card-stretch">
 										<!--begin::Header-->
 										<div class="card-header border-0 pt-5">
@@ -781,9 +737,6 @@ function showSlides() {
 		
 		$("#top_Subcategory").text(top_subcategory_name);
 		$("#top_subcategory_count").text("#"+top_subcategory_count);
-		
-		
-		
 		var dashboard_month = [];
 		var dashboard_months_sale = [0,0,0,0,0,0,0,0,0,0,0,0];
 		var dashboard_months_purchase = [0,0,0,0,0,0,0,0,0,0,0,0];
@@ -813,8 +766,6 @@ function showSlides() {
 			}
 		});
 		month_sale_average = month_sale_sum / month_count;
-
-	
 		$.ajax({
 					url : base + "/bakeshackAPI/api/getMonthWisePurchaseReportForGraph",
 					type : "post",
@@ -833,30 +784,20 @@ function showSlides() {
 						}
 					}
 				});
-
-		
-		
 		month_purchase_average = month_purchase_sum / month_count;
-
 		$("#average_expances").text("₹" + month_purchase_average);
 		$("#average_sale").text("₹" + month_sale_average);
 		$("#annual_expances").text("₹" + month_purchase_sum);
 		$("#annual_income").text("₹" + month_sale_sum);
-
 		var dashboard_week_sale = [0,0,0,0,0,0,0];
 		var dashboard_week_purchase = [0,0,0,0,0,0,0];
-
 		var week_days_count = 0;
 		var weekly_sale_sum = 0;
 		var weekly_sale_average;
 		var weekly_purchase_sum = 0;
 		var weekly_purchase_average = 0;
-
-	
-
 		var week_sale_for_graph =[0,0,0,0,0,0,0];
 		var week_purchase_for_graph = [0,0,0,0,0,0,0];
-
 		var i = 0;
 		$.ajax({
 			url : base + "/bakeshackAPI/api/getWeekWiseSaleReportForGraph",
@@ -878,9 +819,6 @@ function showSlides() {
 				}
 			}
 		});
-
-		
-		
 		var j = 0;
 		$.ajax({
 			url : base + "/bakeshackAPI/api/getWeekWisePurchaseReportForGraph",
@@ -893,29 +831,19 @@ function showSlides() {
 			success : function(data) {
 				if (data != null) {
 					data.forEach(function(e) {
-						
-							
 							week_purchase_for_graph[e.days - 1] = e.day_wise_sum;
 							j++;
 							weekly_purchase_sum += parseInt(e.day_wise_sum);
-						
-
 					})
 				}
 			}
 		});
-		
-	
-		
 		weekly_purchase_average = weekly_purchase_sum / 7;
-	
 		weekly_sale_average  = weekly_sale_sum / 7;
 		$("#days_average_expances").text("₹" + parseInt(weekly_purchase_average));
 		$("#days_average_sale").text("₹" + parseInt(weekly_sale_average));
 		$("#weekly_expances").text("₹" + parseInt(weekly_purchase_sum));
 		$("#weekly_income").text("₹" + parseInt(weekly_sale_sum));
-		
-  // alert(week_sale_for_graph);
 		var KTApexChartsDemo = function() {
 			var _demo12 = function() {
 				const apexChart = "#chart_12";
@@ -926,18 +854,7 @@ function showSlides() {
 						type : 'pie',
 					},
 					labels : subcategory
-					/* responsive : [ {
-						breakpoint : 480,
-						options : {
-							chart : {
-								width : 200
-							},
-							legend : {
-								position : 'bottom'
-							}
-						}
-					} ], */
-				/* colors: [primary, success, warning, danger, info] */
+					
 				};
 
 				var chart = new ApexCharts(document.querySelector(apexChart),
@@ -1005,17 +922,11 @@ function showSlides() {
 						options);
 				chart.render();
 			}
-
-		
-			
-		
 			const primary = '#f71197';
 			const success = '#fcbd58';
 			const info = '#eb008b';
 			const warning = '#eb008b';
 			const danger = '#F64E60';
-
-			
 			var _demo5 = function () {
 				const apexChart = "#chart_3";
 				var options = {
@@ -1093,8 +1004,6 @@ function showSlides() {
 						}
 						
 					],
-					
-					
 				};
 
 				var chart = new ApexCharts(document.querySelector(apexChart), options);
@@ -1186,9 +1095,9 @@ function showSlides() {
 		
 		
 		
-		setTimeout(function() { 
+		/* setTimeout(function() { 
 			  alert("$premium$");
-			}, 1);	
+			}, 1);	 */
 		
 
 	</script>

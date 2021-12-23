@@ -20,6 +20,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+	
 	 <link rel="stylesheet" href="style.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -630,7 +631,7 @@ table.a {
 
 		// Delete data by Recipe_id
 		function deleteById(id) {
-			alertify.confirm("Are you sure, you want to delete this file?", function (e) {
+			/* alertify.confirm("Are you sure, you want to delete this file?", function (e) {
 			    if (e) {
 			       // alertify.alert("File is Removed!");
 			   
@@ -696,7 +697,105 @@ table.a {
 			    } else {
 			        alertify.alert("File is safe!");
 			    }
+			}); */
+			
+			
+
+			$("#kt_sweetalert_demo_9").click(function(e) {
+			    Swal.fire({
+			        title: "Are you sure?",
+			        text: "You won't be able to revert this!",
+			        icon: "warning",
+			        showCancelButton: true,
+			        confirmButtonText: "Yes, delete it!",
+			        cancelButtonText: "No, cancel!",
+			        reverseButtons: true
+			    }).then(function(result) {
+			        if (result.value) {
+			           
+			        	var bank_id = id;
+						var flag = 3;
+						$
+								.ajax({
+									url : base + "/bakeshackAPI/api/insertUpdateBank",
+									type : "post",
+									dataType : "json",
+									async : false,
+									data : {
+										
+										"bank_id" : bank_id,
+										"bank_name" : "",
+										"account_holder_name" : "",
+										"account_no" : "",
+										"IFSC_code" : "",
+										"branch" : "",
+										"acc_type" : "",
+										"opening_amount" :"",
+										
+										"flag" : flag
+									},
+
+									error : function(xhr) {
+										var msg = "(insertUpdateBank)Sorry but there was an error : "
+												+ xhr.status + " " + xhr.statusText;
+										alert(msg);
+										 $('#warning_msg').text(msg);
+										 $('#warning_alert').addClass("show");
+								           $('#warning_alert').removeClass("hide");
+								           $('#warning_alert').addClass("showAlert");
+								           setTimeout(function(){
+								             $('#warning_alert').removeClass("show");
+								             $('#warning_alert').addClass("hide");
+								           },2000);
+										
+										
+									},
+									success : function(response) {
+										if (response != null) {
+											
+											if (response >= 1) {
+
+												var msg = "Bank Data deleted Successfully.";
+												 $('#danger_msg').text(msg);
+												$('#danger_alert').addClass("show");
+									   	           $('#danger_alert').removeClass("hide");
+									   	           $('#danger_alert').addClass("showAlert");
+									   	           setTimeout(function(){
+									   	             $('#danger_alert').removeClass("show");
+									   	             $('#danger_alert').addClass("hide");
+									   	           },2000);
+												location.reload(true);
+
+											}
+										}
+									}
+
+								});
+			        	
+			        	
+			        	
+			        	
+			        	
+			        	
+			        	Swal.fire(
+			                "Deleted!",
+			                "Your file has been deleted.",
+			                "success"
+			            )
+			            // result.dismiss can be "cancel", "overlay",
+			            // "close", and "timer"
+			        } else if (result.dismiss === "cancel") {
+			            Swal.fire(
+			                "Cancelled",
+			                "Your imaginary file is safe :)",
+			                "error"
+			            )
+			        }
+			    });
 			});
+			
+			
+			
 		}
 		
 		 $('.close-btn').click(function(){
