@@ -3,12 +3,11 @@
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-	String dbConnVar = "BAKESHACk";
-	try {
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+String dbConnVar = "BAKESHACk";
+try {
 %>
 <head>
 <link rel="stylesheet"
@@ -34,32 +33,7 @@
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 
-	<div id="kt_header_mobile" class="header-mobile">
-		<!--begin::Toolbar-->
-		<div class="d-flex align-items-center">
-			<button class="btn p-0 burger-icon burger-icon-left ml-4"
-				id="kt_header_mobile_toggle"></button>
-			<button class="btn btn-icon btn-hover-transparent-white p-0 ml-3"
-				id="kt_header_mobile_topbar_toggle">
-				<span class="svg-icon svg-icon-xl"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/User.svg-->
-					<svg xmlns="http://www.w3.org/2000/svg"
-						xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-						height="24px" viewBox="0 0 24 24" version="1.1">
-							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-								<polygon points="0 0 24 0 24 24 0 24" />
-								<path
-							d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
-							fill="#000000" fill-rule="nonzero" opacity="0.3" />
-								<path
-							d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
-							fill="#000000" fill-rule="nonzero" />
-							</g>
-						</svg> <!--end::Svg Icon-->
-				</span>
-			</button>
-		</div>
-		<!--end::Toolbar-->
-	</div>
+	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root" style="bottom: 0;">
 		<!--begin::Page-->
@@ -82,14 +56,6 @@
 							<div class="card card-custom overflow-hidden">
 								<div class="card_body p-0" id="ab"
 									style="background-colou: #ffeexx; width: 100%;">
-
-									<%-- <div class="card-body p-0" style=" background-image:url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/bslh.png); height:1547px; width:100%;"> --%>
-									<%-- <img alt="Logo"
-					src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Footer1.png"
-					class="logo-default max-h-100% max-w-100% ml-18" style=" top:0;" /> --%>
-
-
-
 									<!-- begin: Invoice-->
 									<!-- begin: Invoice header-->
 									<div
@@ -99,15 +65,10 @@
 												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Footer1.png"
 												class="logo-default " id="pri1"
 												style="position: fixed; top: 0;" />
-
-
-
 											<h1
-												class=" text-black font-weight-boldest mt-35  mb-20  text-center ml-25 "><u> SALES ORDER  </u>
+												class=" text-black font-weight-boldest mt-35  mb-20  text-center ml-25 ">
+												<u> SALES ORDER </u>
 											</h1>
-
-
-
 											<div id="name" class="col-md-12">
 												<span
 													class="d-flex justify-content-between align-items-baseline">
@@ -134,16 +95,8 @@
 															class=" font-weight-bold mr-10" id="bill_to"></span>
 													</div>
 													<span class="ml-20 col-3" id="bill_to1"></span>
-
-
 												</div>
-
 											</div>
-
-
-
-
-
 										</div>
 									</div>
 									<!-- end: Invoice header-->
@@ -151,49 +104,43 @@
 									<div class="row justify-content-center  ml-3">
 										<div class="col-md-10">
 											<div class="table-responsive">
-												<table class="table" style="border:none; border-bottom-style: none;"
-													>
+												<table class="table"
+													style="border: none; border-bottom-style: none;">
 													<thead>
-													
+
 														<tr>
 															<th class="pl-0 font-weight-bold text-muted "
-																style="font-size: 16px;" id="no"
-																
-																cellspacing="0" cellpadding="0">Sr.No</th>
+																style="font-size: 16px;" id="no" cellspacing="0"
+																cellpadding="0">Sr.No</th>
 															<th class="text-center font-weight-bold text-muted "
 																style="font-size: 16px;" id="product_name"
-																
 																cellspacing="0" cellpadding="0">Product Details</th>
 															<th class="text-center font-weight-bold text-muted "
-																style="font-size: 16px;" id="quantity"
-																
-																cellspacing="0" cellpadding="0">Quantity</th>
+																style="font-size: 16px;" id="quantity" cellspacing="0"
+																cellpadding="0">Quantity</th>
 															<th class="text-center font-weight-bold text-muted "
-																style="font-size: 16px; " id="selling_price"
-																
+																style="font-size: 16px;" id="selling_price"
 																cellspacing="0" cellpadding="0">Unit Price</th>
 															<th class="text-center pr-0 font-weight-bold text-muted "
-																style="font-size: 16px; " id="amount"
-																
-																cellspacing="0" cellpadding="0">Amount (₹)</th>
+																style="font-size: 16px;" id="amount" cellspacing="0"
+																cellpadding="0">Amount (₹)</th>
 														</tr>
 													</thead>
-													<tbody class="t_body text-center"
-														>
+													<tbody class="t_body text-center">
 
 													</tbody>
 												</table>
 											</div>
-											
+
 										</div>
-										
-										
+
+
 									</div>
 									<div class="row col-md-10 justify-content offset-1 ">
 
 										<div class="col-7 ">
-											<label>  </label> <span
-												class="font-weight-bold " id="amount_in_word0"><lable></lable></span>
+											<label> </label> <span class="font-weight-bold "
+												id="amount_in_word0"><lable></lable></span>
 										</div>
 										<div class="col-3 text-right">
 											<label class="">Discount :</label>
@@ -203,7 +150,7 @@
 										</div>
 
 									</div>
-									
+
 
 									<div class="row col-md-10 justify-content offset-1 ">
 
@@ -255,14 +202,17 @@
 
 
 									<!-- end: Invoice body-->
-										<div class="row col-md-10 justify-content mt-15 ml-6" >
-									<div class="col-md-10" style="position: relative;  ">
-  											<img src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/stampsign.png" class="offset-1" id="sign" >
-   											<div class="font-weight-bold " style=" position: absolute; top: 50%; left: 22%; transform: translate(-50%, -50%);">
-   												<span>Authorized Signatory</span></br> </br> </br> 
-   												<span>For, BakeShack</span> </br> <span>by Bakeology</span>
-   											</div>
-									</div>
+									<div class="row col-md-10 justify-content mt-15 ml-6">
+										<div class="col-md-10" style="position: relative;">
+											<img
+												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/stampsign.png"
+												class="offset-1" id="sign">
+											<div class="font-weight-bold "
+												style="position: absolute; top: 50%; left: 22%; transform: translate(-50%, -50%);">
+												<span>Authorized Signatory</span></br> </br> </br> <span>For,
+													BakeShack</span> </br> <span>by Bakeology</span>
+											</div>
+										</div>
 									</div>
 									<!-- begin: Invoice footer-->
 
@@ -366,23 +316,23 @@
 											</div>
 										</div>
 
-
-										<!-- end: Invoice action-->
-										<!-- end: Invoice-->
-									</div>
+								</div>
 
 									<div class="row col-12  ">
 										<div class=" text-center col-md-10" id="print_button">
-											<Button id="sudo" class="btn-print btn-primary font-weight-bold"/>
-											 PDF Invoice
+											<Button id="sudo"
+												class="btn-print btn-primary font-weight-bold" />
+											PDF Invoice
 											</button>
-											
-											<Button id="sudo1" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" />
+
+											<Button id="sudo1"
+												class="btn-print btn-primary font-weight-bold"
+												onclick="document.title = '#invoice_no';" />
 											Print Invoice
 											</button>
-											
-											</div>
-										
+
+										</div>
+
 									</div>
 
 								</div>
@@ -392,11 +342,6 @@
 						</div>
 						<!--end::Entry-->
 					</div>
-					<!--end::Content-->
-					<!--begin::Footer-->
-
-
-
 					<img alt="Logo"
 						src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Footer.png"
 						class="  logo-default   " id="pri"
@@ -455,7 +400,7 @@
 	const discount = urlParams.get('discount');
 	
 	var ccode=0;
-	//alert(discount);
+	
 	if(partial_paid_amount != 00)
 		{
 	var invoice_id;
@@ -737,7 +682,7 @@
 			
 			
 			$("#sudo").click(function(){
-				/* alert("hi"); */
+				
 				$("#print_button").hide();
 				 $("#pri").show();
 				 $("#pri1").show();
@@ -750,7 +695,7 @@
 				
 			})
 					$("#sudo1").click(function(){
-				/* alert("hi"); */
+				
 				$("#print_button1").hide();
 				$("#print_button").hide();
 				 $("#pri").hide();
@@ -771,7 +716,7 @@
 </html>
 
 <%
-	} catch (Exception e) {
-		Logger.log(dbConnVar, "" + e);
-	}
+} catch (Exception e) {
+Logger.log(dbConnVar, "" + e);
+}
 %>

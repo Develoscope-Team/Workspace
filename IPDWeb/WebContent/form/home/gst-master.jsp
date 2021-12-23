@@ -11,6 +11,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 	try {
 %>
 <head>
+<jsp:include page="../common/mobile-header.jsp"></jsp:include>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
@@ -30,6 +31,7 @@ table.a {
 }
 </style>
 </head>
+
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/bg/bg-9.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
@@ -50,40 +52,40 @@ table.a {
 														<form class="form" id="kt_form_1">
 															<div class="card-body">
 															<div class="form-group">
-																	<label>GST No</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="GST No" id="gst_no"
+																	<label>GST No :</label><span class="text-danger"
+																		id="type"></span> <input type="text"
+																		name="gst_No" id="gst_no"
 																		class="form-control form-control-solid"
 																		placeholder="Enter GST No" required />
 																		
-																		<label>Legal Name</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="Legal Name" id="legal_name"
+																		<label>Legal Name :</label><span class="text-danger"
+																		id="type"></span> <input type="text"
+																		name="legal_name" id="legal_name"
 																		class="form-control form-control-solid"
 																		placeholder="Enter Legal Name" required />
 																		
-																		<label>GST Type</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="GST Type" id="gst_type"
+																		<label>GST Type :</label><span class="text-danger"
+																		id="type"></span> <input type="text"
+																		name="gst_type" id="gst_type"
 																		class="form-control form-control-solid"
 																		placeholder="Enter GST Type" required />
 																		
 																		
-																		<label>Trade Name</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="Trade Name" id="trade Name"
+																		<label>Trade Name:</label><span class="text-danger"
+																		id="type"></span> <input type="text"
+																		name="trade_name" id="trade_Name"
 																		class="form-control form-control-solid"
 																		placeholder="Enter Trade Name" required />
 																		
-																		<label>Multiple choice constitution of buisness</label><span class="text-danger"
+																		<label>Multiple choice constitution of buisness :</label><span class="text-danger"
 																		id="type">*</span> <input type="text"
-																		name="Multiple choice constitution of buisness" id="city"
+																		name="multipl_choice" id="multiple_choice"
 																		class="form-control form-control-solid"
 																		placeholder="Enter Multiple choice constitution of buisness" required />
 																		
-																		<label>Address</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="Address" id="address"
+																		<label>Address :</label><span class="text-danger"
+																		id="type"></span> <input type="text"
+																		name="address" id="address"
 																		class="form-control form-control-solid"
 																		placeholder="Enter Address" required />
 																		
@@ -92,9 +94,9 @@ table.a {
 																
 															</div>
 															<div class="text-center">
-																<button type="submit" id="addComplaint"
+																<button type="submit" id="addgst"
 																	class="btn btn-primary mr-2">Submit</button>
-																<button type="submit" id="updateComplaint"
+																<button type="submit" id="updategst"
 																	class="btn btn-primary mr-2">Update</button>
 																<button type="button" class="btn btn-secondary"
 																	id="cancel">Cancel</button>
@@ -204,14 +206,294 @@ table.a {
 	var base='<%=base%>';  
 	
 	
-	$('#updateComplaint').hide();
+	$('#updategst').hide();
+	$("#addgst").show();
+	
+		$('#addgst').click(function() {
+
+							var gst_no = $('#gst_no').val();
+							var legal_name = $('#legal_name').val();
+							var gst_type = $('#gst_type').val();
+							var trade_name = $('#trade_name').val();
+							var multiple_choice = $('#multiple_choice').val();
+							var address = $('#address').val();
+							var flag = 1; // Addition
+
+						if(gst_no !=  ""){
+							$.ajax({
+								// http://localhost:8080/ipdAPI/ipdapi/insertUpdategst
+								url : base +"/ipdAPI/ipdapi/insertUpdategst",
+								
+								type : "post",
+								dataType : "json",
+								async : false,
+								data : {
+								"gst_no" : gst_no,	
+                                    "legal_name" : advice_desc,
+                                    "gst_type" : gst_type,	
+                                    "trade_name" : trade_name,
+                                    "multiple_choice" :multiple_choice,	
+                                    "address" : address,
+									"flag" : flag
+								},
+								
+								error : function(xhr) {
+									var msg = "Data insertion failed Error : "
+											+ xhr.status
+											+ " "
+											+ xhr.statusText;
+									alert(msg);
+								},
+								success : function(response) {
+									if (response != null) {
+
+										if (response >= 1) {
+
+											var msg = "GST Data inserted Successfully.";
+											alert(msg);
+											
+
+										} 
+									}
+								}
+
+							});
+						}
+
+						})
+
+		"use strict";
+		//Class definition
+		
+		var gst_id;
+var html = "";
+
+$.ajax({
+	
+	url : base +"/ipdAPI/ipdapi/getgst",
+	
+	type : "post",
+	dataType : "json",
+	async : false,
+	data : {"gst_id": gst_id},
+	success:function(data)
+	{
+		
+		const row = data.find(d => d.gst_id == gst_id);
+		data.forEach((row)=> {
+			html +="<tr id= tr-id-2 class= tr-class-2>"
+			html += "<td>"+row.gst_id+"</td>"; 
+			 html += "<td>"+row.gst_no+"</td>";
+	            html += "<td>"+row.legal_name+"</td>";
+	            html += "<td>"+row.gst_type+"</td>"; 
+				 html += "<td>"+row.trade_name+"</td>";
+		            html += "<td>"+row.multiple_choice+"</td>";
+		            html += "<td>"+row.address+"</td>";
+	          
+     	       	 html += '<td><a href="javascript:update('+row.gst_id+');" class="btn_gst btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"/></g></svg></span>'
+         
+
+     	       	+ '<a href="javascript:deleteById('+row.gst_id+');" class="btn_gst btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
+	            html +="</tr>"
+		
+		});
+		 $(".data").html(html);
+	}
+	
+});	
+
+$(document).ready(function (){
+	   var table = $('#table-id').DataTable();
+	   
+	  
+	});
+
+		 
+		 function update(id){
+			 
+				$('.btn_gst').hide();
+				
+
+				
+				$('#updategst').show();
+				$("#addgst").hide();
+				
+				$.ajax({
+			        type:"POST",
+			        dataType: "json",
+			        data:{"gst_id": id},
+					async : false,
+					url : base +"/ipdAPI/ipdapi/getgst",
+			        success:function(data)
+			        {
+			        	
+			            const row = data.find(d => d.gst_id ==id);
+			           
+			            $("#gst_no").val(row.gst_no);
+			         
+			        	$("#legal_name").val(row.legal_name);
+			        	  $("#gst_type").val(row.gst_type);
+					         
+				        	$("#trade_name").val(row.trade_name);
+				        	  $("#multiple_choice").val(row.multiple_choice);
+						         
+					        	$("#address").val(row.address);
+			        	
+			        }
+			     });
+				
+				 
+				 // let update_by_id = temp_edit_id;
+				 // console.log(update_by_id);
+				$('#updategst')
+				.click(
+						function() {
+							 
+							
+							var gst_no = $('#gst_no').val();
+							var legal_name = $('#legal_name').val();
+							var gst_type = $('#gst_type').val();
+							var trade_name = $('#trade_name').val();
+							var multiple_choice = $('#multiple_choice').val();
+							var address = $('#address').val();
+							
+							
+							
+							var flag = 2; // Addition
+
+							$.ajax({
+								url : base +"/ipdAPI/ipdapi/insertUpdategst",
+								
+										type : "post",
+										dataType : "json",
+										async : false,
+										data : {
+											"gst_no" : gst_no,
+											"legal_name" : advice_desc,
+											"gst_type" : gst_type,
+											"trade_name" : trade_name,
+											"multiple_choice" : multiple_choice,
+											"address" : address,
+											
+											"flag" : flag,
+											"gst_id": id
+										},
+										error : function(xhr) {
+											var msg = "(Data updation failed. Error : "
+													+ xhr.status
+													+ " "
+													+ xhr.statusText;
+											alert(msg);
+										},
+										success : function(response) {
+											if (response != null) {
+
+												if (response >= 1) {
+
+													var msg = "GST Data updated Successfully.";
+													alert(msg);
+
+												} 
+											}
+										}
+								   
+									});
+			   
+
+						})
+		 
+		 }
+		 
+	
+
+	"use strict";
+		 
+		$('#cancel')
+		.click(
+				function() {		
+				window.location.reload();
+				})
+		 
+		// Delete data by gst_id
+		function deleteById(id){
+			if (confirm("Press OK to confirm!")) {
+			$.ajax({
+				url : base + "/ipdAPI/ipdapi/insertUpdategst",
+				
+				type : "post",
+				dataType : "json",
+				async : false,
+				data : {
+					"gst_no": "",
+                    "legal_name": "", 
+					"gst_type" : ,
+					"trade_name": "",
+                    "multiple_choice": "", 
+					"address" : ,
+					"flag" : 3
+				},
+				
+				error : function(xhr) {
+					var msg = "Data deletion failed. Error : "
+							+ xhr.status
+							+ " "
+							+ xhr.statusText;
+					alert(msg);
+				},
+				success : function(response) {
+					if (response != null) {
+
+						if (response >=1) {
+
+							var msg = "GST Data deleted Successfully.";
+							alert(msg);
+							location.reload(true);
+
+						} 
+					}
+				}
+
+			});
+			} else {
+				  window.location.reload();
+			  }
+		}
+		$(document).ready(function(){
+
+			  // Search all columns
+			  $('#txt_searchall').keyup(function(){
+			    // Search Text
+			    var search = $(this).val();
+
+			    // Hide all table tbody rows
+			    $('table tbody tr').hide();
+
+			    // Count total search result
+			    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
+
+			    if(len > 0){
+			      // Searching text in columns and show match row
+			      $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
+			        $(this).closest('tr').show();
+			      });
+			    }else{
+			      $('.notfound').show();
+			    }
+
+			  });
+
+			});
+		$.expr[":"].contains = $.expr.createPseudo(function(arg) {
+			   return function( elem ) {
+			     return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+			   };
+			});
+
 	</script>
 </body>
 </html>
 
-
 <%
-	} catch (Exception e) {
-		Logger.log(dbConnVar, "" + e);
-	}
-%>
+} catch (Exception e) {
+Logger.log(dbConnVar, "" + e);
+}

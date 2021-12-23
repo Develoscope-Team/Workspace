@@ -19,37 +19,16 @@ try {
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 
-	<div id="kt_header_mobile" class="header-mobile">
-		<!--begin::Toolbar-->
-		<div class="d-flex align-items-center">
-			<button class="btn p-0 burger-icon burger-icon-left ml-4"
-				id="kt_header_mobile_toggle"></button>
-			<button class="btn btn-icon btn-hover-transparent-white p-0 ml-3"
-				id="kt_header_mobile_topbar_toggle">
-				<span class="svg-icon svg-icon-xl"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/User.svg-->
-					<svg xmlns="http://www.w3.org/2000/svg"
-						xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-						height="24px" viewBox="0 0 24 24" version="1.1">
-							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-								<polygon points="0 0 24 0 24 24 0 24" />
-								<path
-							d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
-							fill="#000000" fill-rule="nonzero" opacity="0.3" />
-								<path
-							d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
-							fill="#000000" fill-rule="nonzero" />
-							</g>
-						</svg> <!--end::Svg Icon-->
-				</span>
-			</button>
-		</div>
-		<!--end::Toolbar-->
-	</div>
+	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
@@ -508,6 +487,121 @@ try {
 								</div>
 							</div>
 
+			
+					<style>
+.alert {
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+
+.alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.alert.show {
+	animation: show_slide 1s ease forwards;
+}
+
+@
+keyframes show_slide { 0%{
+	transform: translateX(100%);
+}
+
+40
+%
+{
+transform
+:
+translateX(
+-10%
+);
+}
+80
+%
+{
+transform
+:
+translateX(
+0%
+);
+}
+100
+%
+{
+transform
+:
+translateX(
+-10px
+);
+}
+}
+@
+keyframes hide_slide { 0%{
+	transform: translateX(-10px);
+}
+
+40
+%
+{
+transform
+:
+translateX(
+0%
+);
+}
+80
+%
+{
+transform
+:
+translateX(
+-10%
+);
+}
+100
+%
+{
+transform
+:
+translateX(
+100%
+);
+}
+}
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
+</style>
+							<div class="alert alert-success  " role="alert"
+								id="success_alert">
+								<div class="alert-text">
+									<span id="success_msg"></span>
+								</div>
+							</div>
+							<div class="alert alert-danger " role="alert" id="danger_alert">
+								<div class="alert-text">
+									<span id="danger_msg"></span>
+								</div>
+							</div>
+							<div class="alert alert-warning " role="alert" id="warning_alert">
+								<div class="alert-text">
+									<span id="warning_msg"></span>
+								</div>
+							</div>
 
 						</div>
 						<!--end::Container-->
@@ -619,33 +713,22 @@ try {
 			
 				if(row.order_code == order_code )
 						{
-			
-					/* alert(row.odrer_date); */
 					 $('#order_date').val(row.order_date);
 					 $('#delivery_date').val(row.delivery_date);
 		         	$('#order_no').val(row.order_code);
 		         	$('#discount').val(row.discount);
-		         	
-		        
 		         	var a = moment(date,'YYYY/MM/DD');
 		         	var b = moment(row.credit_period_end_date,'YYYY/MM/DD');
 		         	var diffDays = b.diff(a, 'days');
-		         	
 		         	$('#credit_period').val(diffDays);
 		         	$('#credit_period_end_date').val(row.credit_period_end_date);
-		         	//alert(row.discount);
 		         	var product_list = row.product_list;
-		        
 		         	$('#advance_paid').val(row.partial_paid_amount);
 		         		 document.getElementById('amount').value = row.amount;
 							 document.getElementById('total_amount').value =row.amount - row.discount;
-							 
 							 document.getElementById('partially_paid_amount').value = (row.amount - row.discount) - row.partial_paid_amount;
-		
 		         	invoice_code = row.invoice_code;
-		         
 		         	const parsedData = JSON.parse(product_list);
-			         
 					 $(parsedData).each(function(index) {
 						r++;
 							$('#product-' + (index + 1)).val(parsedData[index]['product']);
@@ -653,9 +736,6 @@ try {
 							 $('#quantity-' + (index + 1)).val(parsedData[index]['quantity']); 
 							$('#unit_rate-' + (index + 1)).val(parsedData[index]['unit_rate']);
 							$('#total-' + (index + 1)).val(parsedData[index]['total']);
-						
-							
-							//alert(r);
 						});
 					 
 					 for(var i = 1; i <=r; i++){
@@ -680,7 +760,6 @@ try {
 							$('#total-' + (index + 1)).val(parsedData1[index]['total']);
 							
 						});	
-				 
 					}
 			});
  	}
@@ -692,54 +771,34 @@ try {
 							 }else{
 								 $("#quantity-"+i).prop('disabled', true);
 									$("#quantity-"+i).val('');
-									
-									
 							 }
 					    
 						}; 	
 						$('#if_partial').change(function(){
-							
-							
 							 if ($("#if_partial").prop('checked')==true){ 
 								 $('#amount_div1').show();
-								
 								 }else{
-									
 									 $('#amount_div1').hide();
-										
-										
 								 }
-						    
 							}); 
 						var calculate_total = 0;
 						function weightConverter(i,valNum) {
-							
-							
 							 var calculate_unit_price = $("#unit_rate-"+i).val();
 							 $("#total-"+i).val(calculate_unit_price*valNum); 
-							 
 							var calculate_unit_total =  $("#total-"+i).val();
 							calculate_total += parseInt(calculate_unit_total);
-							
-							
 							 document.getElementById('amount').value = calculate_total;
 							 document.getElementById('total_amount').value = calculate_total;
 							 document.getElementById('partially_paid_amount').value = calculate_total;
-					
-							
 								}
-						
-						
 						 $('#upi_div').hide();
 						 $('#nb_div').hide();
 						 $('#cheque_div').hide();
 						 $('#amount_div1').hide();
 						 $('#bank_details1').hide();
 						 $('#bank_details2').hide();
-						 
 						$('#paymentMode').change(function(){
 							var payment_mode = $(this).val();
-									
 							if(payment_mode == 'upi'){
 								$('#upi_div').show();
 								$('#nb_div').hide();
@@ -758,13 +817,11 @@ try {
 								$('#cheque_div').hide();
 								$('.checkbox').prop('disabled', true);
 								$('#partially_paid_amount').val("00");
-								
 							}else{
 								$('#upi_div').hide();
 								$('#nb_div').hide();
 								$('#cheque_div').hide();
 							}
-							
 						});	
 						
 						 $.ajax({
@@ -776,7 +833,6 @@ try {
 								success:function(data)
 							    {
 									data.forEach((element)=> {
-										
 									        $('#received_bank').append($(document.createElement('option')).prop({
 								                value: element.bank_id,
 								                text: element.bank_name
@@ -798,11 +854,8 @@ try {
 										success:function(data)
 									    {
 											const row = data.find(d => d.bank_id == bank);
-												
-											    
 											       $('#branch_name').val(row.branch);
 										 			$('#account_no').val(row.account_no);  
-											
 									    }
 									});	
 							});
@@ -812,10 +865,8 @@ try {
 								var delivery_charges = $('#delivery_charges').val();
 								var advance_paid = $('#advance_paid').val();
 								var invoice_total = parseInt(amount1) - parseInt(discount) + parseInt(delivery_charges) ;
-								
 								$('#total_amount').val(invoice_total);
 								$('#partially_paid_amount').val(invoice_total - parseInt(advance_paid));
-								
 								});
 							
 							$("#delivery_charges").change(function(){
@@ -828,12 +879,7 @@ try {
 								$('#partially_paid_amount').val(invoice_total - parseInt(advance));
 								
 								});
-							
-							
-							
-							
-							
-	var balance_amount = 0;
+var balance_amount = 0;
 $('#add_sales_order').click(function() {
 											
 									var customer_code = $('#customer_code').val();
@@ -855,25 +901,19 @@ $('#add_sales_order').click(function() {
 									var flag 		  = 1; // Addition
 									var advance_amount = $('#advance_paid').val();
 									var delivery_charges = $('#delivery_charges').val();
-									
-								
 									 $("table tbody tr").each(function(index) {
 										 	if($(this).find('.product').val() != null){
-										 		
 										       var product = $(this).find('.product').val();
 										       var unit =  $(this).find('.unit').val();
 										       var quantity =  $(this).find('.quantity').val();
 										       var unit_rate =  $(this).find('.unit_rate').val();
 										       var total =  $(this).find('.total').val();
-										 //   alert(unit_rate);
-										      
 										    $.ajax({
 													url : base + "/bakeshackAPI/api/insertUpdateQuantityDetails",
 													type : "post",
 													dataType : "json",
 													async : false,
 													data : {
-														
 														"product_name" : product,
 														"entry_date" : delivery_date,
 														"product_batch" : 0,
@@ -889,14 +929,20 @@ $('#add_sales_order').click(function() {
 														"produced_quantity": 0,
 														"transaction_field" : "Sale Product",
 														"flag" :flag
-														
 													},
 													error : function(xhr) {
 														var msg = "(insertUpdateProduct)Sorry but there was an error : "
 																+ xhr.status
 																+ " "
 																+ xhr.statusText;
-														alert(msg);
+														 $('#warning_msg').text(msg);
+														 $('#warning_alert').addClass("show");
+												           $('#warning_alert').removeClass("hide");
+												           $('#warning_alert').addClass("showAlert");
+												           setTimeout(function(){
+												             $('#warning_alert').removeClass("show");
+												             $('#warning_alert').addClass("hide");
+												           },2000);
 													},
 													success : function(response) {
 														if (response != null) {
@@ -904,7 +950,14 @@ $('#add_sales_order').click(function() {
 															if (response >= 1) {
 
 																var msg = "Product Quantity Data inserted Successfully.";
-																alert(msg);
+																 $('#success_msg').text(msg);
+																 $('#success_alert').addClass("show");
+														           $('#success_alert').removeClass("hide");
+														           $('#success_alert').addClass("showAlert");
+														           setTimeout(function(){
+														             $('#success_alert').removeClass("show");
+														             $('#success_alert').addClass("hide");
+														           },2000);
 
 															} 
 														}
@@ -960,7 +1013,14 @@ $('#add_sales_order').click(function() {
 													+ xhr.status
 													+ " "
 													+ xhr.statusText;
-											alert(msg);
+											 $('#warning_msg').text(msg);
+											 $('#warning_alert').addClass("show");
+									           $('#warning_alert').removeClass("hide");
+									           $('#warning_alert').addClass("showAlert");
+									           setTimeout(function(){
+									             $('#warning_alert').removeClass("show");
+									             $('#warning_alert').addClass("hide");
+									           },2000);
 										},
 										success : function(response) {
 											if (response != null) {
@@ -968,7 +1028,14 @@ $('#add_sales_order').click(function() {
 												if (response >= 1) {
 
 													var msg = "Order Data inserted Successfully.";
-													alert(msg);
+													 $('#success_msg').text(msg);
+													 $('#success_alert').addClass("show");
+											           $('#success_alert').removeClass("hide");
+											           $('#success_alert').addClass("showAlert");
+											           setTimeout(function(){
+											             $('#success_alert').removeClass("show");
+											             $('#success_alert').addClass("hide");
+											           },2000);
 
 												} 
 											}
@@ -1026,7 +1093,14 @@ $('#add_sales_order').click(function() {
 														+ xhr.status
 														+ " "
 														+ xhr.statusText;
-												alert(msg);
+												 $('#warning_msg').text(msg);
+												 $('#warning_alert').addClass("show");
+										           $('#warning_alert').removeClass("hide");
+										           $('#warning_alert').addClass("showAlert");
+										           setTimeout(function(){
+										             $('#warning_alert').removeClass("show");
+										             $('#warning_alert').addClass("hide");
+										           },2000);
 											},
 											success : function(response) {
 												if (response != null) {
@@ -1034,7 +1108,14 @@ $('#add_sales_order').click(function() {
 													if (response >= 1) {
 
 														var msg = "Invoice Data inserted/Updated Successfully.";
-														alert(msg);
+														$('#success_msg').text(msg);
+														 $('#success_alert').addClass("show");
+												           $('#success_alert').removeClass("hide");
+												           $('#success_alert').addClass("showAlert");
+												           setTimeout(function(){
+												             $('#success_alert').removeClass("show");
+												             $('#success_alert').addClass("hide");
+												           },2000);
 													}
 												}
 											}
@@ -1073,7 +1154,14 @@ $('#add_sales_order').click(function() {
 														+ xhr.status
 														+ " "
 														+ xhr.statusText;
-												alert(msg);
+												 $('#warning_msg').text(msg);
+												 $('#warning_alert').addClass("show");
+										           $('#warning_alert').removeClass("hide");
+										           $('#warning_alert').addClass("showAlert");
+										           setTimeout(function(){
+										             $('#warning_alert').removeClass("show");
+										             $('#warning_alert').addClass("hide");
+										           },2000);
 											},
 											success : function(response) {
 												if (response != null) {
@@ -1081,7 +1169,14 @@ $('#add_sales_order').click(function() {
 													if (response >= 1) {
 
 														var msg = "Order Booking Data Updated Successfully.";
-														alert(msg);
+														$('#success_msg').text(msg);
+														 $('#success_alert').addClass("show");
+												           $('#success_alert').removeClass("hide");
+												           $('#success_alert').addClass("showAlert");
+												           setTimeout(function(){
+												             $('#success_alert').removeClass("show");
+												             $('#success_alert').addClass("hide");
+												           },2000);
 
 													} 
 												}
@@ -1096,29 +1191,6 @@ $('#add_sales_order').click(function() {
 												  window.location.reload();
 											  }
 						})
- /* var pName=[];
-		     	$.ajax({
-					url : base + "/bakeshackAPI/api/getSaleableProductDetails",
-					type : "post",
-					dataType : "json",
-					async : false,
-					data : {"flag":1},
-					success:function(data)
-			     {
-						if(data != null){
-							data.forEach(function(e){
-								pName.push(e.product_name);
-							})
-						}  
-			     }
-					});
-					
-					 var bloodhound = new Bloodhound({
-			             datumTokenizer: Bloodhound.tokenizers.whitespace,
-			             queryTokenizer: Bloodhound.tokenizers.whitespace,
-			             // `states` is an array of state names defined in "The Basics"
-			             local: pName
-			         });		 */				
 var i =r;					
 $('#add ').click(function () {
 		i++;
@@ -1138,55 +1210,18 @@ $('#add ').click(function () {
 			           matches = str.match(/(\d+)/);
 					  $("#medicineModel").modal();
 					});
-				/*  $('#product-'+ i).typeahead({
-		             hint: true,
-		             highlight: true,
-		             minLength: 1
-		         }, {
-		             name: 'pName',
-		             source: bloodhound
-		         });
-				 
-		
-				 $('#product-'+ i).change(function(){
-		        		
-			 			var product_name = $(this).val();
-			 			$.ajax({
-			 				url : base + "/bakeshackAPI/api/getSaleableProductDetails",
-			 				type : "post",
-			 				dataType : "json",
-			 				async : false,
-			 				data : {"flag":1,},
-			 				success:function(data)
-			 		        {
-			 					const row = data.find(d => d.product_name == product_name);
-			 					if(row != null){
-			 						// ccode = row.customer_code; 
-			 					  
-			 						  $('#product-'+ i).val(row.product_name);
-			 				            $("#unit-"+ i).val(row.unit);
-			 				        	$("#unit_rate-"+ i).val(row.selling_price);
-			 					}
-			 		        }
-			 			});	
-		         })  */
 	});
 				
 $('.add_product').on('click','.btn_delete',function(){
 	$(this).closest('tr').remove();	
 });				
-		
 			function weightConverter(k,valNum) {
 				 var calculate_unit_price = $("#unit_rate-"+k).val();
 				 $("#total-"+k).val(calculate_unit_price*valNum); 
 				 var calculate_total =0;
-			
 				 for(var j = 1 ;j<=i ;j++)
 				 {
-					 
 					 if($("#total-"+j).val() != null){
-						 
-				
 					 var calculate_unit_total =  $("#total-"+j).val();	 
 					 calculate_total += parseInt(calculate_unit_total);
 					 document.getElementById('amount').value = calculate_total;

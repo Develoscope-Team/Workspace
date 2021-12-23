@@ -1,14 +1,13 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
-import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-	String dbConnVar = "BAKESHACk";
-	try {
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+String dbConnVar = "BAKESHACk";
+try {
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
@@ -40,67 +39,46 @@ table.a {
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	
-	<div id="kt_header_mobile" class="header-mobile">
-		<!--begin::Toolbar-->
-		<div class="d-flex align-items-center">
-			<button class="btn p-0 burger-icon burger-icon-left ml-4"
-				id="kt_header_mobile_toggle">
-				 
-			</button>
-			<button class="btn btn-icon btn-hover-transparent-white p-0 ml-3"
-				id="kt_header_mobile_topbar_toggle">
-				<span class="svg-icon svg-icon-xl"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/User.svg-->
-					<svg xmlns="http://www.w3.org/2000/svg"
-						xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-						height="24px" viewBox="0 0 24 24" version="1.1">
-							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-								<polygon points="0 0 24 0 24 24 0 24" />
-								<path
-							d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
-							fill="#000000" fill-rule="nonzero" opacity="0.3" />
-								<path
-							d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
-							fill="#000000" fill-rule="nonzero" />
-							</g>
-						</svg> <!--end::Svg Icon-->
-				</span>
-			</button>
-		</div>
-		<!--end::Toolbar-->
-	</div>
+
+	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="col-xl-10 mt-20 offset-1 ">
-	<div class="card card-custom gutter-b ">
-				<div class="dropdown dropdown-inline mt-5" >
-					<button type="button1" class="  btn  font-weight-bolder " style="float:right;"
-						value="Create Print" id="Print" onclick="MyApp.printTable()">
-						<i class="icon-2x flaticon2-printer" style="color: #4A7DFF"></i>
-					</button>
-					<button type="button " class=" btn font-weight-bolder " style="float:right;"
-						value="Create PDF" id="PDF" onclick="run()">
-						<i class=" icon-2x fas fa-file-pdf " style="color: #4A7DFF"></i>
-					</button>
-					<button onclick="dataContentExportExl('card_Report', 'user-data')"
-						class="  btn  font-weight-bolder " style="float:right;" value="Create Excel" id="Excel">
-						<i class=" icon-2x fas fa-file-excel" style="color: #4A7DFF"></i>
-					</button>
-				</div>
-		<div class=" " id="card_Report">
-			
-						<font size="+2"><u><center>Customer Outstanding <span class=" " id="finish"></span></center></u></font></div><br />
+		<div class="card card-custom gutter-b ">
+			<div class="dropdown dropdown-inline mt-5">
+				<button type="button1" class="  btn  font-weight-bolder "
+					style="float: right;" value="Create Print" id="Print"
+					onclick="MyApp.printTable()">
+					<i class="icon-2x flaticon2-printer" style="color: #4A7DFF"></i>
+				</button>
+				<button type="button " class=" btn font-weight-bolder "
+					style="float: right;" value="Create PDF" id="PDF" onclick="run()">
+					<i class=" icon-2x fas fa-file-pdf " style="color: #4A7DFF"></i>
+				</button>
+				<button onclick="dataContentExportExl('card_Report', 'user-data')"
+					class="  btn  font-weight-bolder " style="float: right;"
+					value="Create Excel" id="Excel">
+					<i class=" icon-2x fas fa-file-excel" style="color: #4A7DFF"></i>
+				</button>
+			</div>
+			<div class=" " id="card_Report">
+
+				<font size="+2"><u><center>
+							Customer Outstanding <span class=" " id="finish"></span>
+						</center></u></font>
+			</div>
+			<br />
 			<table class="table" style="border: 1px solid black">
 				<thead>
 					<tr>
-						<th style="text-align: center;" scope="col">Customer Name </th>
+						<th style="text-align: center;" scope="col">Customer Name</th>
 						<th style="text-align: center" scope="col">Invoice Date</th>
-						<th style="text-align: center" scope="col">Order No </th>
-						<th style="text-align: center" scope="col"> Product</th>
-						<th style="text-align: center" scope="col">Invoice Amount </th>
-						<th style="text-align: center" scope="col"> Paid</th>
+						<th style="text-align: center" scope="col">Order No</th>
+						<th style="text-align: center" scope="col">Product</th>
+						<th style="text-align: center" scope="col">Invoice Amount</th>
+						<th style="text-align: center" scope="col">Paid</th>
 						<th style="text-align: center" scope="col">Balance Amount</th>
-						
-						
+
+
 					</tr>
 				</thead>
 				<tbody class="table_body text-center">
@@ -129,7 +107,7 @@ table.a {
 		</span>
 	</div>
 
-<script type="text/javascript"
+	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
@@ -286,7 +264,7 @@ table.a {
 </html>
 
 <%
-	} catch (Exception e) {
-		Logger.log(dbConnVar, "" + e);
-	}
+} catch (Exception e) {
+Logger.log(dbConnVar, "" + e);
+}
 %>

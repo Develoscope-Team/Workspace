@@ -31,32 +31,7 @@
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 
-	<div id="kt_header_mobile" class="header-mobile">
-		<!--begin::Toolbar-->
-		<div class="d-flex align-items-center">
-			<button class="btn p-0 burger-icon burger-icon-left ml-4"
-				id="kt_header_mobile_toggle"></button>
-			<button class="btn btn-icon btn-hover-transparent-white p-0 ml-3"
-				id="kt_header_mobile_topbar_toggle">
-				<span class="svg-icon svg-icon-xl"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/User.svg-->
-					<svg xmlns="http://www.w3.org/2000/svg"
-						xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-						height="24px" viewBox="0 0 24 24" version="1.1">
-							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-								<polygon points="0 0 24 0 24 24 0 24" />
-								<path
-							d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
-							fill="#000000" fill-rule="nonzero" opacity="0.3" />
-								<path
-							d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
-							fill="#000000" fill-rule="nonzero" />
-							</g>
-						</svg> <!--end::Svg Icon-->
-				</span>
-			</button>
-		</div>
-		<!--end::Toolbar-->
-	</div>
+	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
@@ -161,16 +136,13 @@
 																cellspacing="0" cellpadding="0">Amount (₹)</th>
 														</tr>
 													</thead>
-													<tbody class="t_body text-center"
-														>
-
+													<tbody class="t_body text-center">
 													</tbody>
 												</table>
 											</div>
 										</div>
 									</div>
 									<div class="row col-md-10 justify-content offset-1 ">
-
 										<div class="col-7 ">
 											<label>  </label> <span
 												class="font-weight-bold " id=" "><lable></lable></span>
@@ -181,10 +153,7 @@
 										<div class="col-2 text-center ">
 											<span class="font-weight-bolder text-right" id="discount"></span>
 										</div>
-
 									</div>
-									
-									
 									<div class="row col-md-10 justify-content offset-1 ">
 
 										<div class="col-7 ">
@@ -486,8 +455,6 @@ var invoice_id;
 			
 			const row = data.find(d => d.order_code == order_code);
 			data.forEach((row)=> {
-			/* alert(row.transaction_code);
-			 */
 				if(row.order_code == order_code )
 						{
 					amount_in_word = row.partial_paid_amount;
@@ -500,11 +467,8 @@ var invoice_id;
 		         	$('#amount_in_word1').text(row.payment_mode);
 		         	var product_list = row.product_list;
 		         	bank = row.received_bank;
-		         	 
 		         	if(bank == '')
 		         		{
-		         		
-		         	
 		         		  $("#bankModel").modal();
 		         		}
 		         	else{
@@ -517,18 +481,14 @@ var invoice_id;
 		     				success:function(data)
 		     			    {
 		     					const row = data.find(d => d.bank_id == bank);
-		     						
-		     					    
 		     					       $('#bank_name').text(row.bank_name);
 		     					       $('#account_holder_name').text(row.account_holder_name);
 		     					       $('#IFSC_code').text(row.IFSC_code);
 		     				 			$('#account_no').text(row.account_no);  
-		     					
 		     			    }
 		     			});	
 		         	}
 		         	const parsedData = JSON.parse(product_list);
-			         
 					 $(parsedData).each(function(index) {
 						r++;
 							$('#product-' + (index + 1)).val(parsedData[index]['product']);
@@ -536,9 +496,6 @@ var invoice_id;
 							 $('#quantity-' + (index + 1)).val(parsedData[index]['quantity']); 
 							$('#unit_rate-' + (index + 1)).val(parsedData[index]['unit_rate']);
 							$('#total-' + (index + 1)).val(parsedData[index]['total']);
-						
-							
-							
 						});
 					 
 					 for(var i = 1; i <=r; i++){
@@ -555,8 +512,6 @@ var invoice_id;
 				 }
 					 const parseData1 = JSON.parse(product_list);
 					 $(parseData1).each(function(index) {
-							
-							
 						 $('#id-' + (index + 1)).val(index + 1);
 						    $('#product-' + (index + 1)).val(parseData1[index]['product']);
 							$('#quantity-' + (index + 1)).val(parseData1[index]['quantity']);
@@ -568,13 +523,10 @@ var invoice_id;
 							total1 = parseInt(total) + parseInt(total);
 						
 						});	
-				 
 					}
 			});
 	}
 	});	
-	
-	
 	 $.ajax({
 			url : base + "/bakeshackAPI/api/getBankDetails",
 			type : "post",
@@ -589,7 +541,6 @@ var invoice_id;
 			                value: element.bank_id,
 			                text: element.bank_name
 			            }))
-					
 				});   
 		    }
 		});	
@@ -604,20 +555,14 @@ var invoice_id;
 				success:function(data)
 			    {
 					const row = data.find(d => d.bank_id == bank);
-						
-					    
 					       $('#bank_name').text(row.bank_name);
 					       $('#account_holder_name').text(row.account_holder_name);
 					       $('#IFSC_code').text(row.IFSC_code);
 				 			$('#account_no').text(row.account_no);  
-					
 			    }
 			});	
 	});
 		
-		
-		 
-		 
 		 function number2text(value) {
 			    var fraction = Math.round(frac(value)*100);
 			    var f_text  = "";
@@ -705,17 +650,11 @@ var invoice_id;
 			
 			    return res;
 			}
-		 
-		 
-		 
-		 
-		 
-		 
 			number2text(amount_in_word);
 			
 			
 			$("#sudo").click(function(){
-				/* alert("hi"); */
+				
 				$("#print_button").hide();
 				$("#print_button1").hide();
 				 $("#pri").show();
@@ -725,12 +664,9 @@ var invoice_id;
 				  window.print();
 				    return false;
 				    window.location.reload();
-				
-				
-			}
-					)
+			})
 					$("#sudo1").click(function(){
-				/* alert("hi"); */
+				
 				$("#print_button1").hide();
 				$("#print_button").hide();
 				 $("#pri").hide();
@@ -739,10 +675,7 @@ var invoice_id;
 				  window.print();
 				    return false;
 				    window.location.reload();
-				
-				
-			}
-					)
+			})
 					 
 	</script>
 </body>
