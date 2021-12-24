@@ -76,7 +76,7 @@ table.a {
 										</div>
 										<div class="d-flex justify-content-start">
 											<h3
-												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Age:
+												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase" id="age_name">Age:
 											</h3>
 											<h3 class="font-weight-bolder" id="age"></h3>
 										</div>
@@ -107,7 +107,7 @@ table.a {
 										</div>
 										<div class="d-flex justify-content-start">
 											<h3
-												class="pl-0 pr-4 ml-25 font-weight-bolder text-muted text-uppercase">Gender:
+												class="pl-0 pr-4 ml-25 font-weight-bolder text-muted text-uppercase" id="gender_name">Gender:
 											</h3>
 											<h3 class="font-weight-bolder" id="gender"></h3>
 										</div>
@@ -115,7 +115,7 @@ table.a {
 
 										<div class="d-flex justify-content-start ">
 											<h3
-												class="pl-0 pr-4 mr-7 font-weight-bolder text-muted text-uppercase ">Weight:
+												class="pl-0 pr-4 mr-7 font-weight-bolder text-muted text-uppercase " id="weight_name">Weight:
 											</h3>
 											<h3 class="font-weight-bolder" id="weight"></h3>
 											
@@ -195,14 +195,14 @@ table.a {
 
 											
 											<div class="row">
-											<h3 class="ml-3 mr-2 font-weight-bolder">Temp:</h3><h3 class=" mr-5" id="temp"></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="temp_name"></h3><h3 class=" mr-5" id="temp"></h3>
 											
-											<h3 class="ml-3 mr-2 font-weight-bolder">Suger-</h3><h3 class=" " ></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder"  id="blood_sugar_text"></h3><h3 class=" " ></h3>
 											
-											<h3 class="ml-3 mr-2 font-weight-bolder">Fasting:</h3><h3 class=" mr-5" id="blood_sugar_f"></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="blood_sugar_name_f"></h3><h3 class=" mr-5" id="blood_sugar_f"></h3>
 											
-											<h3 class="ml-3 mr-2 font-weight-bolder">Post Meal:</h3><h3 class=" mr-5" id="blood_sugar_p" ></h3>
-											<h3 class="ml-3 mr-2 font-weight-bolder">BP:</h3><h3 class="ml-3 mr-5" id="blood_pressure"></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="blood_sugar_name_p"></h3><h3 class=" mr-5" id="blood_sugar_p" ></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder"  id="blood_pressure_name"></h3><h3 class="ml-3 mr-5" id="blood_pressure"></h3>
 											
 											
 											
@@ -210,11 +210,11 @@ table.a {
 											</div>
 											
 											<div class="row">
-											<h3 class="ml-3 mr-2 font-weight-bolder">Pulse:</h3><h3 class=" mr-5" id="pulse"></h3>
-											<h3 class="ml-3 mr-2 font-weight-bolder">HB:</h3><h3 class=" mr-5" id="hb"></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="pulse_name"></h3><h3 class=" mr-5" id="pulse"></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder"  id="hb_name"></h3><h3 class=" mr-5" id="hb"></h3>
 											
-											<h3 class="ml-3 mr-2 font-weight-bolder">K/C/O:</h3><h3 class=" mr-5" id="kco_value" ></h3>
-											<h3 class="ml-3 mr-2 font-weight-bolder">Allergy:</h3><h3 class=" mr-5" id="allergy_value" ></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="kco_name"></h3><h3 class=" mr-5" id="kco_value" ></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="allergy_name"></h3><h3 class=" mr-5" id="allergy_value" ></h3>
 											
 											</div>
 											</div>
@@ -252,17 +252,17 @@ table.a {
 							<!--end: Invoice body-->
 
 							<div class="row footer1">
-								<div class="col-md-12  text-center mt-3  style="font-size: 20px;"">
+								<div class="col-md-12  text-center mt-3  style="font-size: 26px;"">
 									<div class="row justify-content-center  ">
-										<h6 class="font-weight-bold ">वेळ :</h6>
-										<h6>
+										<h2 class="font-weight-bold ">वेळ :</h2>
+										<h2>
 											<span id="time">सकाळी ९ ते १.३०</span> <span>सायं. ४
 												ते ८ वाजता.</span>	
-										</h6>
+										</h2>
 										</div>
 									
 									<div class="  ">
-											<h6   id="notice">दवाखाना रविवारी सुद्धा चालू राहील</h6>
+											<h2   id="notice">दवाखाना रविवारी सुद्धा चालू राहील</h2>
 									</div>
 									
 								
@@ -428,17 +428,7 @@ table.a {
 								complaints_desc = row.complaints_desc.replace(
 										'*', '');
 
-								/* $('#cTbl')
-										.append(
-												'<tr class="font-weight-bolder h4" style="font-size: 20px;" ><td class="pt-7 px-5">'
-														+ complaints_desc
-																.replace('*',
-																		',')
-														+ '</td><td class="pt-7 pl-10" id="isDiagnosis">'
-														+ row.diagnosis_desc
-														+ '</td></tr><tr class="font-weight-bolder h4" style="font-size: 20px;"><td class="pt-7 px-5">'
-														+ row.other_complaints
-														+ '</td><td class="pt-7"></td></tr>'); */
+							
 							}
 
 							if (row.age != '') {
