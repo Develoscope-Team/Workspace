@@ -33,6 +33,7 @@ table.a {
 }
 </style>
 </head>
+<jsp:include page="../common/mobile-header.jsp"></jsp:include>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/bg/bg-9.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
@@ -219,26 +220,36 @@ table.a {
 	var base='<%=base%>';  
 	
 	
-	$('#updateAdvice').hide();
-	$("#addAdvice").show();
+	$('#updateAsset').hide();
+	$("#addAsset").show();
 	
-		$('#addAdvice').click(function() {
+		$('#addAsset').click(function() {
 
-							var advice_name = $('#advice_name').val();
-							var advice_desc = $('#advice_desc').val();
+							var asset_name = $('#asset_name').val();
+							var asset_code = $('#asset_code').val();
+							var asset_price = $('#asset_price').val();
+							var asset_desc = $('#asset_desc').val();
+							var asset_scan_pdf_name = $('#asset_scan_pdf_name').val();
+							var asset_amount = $('#asset_amount').val();
+							var percent = $('#percent').val();
 							var flag = 1; // Addition
 
-						if(advice_name != "" && advice_desc != ""){
+						if(asset_name != "" && asset_code != ""){
 							$.ajax({
-								// http://localhost:8080/ipdAPI/ipdapi/insertUpdateAdvice
-								url : base +"/ipdAPI/ipdapi/insertUpdateAdvice",
+								// http://localhost:8080/ipdAPI/ipdapi/insertUpdateAsset
+								url : base +"/ipdAPI/ipdapi/insertUpdateAsset",
 								
 								type : "post",
 								dataType : "json",
 								async : false,
 								data : {
-									"advice_name" : advice_name,
-                                    "advice_desc" : advice_desc,
+									"asset_name" : asset_name,
+                                    "asset_code" : asset_code,
+                                    "asset_price": asset_price,
+                                    "asset_desc" : asset_desc,
+                                    "asset_scan_pdf_name" : asset_scan_pdf_name,
+                                    "asset_amount" : asset_amount,
+                                    "percent" : percent,
 									"flag" : flag
 								},
 								
@@ -254,7 +265,7 @@ table.a {
 
 										if (response >= 1) {
 
-											var msg = "Advice Data inserted Successfully.";
+											var msg = "Asset Data inserted Successfully.";
 											alert(msg);
 											
 
@@ -270,31 +281,36 @@ table.a {
 		"use strict";
 		//Class definition
 		
-		var advice_id;
+		var asset_id;
 var html = "";
 
 $.ajax({
 	
-	url : base +"/ipdAPI/ipdapi/getAdvice",
+	url : base +"/ipdAPI/ipdapi/getAsset",
 	
 	type : "post",
 	dataType : "json",
 	async : false,
-	data : {"advice_id": advice_id},
+	data : {"asset_id": asset_id},
 	success:function(data)
 	{
 		
-		const row = data.find(d => d.advice_id == advice_id);
+		const row = data.find(d => d.asset_id == asset_id);
 		data.forEach((row)=> {
-			html +="<tr id= tr-id-2 class= tr-class-2>"
-			html += "<td>"+row.advice_id+"</td>"; 
-			 html += "<td>"+row.advice_name+"</td>";
-	            html += "<td>"+row.advice_desc+"</td>";
+			 html +="<tr id= tr-id-2 class= tr-class-2>"
+			 html += "<td>"+row.asset_id+"</td>"; 
+			 html += "<td>"+row.asset_name+"</td>";
+			 html += "<td>"+row.asset_code+"</td>";
+			 html += "<td>"+row.asset_price+"</td>";
+			 html += "<td>"+row.asset_desc+"</td>";
+	         html += "<td>"+row.asset_scan_pdf_name+"</td>";
+	         html += "<td>"+row.asset_amount+"</td>";
+	         html += "<td>"+row.percent+"</td>";
 	          
-     	       	 html += '<td><a href="javascript:update('+row.advice_id+');" class="btn_advice btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"/></g></svg></span>'
+     	       	 html += '<td><a href="javascript:update('+row.asset_id+');" class="btn_asset btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"/></g></svg></span>'
          
 
-     	       	+ '<a href="javascript:deleteById('+row.advice_id+');" class="btn_advice btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
+     	       	+ '<a href="javascript:deleteById('+row.asset_id+');" class="btn_asset btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
 	            html +="</tr>"
 		
 		});
@@ -312,56 +328,70 @@ $(document).ready(function (){
 		 
 		 function update(id){
 			 
-				$('.btn_advice').hide();
+				$('.btn_asset').hide();
 				
 
 				
-				$('#updateAdvice').show();
-				$("#addAdvice").hide();
+				$('#updateAsset').show();
+				$("#addAsset").hide();
 				
 				$.ajax({
 			        type:"POST",
 			        dataType: "json",
-			        data:{"advice_id": id},
+			        data:{"asset_id": id},
 					async : false,
-					url : base +"/ipdAPI/ipdapi/getAdvice",
+					url : base +"/ipdAPI/ipdapi/getAsset",
 			        success:function(data)
 			        {
 			        	
-			            const row = data.find(d => d.advice_id ==id);
+			            const row = data.find(d => d.asset_id ==id);
 			           
-			            $("#advice_name").val(row.advice_name);
-			        	$("#advice_desc").val(row.advice_desc);
-			        	
+			            $("#asset_name").val(row.asset_name);
+			        	$("#asset_code").val(row.asset_code);
+			        	$("#asset_price").val(row.asset_price);
+			        	$("#asset_desc").val(row.asset_desc);
+			        	$("#asset_scan_pdf_name").val(row.asset_scan_pdf_name);
+			        	$("#asset_amount").val(row.asset_amount);
+			        	$("#percent").val(row.percent);
 			        }
 			     });
 				
 				 
 				 // let update_by_id = temp_edit_id;
 				 // console.log(update_by_id);
-				$('#updateAdvice')
+				$('#updateAsset')
 				.click(
 						function() {
 							 
 							
-							var advice_name = $('#advice_name').val();
-							var advice_desc = $('#advice_desc').val();
+							var asset_name = $('#asset_name').val();
+							var asset_code = $('#asset_code').val();
+							var asset_price = $('#asset_price').val();
+							var asset_desc = $('#asset_desc').val();
+							var asset_scan_pdf_name = $('#asset_scan_pdf_name').val();
+							var asset_amount = $('#asset_amount').val();
+							var percent = $('#percent').val();
 							
 							
 							var flag = 2; // Addition
 
 							$.ajax({
-								url : base +"/ipdAPI/ipdapi/insertUpdateAdvice",
+								url : base +"/ipdAPI/ipdapi/insertUpdateAsset",
 								
 										type : "post",
 										dataType : "json",
 										async : false,
 										data : {
-											"advice_name" : advice_name,
-											"advice_desc" : advice_desc,
+											"asset_name" : asset_name,
+											"asset_code" : asset_code,
+											"asset_price" : asset_price,
+											"asset_desc" : asset_desc,
+											"asset_scan_pdf_name" : asset_scan_pdf_name,
+											"asset_amount" : asset_amount,
+											"percent" : percent,
 											
 											"flag" : flag,
-											"advice_id": id
+											"asset_id": id
 										},
 										error : function(xhr) {
 											var msg = "(Data updation failed. Error : "
@@ -375,7 +405,7 @@ $(document).ready(function (){
 
 												if (response >= 1) {
 
-													var msg = "Advice Data updated Successfully.";
+													var msg = "Asset Data updated Successfully.";
 													alert(msg);
 
 												} 
@@ -403,15 +433,20 @@ $(document).ready(function (){
 		function deleteById(id){
 			if (confirm("Press OK to confirm!")) {
 			$.ajax({
-				url : base + "/ipdAPI/ipdapi/insertUpdateAdvice",
+				url : base + "/ipdAPI/ipdapi/insertUpdateAsset",
 				
 				type : "post",
 				dataType : "json",
 				async : false,
 				data : {
-					"advice_name": "",
-                    "advice_desc": "", 
-					"advice_id" : id,
+					"asset_name": "",
+                    "asset_code": "",
+                    "asset_price": "",
+                    "asset_desc": "",
+                    "asset_scan_pdf_name": "",
+                    "asset_amount": "",
+                    "percent": "",
+					"asset_id" : id,
 					"flag" : 3
 				},
 				
@@ -427,7 +462,7 @@ $(document).ready(function (){
 
 						if (response >=1) {
 
-							var msg = "Advice Data deleted Successfully.";
+							var msg = "Asset Data deleted Successfully.";
 							alert(msg);
 							location.reload(true);
 
