@@ -1,7 +1,7 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
-import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -14,9 +14,12 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 <jsp:include page="../common/mobile-header.jsp"></jsp:include>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
@@ -31,161 +34,200 @@ table.a {
 }
 </style>
 </head>
-
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/bg/bg-9.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	
+
 	<div class="container">
 
-							<h2
-								class="d-flex align-items-center text-purple font-weight-bold my-2 mr-5">Branch
-								Master</h2>
+		<h2
+			class="d-flex align-items-center text-purple font-weight-bold my-1 mr-3">Branch
+			Master</h2>
 
-							<div class="row">
-								<div class="col-xl-12 offset-xl-0 ">
-									<div class="card card-custom gutter-b">
-										<div class="card-body ">
-											<div class="example mb-10">
-												<div class="example-preview">
-													<div class="card card-custom">
-														<form class="form" id="kt_form_1">
-															<div class="card-body">
-															<div class="form-group">
-																	<label>Branch Name</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="branch_name" id="branch_name"
-																		class="form-control form-control-solid"
-																		placeholder="Enter Branh Name" required />
-																		
-																		<label>Branch Code</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="branch_code" id="branch_code"
-																		class="form-control form-control-solid"
-																		placeholder="Enter Branch Code" required />
-																		
-																		<label>Branch Address</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="branch_address" id="branch_address"
-																		class="form-control form-control-solid"
-																		placeholder="Enter Branch Address" required />
-																		
-																		
-																		<label>Branch Manager</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="branch_manager" id="branch_manager"
-																		class="form-control form-control-solid"
-																		placeholder="Enter Branch Manager" required />
-																		
-																		<label>City</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="city" id="city"
-																		class="form-control form-control-solid"
-																		placeholder="Enter City" required />
-																		
-																		<label>District</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="district" id="district"
-																		class="form-control form-control-solid"
-																		placeholder="Enter District" required />
-																		
-																		<label>State</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="state" id="state"
-																		class="form-control form-control-solid"
-																		placeholder="Enter State" required />
-																		
-																		<label>phone no</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="phone_no" id="phone_no"
-																		class="form-control form-control-solid"
-																		placeholder="Enter Phone no" required />
-																</div>
-																
-															</div>
-															<div class="text-center">
-																<button type="submit" id="addbranch"
-																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
-																<button type="submit" id="updatebranch"
-																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Update</button>
-																<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; "
-																	id="cancel">Cancel</button>
-															</div>
-														</form>
-														<!--end::Form-->
+		<div class="row">
+			<div class="col-xl-12 offset-xl-0 ">
+				<div class="card card-custom gutter-b">
+					<div class="card-body ">
+						<div class="example mb-10">
+							<div class="example-preview">
+								<div class="card card-custom">
+									<form class="form" id="kt_form_1">
+										<div class="card-body">
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label>Branch Name :</label><span class="text-danger"
+															id="type"></span> <input type="text" name="branch_name"
+															id="branch_name" class="form-control form-control-solid"
+															placeholder="Enter Branh Name" required />
+													</div>
+												</div>
+
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label>Branch Code :</label><span class="text-danger"
+															id="type"></span> <input type="text" name="branch_code"
+															id="branch_code" class="form-control form-control-solid"
+															placeholder="Enter Branch Code" required />
 													</div>
 												</div>
 											</div>
+
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label>Branch Address :</label><span class="text-danger"
+															id="type"></span> <input type="text"
+															name="branch_address" id="branch_address"
+															class="form-control form-control-solid"
+															placeholder="Enter Branch Address" required />
+
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label>Branch Manager :</label><span class="text-danger"
+															id="type"></span> <input type="text"
+															name="branch_manager" id="branch_manager"
+															class="form-control form-control-solid"
+															placeholder="Enter Branch Manager" required />
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label>City :</label><span class="text-danger" id="type"></span>
+														<input type="text" name="city" id="city"
+															class="form-control form-control-solid"
+															placeholder="Enter City" required />
+
+
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group">
+
+														<label>District :</label><span class="text-danger"
+															id="type"></span> <input type="text" name="district"
+															id="district" class="form-control form-control-solid"
+															placeholder="Enter District" required />
+
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label>State :</label><span class="text-danger" id="type"></span>
+														<input type="text" name="state" id="state"
+															class="form-control form-control-solid"
+															placeholder="Enter State" required />
+													</div>
+												</div>
+
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label>phone no :</label><span class="text-danger"
+															id="type"></span> <input type="text" name="phone_no"
+															id="phone_no" class="form-control form-control-solid"
+															placeholder="Enter Phone no" required />
+													</div>
+												</div>
+											</div>
+											<div class="text-center">
+												<button type="submit" id="addComplaint"
+													class="btn btn-primary mr-2"
+													style="background-color: #AB48FF;">Submit</button>
+												<button type="submit" id="updateComplaint"
+													class="btn btn-primary mr-2"
+													style="background-color: #AB48FF;">Update</button>
+												<button type="button" class="btn btn-primary mr-2"
+													style="background-color: #AB48FF;" id="cancel">Cancel</button>
+											</div>
 										</div>
-									</div>
-								</div>
-
-						
-							<div class="col-xl-12 offset-xl-0 ">
-								<div class="card card-custom gutter-b">
-									<div class="card-body">
-
-								<div class="input-icon ml-10" style = "width: 30%;">
-																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
-																<span>
-																	<i class="flaticon2-search-1 text-muted"></i>
-																</span>
-															</div>
-								<br />
-
-								
-
-										<table data-toggle="table" class='a'
-											data-classes="table table-hover table-condensed "
-											data-striped="true" data-sort-name="Quality"
-											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=550 id="table-id">
-											<thead>
-												<tr>
-													<th class="col-sm-1 text-center" data-field="sr-no"
-														data-sortable="true">No</th>
-													<th class="col-sm-3 text-center"
-														data-field="branch-name" data-sortable="true">Branch Name</th>
-													<th class="col-sm-3 text-center"
-														data-field="branch-code" data-sortable="true">Branch code</th>
-														<th class="col-sm-3 text-center"
-														data-field="branch-manager" data-sortable="true">Branch Manager</th>
-														<th class="col-sm-3 text-center"
-														data-field="city" data-sortable="true">city</th>
-														<th class="col-sm-3 text-center"
-														data-field="district" data-sortable="true">District</th>
-														<th class="col-sm-3 text-center"
-														data-field="State" data-sortable="true">State</th>
-														<th class="col-sm-3 text-center"
-														data-field="phone-no" data-sortable="true">Phone_no</th>
-													
-													
-													
-													<th class="col-sm-2 text-center" data-field="building-address"
-														data-sortable="true">Building Address</th>
-
-												</tr>
-
-											</thead>
-											<tbody class="data">
-
-
-											</tbody>
-										</table>
-
-									</div>
-
+									</form>
+									<!--end::Form-->
 								</div>
 							</div>
 						</div>
-						</div>
-					
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
+					</div>
 				</div>
-				<!--end::Footer-->
-			
+			</div>
+		</div>
+
+
+	
+			<div class="card card-custom gutter-b">
+				<div class="card-body">
+
+					<div class="input-icon ml-10" style="width: 30%;">
+						<input type="text" class="form-control form-control-solid"
+							placeholder="Search..." id="txt_searchall" /> <span> <i
+							class="flaticon2-search-1 text-muted"></i>
+						</span>
+					</div>
+					<br />
+					<!--begin: Datatable-->
+
+
+
+					<table data-toggle="table" class='a'
+						data-classes="table table-hover table-condensed "
+						data-striped="true" data-sort-name="Quality"
+						data-sort-order="desc" data-pagination="false" data-scroll="false"
+						data-height=550 id="table-id">
+						<thead>
+							<tr>
+								<th class="col-sm-1 text-center" data-field="sr-no"
+									data-sortable="true">No</th>
+								<th class="col-sm-3 text-center" data-field="branch-name"
+									data-sortable="true">Branch Name</th>
+								<th class="col-sm-3 text-center" data-field="branch-code"
+									data-sortable="true">Branch code</th>
+								<th class="col-sm-3 text-center" data-field="branch-manager"
+									data-sortable="true">Branch Manager</th>
+								<th class="col-sm-3 text-center" data-field="city"
+									data-sortable="true">city</th>
+								<th class="col-sm-3 text-center" data-field="district"
+									data-sortable="true">District</th>
+								<th class="col-sm-3 text-center" data-field="State"
+									data-sortable="true">State</th>
+								<th class="col-sm-3 text-center" data-field="phone-no"
+									data-sortable="true">Phone_no</th>
+
+
+
+								<th class="col-sm-2 text-center" data-field="building-address"
+									data-sortable="true">Building Address</th>
+
+							</tr>
+
+						</thead>
+						<tbody class="data">
+
+
+						</tbody>
+					</table>
+					<!--end: Datatable-->
+
+				</div>
+
+			</div>
+		</div>
+	
+
+
+	<!--begin::Footer-->
+	<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+	</div>
+	<!--end::Footer-->
+
 
 
 	<!--begin::Scrolltop-->
@@ -205,6 +247,7 @@ table.a {
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
+
 
 <script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/features/custom/spinners.js"></script>
@@ -519,3 +562,4 @@ $(document).ready(function (){
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);
 }
+%>

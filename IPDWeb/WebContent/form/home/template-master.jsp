@@ -34,28 +34,35 @@ table.a {
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/bg/bg-9.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	<div class="content d-flex flex-column flex-column-fluid col-xl-12"
-					id="kt_content">
-					<!--begin::Entry-->
-					<div class="d-flex flex-column-fluid col-xl-12">
 	
-<div class="container-fluid">
+		
+						<!--begin::Container-->
+						<div class="container">
+						<h2
+								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Template
+								Master</h2>
 
-							<div class="template-master">
-								<form class="form" id="kt_form_1">
-									<div class=" col-lg-6 offset-lg-3 col-md-12 col-sm-12">
-										<div class="form-group">
-											<label>Template Name</label><span class="text-danger">*</span>
+								<div class="row">
+								<div class="col-xl-12">
+									<div class="card card-custom gutter-b">
+										<div class="card-body ">
+											<div class="example mb-10">
+												<div class="example-preview">
+													<div class="card card-custom">
+														<form class="form" id="kt_form_1">
+															<div class="card-body">
+																<div class="form-group">
+											<label>Template Name :</label><span class="text-danger"></span>
 											<input type="text" class="form-control form-control-solid"
-												name="templateName" id="template_name"
+												name="template_Name" id="template_name"
 												placeholder="Enter Template name" />
 										</div>
-										<div class="form-group">
-											<label>Template Desc</label><span class="text-danger">*</span>
+										
+											<label>Template Description :</label><span class="text-danger"></span>
 											<input type="text" class="form-control form-control-solid"
-												name="template_Code" id="template_code"
+												name="template_description" id="template_description"
 												placeholder="Enter Template Code" />
-										</div>
+										
 									</div>
 									<span class="text-danger">double click on Medicine Field
 										to search new medicine</span>
@@ -70,7 +77,7 @@ table.a {
 													<th scope="col">Type</th>
 													<th scope="col">Dose</th>
 													<th scope="col">Time</th>
-													<th scope="col">Qty</th>
+													<th scope="col">Qauntity</th>
 													<th scope="col">isSpecial</th>
 													<th scope="col">Is_Printable</th>
 													<th scope="col">Remark</th>
@@ -92,17 +99,16 @@ table.a {
 									</div>
 
 									<div class="card-footer">
-										<div class="row">
-											<div class="col-lg-4"></div>
-											<div class="col-lg-4">
-												<button type="submit" id="addtemplate"
-													class="btn font-weight-bold btn-primary mr-2">Submit</button>
-												<button type="submit" id="updatetemplate"
-													class="btn font-weight-bold btn-primary mr-2">Update</button>
-												<button type="button"
-													class="btn font-weight-bold btn-secondary" id="cancel">Cancel</button>
-											</div>
+										<div class="text-center">
+																<button type="submit" id="addtemplate"
+																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
+																<button type="submit" id="updatetemplate"
+																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Update</button>
+																<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; "
+																	id="cancel">Cancel</button>
+															</div>
 										</div>
+									</div>
 									</div>
 								</form>
 							</div>
@@ -153,7 +159,9 @@ table.a {
 										<div class="quick-search-wrapper scroll" data-scroll="true"
 											data-height="350" data-mobile-height="200"></div>
 									</div>
+									</div>
 									<!--end::Dropdown-->
+								</div>
 								</div>
 								<br />
 
@@ -189,7 +197,7 @@ table.a {
 									</div>
 
 								</div>
-							</div>
+							
 							<div class="modal fade" id="medicineModel" tabindex="-1"
 								role="dialog" aria-labelledby="staticBackdrop"
 								aria-hidden="true">
@@ -253,6 +261,7 @@ table.a {
 												</div>
 												<!--end::Dropdown-->
 											</div>
+											</div>
 											<br />
 											<div class="col-xl-12">
 
@@ -276,9 +285,14 @@ table.a {
 									</div>
 								</div>
 							</div>
+						
+					
 						</div>
 						</div>
+					</div>
 						</div>
+						</div>
+						
 					
 				<!--begin::Footer-->
 				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
@@ -579,3 +593,4 @@ $(document).ready(function (){
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);
 }
+%>

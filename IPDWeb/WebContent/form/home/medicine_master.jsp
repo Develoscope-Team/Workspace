@@ -38,7 +38,7 @@ table.a {
 	<div class="container">
 
 					 <h2
-								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-4">Bank
+					class="d-flex align-items-center text-dark font-weight-bold my-1 mr-4">Medicine
 								Master</h2> 
 
 							<div class="row">
@@ -53,81 +53,52 @@ table.a {
 														<div class="row">
 																	<div class="col-xl-6">
 															<div class="form-group">
-																<label>Bank Name :</label> <input type="text"
-																	id="bank_name"
+																<label>Medicine Name :</label> <input type="text"
+																	id="medidine_name"
 																	class="form-control form-control-solid"
-																	placeholder="Enter Recipe Name" />
+																	placeholder="Enter Medicine Name" />
 															</div>
 															</div>
 															<div class="col-xl-6">
 															<div class="form-group">
-																<label>Branch Name :</label> <input type="text"
-																	id="branch"
+																<label>Medicine Type :</label> <input type="text"
+																	id="medicine_type"
 																	class="form-control form-control-solid"
-																	placeholder="Enter Branch" />
+																	placeholder="Enter Medicine Type" />
 															</div>
 															</div>
 															</div>
 															<div class="row">
 																	<div class="col-xl-6">
 															<div class="form-group">
-																<label>Account Holder Name :</label> <input type="text"
-																	id="account_holder_name"
+																<label>Medicine Category :</label> <input type="text"
+																	id="medicine_category"
 																	class="form-control form-control-solid"
-																	placeholder="Enter Account holder Name" />
+																	placeholder="Enter Medicine Category" />
 															</div>
 															</div>
 															<div class="col-xl-6">
 															<div class="form-group">
-																<label>Account Type :</label> <select
-																	class="form-control form-control-solid" name="account" id="acc_type">
-																	<option value="" disabled selected hidden>Select
-																		Acccount</option>
-																		<option value="current" >Current </option>
-																		<option value="saving" >Saving </option>
+																<label>Io Special :</label> <input type="text"
+																	id="io_special"
+																	class="form-control form-control-solid"
+																	placeholder="Io Special"" />
 																		
 																		
 																</select>
 															</div>
 															</div>
 															</div>
-															<div class="row">
-																	<div class="col-xl-6">
-															<div class="form-group">
-																<label>Account No :</label> <input type="text"
-																	id="account_no"
-																	class="form-control form-control-solid"
-																	placeholder="Enter Account No." />
-															</div>
-															</div>
-															<div class="col-xl-6">
-															<div class="form-group">
-																<label>IFSC Code :</label> <input type="text"
-																	id="ifsc_code"
-																	class="form-control form-control-solid"
-																	placeholder="Enter ifsc_code " />
-															</div>
-															</div>
-															</div>
-															<div class="row">
-															<div class="col-xl-6">
-															<div class="form-group">
-																<label>Opening Amount : </label> <input type="text"
-																	id="opening_amount"
-																	class="form-control form-control-solid"
-																	placeholder="Enter Opening Amount" />
-															</div>
-															</div>
+															
 															
 														</div>
-														</div>
 														<div class="text-center">
-															<button type="button" id="addbank"
-																class="btn btn-primary mr-2" style="background-color: #AB48FF">Submit</button>
-															<button type="submit" id="updatebank"
-																class="btn btn-primary mr-2"
-																style="background-color: #AB48FF">Update</button>
-															<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF">Cancel</button>
+															<button type="button" id="addmedicine"
+								class="btn btn-primary mr-2" style="background-color: #AB48FF; " id="submit">Submit</button>
+														</button>
+															<button type="submit" id="updatemedicine"
+																class="btn btn-primary mr-2">Update</button>
+															<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF;" id="cancel">Cancel</button>
 														</div>
 													</form>
 													<!--end::Form-->
@@ -155,25 +126,21 @@ table.a {
 											data-scroll="false" data-height=550 id="table-id">
 											<thead>
 												<tr>
-													<th class="col-sm-1 text-center" data-field="NO"
-														data-sortable="true">No</th>
-													<th class="col-sm-2 text-center" data-field="Bank-Name"
-														data-sortable="true">Bank Name</th>
+													<th class="col-sm-1 text-center" data-field="sr-no"
+														data-sortable="true">Sr-No</th>
+													<th class="col-sm-2 text-center" data-field="medicine-no"
+														data-sortable="true">Medicine Name</th>
 													
-														<th class="col-sm-3 text-center" data-field="Holder-Name"
-														data-sortable="true">Holder Name</th>
-														<th class="col-sm-1 text-center" data-field="Account-Type"
-														data-sortable="true">Account Type</th>
-														<th class="col-sm-3 text-center" data-field="Account-No"
-														data-sortable="true">Account No</th>
+														<th class="col-sm-3 text-center" data-field="medicine-type"
+														data-sortable="true">Medicine Type</th>
+														<th class="col-sm-1 text-center" data-field="medicine-category"
+														data-sortable="true">Medicine Category</th>
+														<th class="col-sm-3 text-center" data-field="io-special"
+														data-sortable="true">IO Special</th>
 														
-													<th class="col-sm-3 text-center" data-field="Branch-Name"
-														data-sortable="true">Branch-Name</th>
-													<th class="col-sm-3 text-center" data-field="IFSC-Code"
-														data-sortable="true">IFSC-Code</th>	
-														<th class="col-sm-3 text-center" data-field="Opening-Amount"
-														data-sortable="true">Opening-Amount</th>
-													<th class="col-sm-2 text-center" data-field="Action"
+														
+														
+													<th class="col-sm-2 text-center" data-field="action"
 														data-sortable="false">Action</th>
 												</tr>
 
@@ -219,46 +186,40 @@ table.a {
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/features/custom/spinners.js"></script>
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
-	<script
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
+	<script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
+	
 
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';  
 	
 	
-	$('#updatebank').hide();
-	$("#addbank").show();
+	$('#updatemedicine').hide();
+	$("#addmedicine").show();
 	
-		 $('#addbank').click(function() {
+		$('#addmedicine').click(function() {
 
-							var bank_name = $('#bank_name').val();
-							var branch_name = $('#branch').val();
-							var account_holder_name = $('#account_holder_name').val();
-							var account_type = $('#account_type ').val();
-							var account_no = $('#account_no ').val();
-							var ifsc_code = $('#ifsc_code ').val();
-							var opening_amount = $('#opening_amount ').val();
+							var medicine_name = $('#medicine_name').val();
+							var medicine_type = $('#medicine_type').val();
+							var medicine_category= $('#medicine_category').val();
+							var io_special = $('#io_special').val();
 							var flag = 1; // Addition
 
-						if(bank_name != "" ){
+						if(bed_no != "" ){
 							$.ajax({
-								// http://localhost:8080/ipdAPI/ipdapi/insertUpdateAdvice
-								url : base +"/ipdAPI/ipdapi/insertUpdateBank",
+								// http://localhost:8080/ipdAPI/ipdapi/insertUpdatemedicine
+								url : base +"/ipdAPI/ipdapi/insertUpdatemedicine",
 								
 								type : "post",
 								dataType : "json",
 								async : false,
 								data : {
-									"bank_name" : bank_name,
-                                    "branch_name" : branch_name,
-                                    "account_holder_name" : account_holder_name,
-                                    "account_type" : account_type,
-                                    "account_no " : account_no ,
-                                    "ifsc_code" : ifsc_code,
-                                    "opening_amount" : opening_amount,
+									"medicine_name" : medicine_name,
+                                    "medicine_type" : medicine_type,
+                                    "medicine_category" : medicine_category,
+                                    "io_special" : io_special
+                                   
 									"flag" : flag
 								},
 								
@@ -274,8 +235,9 @@ table.a {
 
 										if (response >= 1) {
 
-											var msg = "Bank Data inserted Successfully.";
+											var msg = "Medicine Data inserted Successfully.";
 											alert(msg);
+											
 
 										} 
 									}
@@ -287,43 +249,35 @@ table.a {
 						})
 
 		"use strict";
-		//Class definition 
+		//Class definition
 		
-		
-		
-					
-		
-		var bank_id;
+		var medicine_id;
 var html = "";
 
 $.ajax({
 	
-	url : base +"/ipdAPI/ipdapi/getBank",
+	url : base +"/ipdAPI/ipdapi/getmedicine",
 	
 	type : "post",
 	dataType : "json",
 	async : false,
-	data : {"bank_id": bank_id},
+	data : {"medicine_id": medicine_id},
 	success:function(data)
 	{
 		
-		const row = data.find(d => d.bank_id == branch_id);
+		const row = data.find(d => d.medicine_id == medicine_id);
 		data.forEach((row)=> {
 			html +="<tr id= tr-id-2 class= tr-class-2>"
-				html += "<td>"+row.bank_id+"</td>"; 
-			html += "<td>"+row.bank_name+"</td>"; 
-			 html += "<td>"+row.branch_name+"</td>";
-	            html += "<td>"+row.account_holder_name+"</td>";
-	            html += "<td>"+row.account_type+"</td>"; 
-				 html += "<td>"+row.account_no+"</td>";
-		            html += "<td>"+row.ifsc_code+"</td>";
-		            html += "<td>"+row.opening_account+"</td>";
-			          
+			html += "<td>"+row.medicine_id+"</td>"; 
+			 html += "<td>"+row.medicne_name+"</td>";
+	            html += "<td>"+row.medicine_type+"</td>";
+	            html += "<td>"+row.medicine_category+"</td>";
+	            html += "<td>"+row.io_special+"</td>";
 	          
-     	       	 html += '<td><a href="javascript:update('+row.bank_id+');" class="btn_bank btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"/></g></svg></span>'
+     	       	 html += '<td><a href="javascript:update('+row.medicine_id+');" class="btn_medicine btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"/></g></svg></span>'
          
 
-     	       	+ '<a href="javascript:deleteById('+row.branch_id+');" class="btn_branch btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
+     	       	+ '<a href="javascript:deleteById('+row.medicine_id+');" class="btn_medicine btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
 	            html +="</tr>"
 		
 		});
@@ -341,74 +295,63 @@ $(document).ready(function (){
 		 
 		 function update(id){
 			 
-				$('.btn_bank').hide();
+				$('.btn_medicine').hide();
 				
-				$('#updatebank').show();
-				$("#addbank").hide();
+
+				
+				$('#updatemedicine').show();
+				$("#addmedicine").hide();
 				
 				$.ajax({
 			        type:"POST",
 			        dataType: "json",
-			        data:{"bank_id": id},
+			        data:{"medicine_id": id},
 					async : false,
-					url : base +"/ipdAPI/ipdapi/getBank",
+					url : base +"/ipdAPI/ipdapi/getmedicine",
 			        success:function(data)
 			        {
 			        	
-			            const row = data.find(d => d.bank_id ==id);
+			            const row = data.find(d => d.medicine_id ==id);
 			           
-			            $("#bank_name").val(row.bank_name);
-			        	$("#branch_name").val(row.branch_name);
-			        	 $("#account_holder_name").val(row.account_holder_name);
-				        	$("#account_type").val(row.account_type);
-				        	
-					    $("#account_no").val(row.account_no);
-					        	$("#ifsc_code").val(row.ifsc_code);
-					        	$("#opening_amount").val(row.opening_amount);
-					        	
+			            $("#medicine_name").val(row.medicine_name);
+			        	$("#medicine_type").val (row.medicine_type);
+			        	$("#medicine_category").val (row.medicine_category);
+			        	$("#io_special").val (row.io_special);
 			        	
-					        
 			        }
 			     });
 				
 				 
 				 // let update_by_id = temp_edit_id;
 				 // console.log(update_by_id);
-				$('#updatebank')
+				$('#updatemedicine')
 				.click(
 						function() {
 							 
 							
-							var advice_name = $('#bank_name').val();
-							var advice_desc = $('#branch_name').val();
-							var account_holder_name= $('#account_holder_name').val();
-							var account_type = $('#account_type').val();
-							var account_no= $('#account_no').val();
-							var ifsc_code = $('#ifsc_code').val();
-							var opening_amount = $('#opening_amount').val();
+							var medicine_name = $('#medicine_name').val();
+							var medicine_type = $('#medicine_type').val();
+							var medicine_category = $('#medicine_category ').val();
+							var io_special = $('#io_special').val();
 							
 							
 							var flag = 2; // Addition
 
 							$.ajax({
-								url : base +"/ipdAPI/ipdapi/insertUpdateBank",
+								url : base +"/ipdAPI/ipdapi/insertUpdatemedicine",
 								
 										type : "post",
 										dataType : "json",
 										async : false,
 										data : {
-											"bank_name" : bank_name,
-											"branch_name" : branch_name,
-											"account_holder_name" :account_holder_name,
-											"account_type" : account_type,
-											"account_no" :account_no,
-											"ifsc_code" :ifsc_code,
-											"opening_amount" : opening_amount,
-											
+											"medicine_name" : medicine_name,
+											"medicine_type" : medicine_type,
+											"medicine_category":medicine_category 
+											"io_special" : io_special,
 											
 											
 											"flag" : flag,
-											"bank_id": id
+											"medicine_id": id
 										},
 										error : function(xhr) {
 											var msg = "(Data updation failed. Error : "
@@ -422,7 +365,7 @@ $(document).ready(function (){
 
 												if (response >= 1) {
 
-													var msg = "Bank Data updated Successfully.";
+													var msg = "Medicine Data updated Successfully.";
 													alert(msg);
 
 												} 
@@ -446,24 +389,22 @@ $(document).ready(function (){
 				window.location.reload();
 				})
 		 
-		// Delete data by bank_id
+		// Delete data by medicine_id
 		function deleteById(id){
 			if (confirm("Press OK to confirm!")) {
 			$.ajax({
-				url : base + "/ipdAPI/ipdapi/insertUpdateBank",
+				url : base + "/ipdAPI/pdapi/insertUpdatemedicine,
 				
 				type : "post",
 				dataType : "json",
 				async : false,
 				data : {
-					"bank_name": "",
-                    "branch_name": "", 
-					"account_holder_name" : "",
-					"account_type": "",
-                    "account_no": "", 
-					"ifsc_code" : "",
-					"opening_amount" : "",
-					
+					"medicine_name": "",
+                    "medicine_type": "", 
+                    "medicine_category": "",
+                    "io_special": "", 
+                    
+					"medicine" : id,
 					"flag" : 3
 				},
 				
@@ -479,7 +420,7 @@ $(document).ready(function (){
 
 						if (response >=1) {
 
-							var msg = "Bank Data deleted Successfully.";
+							var msg = "Medicine Data deleted Successfully.";
 							alert(msg);
 							location.reload(true);
 
