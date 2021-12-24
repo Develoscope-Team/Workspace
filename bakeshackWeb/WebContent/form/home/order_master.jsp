@@ -20,37 +20,15 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 
-	<div id="kt_header_mobile" class="header-mobile">
-		<!--begin::Toolbar-->
-		<div class="d-flex align-items-center">
-			<button class="btn p-0 burger-icon burger-icon-left ml-4"
-				id="kt_header_mobile_toggle"></button>
-			<button class="btn btn-icon btn-hover-transparent-white p-0 ml-3"
-				id="kt_header_mobile_topbar_toggle">
-				<span class="svg-icon svg-icon-xl"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/User.svg-->
-					<svg xmlns="http://www.w3.org/2000/svg"
-						xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-						height="24px" viewBox="0 0 24 24" version="1.1">
-							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-								<polygon points="0 0 24 0 24 24 0 24" />
-								<path
-							d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
-							fill="#000000" fill-rule="nonzero" opacity="0.3" />
-								<path
-							d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
-							fill="#000000" fill-rule="nonzero" />
-							</g>
-						</svg> <!--end::Svg Icon-->
-				</span>
-			</button>
-		</div>
-		<!--end::Toolbar-->
-	</div>
+	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
@@ -96,11 +74,6 @@
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
-
-							<!-- <h2
-								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Category
-								Master</h2> -->
-
 
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
@@ -391,13 +364,7 @@
 																	<i class="flaticon2-search-1 text-muted"></i>
 																</span>
 															</div>
-																			<!-- <div class="input-icon ml-10" style="width: 30%;">
-																				<input type="text"
-																					class="form-control form-control-solid"
-																					placeholder="Search..." id="txt_searchall" /> <span>
-																					<i class="flaticon2-search-1 text-muted"></i>
-																				</span>
-																			</div> -->
+																		
 																			<br />
 																			<div
 																				class="datatable datatable-bordered datatable-head-custom"
@@ -436,7 +403,122 @@
 									</div>
 								</div>
 							</div>
+			
+							
+					<style>
+.alert {
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
 
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+
+.alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.alert.show {
+	animation: show_slide 1s ease forwards;
+}
+
+@
+keyframes show_slide { 0%{
+	transform: translateX(100%);
+}
+
+40
+%
+{
+transform
+:
+translateX(
+-10%
+);
+}
+80
+%
+{
+transform
+:
+translateX(
+0%
+);
+}
+100
+%
+{
+transform
+:
+translateX(
+-10px
+);
+}
+}
+@
+keyframes hide_slide { 0%{
+	transform: translateX(-10px);
+}
+
+40
+%
+{
+transform
+:
+translateX(
+0%
+);
+}
+80
+%
+{
+transform
+:
+translateX(
+-10%
+);
+}
+100
+%
+{
+transform
+:
+translateX(
+100%
+);
+}
+}
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
+</style>
+							<div class="alert alert-success  " role="alert"
+								id="success_alert">
+								<div class="alert-text">
+									<span id="success_msg"></span>
+								</div>
+							</div>
+							<div class="alert alert-danger " role="alert" id="danger_alert">
+								<div class="alert-text">
+									<span id="danger_msg"></span>
+								</div>
+							</div>
+							<div class="alert alert-warning " role="alert" id="warning_alert">
+								<div class="alert-text">
+									<span id="warning_msg"></span>
+								</div>
+							</div>
 
 						</div>
 						<!--end::Container-->
@@ -556,10 +638,8 @@
 			async : false,
 			success:function(data)
 	    	{
-				//data.forEach((element)=> {
 				const row = data.find(d => d.order_code != 0);
 				data.forEach((row)=> {
-				//alert(row.order_code);
 				$('#order_no').val(row.order_code);
 				   
 				});
@@ -660,7 +740,14 @@
 									+ xhr.status
 									+ " "
 									+ xhr.statusText;
-							alert(msg);
+							 $('#warning_msg').text(msg);
+							 $('#warning_alert').addClass("show");
+					           $('#warning_alert').removeClass("hide");
+					           $('#warning_alert').addClass("showAlert");
+					           setTimeout(function(){
+					             $('#warning_alert').removeClass("show");
+					             $('#warning_alert').addClass("hide");
+					           },2000);
 						},
 						success : function(response) {
 							if (response != null) {
@@ -668,7 +755,14 @@
 								if (response >= 1) {
 
 									var msg = "Customer Data inserted/Updated Successfully.";
-									alert(msg);
+									 $('#success_msg').text(msg);
+									 $('#success_alert').addClass("show");
+							           $('#success_alert').removeClass("hide");
+							           $('#success_alert').addClass("showAlert");
+							           setTimeout(function(){
+							             $('#success_alert').removeClass("show");
+							             $('#success_alert').addClass("hide");
+							           },2000);
 
 								} 										}
 						}
@@ -769,45 +863,6 @@
 					    }
 					});	
 				 table_len++;
-				
-				 
-				 /*  $('#product-'+ i).typeahead({
-		             hint: true,
-		             highlight: true,
-		             minLength: 1
-		         }, {
-		             name: 'pName',
-		             source: bloodhound
-		         });
-				 	 
-		
-				 $('#product-'+ i).change(function(){
-		        		
-			 			var product_name = $(this).val();
-			 			$.ajax({
-			 				url : base + "/bakeshackAPI/api/getSaleableProductDetails",
-			 				type : "post",
-			 				dataType : "json",
-			 				async : false,
-			 				data : {"flag":1,},
-			 				success:function(data)
-			 		        {
-			 					const row = data.find(d => d.product_name == product_name);
-			 					if(row != null){
-			 						// ccode = row.customer_code; 
-			 					  
-			 						  $('#product-'+ i).val(row.product_name);
-			 				            $("#unit-"+ i).val(row.unit);
-			 				        	$("#unit_rate-"+ i).val(row.selling_price);
-			 					}
-			 		        }
-			 			});	
-		         })   */
-				
-				 
-				 
-				 
-				 
 
 				 $('.add_product').on('click','.btn_delete',function(){
 				$(this).closest('tr').remove();	
@@ -1184,8 +1239,7 @@ $('#add_sales_order').click(function() {
 			 });
 			
 		var jsonString = JSON.stringify(productList);
-/* 		alert(jsonString);
- */									    $.ajax({
+								    $.ajax({
 										url : base + "/bakeshackAPI/api/insertUpdateOrderBookingDetails",
 										type : "post",
 										dataType : "json",
@@ -1216,7 +1270,14 @@ $('#add_sales_order').click(function() {
 													+ xhr.status
 													+ " "
 													+ xhr.statusText;
-											alert(msg);
+											 $('#warning_msg').text(msg);
+											 $('#warning_alert').addClass("show");
+									           $('#warning_alert').removeClass("hide");
+									           $('#warning_alert').addClass("showAlert");
+									           setTimeout(function(){
+									             $('#warning_alert').removeClass("show");
+									             $('#warning_alert').addClass("hide");
+									           },2000);
 										},
 										success : function(response) {
 											if (response != null) {
@@ -1224,7 +1285,14 @@ $('#add_sales_order').click(function() {
 												if (response >= 1) {
 
 													var msg = "Order Booking Data inserted Successfully.";
-													alert(msg);
+													 $('#success_msg').text(msg);
+													 $('#success_alert').addClass("show");
+											           $('#success_alert').removeClass("hide");
+											           $('#success_alert').addClass("showAlert");
+											           setTimeout(function(){
+											             $('#success_alert').removeClass("show");
+											             $('#success_alert').addClass("hide");
+											           },2000);
 
 												} 
 											}
@@ -1283,7 +1351,14 @@ $('#add_sales_order').click(function() {
 														+ xhr.status
 														+ " "
 														+ xhr.statusText;
-												alert(msg);
+												 $('#warning_msg').text(msg);
+												 $('#warning_alert').addClass("show");
+										           $('#warning_alert').removeClass("hide");
+										           $('#warning_alert').addClass("showAlert");
+										           setTimeout(function(){
+										             $('#warning_alert').removeClass("show");
+										             $('#warning_alert').addClass("hide");
+										           },2000);
 											},
 											success : function(response) {
 												if (response != null) {
@@ -1291,7 +1366,14 @@ $('#add_sales_order').click(function() {
 													if (response >= 1) {
 
 														var msg = "Invoice Data inserted/Updated Successfully.";
-														alert(msg);
+														 $('#success_msg').text(msg);
+														 $('#success_alert').addClass("show");
+												           $('#success_alert').removeClass("hide");
+												           $('#success_alert').addClass("showAlert");
+												           setTimeout(function(){
+												             $('#success_alert').removeClass("show");
+												             $('#success_alert').addClass("hide");
+												           },2000);
 														
 														
 
@@ -1302,21 +1384,12 @@ $('#add_sales_order').click(function() {
 										}); 
 									  
 									}
-									
-									
 										  if (confirm("Do You Wish To Print Invoice!")) {
-												
-											  //var url = "receipt.jsp";
-											  
 										 		var url = "order_booking_receipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&transaction_code=' + transaction_code + '&partial_paid_amount=' + partial_paid_amount ;
-
 											  window.location.assign(url);
 												 } else {
 													  window.location.reload();
 												  }
-										
-										
-									
 		})		
 					
 </script>

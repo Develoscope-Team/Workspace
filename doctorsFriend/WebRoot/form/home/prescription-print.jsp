@@ -40,7 +40,7 @@ table.a {
 											<img id="logo" alt="Logo"
 												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/src.png"
 												class="logo-default max-h-120px" />
-											<div class="col-md-7 text-center">
+											<div class="col-md-7 text-center mb-2">
 
 												<h1 class="font-weight-bolder text-right"
 													style="font-size: 38px;">SHREE RAJENDRA CLINIC</h1>
@@ -54,9 +54,11 @@ table.a {
 												<h4>पोयनाड : भाजी मार्केट गल्ली</h4>
 												<h4 class="ml-2 font-weight-bolder">7775999536 |
 													9822786831(Whatsapp)</h4>
+													</br>
 											</div>
-											</br>
+											
 										</div>
+										
 
 										<!-- <div class="border-bottom bg-info " style="border: 1px solid black;"></div> -->
 										<div class=" col-md-12" style="border: 1px solid black;"></div>
@@ -69,26 +71,26 @@ table.a {
 										class="d-flex justify-content-between align-items-baseline">
 
 										<div class="d-flex justify-content-start">
-											<h3
+											<h2
 												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Name:
-											</h3>
-											<h3 class="font-weight-bolder" id="patient_name"></h3>
+											</h2>
+											<h2 class="font-weight-bolder" id="patient_name"></h2>
 											
 										</div>
 										<div class="d-flex justify-content-start">
-											<h3
-												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Age:
-											</h3>
-											<h3 class="font-weight-bolder" id="age"></h3>
+											<h2
+												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase" id="age_name">Age:
+											</h2>
+											<h2 class="font-weight-bolder" id="age"></h2>
 										</div>
 										
 										
 
 										<div class="d-flex justify-content-start">
-											<h3
+											<h2
 												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Date:
-											</h3>
-											<h3 class="font-weight-bolder" id="date">5/3/2021</h3>
+											</h2>
+											<h2 class="font-weight-bolder" id="date">5/3/2021</h2>
 											
 										</div>
 									</span>
@@ -100,25 +102,25 @@ table.a {
 										class="d-flex justify-content-between align-items-baseline">
 
 										<div class="d-flex justify-content-start">
-											<h3
+											<h2
 												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Patient Code:
-											</h3>
-											<h3 class="font-weight-bolderer" id="patient_code"></h3>
+											</h2>
+											<h2 class="font-weight-bolderer" id="patient_code"></h2>
 											
 										</div>
 										<div class="d-flex justify-content-start">
-											<h3
-												class="pl-0 pr-4 ml-25 font-weight-bolder text-muted text-uppercase">Gender:
-											</h3>
-											<h3 class="font-weight-bolder" id="gender"></h3>
+											<h2
+												class="pl-0 pr-4 ml-25 font-weight-bolder text-muted text-uppercase" id="gender_name">Gender:
+											</h2>
+											<h2 class="font-weight-bolder" id="gender"></h2>
 										</div>
 										
 
 										<div class="d-flex justify-content-start ">
-											<h3
-												class="pl-0 pr-4 mr-7 font-weight-bolder text-muted text-uppercase ">Weight:
-											</h3>
-											<h3 class="font-weight-bolder" id="weight"></h3>
+											<h2
+												class="pl-0 pr-4 mr-7 font-weight-bolder text-muted text-uppercase " id="weight_name">
+											</h2>
+											<h2 class="font-weight-bolder" id="weight"></h2>
 											
 										</div>
 									</span>
@@ -196,14 +198,14 @@ table.a {
 
 											
 											<div class="row">
-											<h3 class="ml-3 mr-2 font-weight-bolder">Temp:</h3><h3 class=" mr-5" id="temp"></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="temp_name"></h3><h3 class=" mr-5" id="temp"></h3>
 											
-											<h3 class="ml-3 mr-2 font-weight-bolder">Suger-</h3><h3 class=" " ></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder"  id="blood_sugar_text"></h3><h3 class=" " ></h3>
 											
-											<h3 class="ml-3 mr-2 font-weight-bolder">Fasting:</h3><h3 class=" mr-5" id="blood_sugar_f"></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="blood_sugar_name_f"></h3><h3 class=" mr-5" id="blood_sugar_f"></h3>
 											
-											<h3 class="ml-3 mr-2 font-weight-bolder">Post Meal:</h3><h3 class=" mr-5" id="blood_sugar_p" ></h3>
-											<h3 class="ml-3 mr-2 font-weight-bolder">BP:</h3><h3 class="ml-3 mr-5" id="blood_pressure"></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="blood_sugar_name_p"></h3><h3 class=" mr-5" id="blood_sugar_p" ></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder"  id="blood_pressure_name"></h3><h3 class="ml-3 mr-5" id="blood_pressure"></h3>
 											
 											
 											
@@ -211,11 +213,11 @@ table.a {
 											</div>
 											
 											<div class="row">
-											<h3 class="ml-3 mr-2 font-weight-bolder">Pulse:</h3><h3 class=" mr-5" id="pulse"></h3>
-											<h3 class="ml-3 mr-2 font-weight-bolder">HB:</h3><h3 class=" mr-5" id="hb"></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="pulse_name"></h3><h3 class=" mr-5" id="pulse"></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder"  id="hb_name"></h3><h3 class=" mr-5" id="hb"></h3>
 											
-											<h3 class="ml-3 mr-2 font-weight-bolder">K/C/O:</h3><h3 class=" mr-5" id="kco_value" ></h3>
-											<h3 class="ml-3 mr-2 font-weight-bolder">Allergy:</h3><h3 class=" mr-5" id="allergy_value" ></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="kco_name"></h3><h3 class=" mr-5" id="kco_value" ></h3>
+											<h3 class="ml-3 mr-2 font-weight-bolder" id="allergy_name"></h3><h3 class=" mr-5" id="allergy_value" ></h3>
 											
 											</div>
 											</div>
@@ -253,17 +255,17 @@ table.a {
 							<!--end: Invoice body-->
 
 							<div class="row footer1">
-								<div class="col-md-12  text-center mt-3  style="font-size: 20px;"">
+								<div class="col-md-12  text-center mt-3  style="font-size: 26px;">
 									<div class="row justify-content-center  ">
-										<h4 class="font-weight-bold ">वेळ :</h4>
-										<h4>
+										<h1 class="font-weight-bold ">वेळ :</h1>
+										<h1>
 											<span id="time">सकाळी ९ ते १.३०</span> <span>सायं. ४
 												ते ८ वाजता.</span>	
-										</h4>
+										</h1>
 										</div>
 									
 									<div class="  ">
-											<h4   id="notice">दवाखाना रविवारी सुद्धा चालू राहील</h4>
+											<h1   id="notice">दवाखाना रविवारी सुद्धा चालू राहील</h1>
 									</div>
 									
 								
@@ -465,19 +467,8 @@ table.a {
 								complaints_desc = row.complaints_desc.replace(
 										'*', '');
 
-								/* $('#cTbl')
-										.append(
-												'<tr class="font-weight-bolder h4" style="font-size: 20px;" ><td class="pt-7 px-5">'
-														+ complaints_desc
-																.replace('*',
-																		',')
-														+ '</td><td class="pt-7 pl-10" id="isDiagnosis">'
-														+ row.diagnosis_desc
-														+ '</td></tr><tr class="font-weight-bolder h4" style="font-size: 20px;"><td class="pt-7 px-5">'
-														+ row.other_complaints
-														+ '</td><td class="pt-7"></td></tr>'); */
 							}
-
+                     
 							if (row.age != '') {
 								$('#age_name').text('Age :');
 								$('#age').text(row.age);
@@ -569,7 +560,7 @@ table.a {
 				});
 
 		if (p[8] != "true") {
-			alert("hello 9");
+			
 			$('#diagnosis_name').hide();
 			$('#isDiagnosis').hide();
 		}

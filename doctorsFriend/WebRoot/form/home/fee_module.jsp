@@ -474,7 +474,7 @@ $('#addPayment1').click(function() {
 						if (response >= 1) {
 
 							var msg = "OutStanding Invoice Data inserted/Updated Successfully.";
-							alert(msg);
+						   alert(msg);
 						}
 					}
 				}
