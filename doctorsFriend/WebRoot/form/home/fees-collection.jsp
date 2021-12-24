@@ -229,7 +229,7 @@
 								
 								<div class="col-lg-6 offset-3">
 									
-										<button type="button" id="addPayment1" onclick="printP()"
+										<button type="button" id="addPayment1" 
 										class="btn font-weight-bold btn-primary ml-40">Submit</button>
 									<button type="reset" class="btn font-weight-bold btn-secondary">Cancel</button>
 								</div>
@@ -543,6 +543,9 @@
 	var amount1 = $('#amount').val();
 	var extraContent =$('#extraContent').val();
 	console.log(extraContent);
+	var msg1="";
+	var msg2="";
+	
 	$('#addPayment1').click(function() {
         
 		
@@ -614,8 +617,8 @@
 
 							if (response >= 1) {
 
-								var msg = "Payment Data inserted/Updated Successfully.";
-								alert(msg);
+								 msg1 = "Payment Data inserted/Updated Successfully.";
+								//alert(msg);
 								
 								
 
@@ -684,8 +687,8 @@
 
 								if (response >= 1) {
 
-									var msg = "Invoice Data inserted/Updated Successfully.";
-									alert(msg);
+								msg2 = "Invoice Data inserted/Updated Successfully.";
+									//alert(msg);
 									
 									
 
@@ -743,8 +746,8 @@
 
 						if (response >= 1) {
 
-							var msg = "OutStanding Invoice Data inserted/Updated Successfully.";
-							alert(msg);
+							 msg1 = "OutStanding Invoice Data inserted/Updated Successfully.";
+							//alert(msg);
 							
 							
 
@@ -779,8 +782,8 @@
 
 						if (response >= 1) {
 
-							var msg = "Payment Data Updated Successfully.";
-							alert(msg);
+							 msg2 = "Payment Data Updated Successfully.";
+							//alert(msg);
 							
 							
 
@@ -795,7 +798,15 @@
 		 }
 		}
 		
+		if (confirm("Your Data Inserted Succesfully. Do You Wish To Print Invoice!")) {
+			var url = "fee-receipt.jsp" + '?amount=' + amount1  + '&vid=' + vid  + '&patient_code='  + patient_code;
 
+			window.location.assign(url);
+			 } else {
+				 var url = "index.jsp";
+
+					window.location.assign(url);
+			  }
 	})
 	
 
@@ -803,12 +814,12 @@
 		
 		 
 				
- function printP() {
+/*  function printP() {
 		 
 		var url = "fee-receipt.jsp" + '?amount=' + amount1  + '&vid=' + vid  + '&patient_code='  + patient_code;
 
 		window.location.assign(url);
-	}  
+	}   */
 	 
 	
 	</script>
