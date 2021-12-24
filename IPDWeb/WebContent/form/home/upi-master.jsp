@@ -40,10 +40,10 @@ table.a {
 	
 		
 				
-						<div
-		class="container">
+		
 							
-									<h2 class="text-white font-weight-bold my-2 mr-5">UPI
+		<div class="container">
+									<h2 class="text-white font-weight-bold my-2 mr-3">UPI
 										Master</h2>
 									
 					
@@ -52,7 +52,7 @@ table.a {
 
 							
 							<div class="row">
-								<div class="col-xl-7">
+								<div class="col-xl-6">
 									<div class="card card-custom gutter-b">
 										<div class="card-body">
 											<div class="example mb-10">
@@ -84,7 +84,7 @@ table.a {
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-5 ">
+								<div class="col-xl-6 ">
 								
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -434,3 +434,4 @@ $(document).ready(function (){
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);
 }
+%>

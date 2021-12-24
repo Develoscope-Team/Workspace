@@ -1,7 +1,7 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
-import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -14,9 +14,12 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 <jsp:include page="../common/mobile-header.jsp"></jsp:include>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
@@ -34,101 +37,103 @@ table.a {
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/bg/bg-9.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	
+
 	<div class="container">
 
-							<h2
-								class="d-flex align-items-center text-purple font-weight-bold my-1 mr-3">medicine category
-								Master</h2>
+		<h2
+			class="d-flex align-items-center text-purple font-weight-bold my-1 mr-3">medicine
+			category Master</h2>
 
-							<div class="row">
-								<div class="col-xl-12">
-									<div class="card card-custom gutter-b">
-										<div class="card-body ">
-											<div class="example mb-10">
-												<div class="example-preview">
-													<div class="card card-custom">
-														<form class="form" id="kt_form_1">
-															<div class="card-body">
-															<div class="form-group">
-																	<label>Medicine category</label><span class="text-danger"
-																		id="type">*</span> <input type="text"
-																		name="medicine_category" id="medicine_category"
-																		class="form-control form-control-solid"
-																		placeholder="Enter mediine category" required />
-																</div>
-																
-															</div>
-															<div class="text-center">
-																<button type="submit" id="addmedicine_category"
-																	class="btn btn-primary mr-2">Submit</button>
-																<button type="submit" id="updatemedicine_category"
-																	class="btn btn-primary mr-2">Update</button>
-																<button type="button" class="btn btn-secondary"
-																	id="cancel">Cancel</button>
-															</div>
-														</form>
-														<!--end::Form-->
-													</div>
-												</div>
+		<div class="row">
+			<div class="col-xl-6">
+				<div class="card card-custom gutter-b">
+					<div class="card-body ">
+						<div class="example mb-10">
+							<div class="example-preview">
+								<div class="card card-custom">
+									<form class="form" id="kt_form_1">
+										<div class="card-body">
+											<div class="form-group">
+												<label>Medicine category :</label><span class="text-danger"
+													id="type"></span> <input type="text"
+													name="medicine_category" id="medicine_category"
+													class="form-control form-control-solid"
+													placeholder="Enter mediine category" required />
 											</div>
+
 										</div>
-									</div>
-								</div>
-
-						
-							
-								<div class="col-xl-12 offset-xl-0 ">
-								<div class="card card-custom gutter-b">
-									<div class="card-body">
-
-								<div class="input-icon ml-10" style = "width: 30%;">
-																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
-																<span>
-																	<i class="flaticon2-search-1 text-muted"></i>
-																</span>
-															</div>
-								<br />
-
-								
-
-										<table data-toggle="table" class='a'
-											data-classes="table table-hover table-condensed "
-											data-striped="true" data-sort-name="Quality"
-											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=550 id="table-id">
-											<thead>
-												<tr>
-													<th class="col-sm-1 text-center" data-field="sr-no"
-														data-sortable="true">Sr No</th>
-													<th class="col-sm-3 text-center"
-														data-field="medicine-category" data-sortable="true">Medicine category</th>
-													
-													<th class="col-sm-2 text-center" data-field="action"
-														data-sortable="true">Action</th>
-
-												</tr>
-
-											</thead>
-											<tbody class="data">
-
-
-											</tbody>
-										</table>
-
-									</div>
-
+										<div class="text-center">
+											<button type="submit" id="addComplaint"
+												class="btn btn-primary mr-2"
+												style="background-color: #AB48FF;">Submit</button>
+											<button type="submit" id="updateComplaint"
+												class="btn btn-primary mr-2" 
+												style="background-color: #AB48FF;">Update</button>
+											<button type="button" class="btn btn-primary mr-2"
+												style="background-color: #AB48FF;" id="cancel">Cancel</button>
+										</div>
+									</form>
+									<!--end::Form-->
 								</div>
 							</div>
 						</div>
-							</div>
-					
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
+					</div>
 				</div>
-				<!--end::Footer-->
-			
+			</div>
+
+
+
+			<div class="col-xl-6 offset-xl-0 ">
+				<div class="card card-custom gutter-b">
+					<div class="card-body">
+
+						<div class="input-icon ml-10" style="width: 30%;">
+							<input type="text" class="form-control form-control-solid"
+								placeholder="Search..." id="txt_searchall" /> <span> <i
+								class="flaticon2-search-1 text-muted"></i>
+							</span>
+						</div>
+						<br />
+
+
+
+						<table data-toggle="table" class='a'
+							data-classes="table table-hover table-condensed "
+							data-striped="true" data-sort-name="Quality"
+							data-sort-order="desc" data-pagination="false"
+							data-scroll="false" data-height=240 id="table-id">
+							<thead>
+								<tr>
+									<th class="col-sm-3 text-center" data-field="sr-no"
+										data-sortable="true">Sr No</th>
+									<th class="col-sm-3 text-center" data-field="medicine-category"
+										data-sortable="true">Medicine category</th>
+
+									<th class="col-sm-3 text-center" data-field="action"
+										data-sortable="true">Action</th>
+
+								</tr>
+
+							</thead>
+							<tbody class="data">
+
+
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--begin::Footer-->
+	<div style="position: fixed; bottom: 0; width: 100%;" class="fixed">
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+	</div>
+	<!--end::Footer-->
+
 
 
 	<!--begin::Scrolltop-->
@@ -419,3 +424,4 @@ $(document).ready(function (){
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);
 }
+%>

@@ -35,48 +35,43 @@ table.a {
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/media/bg/bg-9.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 	
-	
-						<!--begin::Container-->
-						<div class="container">
+	<div class="container">
 
-							 <h2
-								class="d-flex align-items-center text-white font-weight-bold my-1 mr-3">unit master
-				</h2> 
+							<h2
+								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Unit
+								Master</h2>
 
-							
-								<div class="col-xl-14 offset-xl-0">
+							<div class="row">
+								<div class="col-xl-6">
 									<div class="card card-custom gutter-b">
-										<div class="card-body">
-											<div class="example mb-14">
+										<div class="card-body ">
+											<div class="example mb-10">
 												<div class="example-preview">
 													<div class="card card-custom">
 														<form class="form" id="kt_form_1">
 															<div class="card-body">
-															<div class="row">
-																	<div class="col-xl-6">
 																<div class="form-group">
-																	<label>Unit Desc</label> <input type="text"
-																		id="unit_desc"
-																		class="form-control form-control-bold"
-																		placeholder="Enter Unit Desc" />
-																</div>
-																</div>
-																<div class="col-xl-6">
-																<div class="form-group">
-																	<label>Unit Code</label> <input type="text"
-																		id="unit_code"
+																	<label>Unit Name :</label><span class="text-danger"
+																		id="type"></span> <input type="text"
+																		name="unit_name" id="unit_name"
 																		class="form-control form-control-solid"
-																		placeholder="Enter Unit Code" />
+																		placeholder="Enter Unit Name" required />
 																</div>
-																</div>
+																<div class="form-group">
+																	<label>Unit Code :</label><span class="text-danger"
+																		id="type"></span> <input type="text"
+																		name="unit_code " id="unit_code "
+																		class="form-control form-control-solid"
+																		placeholder="Enter Unit Code " required />
 																</div>
 															</div>
 															<div class="text-center">
-																<button type="button" id="addUnit"
+																<button type="submit" id="addDiagnosis"
 																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Submit</button>
-																<button type="submit" id="updateUnit"
+																<button type="submit" id="updateDiagnosis"
 																	class="btn btn-primary mr-2" style="background-color: #AB48FF; ">Update</button>
-																<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; " id="cancel">Cancel</button>
+																<button type="button" class="btn btn-primary mr-2" style="background-color: #AB48FF; "
+																	id="cancel">Cancel</button>
 															</div>
 														</form>
 														<!--end::Form-->
@@ -86,34 +81,36 @@ table.a {
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-12 offset-xl-0">
-									<div class="card card-custom gutter-b">
-										<div class="card-body">
-										<div class="input-icon ml-10" style = "width: 30%;">
+
+							
+							<div class="col-xl-6 offset-xl-0 ">
+								<div class="card card-custom gutter-b">
+									<div class="card-body">
+
+								<div class="input-icon ml-10" style = "width: 70%;">
 																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
 																<span>
 																	<i class="flaticon2-search-1 text-muted"></i>
 																</span>
 															</div>
-											<br />
-											<!--begin: Datatable-->
-											<table data-toggle="table" class='a'
+								<br />
+
+								
+										<table data-toggle="table" class='a'
 											data-classes="table table-hover table-condensed "
 											data-striped="true" data-sort-name="Quality"
 											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=550 id="table-id">
+											data-scroll="false" data-height=300 id="table-id">
 											<thead>
 												<tr>
-													<th class="col-sm-1 text-center" data-field="NO"
-														data-sortable="true">No</th>
-													<th class="col-sm-3 text-center" data-field="unit-name"
-														data-sortable="true">Unit Name</th>
-													<th class="col-sm-3 text-center" data-field="unit-code"
-														data-sortable="true">Unit Code </th>
-													
+													<th class="col-sm-1 text-center" data-field="sr-no"
+														data-sortable="true">Sr No</th>
+													<th class="col-sm-4 text-center"
+														data-field="unit-description" data-sortable="true">Unit Description</th>
+													<th class="col-sm-5 text-center"
+														data-field="unit-code" data-sortable="true">Unit Code</th>
 													<th class="col-sm-2 text-center" data-field="Action"
-														data-sortable="false">Action</th>
-
+														data-sortable="true">Action</th>
 
 												</tr>
 
@@ -123,15 +120,48 @@ table.a {
 
 											</tbody>
 										</table>
-											<!--end: Datatable-->
-										</div>
+
 									</div>
+
 								</div>
-							
+							</div>
 						</div>
+						</div>
+				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
+			
+
+
+	<!--begin::Scrolltop-->
+	<div id="kt_scrolltop" class="scrolltop">
+		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->
+			<svg xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+				height="24px" viewBox="0 0 24 24" version="1.1">
+					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<polygon points="0 0 24 0 24 24 0 24" />
+						<rect fill="#000000" opacity="0.3" x="11" y="10" width="2"
+					height="10" rx="1" />
+						<path
+					d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+					fill="#000000" fill-rule="nonzero" />
+					</g>
+				</svg> <!--end::Svg Icon-->
+		</span>
+	</div>
 						<!--end::Container-->
 					
 				<!--begin::Footer-->
+				<script type="text/javascript"
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/features/custom/spinners.js"></script>
+	<script type="text/javascript"
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
+	<script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/ipd-opd/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
+	
+				
 				<script type="text/javascript">
 	
 	var basePath='<%=basePath%>';    
@@ -398,3 +428,4 @@ $(document).ready(function (){
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);
 }
+%>
