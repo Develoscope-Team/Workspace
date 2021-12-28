@@ -2327,7 +2327,29 @@ public class ConnectAPI {
 						
 				
 				
-				
+				@POST
+				@Path("/getProfitAndLossDetails")
+				@Produces(MediaType.TEXT_PLAIN)
+				@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+				public String getProfitAndLossDetails(
+						@FormParam("from_date") String from_date, @FormParam("till_date") String till_date) {
+					ConnectDataBean bean = null;
+					String beanData = null;
+					try {
+						System.out.println("api" + from_date);
+
+						bean = new ConnectDataBean();
+						beanData = bean.getProfitAndLossDetails( from_date, till_date).toString();
+						Logger.log("BAFNA", "beandata:: " + beanData);
+
+					} catch (Exception e) {
+						System.out.println(e);
+						Logger.log("BAFNA", e);
+					}
+
+					return beanData;
+				}
+		
 				
 				
 				
