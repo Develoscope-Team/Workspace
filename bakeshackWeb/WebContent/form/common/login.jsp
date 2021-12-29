@@ -12,7 +12,9 @@
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
-
+ <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 
 <html lang="en">
@@ -40,7 +42,7 @@
 						<div class="login-signin text-white">
 							<div class="mb-20  ">
 								 <h3>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</h3> 
-								<h3>  Wel-Come to Bake Shack</h3> 
+								<h3>  WelCome to Bake Shack</h3> 
 							</div>
 							<form class="form"  id="kt_login_signin_form">
 								<div class="form-group ml-10" style="width:300px">
@@ -100,7 +102,7 @@
 var basePath='<%=basePath%>';    
 var base='<%=base%>';  
     	
-    	$('#kt_login_singin_form_submit_button').click(function(){
+    	
 
 		
     	
@@ -119,7 +121,29 @@ var base='<%=base%>';
             		
             		var url = "/bakeshackWeb/form/home/index.jsp";
 
-            		window.location.assign(url);
+
+            	
+
+            		
+            		    Swal.fire({
+            		        title: "WelCome!",
+            		        text: "Have A Good Day Admin.",
+            		        icon: "success",
+            		        timer: 3000,
+            		        onOpen: function() {
+            		            Swal.showLoading()
+            		        }
+            		    }).then(function(result) {
+            		        if (result.dismiss === "timer") {
+            		        	window.location.assign(url);
+            		        }
+            		    })
+            	
+            	
+            		
+            		
+            		            		
+            		//window.location.assign(url);
             	}
             	else{
             		alert("login id and password doesn't match !");
@@ -128,7 +152,7 @@ var base='<%=base%>';
         	});
         	
         	            	 
-    	});
+    
     	
    
     

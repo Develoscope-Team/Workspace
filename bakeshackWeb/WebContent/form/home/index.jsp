@@ -269,7 +269,7 @@ try {
 									</div>
 									<div class="row">
 									
-										<div class="col-xl-12" style="height: 440px;">
+										<div class="col-xl-12" style="height:520px;">
 											<!--begin::Mixed Widget 14-->
 											<div
 												class="card card-custom bgi-no-repeat bgi-size-cover gutter-b card-stretch"
@@ -574,7 +574,7 @@ function showSlides() {
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 			</div>
 			<!--end::Wrapper-->
 		</div>
