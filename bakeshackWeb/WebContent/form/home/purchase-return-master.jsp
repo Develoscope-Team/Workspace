@@ -147,11 +147,8 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 											</div>
 										</div>
 									</div>
-                                   
-
 
                        <div class="card-body">
-
 															<table class="table" id="Mtable">
 																<thead>
 																	<tr>
@@ -222,10 +219,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
    </span>
   </div>
   </div>
-								    
 									</div>
-                                     
-                                       
                                      <div class="row">
                                      <div class="col-lg-6">
 									<div class="form-group" id="upi_div">
@@ -695,14 +689,10 @@ translateX(
 				if(row.purchase_id == purchase_id )
 						{
 			
-				//	alert(row.odrer_date); 
 					$('#payment_mode').val(row.payment_mode);
 					 $('#order_date').val(row.odrer_date);
 		         	$('#order_no').val(row.order_code);
 		         	var product_list = row.product_list;
-		         /* 	alert(product_list); */
-		         	
-		         	
 		         	const parsedData = JSON.parse(product_list);
 			         
 					 $(parsedData).each(function(index) {
@@ -1365,19 +1355,10 @@ translateX(
 													             $('#success_alert').removeClass("show");
 													             $('#success_alert').addClass("hide");
 													           },2000);
-															
-															
-
 														}
 													}
 												}
-
 											});   
-										   
-										   
-										/*    alert("partially_paid_amount" + a8);
-										   alert("balance_amount" + a9);
-										   alert("sales_and_order_id" + a6); */
 										 
 										   $.ajax({
 												url : base + "/bakeshackAPI/api/updatePurchaseDetails",
@@ -1419,27 +1400,20 @@ translateX(
 													             $('#success_alert').removeClass("show");
 													             $('#success_alert').addClass("hide");
 													           },2000);
-															
-															
-
 														}
 													}
 												}
 
 											});  
-										  
-										   
-										   
 										 }
 										}
 										
-										
 										Swal.fire({
 									        title: "Are you sure?",
-									        text: "You won't be able to revert this!",
+									        text: "You want to print!",
 									        icon: "warning",
 									        showCancelButton: true,
-									        confirmButtonText: "Yes, delete it!",
+									        confirmButtonText: "Yes, Print!",
 									        cancelButtonText: "No, cancel!",
 									        reverseButtons: true
 									    }).then(function(result) {
@@ -1449,16 +1423,10 @@ translateX(
 
 										  window.location.assign(url);
 										 
-									            // result.dismiss can be "cancel", "overlay",
-									            // "close", and "timer"
 									        } else if (result.dismiss === "cancel") {
 									        	 window.location.reload();
 									        }
 									    });
-										
-												
-									 
-									 
 		})		
 					
 </script>

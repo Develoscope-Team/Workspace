@@ -5085,6 +5085,8 @@ public class ConnectDataBean {
 							resultjson.put("current_paid_amount", rs.getString(5));
 							resultjson.put("payment_mode", rs.getString(6));
 							resultjson.put("paid_date", rs.getDate(7));
+							resultjson.put("invoice_date", rs.getDate(8));
+							resultjson.put("field", rs.getString(9));
 
 							jarr.put(resultjson);
 						}
@@ -5117,12 +5119,248 @@ public class ConnectDataBean {
 				
 				
 				
+				public JSONArray getDailySaleOfMonthDetails(String from_date, String till_date) {
+					Connection con = null;
+					CallableStatement cs = null;
+					ResultSet rs = null;
+
+					JSONArray jarr = null;
+					JSONObject finaljson = null;
+
+					try {
+						jarr = new JSONArray();
+
+						con = cf.getConnection();
+						cs = con.prepareCall("{?=call fun_retrieve_daily_sale_of_month_details(?,?,?)}");
+						cs.registerOutParameter(1, Types.OTHER);
+						cs.setString(2, from_date);
+						cs.setString(3, till_date);
+						cs.setObject(4, rs);
+
+						con.setAutoCommit(false); // without this the Result set is not returning
+						cs.execute();
+						rs = (ResultSet) cs.getObject(1);
+
+						while (rs.next()) {
+							JSONObject resultjson = new JSONObject();
+
+							resultjson.put("paid_date", rs.getDate(1));
+							resultjson.put("invoice_amonut", rs.getString(2));
+							resultjson.put("current_paid_amount", rs.getString(3));
+							
+							
+
+							jarr.put(resultjson);
+						}
+
+						finaljson = new JSONObject();
+
+						finaljson.put("data", jarr);
+
+					} catch (Exception e) {
+						Logger.log(dbConnVar, e);
+					} finally {
+						try {
+							if (con != null) {
+								con.close();
+							}
+							if (cs != null) {
+								cs.close();
+							}
+							if (rs != null) {
+								rs.close();
+							}
+						} catch (Exception e1) {
+							Logger.log(dbConnVar, e1);
+						}
+					}
+
+					return jarr;
+				}			
+				
+				
+				public JSONArray getDailyPurchaseOfMonthDetails(String from_date, String till_date) {
+					Connection con = null;
+					CallableStatement cs = null;
+					ResultSet rs = null;
+
+					JSONArray jarr = null;
+					JSONObject finaljson = null;
+
+					try {
+						jarr = new JSONArray();
+
+						con = cf.getConnection();
+						cs = con.prepareCall("{?=call fun_retrieve_daily_purchase_of_month_details(?,?,?)}");
+						cs.registerOutParameter(1, Types.OTHER);
+						cs.setString(2, from_date);
+						cs.setString(3, till_date);
+						cs.setObject(4, rs);
+
+						con.setAutoCommit(false); // without this the Result set is not returning
+						cs.execute();
+						rs = (ResultSet) cs.getObject(1);
+
+						while (rs.next()) {
+							JSONObject resultjson = new JSONObject();
+
+							resultjson.put("paid_date", rs.getString(1));
+							resultjson.put("invoice_amonut", rs.getString(2));
+							resultjson.put("current_paid_amount", rs.getString(3));
+							
+							
+
+							jarr.put(resultjson);
+						}
+
+						finaljson = new JSONObject();
+
+						finaljson.put("data", jarr);
+
+					} catch (Exception e) {
+						Logger.log(dbConnVar, e);
+					} finally {
+						try {
+							if (con != null) {
+								con.close();
+							}
+							if (cs != null) {
+								cs.close();
+							}
+							if (rs != null) {
+								rs.close();
+							}
+						} catch (Exception e1) {
+							Logger.log(dbConnVar, e1);
+						}
+					}
+
+					return jarr;
+				}			
 				
 				
 				
+				public JSONArray getDailySaleOfYearDetails(String from_date, String till_date) {
+					Connection con = null;
+					CallableStatement cs = null;
+					ResultSet rs = null;
+
+					JSONArray jarr = null;
+					JSONObject finaljson = null;
+
+					try {
+						jarr = new JSONArray();
+
+						con = cf.getConnection();
+						cs = con.prepareCall("{?=call fun_retrieve_monthly_sale_of_year_details(?,?,?)}");
+						cs.registerOutParameter(1, Types.OTHER);
+						cs.setString(2, from_date);
+						cs.setString(3, till_date);
+						cs.setObject(4, rs);
+
+						con.setAutoCommit(false); // without this the Result set is not returning
+						cs.execute();
+						rs = (ResultSet) cs.getObject(1);
+
+						while (rs.next()) {
+							JSONObject resultjson = new JSONObject();
+
+							resultjson.put("paid_date", rs.getString(1));
+							resultjson.put("payment_mode", rs.getString(2));
+							resultjson.put("invoice_amonut", rs.getString(3));
+							resultjson.put("current_paid_amount", rs.getString(4));
+							
+							
+
+							jarr.put(resultjson);
+						}
+
+						finaljson = new JSONObject();
+
+						finaljson.put("data", jarr);
+
+					} catch (Exception e) {
+						Logger.log(dbConnVar, e);
+					} finally {
+						try {
+							if (con != null) {
+								con.close();
+							}
+							if (cs != null) {
+								cs.close();
+							}
+							if (rs != null) {
+								rs.close();
+							}
+						} catch (Exception e1) {
+							Logger.log(dbConnVar, e1);
+						}
+					}
+
+					return jarr;
+				}		
 				
 				
-				
+				public JSONArray getDailyPurchaseOfYearDetails(String from_date, String till_date) {
+					Connection con = null;
+					CallableStatement cs = null;
+					ResultSet rs = null;
+
+					JSONArray jarr = null;
+					JSONObject finaljson = null;
+
+					try {
+						jarr = new JSONArray();
+
+						con = cf.getConnection();
+						cs = con.prepareCall("{?=call fun_retrieve_monthly_purchase_of_year_details(?,?,?)}");
+						cs.registerOutParameter(1, Types.OTHER);
+						cs.setString(2, from_date);
+						cs.setString(3, till_date);
+						cs.setObject(4, rs);
+
+						con.setAutoCommit(false); // without this the Result set is not returning
+						cs.execute();
+						rs = (ResultSet) cs.getObject(1);
+
+						while (rs.next()) {
+							JSONObject resultjson = new JSONObject();
+
+							resultjson.put("paid_date", rs.getString(1));
+							resultjson.put("payment_mode", rs.getString(2));
+							resultjson.put("invoice_amonut", rs.getString(3));
+							resultjson.put("current_paid_amount", rs.getString(4));
+							
+							
+
+							jarr.put(resultjson);
+						}
+
+						finaljson = new JSONObject();
+
+						finaljson.put("data", jarr);
+
+					} catch (Exception e) {
+						Logger.log(dbConnVar, e);
+					} finally {
+						try {
+							if (con != null) {
+								con.close();
+							}
+							if (cs != null) {
+								cs.close();
+							}
+							if (rs != null) {
+								rs.close();
+							}
+						} catch (Exception e1) {
+							Logger.log(dbConnVar, e1);
+						}
+					}
+
+					return jarr;
+				}			
+						
 				
 				/*
 	 * 

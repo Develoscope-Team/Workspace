@@ -20,9 +20,9 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<link rel="stylesheet"
+	<!-- <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
@@ -971,7 +971,14 @@ translateX(
 								if (response >= 1) {
 
 									var msg = "Vendors Data inserted/Updated Successfully.";
-									alert(msg);
+									 $('#success_msg').text(msg);
+									 $('#success_alert').addClass("show");
+							           $('#success_alert').removeClass("hide");
+							           $('#success_alert').addClass("showAlert");
+							           setTimeout(function(){
+							             $('#success_alert').removeClass("show");
+							             $('#success_alert').addClass("hide");
+							           },2000);
 
 								} 										}
 						}
@@ -1497,7 +1504,14 @@ $('#add_purchase_order').click(function() {
 									if (response >= 1) {
 
 										var msg = "Product Quantity Data inserted Successfully.";
-										alert(msg);
+										 $('#success_msg').text(msg);
+										 $('#success_alert').addClass("show");
+								           $('#success_alert').removeClass("hide");
+								           $('#success_alert').addClass("showAlert");
+								           setTimeout(function(){
+								             $('#success_alert').removeClass("show");
+								             $('#success_alert').addClass("hide");
+								           },2000);
 
 									} 
 								}
@@ -1571,7 +1585,14 @@ $('#add_purchase_order').click(function() {
 												if (response >= 1) {
 
 													var msg = "Purchase Data inserted Successfully.";
-													alert(msg);
+													 $('#success_msg').text(msg);
+													 $('#success_alert').addClass("show");
+											           $('#success_alert').removeClass("hide");
+											           $('#success_alert').addClass("showAlert");
+											           setTimeout(function(){
+											             $('#success_alert').removeClass("show");
+											             $('#success_alert').addClass("hide");
+											           },2000);
 
 												} 
 											}
@@ -1811,11 +1832,11 @@ $('#add_purchase_order').click(function() {
 										
 									 
 										 Swal.fire({
-										        title: "Are you sure?",
-										        text: "You won't be able to revert this!",
-										        icon: "warning",
+											 title: "Your Data Stored Succesfully!",
+										        text: "Do you Want to Print!",
+										        icon: "success",
 										        showCancelButton: true,
-										        confirmButtonText: "Yes, delete it!",
+										        confirmButtonText: "Yes, Print it!",
 										        cancelButtonText: "No, cancel!",
 										        reverseButtons: true
 										    }).then(function(result) {
@@ -1825,8 +1846,7 @@ $('#add_purchase_order').click(function() {
 
 											  window.location.assign(url);
 											 
-										            // result.dismiss can be "cancel", "overlay",
-										            // "close", and "timer"
+										            
 										        } else if (result.dismiss === "cancel") {
 										        	 window.location.reload();
 										        }

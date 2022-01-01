@@ -127,8 +127,12 @@ table.a {
    
 	const  from_date = urlParams.get('from_date');
 	 const till_date = urlParams.get('till_date');
-	 $('#finish').text(from_date);
-	 $('#finish1').text(till_date);
+	 var today = new Date(from_date);
+		var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+	 $('#finish').text(date);
+	 var today = new Date(till_date);
+		var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+	 $('#finish1').text(date);
 	 var total_balance = 0;
 	var html;
 	$.ajax({
@@ -148,7 +152,11 @@ table.a {
 			const row = data.find(d => d.product_name == product_name);
 			data.forEach((row)=> {
 	     	html +="<tr id= tr-id-2 class= tr-class-2>"
-			html += "<td>"+row.entry_date+"</td>"; 
+	     	
+	     		var today = new Date(row.entry_date);
+			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+	     	
+			html += "<td>"+date+"</td>"; 
 			 html += "<td>"+row.product_name+"</td>";
 			 html += "<td>"+row.transaction_desc+"</td>";
 			 html += "<td>"+row.opening_quantity+"</td>";

@@ -63,7 +63,7 @@ table.a {
 								<!--begin::Heading-->
 								<div class="d-flex flex-column">
 									<!--begin::Title-->
-									<h2 class="text-white font-weight-bold my-2 mr-5">Profit and Loss Statement</h2>
+									<h2 class="text-white font-weight-bold my-2 mr-5"> Monthly Profit and Loss Statement</h2>
 									<!--end::Title-->
 
 								</div>
@@ -88,7 +88,48 @@ table.a {
 													<div class="card card-custom">
 														<form method="get" class="form" id="kt_form_1">
 															<div class="card-body">
-																
+																<div class="row ">
+																	
+																	<div class="col-xl-5">
+																		<div class="form-group">
+																			<label>From Date</label> <select type="date"
+																				class="form-control h-40px" id="ddlYears"
+																				 >
+																				<option value="" disabled selected hidden>Select
+																		Year</option>
+																				
+																				</select>
+																		</div>
+																	</div>
+																	
+																	<div class="col-xl-5">
+																		<div class="form-group">
+																			<label>From Date</label> <select type="date"
+																				class="form-control h-40px" id="month"
+																				 >
+																				<option value="" disabled selected hidden>Select
+																		Month</option>
+																				<option value="01">January</option>
+																				<option value="02">February</option>
+																				<option value="03">March</option>
+																				<option value="04">April</option>
+																				<option value="05">May</option>
+																				<option value="06">June</option>
+																				<option value="07">July </option>
+																				<option value="08">August</option>
+																				<option value="09">September</option>
+																				<option value="10">October</option>
+																				<option value="11">November</option>
+																				<option value="12">December</option>
+																				
+																				</select>
+																		</div>
+																	</div>
+																	
+																	
+																	
+																	
+																	</div>
 
 																<div class="row ">
 																	<div class="col-xl-5">
@@ -390,28 +431,46 @@ translateX
 	 $('#from_date').val(date);
 	 $('#till_date').val(date);
 	
-	 $.ajax({
-			url : base + "/bakeshackAPI/api/getCategoryDetails",
-			type : "post",
-			dataType : "json",
-			async : false,
-			data : {"flag":1},
-			success:function(data)
-		    {
-				data.forEach((element)=> {
-					
-				        $('#category_name').append($(document.createElement('option')).prop({
-			                value: element.category_name,
-			                text: element.category_name
-			            }))
-					
-				});   
-		    }
-		});	
+
 	
+	 window.onload = function () {
+	        //Reference the DropDownList.
+	        var ddlYears = document.getElementById("ddlYears");
+	 
+	        //Determine the Current Year.
+	        var currentYear = (new Date()).getFullYear();
+	 
+	        //Loop and add the Year values to DropDownList.
+	        for (var i = 2010; i <= currentYear; i++) {
+	            var option = document.createElement("OPTION");
+	            option.innerHTML = i;
+	            option.value = i;
+	            ddlYears.appendChild(option);
+	        }
+	    };
 	
-	 var ccode=0;
-	
+	 
+	 
+	 
+	 
+	 $('#month').change(function(){
+			
+			var month = $(this).val();
+			var year = $('#ddlYears').val();
+			
+			
+			 var date = year+'-'+ month +'-'+ '01';
+			
+			 $('#from_date').val(date);
+			 
+			var last_day = new Date(year, month , 0).getDate();
+			
+			 var till_date = year +'-'+ month +'-'+ last_day;
+			$('#till_date').val(till_date);
+			
+			
+	 });
+	 
 	
 		
 		    function printP() {
@@ -423,7 +482,7 @@ translateX
 		    	
 		    	  if(from_date.length > 1 && till_date.length > 1){
 		    	
-			  var url ="pnl_statement.jsp" + '?from_date=' + from_date + '&till_date=' + till_date ;
+			  var url ="daily_sales_and_expenses.jsp" + '?from_date=' + from_date + '&till_date=' + till_date ;
            
 				window.location.assign(url);  
 				

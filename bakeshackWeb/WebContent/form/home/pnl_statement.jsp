@@ -60,70 +60,20 @@ table.a {
 					</button>
 				</div>
 		<div class=" " id="card_Report">
-			<font size="+3"><u><center>Profit And Loss Statement</center></u></font> <br />
+			<font size="+3"><u><center> Daily Profit And Loss Statement</center></u></font> <br />
 			<div class="  " >
-			<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font></div><br />
+			<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font>
+			</div><br />
 			
-			<!-- <table class="table" style="border: 0px solid black; ">
-			
-				<thead>
-				<tr>
-				<th style="text-align: center" scope="col" ></th>
-				<th style="text-align: center" scope="col"><u><h3>Sales</h3></u></th>
-				<th style="text-align: center" scope="col"><u><h3>Expense</h3></u></th>
-						
-				</tr>
-				</thead>
-				</table>		 -->
-				
-				
-				
-				
 				
 						
 			<table class="table" style="border: 1px solid black; ">
-				<!-- <thead>
-					<tr>
-						<th style="text-align: center; border:1px solid black" scope="col" >Date  </th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col"></th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col">  </th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col">sales</th>
-						<th style="text-align: center ; border:1px solid black" scope="col"></th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col"></th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col"> </th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col"> Expenses</th>
-						<th style="text-align: center ; border:1px solid black" scope="col"></th>
-						
-						
-					</tr>
-				</thead>
+				
+
+
+					<thead>
 					
-					<thead>
-					<tr>
-						<th style="text-align: center; border:1px solid black" scope="col" >Date  </th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col">Sales Inv. No</th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col"> Inv. Amt </th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col"> Payment Mode</th>
-						<th style="text-align: center ; border:1px solid black" scope="col">Payment Date</th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col">Pur. Inv. No</th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col"> Inv. Amt </th>
-						<th style="text-align: center;border-bottom:1px solid black; border-top:1px solid black;" scope="col"> Payment Mode</th>
-						<th style="text-align: center ; border:1px solid black" scope="col">Payment Date</th>
-						
-						
-					</tr>
-				</thead> -->
-
-
-					<thead>
-					<col>
-					<colgroup span="4"></colgroup>
-					<colgroup span="4"></colgroup>
-					<tr>
-						<td rowspan="1" style="text-align: center; border-bottom: 1px solid black;"></td>
-						<th colspan="4" scope="colgroup" style="text-align: center; border-bottom: 1px solid black;">Sales</th>
-						<th colspan="4" scope="colgroup" style="text-align: center; border-bottom: 1px solid black;">Expense</th>
-					</tr>
+					
 					<tr >
 						<th style="text-align: center; border-bottom: 1px solid black; border: 1px solid black"
 							scope="col">Date</th>
@@ -138,6 +88,8 @@ table.a {
 							scope="col">Payment Mode</th>
 						<th style="text-align: center; border: 1px solid black"
 							scope="col">Payment Date</th>
+							<th style="text-align: center; border-bottom: 1px solid black; border: 1px solid black"
+							scope="col">Trans. Type</th>
 						<th
 							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
 							scope="col">Pur. Inv. No</th>
@@ -159,17 +111,18 @@ table.a {
 					<colgroup span="4"></colgroup>
 					<colgroup span="4"></colgroup>
 					<tr>
-						<td rowspan="1" style="text-align: center; border: 1px solid black;"></td>
-						<th colspan="8" scope="colgroup" style="text-align: center; border: 1px solid black;"></th>
+						
+						<th colspan="10" scope="colgroup" style="text-align: center; border: 1px solid black;"></th>
 					</tr>
 					<tr>
 						<td rowspan="1" style="text-align: center; border: 1px solid black;"></td>
 						<th colspan="4" scope="colgroup" style="text-align: center; border: 1px solid black;">Sales Total =<span class="ml-2" id="sales_total"></</span></th>
+						<td rowspan="1" style="text-align: center; border: 1px solid black;"></td>
 						<th colspan="4" scope="colgroup" style="text-align: center; border: 1px solid black;">Expense Total = <span class="ml-2" id="expn_total"></</span></th>
 					</tr>
 					<tr>
 						<td rowspan="1" style="text-align: center; border: 1px solid black;"></td>
-						<th colspan="8" scope="colgroup" style="text-align: center; border: 1px solid black;">Profit/Loss =<span class="ml-2" id="pnl"></</span></th>
+						<th colspan="9" scope="colgroup" style="text-align: center; border: 1px solid black;">Profit/Loss =<span class="ml-2" id="pnl"></</span></th>
 					</tr>
 					</tfoot>
 				
@@ -177,19 +130,7 @@ table.a {
 				
 			</table>
 			
-			<!-- <table class="table" style="border: 0px solid black; ">
-			
-				<thead>
-				<tr>
-				<th style="text-align: center" scope="col" ></th>
-				<th style="text-align: center" scope="col"><u><h3>Sales</h3></u></th>
-				<th style="text-align: center" scope="col" id="sales_total"></th>
-				<th style="text-align: center" scope="col"><u><h3>Expense</h3></u></th>
-				<th style="text-align: center" scope="col" id="expn_total"></th>
-						
-				</tr>
-				</thead>
-				</table>	 -->
+		
 		</div>
 	</div>
 	</div>
@@ -236,17 +177,10 @@ table.a {
         const  from_date = urlParams.get('from_date');
 		const till_date = urlParams.get('till_date');
 		  var today = new Date(from_date);
-			
 			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
-		
-		
 		 $('#finish').text(date);
 		 var today = new Date(till_date);
-			
 			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
-		 
-		 
-		 
 		 $('#finish1').text(date);
 	var sale_amount = 00;	 
 	var expn_amount = 00;	 
@@ -273,46 +207,48 @@ table.a {
 				
 				
 	     	html +="<tr id= tr-id-2 class= tr-class-2>"
+	     	if(row.customer_code > 0 || row.vendors_code > 0 )
+	     		{
 	        html += "<td style='border-right:1px solid black; border-left:1px solid black'>"+date+"</td>";
 	     	if(row.customer_code > 0)
 	     		{
-	     		sale_amount += parseInt(row.current_paid_amount);
+	     		sale_amount += parseInt(row.invoice_amonut);
 			html += "<td>"+row.invoice_id+"</td>"; 
-	         html += "<td>"+row.current_paid_amount+"</td>";
+	         html += "<td>"+row.invoice_amonut+"</td>";
 	         html += "<td>"+row.payment_mode+"</td>";
 	         var today = new Date(row.paid_date);
-				
-				var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
-	         
+			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
 	         html += "<td style='border-right:1px solid black'>"+date+"</td>";
+	         html += "<td style='border-right:1px solid black'>"+row.field+"</td>";
 	         html += "<td></td>"; 
 	         html += "<td></td>";
 	         html += "<td></td>";
 	         html += "<td style='border-right:1px solid black'></td>";
 	      	 html +="</tr>"
 	     		}
-	     	else{
-	     		expn_amount += parseInt(row.current_paid_amount);
+	     	else if(row.vendors_code > 0){
+	     		expn_amount += parseInt(row.invoice_amonut);
 	     		     html += "<td></td>"; 
 			         html += "<td></td>";
 			         html += "<td></td>";
 			         html += "<td style='border-right:1px solid black'></td>";
+			         html += "<td style='border-right:1px solid black'>"+row.field+"</td>";
+
 	     		     html += "<td>"+row.invoice_id+"</td>"; 
-		             html += "<td>"+row.current_paid_amount+"</td>";
+		             html += "<td>"+row.invoice_amonut+"</td>";
 		             html += "<td>"+row.payment_mode+"</td>";
 		             var today = new Date(row.paid_date);
-						
-						var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+					var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
 		             html += "<td style='border-right:1px solid black'>"+date+"</td>";
 		      	    html +="</tr>"
 	     	}
-			
+			}
 			
 			});
 			 $(".table_body").html(html);
 			 $("#sales_total").text(sale_amount);
 			 $("#expn_total").text(expn_amount);
-			 $("#pnl").text(sale_amount - expn_amount);
+			 $("#pnl").text(sale_amount + expn_amount);
 		}
 	});	
 	$(document).ready(function(){

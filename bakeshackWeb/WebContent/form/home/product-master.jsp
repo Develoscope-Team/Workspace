@@ -818,9 +818,10 @@ $('#cancel')
 
 // Delete data by Product_id
 function deleteById(product_id) {
-	 Swal.fire({
+	var product_id = product_id; 
+	Swal.fire({
 	        title: "Are you sure?",
-	        text: "You won't be able to revert this!",
+	        text: "You want to Delete Data!",
 	        icon: "warning",
 	        showCancelButton: true,
 	        confirmButtonText: "Yes, delete it!",
@@ -829,7 +830,7 @@ function deleteById(product_id) {
 	    }).then(function(result) {
 	        if (result.value) {
 
-	var product_id = product_id;
+	
 	var flag = 3;
 	$
 			.ajax({
@@ -851,18 +852,32 @@ function deleteById(product_id) {
 				error : function(xhr) {
 					var msg = "(insertUpdateProduct)Sorry but there was an error : "
 							+ xhr.status + " " + xhr.statusText;
-					alert(msg);
+					 $('#warning_msg').text(msg);
+					 $('#warning_alert').addClass("show");
+			           $('#warning_alert').removeClass("hide");
+			           $('#warning_alert').addClass("showAlert");
+			           setTimeout(function(){
+			             $('#warning_alert').removeClass("show");
+			             $('#warning_alert').addClass("hide");
+			           },2000);
 				},
 				success : function(response) {
 					if (response != null) {
 						    var msg="product data can't daleted. it's used somewhere.";
-						    /* alert(msg); */
+						    
 						    location.reload(true);
 
 						if (response >= 1) {
 
 							var msg = "product Data deleted Successfully.";
-							alert(msg);
+							 $('#danger_msg').text(msg);
+								$('#danger_alert').addClass("show");
+					   	           $('#danger_alert').removeClass("hide");
+					   	           $('#danger_alert').addClass("showAlert");
+					   	           setTimeout(function(){
+					   	             $('#danger_alert').removeClass("show");
+					   	             $('#danger_alert').addClass("hide");
+					   	           },2000);
 							location.reload(true);
 
 						}
@@ -870,19 +885,9 @@ function deleteById(product_id) {
 				}
 
 			});
-	Swal.fire(
-            "Deleted!",
-            "Your file has been deleted.",
-            "success"
-        )
-        // result.dismiss can be "cancel", "overlay",
-        // "close", and "timer"
+	
     } else if (result.dismiss === "cancel") {
-        Swal.fire(
-            "Cancelled",
-            "Your imaginary file is safe :)",
-            "error"
-        )
+    	location.reload(true);
     }
 });
 }

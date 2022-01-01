@@ -64,9 +64,8 @@ table.a {
 				<font size="+3"><u><center>Customer Wise Report</center></u></font>
 				<br />
 				<div class=" mr-10 ">
-					<font size="+2"><u><center>
-								Date: <span class=" " id="finish"></span>
-							</center></u></font>
+								<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font>
+
 				</div>
 				<br />
 				<table class="table" style="border: 1px solid black">
@@ -129,8 +128,20 @@ table.a {
 	const from_date = urlParams.get('from_date');
 	const till_date = urlParams.get('till_date');
 	var html;
-	 $('#finish').text(date);
 	
+	 var today = new Date(from_date);
+		
+		var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+	
+	
+	 $('#finish').text(date);
+	 var today = new Date(till_date);
+		
+		var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+	 
+	 
+	 
+	 $('#finish1').text(date);
 	
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getCustomerWiseReportDetails",
@@ -150,7 +161,10 @@ table.a {
 			data.forEach((row)=> {
 	     	html +="<tr id= tr-id-2 class= tr-class-2>"
 			html += "<td>"+row.customer_name+"</td>"; 
-			 html += "<td>"+row.order_date+"</td>";
+			 var today = new Date(row.order_date);
+				var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+			
+			 html += "<td>"+date+"</td>";
 			 html += "<td>"+row.order_code+"</td>";
 			 html += "<td>"+row.total_amount+"</td>";
 /* 	            html += "<td>"+row.product_list+"</td>";

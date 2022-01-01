@@ -549,9 +549,10 @@ translateX(
                          	})
 		// Delete data by Recipe_id
 		function deleteById(id) {
-		    Swal.fire({
+			var bank_id = id;
+			Swal.fire({
 		        title: "Are you sure?",
-		        text: "You won't be able to revert this!",
+		        text: "You want to Delete Data!",
 		        icon: "warning",
 		        showCancelButton: true,
 		        confirmButtonText: "Yes, delete it!",
@@ -559,7 +560,7 @@ translateX(
 		        reverseButtons: true
 		    }).then(function(result) {
 		        if (result.value) {
-		        	var bank_id = id;
+		        	
 					var flag = 3;
 					$.ajax({
 								url : base + "/bakeshackAPI/api/insertUpdateBank",
@@ -607,19 +608,9 @@ translateX(
 									}
 								}
 							});
-		        	Swal.fire(
-		                "Deleted!",
-		                "Your file has been deleted.",
-		                "success"
-		            )
-		            // result.dismiss can be "cancel", "overlay",
-		            // "close", and "timer"
+		        	
 		        } else if (result.dismiss === "cancel") {
-		            Swal.fire(
-		                "Cancelled",
-		                "Your imaginary file is safe :)",
-		                "error"
-		            )
+		        	location.reload(true);
 		        }
 		    });
 		}
