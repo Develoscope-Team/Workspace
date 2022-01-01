@@ -37,7 +37,7 @@ table.a {
 		<div class="d-flex align-items-stretch mr-3">
 			<!--begin::Header Logo-->
 			<div class="header-logo">
-				<a href="index.jsp"> <img alt="Logo"
+				<a id="dashboard_logo"> <img alt="Logo"
 					src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Bake-Shack-Logo.png"
 					class="logo-default max-h-60px" />
 
@@ -55,7 +55,7 @@ table.a {
 						<li
 							class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open menu-item-here"
 							data-menu-toggle="click" aria-haspopup="true"><a
-							href="index.jsp" class="menu-link "> <span
+							 class="menu-link " id="dashboard"> <span
 								class="menu-text">Dashboard</span> <i class="menu-arrow"></i>
 						</a></li>
 						<li class="menu-item menu-item-submenu menu-item-rel"
@@ -953,16 +953,7 @@ if(session.getAttribute("login_id")!= null)
 String sessionName = (String) session.getAttribute("login_id");
 
 %>
-<!-- <br>
-<button id="logout">Logout</button>
-<script>
-$("#logout").click(function(){
-	
-alert("hey Are You Sure ..!");
-window.location.assign("logout.jsp");
-})
 
-</script> -->
 
 <% 
 }
@@ -1001,7 +992,8 @@ else
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
 	var session1='<%=session1%>';
-	
+	var login_id;
+	var password;
 	var navbar_user_name;
 	$.ajax({
 			url : base + "/bakeshackAPI/api/getUsersDetails",
@@ -1014,6 +1006,8 @@ else
 				const row = data.find(d => d.login_id == session1);
 				if(row != null){
 					navbar_user_name = row.users_name;
+					login_id = row.login_id;
+					password = row.password;
 					$('#navbar_title').text(row.users_name);
 					$('#navbar_login_id').text(row.login_id);
 					$('#navbar_user_name').text(row.users_name);
@@ -1023,6 +1017,18 @@ else
 				}
 	        } 
 		});	
+	
+	$('#dashboard').click(function(){
+		var url = "/bakeshackWeb/form/home/index.jsp"  + '?login_id=' + login_id ;  
+	
+		window.location.assign(url);
+	})
+	
+	$('#dashboard_logo').click(function(){
+		var url = "/bakeshackWeb/form/home/index.jsp"  + '?login_id=' + login_id ;  
+		
+		window.location.assign(url);
+	})
 	
 	
 	$('#sign_out').click(function(){
@@ -1040,11 +1046,6 @@ else
 	        	window.location.assign(url);
 	        }
 	    })
-		
-		
-		
-		
-		
 		
 		
 		

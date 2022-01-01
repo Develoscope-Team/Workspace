@@ -6,8 +6,8 @@
 <%
 String login_id = request.getParameter("login_id");
 session.setAttribute("login_id", login_id);
-int time= session.getMaxInactiveInterval(); 
- out.println("<br> Get Max Inactive Sessioon Interval"+"time:"+time);  
+
+
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
@@ -620,10 +620,11 @@ function showSlides() {
 	<script src="//www.amcharts.com/lib/3/themes/light.js"></script>
 	<script
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/charts/amcharts/charts.js"></script>
+
+
 	<script>
-
-	setTimeout(function(){showTimeout()},<%= session.getMaxInactiveInterval() - 60*1000 %>);
-
+	<%-- var session1='<%=session1%>'; --%>
+	
 	
 	var k = 0;
 		$.ajax({
