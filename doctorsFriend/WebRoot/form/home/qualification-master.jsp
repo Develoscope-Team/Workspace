@@ -195,9 +195,9 @@ table.a {
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
 
 	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/js/pages/features/custom/spinners.js"></script>
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/js/pages/features/custom/spinners.js"></script>
 	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/js/main.js"></script>
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/js/main.js"></script>
 
 	<script type="text/javascript">
 	

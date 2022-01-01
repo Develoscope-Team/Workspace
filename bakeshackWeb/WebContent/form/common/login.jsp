@@ -65,7 +65,7 @@
 							</form>
 							<div class="ml-15  " style="width:300px">
 								
-								<a href="javascript:;" id="kt_login_signup" class="text-white font-weight-bold">Reset Password</a>
+								<!-- <a href="javascript:;" id="kt_login_signup" class="text-white font-weight-bold">Reset Password</a> -->
 							</div>
 							<div class="mb-20  ">
 								 <h3>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</h3> 
@@ -116,7 +116,8 @@ var base='<%=base%>';
 	 		        {
 	 					const row = data.find(d => d.login_id == login_id);
 	 					if(row != null){
-	 						var url = "/bakeshackWeb/form/home/index.jsp"  + '?login_id=' + login_id + '&password=' + password;  
+	 						
+	 						var url = "/bakeshackWeb/form/home/index.jsp"  + '?login_id=' + login_id ;  
 	 						Swal.fire({
 	            		        title: "WelCome!",
 	            		        text: "Have A Good Day " + row.users_name,
