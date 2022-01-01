@@ -1184,12 +1184,28 @@ $('#add_sales_order').click(function() {
 
 										}); 
 									  
-									  if (confirm("Do You Wish To Print Invoice!")) {
-									 		var url = "sales_order_receipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&transaction_id=' + transaction_id + '&partial_paid_amount=' + partial_paid_amount;
-										  window.location.assign(url);
-											 } else {
-												  window.location.reload();
-											  }
+									  
+									  
+									  Swal.fire({
+									        title: "Are you sure?",
+									        text: "You want to print!",
+									        icon: "warning",
+									        showCancelButton: true,
+									        confirmButtonText: "Yes, print!",
+									        cancelButtonText: "No, cancel!",
+									        reverseButtons: true
+									    }).then(function(result) {
+									        if (result.value) {
+											  
+										 		var url = "sales_order_receipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&transaction_id=' + transaction_id + '&partial_paid_amount=' + partial_paid_amount;
+
+											  window.location.assign(url);
+											 
+										        } else if (result.dismiss === "cancel") {
+										        	 window.location.reload();
+										        }
+										    });
+									 
 						})
 var i =r;					
 $('#add ').click(function () {

@@ -43,7 +43,7 @@ table.a {
 	
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
-	<div class="col-xl-10 mt-20  offset-1">
+	<div class="col-xl-12 mt-20  ">
 	<div class="card card-custom gutter-b ">
 				<div class="dropdown dropdown-inline mt-5" >
 					<button type="button1" class="  btn  font-weight-bolder " style="float:right;"
@@ -60,7 +60,7 @@ table.a {
 					</button>
 				</div>
 		<div class=" " id="card_Report">
-			<font size="+3"><u><center>Monthly Profit And Loss Statement</center></u></font> <br />
+			<font size="+3"><u><center>Yearly Profit And Loss Statement</center></u></font> <br />
 			<div class="  " >
 			<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font></div><br />
 			
@@ -72,51 +72,72 @@ table.a {
 			<table class="table" style="border: 1px solid black; ">
 				
 
+
 					<thead>
 					<col>
 					<colgroup span="4"></colgroup>
 					<colgroup span="4"></colgroup>
 					<tr>
 						<td rowspan="1" style="text-align: center; border-bottom: 1px solid black;"></td>
-						<th colspan="3" scope="colgroup" style="text-align: center; border-bottom: 1px solid black;">Sales</th>
-						<th colspan="3" scope="colgroup" style="text-align: center; border-bottom: 1px solid black;">Expense</th>
+						<th colspan="7" scope="colgroup" style="text-align: center; border-bottom: 1px solid black;">Sales</th>
+						<th colspan="7" scope="colgroup" style="text-align: center; border-bottom: 1px solid black;">Expense</th>
 					</tr>
 					<tr >
 						<th style="text-align: center; border-bottom: 1px solid black; border: 1px solid black"
-							scope="col">Date</th>
+							scope="col">Month</th>
 						<th
 							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
-							scope="col">Sales Invoice Amount</th>
-						<th
-							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
-							scope="col">Received Amount</th>
+							scope="col">Sales Inv. Amt</th>
 							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col">Cash</th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col">Net B.</th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col">Upi</th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col">Cheque</th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col">Card</th>
+						<th
 							style="text-align: center;border: 1px solid black"
-							scope="col">Balance Amount</th>
-						<!-- <th
-							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
-							scope="col">Payment Mode</th>
-						<th style="text-align: center; border: 1px solid black"
-							scope="col">Payment Date</th> -->
+							scope="col">Credit</th>
+						
 						<th
 							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
-							scope="col">Purchase Invoice Amount</th>
-						<th
-							style="text-align: center;border-bottom: 1px solid black; border-top: 1px solid black;"
-							scope="col">Received Amount</th>
+							scope="col">Pur. Inv. Amt</th>
 							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col">Cash</th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col">NB</th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col">UPI</th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col">Cheque</th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col">Card</th>
+						<th
 							style="text-align: center; border: 1px solid black"
-							scope="col">Balance Amount</th>
+							scope="col">Credit</th>
 					
 
 					</tr>
 					</thead>
-					<tbody class="table_body text-center" style="font-size:14px; border-bottom: 1px solid black;">
+					<tbody class="table_body text-center" style="font-size:16px; border-bottom: 1px solid black;">
 				</tbody>
 				<tfoot>
 				<col>
-					<colgroup span="3"></colgroup>
-					<colgroup span="3"></colgroup>
+					<colgroup span="7"></colgroup>
+					<colgroup span="7"></colgroup>
 					
 					<tr>
 						<td rowspan="1" style="text-align: center; border: 1px solid black;"></td>
@@ -126,26 +147,50 @@ table.a {
 						<th
 							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
 							scope="col"  id="total_sales_amount">00.00</th>
-						<th
-							style="text-align: center;border-bottom: 1px solid black; border-top: 1px solid black;"
-							scope="col"  id="total_current_sales_amount">00.00</th>
 							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col"  id="total_sales_cash"> - </th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col"  id="total_sales_nb"> - </th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col"  id="total_sales_upi"> - </th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col"  id="total_sales_cheque"> - </th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col"  id="total_sales_card"> - </th>
+						<th
 							style="text-align: center;border: 1px solid black"
-							scope="col"  id="total_balance_sales_amount">00.00</th>
+							scope="col"  id="total_current_sales_amount">00.00</th>
 							
 							
 							<th
 							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
 							scope="col" id="total_purchase_amount">00.00</th>
-						<th
-							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
-							scope="col" id="total_current_purchase_amount">00.00</th>
 							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col" id="total_purchase_cash"> - </th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col" id="total_purchase_nb"> - </th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col" id="total_purchase_upi"> - </th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col" id="total_purchase_cheque"> - </th>
+							<th
+							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
+							scope="col" id="total_purchase_card"> - </th>
+						<th
 							style="text-align: center; border: 1px solid black"
-							scope="col" id="total_balance_purchase_amount">00.00</th></tr>
+							scope="col" id="total_current_purchase_amount">00.00</th></tr>
 					<tr>
 						<td rowspan="1" style="text-align: center; border: 1px solid black;"></td>
-						<th colspan="8" scope="colgroup" style="text-align: center; border: 1px solid black;">Profit/Loss =<span class="ml-2" id="pnl"></</span></th>
+						<th colspan="14" scope="colgroup" style="text-align: center; border: 1px solid black;">Profit/Loss =<span class="ml-2" id="pnl"></</span></th>
 					</tr>
 					</tfoot>
 				
@@ -206,35 +251,56 @@ table.a {
 		 var today = new Date(till_date);
 			
 			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-			var no_of_days = today.getDate();
 		 $('#finish1').text(date);
 	var sale_amount = 00;
-	var sale_current_amount = 00;	 
-	var expn_amount = 00;	
-	var expn_current_amount = 00;	 
+	var sale_current_amount = 00;
+	var sale_amount_cash = 00;
+	var sale_amount_nb = 00;
+	var sale_amount_upi = 00;
+	var sale_amount_cheque = 00;
+	var sale_amount_card = 00;
+	var sale_amount_credit = 00;
+	
+	
+	
+	
+	
+	
+	
+	
+	 
 
 	
-	
+	const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+		  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 	
 	
 	 var html = '';
-	for(var i = 1; i <= no_of_days; i++){
+	for(var i = 1; i <= 12; i++){
 	 	 
 	 	         html += "<tr id= tr-id-2 class= tr-class-2>"
-	 	       	 html += '<td id="date-' + i +'" style="border-right:1px solid black; border-left:1px solid black; height:24px"> -- </td>';
+	 	       	 html += '<td id="date-' + i +'" style="border-right:1px solid black; border-left:1px solid black; height:30px"> '+ monthNames[i - 1]+' </td>';
 		 	     html += '<td id="sale_amount-' + i +'"> - </td>';
-		 	    html += '<td id="sale_current_amt-' + i +'"> - </td>';
-			 	 html += '<td id="sale_balance_amt-' + i +'" style="border-right:1px solid black"> - </td>';
+		 	     html += '<td id="cash-' + i +'"> - </td>';
+		 	     html += '<td id="net_bank-' + i +'"> - </td>';
+		 	     html += '<td id="upi-' + i +'"> - </td>';
+		 	     html += '<td id="cheque-' + i +'"> - </td>';
+		 	     html += '<td id="card-' + i +'"> - </td>';
+			 	 html += '<td id="credit-' + i +'" style="border-right:1px solid black"> - </td>';
                  html += '<td  id="purchase_amount-' + i +'"> - </td>';
-                 html += '<td  id="purchase_current_amt-' + i +'"> - </td>';
-                 html += '<td id="purchase_balance_amt-' + i +'" style="border-right:1px solid black"> - </td>';
+                 html += '<td  id="purchase_cash-' + i +'"> - </td>';
+                 html += '<td  id="purchase_nb-' + i +'"> - </td>';
+                 html += '<td  id="purchase_upi-' + i +'"> - </td>';
+                 html += '<td  id="purchase_cheque-' + i +'"> - </td>';
+                 html += '<td  id="purchase_card-' + i +'"> - </td>';
+                 html += '<td id="purchase_credit-' + i +'" style="border-right:1px solid black"> - </td>';
                  html += '</tr>';
 		        $(".table_body").html(html);
 }
 	
 	
 	$.ajax({
-		url : base + "/bakeshackAPI/api/getDailySaleOfMonthDetails",
+		url : base + "/bakeshackAPI/api/getDailySaleOfYearDetails",
 		type : "post",
 		dataType : "json",
 		async : false,
@@ -247,26 +313,74 @@ table.a {
 			const row = data.find(d => d.paid_date != " ");
 			data.forEach((row)=> {
 				
-				 var today = new Date(row.paid_date);
 					
-					var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();		
-				$('#date-'+today.getDate()).text(date);
-				$('#sale_amount-'+today.getDate()).text(row.invoice_amonut);
-				$('#sale_current_amt-'+today.getDate()).text(row.current_paid_amount);
-				$('#sale_balance_amt-'+today.getDate()).text((parseInt(row.invoice_amonut) - parseInt(row.current_paid_amount) ).toFixed(2));
+				$('#date-'+row.paid_date).text(monthNames[row.paid_date - 1]);
 				sale_amount += parseInt(row.invoice_amonut);
 				sale_current_amount += parseInt(row.current_paid_amount);
+				$('#sale_amount-'+row.paid_date).text(sale_amount.toFixed(2));
+				if(row.payment_mode == 'cash')
+				{
+					$('#cash-'+row.paid_date).text(row.current_paid_amount);
+					sale_amount_cash  += parseInt(row.current_paid_amount);
+					
+				}else if(row.payment_mode == 'nb')
+				{
+					$('#net_bank-'+row.paid_date).text(row.current_paid_amount);
+					sale_amount_nb  += parseInt(row.current_paid_amount);
+					
+				}else if(row.payment_mode == 'upi')
+				{
+					$('#upi-'+row.paid_date).text(row.current_paid_amount);
+					sale_amount_upi  += parseInt(row.current_paid_amount);
+				}else if(row.payment_mode == 'credit')
+				{
+					
+					$('#credit-'+row.paid_date).text(row.current_paid_amount);
+					sale_amount_nb  += parseInt(row.current_paid_amount);
+				}else if(row.payment_mode == 'card')
+				{
+					$('#card-'+row.paid_date).text(row.current_paid_amount);
+					sale_amount_card  += parseInt(row.current_paid_amount);
+				}else if(row.payment_mode == 'cheque')
+				{
+					$('#cheque-'+row.paid_date).text(row.current_paid_amount);
+					sale_amount_cheque  += parseInt(row.current_paid_amount);
+				}
+				
+				
+			
+				 $('#credit-'+row.paid_date).text((sale_amount - sale_current_amount).toFixed(2)); 
 				
 			});
 			 
 		}
 	});	 
 	$('#total_sales_amount').text(sale_amount.toFixed(2));
-	$('#total_current_sales_amount').text(sale_current_amount.toFixed(2));
-	$('#total_balance_sales_amount').text((sale_amount - sale_current_amount).toFixed(2));
+	$('#total_current_sales_amount').text((sale_amount - sale_current_amount).toFixed(2)); 
+	$('#total_sales_cash').text(sale_amount_cash.toFixed(2));
+	$('#total_sales_nb').text(sale_amount_nb.toFixed(2));
+	$('#total_sales_upi').text(sale_amount_upi.toFixed(2));
+	$('#total_sales_card').text(sale_amount_card.toFixed(2));
+	$('#total_sales_cheque').text(sale_amount_cheque.toFixed(2));
+	
+
+	var expn_amount = 00;	
+	var expn_current_amount = 00;
+	var expn_amount_cash = 00;
+	var expn_amount_nb = 00;
+	var expn_amount_upi = 00;
+	var expn_amount_cheque = 00;
+	var expn_amount_card = 00;
+	var expn_amount_credit = 00;
+	
+	
+	
+	
+	
+	
 	
 	$.ajax({
-		url : base + "/bakeshackAPI/api/getDailyPurchaseOfMonthDetails",
+		url : base + "/bakeshackAPI/api/getDailyPurchaseOfYearDetails",
 		type : "post",
 		dataType : "json",
 		async : false,
@@ -279,16 +393,38 @@ table.a {
 			const row = data.find(d => d.paid_date != " ");
 			data.forEach((row)=> {
 				
-				 var today = new Date(row.paid_date);
-					
-					var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();		
-				$('#date-'+today.getDate()).text(date);
-				$('#purchase_amount-'+today.getDate()).text(row.invoice_amonut);
-				$('#purchase_current_amt-'+today.getDate()).text(row.current_paid_amount);
-				$('#purchase_balance_amt-'+today.getDate()).text((parseInt(row.invoice_amonut) - parseInt(row.current_paid_amount)).toFixed(2));
-	     	
-				expn_amount += parseInt(row.invoice_amonut);	
-				 expn_current_amount += parseInt(row.current_paid_amount); ;	 
+				 	
+				$('#date-'+row.paid_date).text(monthNames[row.paid_date - 1]);
+				
+				//$('#purchase_current_amt-'+row.paid_date).text(row.current_paid_amount);
+				if(row.payment_mode == 'cash')
+				{
+					$('#purchase_cash-'+row.paid_date).text(row.current_paid_amount);
+					expn_amount_cash  += parseInt(row.current_paid_amount);
+				}else if(row.payment_mode == 'nb')
+				{
+					$('#purchase_nb-'+row.paid_date).text(row.current_paid_amount);
+					expn_amount_nb  += parseInt(row.current_paid_amount);
+				}else if(row.payment_mode == 'upi')
+				{
+					$('#purchase_upi-'+row.paid_date).text(row.current_paid_amount);
+					expn_amount_upi  += parseInt(row.current_paid_amount);
+				}else if(row.payment_mode == 'credit')
+				{
+					$('#purchase_credit-'+row.paid_date).text(row.current_paid_amount);
+				}else if(row.payment_mode == 'card')
+				{
+					$('#purchase_card-'+row.paid_date).text(row.current_paid_amount);
+					expn_amount_card  += parseInt(row.current_paid_amount);
+				}else if(row.payment_mode == 'cheque')
+				{
+					$('#purchase_cheque-'+row.paid_date).text(row.current_paid_amount);
+					expn_amount_cheque  += parseInt(row.current_paid_amount);
+				}
+				expn_amount += parseInt(row.invoice_amonut);
+				$('#purchase_amount-'+row.paid_date).text(expn_amount.toFixed(2));
+				 expn_current_amount += parseInt(row.current_paid_amount); 
+				 $('#purchase_credit-'+row.paid_date).text((expn_amount - expn_current_amount).toFixed(2));
 
 			
 			});
@@ -296,10 +432,14 @@ table.a {
 		}
 	});	
 	$('#total_purchase_amount').text(expn_amount.toFixed(2));
-	$('#total_current_purchase_amount').text(expn_current_amount.toFixed(2));
-	$('#total_balance_purchase_amount').text((expn_amount - expn_current_amount).toFixed(2));
-	$('#pnl').text((sale_amount + expn_current_amount).toFixed(2));
+	$('#total_current_purchase_amount').text((expn_amount - expn_current_amount).toFixed(2));
+	$('#pnl').text((sale_amount + expn_amount).toFixed(2));
 	
+	$('#total_purchase_cash').text(expn_amount_cash.toFixed(2));
+	$('#total_purchase_nb').text(expn_amount_nb.toFixed(2));
+	$('#total_purchase_upi').text(expn_amount_upi.toFixed(2));
+	$('#total_purchase_card').text(expn_amount_card.toFixed(2));
+	$('#total_purchase_cheque').text(expn_amount_cheque.toFixed(2));
 	$(document).ready(function(){
 		  // Search all columns
 		  $('#txt_searchall').keyup(function(){

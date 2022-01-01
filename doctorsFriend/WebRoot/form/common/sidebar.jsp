@@ -224,7 +224,15 @@
 										<span class="menu-text">Purchase Entry</span>										
 									</a>
 								</li> 
-
+                               
+                               <li class="menu-item" aria-haspopup="true">
+									<a href="./patientDetailsUpdate.jsp" class="menu-link">
+										<i class="menu-bullet menu-bullet-line">
+											<span></span>
+										</i>
+										<span class="menu-text">Patient Entry</span>										
+									</a>
+								</li> 
 								<li class="menu-item" aria-haspopup="true">
 									<a href="./mr_entry_screen.jsp" class="menu-link">
 										<i class="menu-bullet menu-bullet-line">
@@ -291,7 +299,7 @@
 													<i class="menu-bullet menu-bullet-line">
 														<span></span>
 													</i>
-													<span class="menu-text">Temperature Chart</span>										
+													<span class="menu-text">Temperature Chart(PDF)</span>										
 												</a>
 											</li>
 											<li class="menu-item" aria-haspopup="true">
@@ -299,7 +307,7 @@
 													<i class="menu-bullet menu-bullet-line">
 														<span></span>
 													</i>
-													<span class="menu-text">B.P. & Sugar Level Char</span>										
+													<span class="menu-text">B.P. & Sugar Level Char(PDF)</span>										
 												</a>
 											</li>
 											
@@ -382,6 +390,14 @@
 														<span></span>
 													</i>
 													<span class="menu-text">Medical Representative </span>										
+												</a>
+											</li>
+											<li class="menu-item" aria-haspopup="true">
+												<a href="./income_n_expenses_search.jsp" class="menu-link">
+													<i class="menu-bullet menu-bullet-line">
+														<span></span>
+													</i>
+													<span class="menu-text">Income & Expenses </span>										
 												</a>
 											</li>
 											

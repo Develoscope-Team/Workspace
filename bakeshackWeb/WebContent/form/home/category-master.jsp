@@ -599,9 +599,10 @@ translateX(
 
 		// Delete data by category_id
 		function deleteById(category_id) {
-			 Swal.fire({
+			var category_id = category_id;
+			Swal.fire({
 			        title: "Are you sure?",
-			        text: "You won't be able to revert this!",
+			        text: "You want to Delete Data!",
 			        icon: "warning",
 			        showCancelButton: true,
 			        confirmButtonText: "Yes, delete it!",
@@ -609,11 +610,8 @@ translateX(
 			        reverseButtons: true
 			    }).then(function(result) {
 			        if (result.value) {
-
-			var category_id = category_id;
 			var flag = 3;
-			$
-					.ajax({
+			$.ajax({
 						url : base + "/bakeshackAPI/api/insertUpdateCategory",
 						type : "post",
 						dataType : "json",
@@ -631,6 +629,7 @@ translateX(
 						error : function(xhr) {
 							var msg = "(insertUpdatecategory)Sorry but there was an error : "
 									+ xhr.status + " " + xhr.statusText;
+							alert(msg);
 							 $('#warning_msg').text(msg);
 							 $('#warning_alert').addClass("show");
 					           $('#warning_alert').removeClass("hide");
@@ -661,17 +660,13 @@ translateX(
 						}
 
 					});
-			Swal.fire(
-	                "Deleted!",
-	                "Your file has been deleted.",
-	                "success"
-	            )
+			
 	            // result.dismiss can be "cancel", "overlay",
 	            // "close", and "timer"
 	        } else if (result.dismiss === "cancel") {
 	            Swal.fire(
 	                "Cancelled",
-	                "Your imaginary file is safe :)",
+	                "Your Data is safe :)",
 	                "error"
 	            )
 	        }

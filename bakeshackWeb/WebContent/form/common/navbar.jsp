@@ -293,6 +293,21 @@ table.a {
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">IN-OUT Ledger</span>
 									</a></li>
+									<li class="menu-item" aria-haspopup="true"><a
+										href="pnl_search.jsp" class="menu-link"> <i
+											class="menu-bullet menu-bullet-dot"> <span></span>
+										</i> <span class="menu-text">PNL Day Wise</span>
+									</a></li>
+									<li class="menu-item" aria-haspopup="true"><a
+										href="pnl_monthly_search.jsp" class="menu-link"> <i
+											class="menu-bullet menu-bullet-dot"> <span></span>
+										</i> <span class="menu-text">PNL Month Wise</span>
+									</a></li>
+									<li class="menu-item" aria-haspopup="true"><a
+										href="pnl_yearly_search.jsp" class="menu-link"> <i
+											class="menu-bullet menu-bullet-dot"> <span></span>
+										</i> <span class="menu-text">PNL Year Wise</span>
+									</a></li>
 									
 									
 									
@@ -656,7 +671,7 @@ table.a {
 						<span
 							class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
 						<span
-							class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">BAKESHACK</span>
+							class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4" id="navbar_title">BAKESHACK</span>
 						<span class="symbol symbol-35"> <span
 							class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">BS</span>
 						</span>
@@ -689,9 +704,9 @@ table.a {
 				</div>
 				<div class="d-flex flex-column">
 					<a href="#"
-						class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">Bake
+						class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary" id="navbar_login_id">Bake
 						Shack</a>
-					<div class="text-muted mt-1">Dhara Sushant Girolkar</div>
+					<div class="text-muted mt-1" id="navbar_user_name">Dhara Sushant Girolkar</div>
 					<div class="navi mt-2">
 						<a href="#" class="navi-item"> <span
 							class="navi-link p-0 pb-2"> <span class="navi-icon mr-1">
@@ -710,11 +725,11 @@ table.a {
 												</g>
 											</svg> <!--end::Svg Icon-->
 								</span>
-							</span> <span class="navi-text text-muted text-hover-primary">dhara@bakeshack.in</span>
+							</span> <span class="navi-text text-muted text-hover-primary" id="navbar_user_email">dhara@bakeshack.in</span>
 						</span>
-						</a> <a href="#"
-							class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign
-							Out</a>
+						</a> <button 
+							class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5" id="sign_out">Sign
+							Out</button>
 					</div>
 				</div>
 			</div>
@@ -904,7 +919,7 @@ table.a {
 			<!--end::Item-->
 			<!--begin::Item-->
 			<li class="nav-item mb-2" data-toggle="tooltip" title="Whatsapp" data-placement="left">
-				<a class="btn btn-sm btn-icon btn-bg-light btn-icon-success btn-hover-primary" href="https://web.whatsapp.com/" target="_blank">
+				<a class="btn btn-sm btn-icon btn-bg-light btn-icon-success btn-hover-success" href="https://web.whatsapp.com/" target="_blank">
 					<i class="flaticon-whatsapp"></i>
 				</a>
 			</li>
@@ -931,7 +946,29 @@ table.a {
 		<!--end::Content-->
 	</div>
 			
-			
+	<%
+String session1 = (String) session.getAttribute("login_id");
+if(session.getAttribute("login_id")!= null)
+{
+String sessionName = (String) session.getAttribute("login_id");
+
+%>
+<!-- <br>
+<button id="logout">Logout</button>
+<script>
+$("#logout").click(function(){
+	
+alert("hey Are You Sure ..!");
+window.location.assign("logout.jsp");
+})
+
+</script> -->
+
+<% 
+}
+else
+	response.sendRedirect("LoginForm.html");
+%>			
 			<!--end::User-->
 		</div>
 		<!--end::Topbar-->
@@ -963,6 +1000,65 @@ table.a {
 	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
+	var session1='<%=session1%>';
+	
+	var navbar_user_name;
+	$.ajax({
+			url : base + "/bakeshackAPI/api/getUsersDetails",
+			type : "post",
+			dataType : "json",
+			async : false,
+			data : {"flag":1,},
+			success:function(data)
+	        {
+				const row = data.find(d => d.login_id == session1);
+				if(row != null){
+					navbar_user_name = row.users_name;
+					$('#navbar_title').text(row.users_name);
+					$('#navbar_login_id').text(row.login_id);
+					$('#navbar_user_name').text(row.users_name);
+					$('#navbar_user_email').text(row.email_id);
+					
+					
+				}
+	        } 
+		});	
+	
+	
+	$('#sign_out').click(function(){
+		var url = "logout.jsp" ;  
+		Swal.fire({
+	        title: "GOOD BYE!",
+	        text: "Have A Nice Day " + navbar_user_name,
+	        icon: "success",
+	        timer: 3000,
+	        onOpen: function() {
+	            Swal.showLoading()
+	        }
+	    }).then(function(result) {
+	        if (result.dismiss === "timer") {
+	        	window.location.assign(url);
+	        }
+	    })
+		
+		
+		
+		
+		
+		
+		
+		
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	var product_name2;
 	var html5="";

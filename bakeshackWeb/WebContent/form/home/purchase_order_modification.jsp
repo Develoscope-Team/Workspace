@@ -19,9 +19,9 @@ try {
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<link rel="stylesheet"
+	<!-- <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
@@ -1125,10 +1125,10 @@ $('#add_sales_order').click(function() {
 									  
 									  Swal.fire({
 									        title: "Are you sure?",
-									        text: "You won't be able to revert this!",
+									        text: "You want to print!",
 									        icon: "warning",
 									        showCancelButton: true,
-									        confirmButtonText: "Yes, delete it!",
+									        confirmButtonText: "Yes, Print!",
 									        cancelButtonText: "No, cancel!",
 									        reverseButtons: true
 									    }).then(function(result) {
@@ -1137,19 +1137,9 @@ $('#add_sales_order').click(function() {
 									 		var url = "purchase_order_booking_receipt.jsp" + '?vendors_code=' + vendors_code + '&order_code=' + order_code + '&partial_paid_amount=' + partial_paid_amount  ;
 
 										  window.location.assign(url);
-										  Swal.fire(
-									                "Deleted!",
-									                "Your file has been deleted.",
-									                "success"
-									            )
-									            // result.dismiss can be "cancel", "overlay",
-									            // "close", and "timer"
+										 
 									        } else if (result.dismiss === "cancel") {
-									            Swal.fire(
-									                "Cancelled",
-									                "Your imaginary file is safe :)",
-									                "error"
-									            )
+									           window.location.reload();
 									        }
 									    });
 								

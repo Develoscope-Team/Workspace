@@ -124,8 +124,12 @@ table.a {
 		 category_name = urlParams.get('category_name');
         const  from_date = urlParams.get('from_date');
 		const till_date = urlParams.get('till_date');
-		 $('#finish').text(from_date);
-		 $('#finish1').text(till_date);
+		 var today = new Date(from_date);
+			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+		 $('#finish').text(date);
+		 var today = new Date(till_date);
+			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+		 $('#finish1').text(date);
 		 
 	
 	var html;
@@ -149,7 +153,9 @@ table.a {
 	     	html +="<tr id= tr-id-2 class= tr-class-2>"
 			html += "<td>"+row.category_name+"</td>"; 
 			 html += "<td>"+row.subcategory_name+"</td>";
-			 html += "<td>"+row.entry_date+"</td>";
+			 var today = new Date(row.entry_date);
+				var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+			 html += "<td>"+date+"</td>";
 			 html += "<td>"+row.purchase_quantity+"</td>";
 	         html += "<td>"+row.selling_price+"</td>";
 	      	 html +="</tr>"

@@ -4,12 +4,18 @@
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 
 <%
+String login_id = request.getParameter("login_id");
+session.setAttribute("login_id", login_id);
+int time= session.getMaxInactiveInterval(); 
+ out.println("<br> Get Max Inactive Sessioon Interval"+"time:"+time);  
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 String dbConnVar = "BAKESHACk";
 try {
 %>
+
+
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
@@ -616,7 +622,8 @@ function showSlides() {
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/charts/amcharts/charts.js"></script>
 	<script>
 
-	
+	setTimeout(function(){showTimeout()},<%= session.getMaxInactiveInterval() - 60*1000 %>);
+
 	
 	var k = 0;
 		$.ajax({
@@ -1095,11 +1102,8 @@ function showSlides() {
 		
 		
 		
-		/* setTimeout(function() { 
-			  alert("$premium$");
-			}, 1);	 */
 		
-
+		
 	</script>
 </body>
 </html>
@@ -1109,3 +1113,4 @@ function showSlides() {
 Logger.log(dbConnVar, "" + e);
 }
 %>
+<%-- Welcome <%=login_id%> --%>

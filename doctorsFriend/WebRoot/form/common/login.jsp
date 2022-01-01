@@ -168,7 +168,7 @@
 var basePath='<%=basePath%>';    
 var base='<%=base%>';  
     	
-    	$('#kt_login_singin_form_submit_button').click(function(){
+    	
 
 		
     		/* var loginid = $('#loginid').val();
@@ -246,7 +246,7 @@ var base='<%=base%>';
         	});
         	
         	            	 
-    	});
+    
     	
    
     

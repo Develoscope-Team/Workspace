@@ -656,9 +656,11 @@ $('.btn_action').hide();
 
 		// Delete data by unit_id
 		function deleteById(unit_id) {
+			
+			var unit_id = unit_id;
 			Swal.fire({
 		        title: "Are you sure?",
-		        text: "You won't be able to revert this!",
+		        text: "You want to Delete Data!",
 		        icon: "warning",
 		        showCancelButton: true,
 		        confirmButtonText: "Yes, delete it!",
@@ -667,7 +669,7 @@ $('.btn_action').hide();
 		    }).then(function(result) {
 		        if (result.value) {
 
-			var unit_id = unit_id;
+			
 
 			var flag = 3;
 			$
@@ -702,6 +704,7 @@ $('.btn_action').hide();
 						if (response >= 1) {
 
 							var msg = "Unit Data deleted Successfully.";
+							 $('#danger_msg').text(msg);
 							$('#danger_alert').addClass("show");
 				   	           $('#danger_alert').removeClass("hide");
 				   	           $('#danger_alert').addClass("showAlert");

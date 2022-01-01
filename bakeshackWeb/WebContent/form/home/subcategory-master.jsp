@@ -708,9 +708,10 @@ translateX(
 
 		// Delete data by subcategory_id
 		function deleteById(subcategory_id) {
+			var subcategory_id = subcategory_id;
 			Swal.fire({
 		        title: "Are you sure?",
-		        text: "You won't be able to revert this!",
+		        text: "You want to Delete Data!",
 		        icon: "warning",
 		        showCancelButton: true,
 		        confirmButtonText: "Yes, delete it!",
@@ -718,7 +719,7 @@ translateX(
 		        reverseButtons: true
 		    }).then(function(result) {
 		        if (result.value) {
-			var subcategory_id = subcategory_id;
+			
 			var flag = 3;
 			$
 					.ajax({
@@ -752,6 +753,7 @@ translateX(
 								if (response >= 1) {
 
 									var msg = "Subcategory Data deleted Successfully.";
+									 $('#danger_msg').text(msg);
 									$('#danger_alert').addClass("show");
 						   	           $('#danger_alert').removeClass("hide");
 						   	           $('#danger_alert').addClass("showAlert");
@@ -766,13 +768,8 @@ translateX(
 						}
 
 					});
-			Swal.fire(
-	                "Deleted!",
-	                "Your file has been deleted.",
-	                "success"
-	            )
-	            // result.dismiss can be "cancel", "overlay",
-	            // "close", and "timer"
+			
+	           
 	        } else if (result.dismiss === "cancel") {
 	            window.location.reload();
 	        }

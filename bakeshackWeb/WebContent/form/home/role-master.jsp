@@ -111,8 +111,8 @@ table.a {
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-5">
-									<div class="card card-custom gutter-b">
+								<div class="col-xl-5" >
+									<div class="card card-custom gutter-b" style="height: 93%">
 										<div class="card-body">
 										<div class="input-icon ml-10" style = "width: 30%;">
 																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
@@ -344,8 +344,7 @@ translateX(
 							if (role_type != '' && role_type.match(letters)) {
 								
 								   
-								$
-										.ajax({
+								$.ajax({
 											url : base + "/bakeshackAPI/api/insertUpdateRole",
 											type : "post",
 											dataType : "json",
@@ -592,13 +591,7 @@ translateX(
 					}
 
 				});
-				Swal.fire(
-		                "Deleted!",
-		                "Your file has been deleted.",
-		                "success"
-		            )
-		            // result.dismiss can be "cancel", "overlay",
-		            // "close", and "timer"
+				
 		        } else if (result.dismiss === "cancel") {
 		            window.location.reload();
 		        }

@@ -112,9 +112,9 @@ table.a {
 								</div>
 								<div class="col-xl-5 ">
 								
-								<div class="card card-custom gutter-b">
-									<div class="card-body">
-									<div class="input-icon ml-10" style = "width: 30%;">
+								<div class="card card-custom gutter-b" style="height: 93%">
+									<div class="card-body" style="height: 90%" >
+									<div class="input-icon ml-10" style = "width: 30%; ">
 																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
 																<span>
 																	<i class="flaticon2-search-1 text-muted"></i>
@@ -326,13 +326,11 @@ translateX(
 		var letters = /^[A-Za-z() .]+$/;
 		 if(text.match(letters))
 	     {
-				
 			 $('.msg').text('');
 		      return true;
 	     }
 	   else
 	     {
-		  
 		   $('.msg').text('Please Enter Letters Only.');
 		   $("#upi_name").val("");
 	    
@@ -529,9 +527,11 @@ translateX(
 		
 		// Delete data by upi_id
 		function deleteById(id){
+            	 
+            	 var upi_master_id = id;
             	 Swal.fire({
      		        title: "Are you sure?",
-     		        text: "You won't be able to revert this!",
+     		       text: "You want to Delete Data!",
      		        icon: "warning",
      		        showCancelButton: true,
      		        confirmButtonText: "Yes, delete it!",
@@ -539,7 +539,7 @@ translateX(
      		        reverseButtons: true
      		    }).then(function(result) {
      		        if (result.value) {
-			var upi_master_id = id;
+			
 			var flag = 3;
 			$.ajax({
 				url : base + "/bakeshackAPI/api/insertUpdateUpi",
@@ -571,6 +571,7 @@ translateX(
 						if (response >=1) {
 
 							var msg = "UPI Data deleted Successfully.";
+							$('#danger_msg').text(msg);
 							$('#danger_alert').addClass("show");
 				   	           $('#danger_alert').removeClass("hide");
 				   	           $('#danger_alert').addClass("showAlert");
@@ -585,18 +586,9 @@ translateX(
 				}
 
 			});
-		}
-		
-     		       Swal.fire(
-   		                "Deleted!",
-   		                "Your file has been deleted.",
-   		                "success"
-   		            )
-   		            // result.dismiss can be "cancel", "overlay",
-   		            // "close", and "timer"
-   		        } else if (result.dismiss === "cancel") {
-   		            window.location.reload();
-   		        }
+     		       } else if (result.dismiss === "cancel") {
+     		            window.location.reload();
+     		        }
    		    });
 		}
              

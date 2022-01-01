@@ -776,7 +776,7 @@ function update(id) {
 						
 //Delete data by city_id
 function deleteById(users_id){
-	
+			var users_id = users_id;
 			Swal.fire({
 		        title: "Are you sure?",
 		        text: "You won't be able to revert this!",
@@ -787,7 +787,7 @@ function deleteById(users_id){
 		        reverseButtons: true
 		    }).then(function(result) {
 		        if (result.value) {
-	var users_id = users_id;
+	
 	var flag = 3;
 	
 	$.ajax({
@@ -822,6 +822,7 @@ function deleteById(users_id){
 				if (response >=1) {
 
 					var msg = "User details Data deleted Successfully.";
+					 $('#danger_msg').text(msg);
 					$('#danger_alert').addClass("show");
 		   	           $('#danger_alert').removeClass("hide");
 		   	           $('#danger_alert').addClass("showAlert");
@@ -837,13 +838,7 @@ function deleteById(users_id){
 
 	});
 			
-	Swal.fire(
-            "Deleted!",
-            "Your file has been deleted.",
-            "success"
-        )
-        // result.dismiss can be "cancel", "overlay",
-        // "close", and "timer"
+
     } else if (result.dismiss === "cancel") {
         window.location.reload();
     }

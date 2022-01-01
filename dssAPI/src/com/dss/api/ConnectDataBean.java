@@ -4558,7 +4558,57 @@ public class ConnectDataBean {
 			return jarr;
 		}
 		
-		
+	
+		public JSONArray getProfitAndLossDetails(String from_date, String till_date) {
+			Connection con = null;
+			CallableStatement cs = null;
+			ResultSet rs = null;
+			JSONArray jarr = null;
+			JSONObject finaljson = null;
+			try {
+				jarr = new JSONArray();
+				con = cf.getConnection();
+				cs = con.prepareCall("{?=call fun_retrieve_income_n_expenses_details(?,?,?)}");
+				cs.registerOutParameter(1, Types.OTHER);
+				cs.setString(2, from_date);
+				cs.setString(3, till_date);
+				cs.setObject(4, rs);
+				con.setAutoCommit(false); // without this the Result set is not returning
+				cs.execute();
+				rs = (ResultSet) cs.getObject(1);
+				while (rs.next()) {
+					JSONObject resultjson = new JSONObject();
+					resultjson.put("invoice_id", rs.getString(1));
+					resultjson.put("invoice_date", rs.getDate(2));
+					resultjson.put("paid_date", rs.getDate(3));
+					resultjson.put("patient_code", rs.getString(4));
+					resultjson.put("payment_mode", rs.getString(5));
+					resultjson.put("clinic_fee", rs.getString(6));
+					resultjson.put("to_be_paid", rs.getString(7));
+					jarr.put(resultjson);
+				}
+				finaljson = new JSONObject();
+				finaljson.put("data", jarr);
+			} catch (Exception e) {
+				Logger.log(dbConnVar, e);
+			} finally {
+				try {
+					if (con != null) {
+						con.close();
+					}
+					if (cs != null) {
+						cs.close();
+					}
+					if (rs != null) {
+						rs.close();
+					}
+				} catch (Exception e1) {
+					Logger.log(dbConnVar, e1);
+				}
+			}
+
+			return jarr;
+		}		
 		
 		
 		
