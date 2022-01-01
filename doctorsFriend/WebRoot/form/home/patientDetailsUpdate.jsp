@@ -301,7 +301,7 @@ table.a {
 	$('#patient_name').change(function(){
 
 		var patient_name = $(this).val();
-			alert(patient_name);
+			
 		$.ajax({
 			url : base + "/dssAPI/dfapi/getPatientDetails",
 			type : "post",
@@ -325,17 +325,11 @@ table.a {
 					}
 					
 					$('#village').val(row.city_desc);
-					let date = new Date(row.birth_date);
-					alert(row.birth_date);
-					$('#dob').val(date.getDate()   + "/" + (date.getMonth()+1) + "/" + date.getFullYear());
 					
-					if(row.birth_date > "0001-01-01 BC"){
-						let date = new Date(row.birth_date);
-						alert(date);
-						$('#dob').val(date.getFullYear() + "/" + (date.getMonth()+1) + "/" + date.getDate()  );
-						console.log($('#dob').val());
-					}
+					
+					
 					$('#age').val(row.age);
+					$('#dob').val(row.birth_date);
 					$('#aadhar_no').val(row.aadhar_no);
 					$('#blood_group').val(row.blood_group);
 					$('#mobile_no').val(row.mobile_no);
@@ -372,8 +366,10 @@ table.a {
 							var gender = $('#gender').val();
 							var flag = 2; // Addition
 
-							alert(patient_name + patient_code + mobile_no + date_of_birth + village + blood_group + gender + flag);
 							
+							
+					if(patient_code > 0){
+						
 					
 							$.ajax({
 								url : "http://localhost:8080/dssAPI/dfapi/insertUpdatePatientDetails",
@@ -412,8 +408,52 @@ table.a {
 								}
 
 							});
+					}
+					else{
 						
+						$.ajax({
+							url : "http://localhost:8080/dssAPI/dfapi/insertUpdatePatientDetails",
+							type : "post",
+							dataType : "json",
+							async : false,
+							data : {
+								"patient_name" : patient_name,
+                                "patient_code" : patient_code,
+                                "birth_date" : date_of_birth,
+                                "mobile_no" : mobile_no,
+                                "city_desc" : village,
+                                "blood_group" : blood_group,
+                                "gender" : gender,
+								"flag" : 1
+							},
+							
+							error : function(xhr) {
+								var msg = "Data insertion failed Error : "
+										+ xhr.status
+										+ " "
+										+ xhr.statusText;
+								alert(msg);
+							},
+							success : function(response) {
+								if (response != null) {
 
+									if (response >= 1) {
+
+										var msg = "Patient Data Inserted Successfully.";
+										alert(msg);
+
+									} 
+								}
+							}
+
+						});
+						
+						
+						
+						
+						
+					}
+					window.location.reload();
 						})
 	
 	

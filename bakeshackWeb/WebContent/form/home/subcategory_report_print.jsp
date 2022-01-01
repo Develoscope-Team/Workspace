@@ -120,7 +120,7 @@ table.a {
 	var base='<%=base%>';
 
 	 var today = new Date();
-	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	 var date = (today.getMonth()+1)+'-'+today.getFullYear();
 	 $('#finish').text(date);
 	 $('#from_date').val(date);
 	 $('#till_date').val(date);

@@ -20,9 +20,9 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<link rel="stylesheet"
+	<!-- <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
@@ -1384,12 +1384,25 @@ $('#add_sales_order').click(function() {
 										}); 
 									  
 									}
-										  if (confirm("Do You Wish To Print Invoice!")) {
-										 		var url = "order_booking_receipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&transaction_code=' + transaction_code + '&partial_paid_amount=' + partial_paid_amount ;
-											  window.location.assign(url);
-												 } else {
-													  window.location.reload();
-												  }
+										 
+									
+									
+									Swal.fire({
+								        title: "Are you sure?",
+								        text: "You want to print!",
+								        icon: "warning",
+								        showCancelButton: true,
+								        confirmButtonText: "Yes, print!",
+								        cancelButtonText: "No, cancel!",
+								        reverseButtons: true
+								    }).then(function(result) {
+								        if (result.value) {
+									 		var url = "order_booking_receipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&transaction_code=' + transaction_code + '&partial_paid_amount=' + partial_paid_amount ;
+										  window.location.assign(url);
+									        } else if (result.dismiss === "cancel") {
+									        	 window.location.reload();
+									        }
+									    });
 		})		
 					
 </script>

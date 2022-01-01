@@ -62,7 +62,8 @@ table.a {
 		<div class=" " id="card_Report">
 			<font size="+3"><u><center>Product Wise Sale Report</center></u></font> <br />
 			<div class=" mr-10 " >
-			<font size="+2"><u><center>Date: <span class=" " id="finish"></span></center></u></font></div><br />
+						<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font>
+</div><br />
 			<table class="table" style="border: 1px solid black">
 				<thead>
 					<tr>
@@ -125,6 +126,20 @@ table.a {
    
 	const  from_date = urlParams.get('from_date');
 	 const till_date = urlParams.get('till_date');
+	 
+	 var today = new Date(from_date);
+		
+		var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+	
+	
+	 $('#finish').text(date);
+	 var today = new Date(till_date);
+		
+		var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+	 
+	 
+	 
+	 $('#finish1').text(date);
 	
 	var html;
 	$.ajax({

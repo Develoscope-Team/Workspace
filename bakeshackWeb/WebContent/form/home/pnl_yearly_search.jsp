@@ -63,7 +63,7 @@ table.a {
 								<!--begin::Heading-->
 								<div class="d-flex flex-column">
 									<!--begin::Title-->
-									<h2 class="text-white font-weight-bold my-2 mr-5">Profit and Loss Statement</h2>
+									<h2 class="text-white font-weight-bold my-2 mr-5"> Yearly Profit and Loss Statement</h2>
 									<!--end::Title-->
 
 								</div>
@@ -88,7 +88,20 @@ table.a {
 													<div class="card card-custom">
 														<form method="get" class="form" id="kt_form_1">
 															<div class="card-body">
-																
+																<div class="row ">
+																	
+																	<div class="col-xl-5">
+																		<div class="form-group">
+																			<label>From Date</label> <select type="date"
+																				class="form-control h-40px" id="ddlYears"
+																				 >
+																				<option value="" disabled selected hidden>Select
+																		Year</option>
+																				
+																				</select>
+																		</div>
+																	</div>
+																	</div>
 
 																<div class="row ">
 																	<div class="col-xl-5">
@@ -390,28 +403,44 @@ translateX
 	 $('#from_date').val(date);
 	 $('#till_date').val(date);
 	
-	 $.ajax({
-			url : base + "/bakeshackAPI/api/getCategoryDetails",
-			type : "post",
-			dataType : "json",
-			async : false,
-			data : {"flag":1},
-			success:function(data)
-		    {
-				data.forEach((element)=> {
-					
-				        $('#category_name').append($(document.createElement('option')).prop({
-			                value: element.category_name,
-			                text: element.category_name
-			            }))
-					
-				});   
-		    }
-		});	
+
 	
+	 window.onload = function () {
+	        //Reference the DropDownList.
+	        var ddlYears = document.getElementById("ddlYears");
+	 
+	        //Determine the Current Year.
+	        var currentYear = (new Date()).getFullYear();
+	 
+	        //Loop and add the Year values to DropDownList.
+	        for (var i = 2010; i <= currentYear; i++) {
+	            var option = document.createElement("OPTION");
+	            option.innerHTML = i;
+	            option.value = i;
+	            ddlYears.appendChild(option);
+	        }
+	    };
 	
-	 var ccode=0;
-	
+	 
+	 
+	 
+	 
+	 $('#ddlYears').change(function(){
+			
+			var year = $(this).val();
+			//var year = $('#ddlYears').val();
+			
+			
+			 var date = year+'-'+ '01' +'-'+ '01';
+			
+			 $('#from_date').val(date);
+			 
+			 var till_date = year+'-'+ '12' +'-'+ '31';
+			$('#till_date').val(till_date);
+			
+			
+	 });
+	 
 	
 		
 		    function printP() {
@@ -423,7 +452,7 @@ translateX
 		    	
 		    	  if(from_date.length > 1 && till_date.length > 1){
 		    	
-			  var url ="pnl_statement.jsp" + '?from_date=' + from_date + '&till_date=' + till_date ;
+			  var url ="monthly_sales_and_expenses.jsp" + '?from_date=' + from_date + '&till_date=' + till_date ;
            
 				window.location.assign(url);  
 				

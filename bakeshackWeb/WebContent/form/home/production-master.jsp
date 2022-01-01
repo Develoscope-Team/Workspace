@@ -953,10 +953,10 @@ var jsonString = JSON.stringify(product_req);
 								});
 								 Swal.fire({
 								        title: "Are you sure?",
-								        text: "You won't be able to revert this!",
+								        text: "You want to print!",
 								        icon: "warning",
 								        showCancelButton: true,
-								        confirmButtonText: "Yes, delete it!",
+								        confirmButtonText: "Yes, print!",
 								        cancelButtonText: "No, cancel!",
 								        reverseButtons: true
 								    }).then(function(result) {

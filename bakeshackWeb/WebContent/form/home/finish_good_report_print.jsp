@@ -62,10 +62,9 @@ table.a {
 			</div>
 			<div class=" " id="card_Report">
 				<font size="+3"><u><center>Finish Good Report</center></u></font> <br />
-				<div class=" mr-10 ">
-					<font size="+2"><u><center>
-								Date: <span class=" " id="finish"></span>
-							</center></u></font>
+				<div class=" mr-10 " >
+			<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font></div><br />
+		
 				</div>
 				<br />
 
@@ -125,6 +124,9 @@ table.a {
 	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ dd;
 	 $('#from_date').val(date);
 	 $('#till_date').val(date);
+	 var today = new Date(date);
+		var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+	 
 	 $('#finish').text(date);
 
 		var product_name = " ";
@@ -136,7 +138,12 @@ table.a {
 		const  from_date = urlParams.get('from_date');
 		 const till_date = urlParams.get('till_date');
 		 
-		
+		 var today = new Date(from_date);
+			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+		 $('#finish').text(date);
+		 var today = new Date(till_date);
+			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+		 $('#finish1').text(date);
 		var html;
 		
 		$.ajax({
@@ -159,7 +166,9 @@ table.a {
 		     		 html +="<tr id= tr-id-2 class= tr-class-2>"
 		     		 html += "<td>"+row.product_name+"</td>"; 
 		     		 html += "<td>"+row.product_id+"</td>";
-		     		 html += "<td>"+row.entry_date+"</td>";
+		     		 var today = new Date(row.entry_date);
+		 			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+		     		 html += "<td>"+date+"</td>";
 					 html += "<td>"+row.purchase_quantity+"</td>";
 					 html += "<td>"+row.selling_price+"</td>";
 				   	var qty = row.purchase_quantity;

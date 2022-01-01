@@ -1,4 +1,3 @@
- 
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
@@ -14,20 +13,16 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
+
+<script type="text/javascript"
+	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
+
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	
-	 <link rel="stylesheet" href="style.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-       <script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/confirm_prompt/alertify.min.js"></script>
-	<link rel="stylesheet" href="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/confirm_prompt/alertify.core.css" />
-	<link rel="stylesheet" href="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/confirm_prompt/alertify.default.css" id="toggleCSS" />
-  
 <style>
 table, th, td {
 	border: 1px solid white;
@@ -48,290 +43,75 @@ table.a {
 	
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
-	<div class="d-flex flex-column flex-root">
-		<!--begin::Page-->
-		<div class="d-flex flex-row flex-column-fluid page">
-			<!--begin::Wrapper-->
-			<div class="d-flex flex-column flex-row-fluid wrapper"
-				id="kt_wrapper">
+	<!--Start Show Session Expire Warning Popup here -->
 
-				<!--begin::Content-->
-				<div class="content d-flex flex-column flex-column-fluid"
-					id="kt_content">
-					<!--begin::Subheader-->
-					<div class="subheader py-2 py-lg-12 subheader-transparent"
-						id="kt_subheader">
-						<div
-							class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-							<!--begin::Info-->
-							<div class="d-flex align-items-center flex-wrap mr-1">
-								<!--begin::Heading-->
-								<div class="d-flex flex-column">
-									<!--begin::Title-->
-									<h2 class="text-white font-weight-bold my-2 mr-5">Bank
-										Master</h2>
-									<!--end::Title-->
+    <div class="modal fade" id="session-expire-warning-modal" aria-hidden="true" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
-								</div>
-								<!--end::Heading-->
-							</div>
-							<!--end::Info-->
+        <div class="modal-dialog" role="document">
 
-						</div>
-					</div>
-					
-<style>
-.alert{
-  padding: 20px 40px;
-  min-width: 40%;
-  position: fixed ;
-  right: 0;
-  top: 10px;
-  border-radius: 4px;
-  border-left: 8px solid #ffa502;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-}
-.alert.hide{
-  animation: hide_slide 1s ease forwards;
-}
-.alert.showAlert{
-  opacity: 1;
-  pointer-events: auto;
-}
-.alert.show{
-  animation: show_slide 1s ease forwards;
-}
-@keyframes show_slide {
-  0%{
-    transform: translateX(100%);
-  }
-  40%{
-    transform: translateX(-10%);
-  }
-  80%{
-    transform: translateX(0%);
-  }
-  100%{
-    transform: translateX(-10px);
-  }
-}
+            <div class="modal-content">
 
-@keyframes hide_slide {
-  0%{
-    transform: translateX(-10px);
-  }
-  40%{
-    transform: translateX(0%);
-  }
-  80%{
-    transform: translateX(-10%);
-  }
-  100%{
-    transform: translateX(100%);
-  }
-}
-.alert-text{
-  padding: 0 20px;
-  font-size: 18px;
- 
-}
- .divclass {
-  background: #415665;
-  height: 5%;
-  width:20%;
-  border-radius: 15px;
-  padding:20px;
-  font-size:22px;
-  
-}  
-</style>					
-					<!--end::Subheader-->
-					<!--begin::Entry-->
-					<div class="d-flex flex-column-fluid">
-						<!--begin::Container-->
-						<div class="container">
+                <div class="modal-header">                 
 
-							
+                    <h4 class="modal-title">Session Expire Warning</h4>
 
+                </div>
 
-							<div class="col-xl-12 offset-xl-0">
-								<div class="card card-custom gutter-b">
-									<div class="card-body">
-										<div class="example mb-10">
-											<div class="example-preview">
-												<div class="card card-custom">
-													<form class="form" id="kt_form_1">
-														<div class="card-body">
-														
-														
-														<div class="row">
-																	<div class="col-xl-6">
-															<div class="form-group">
-																<label>Bank Name</label> <input type="text"
-																	id="bank_name"
-																	class="form-control form-control-solid"
-																	placeholder="Enter Recipe Name" />
-															</div>
-															</div>
-															<div class="col-xl-6">
-															<div class="form-group">
-																<label>Branch Name</label> <input type="text"
-																	id="branch"
-																	class="form-control form-control-solid"
-																	placeholder="Enter Branch" />
-															</div>
-															</div>
-															</div>
-															<div class="row">
-																	<div class="col-xl-6">
-															<div class="form-group">
-																<label>Account Holder Name</label> <input type="text"
-																	id="account_holder_name"
-																	class="form-control form-control-solid"
-																	placeholder="Enter Account holder Name" />
-															</div>
-															</div>
-															<div class="col-xl-6">
-															<div class="form-group">
-																<label>Account Type</label> <select
-																	class="form-control form-control-solid" name="account" id="acc_type">
-																	<option value="" disabled selected hidden>Select
-																		Acccount</option>
-																		<option value="current" >Current </option>
-																		<option value="saving" >Saving </option>
-																		
-																		
-																</select>
-															</div>
-															</div>
-															</div>
-															<div class="row">
-																	<div class="col-xl-6">
-															<div class="form-group">
-																<label>Account No </label> <input type="text"
-																	id="account_no"
-																	class="form-control form-control-solid"
-																	placeholder="Enter Account No." />
-															</div>
-															</div>
-															<div class="col-xl-6">
-															<div class="form-group">
-																<label>IFSC Code</label> <input type="text"
-																	id="IFSC_code"
-																	class="form-control form-control-solid"
-																	placeholder="Enter IFSC code " />
-															</div>
-															</div>
-															</div>
-															<div class="row">
-															<div class="col-xl-6">
-															<div class="form-group">
-																<label>Opening Amount </label> <input type="text"
-																	id="opening_amount"
-																	class="form-control form-control-solid"
-																	placeholder="Enter Opening Amount" />
-															</div>
-															</div></div>
-															
-														</div>
-													
-														<div class="text-center">
-															<button type="button" id="addBank"
-																class="btn btn-primary mr-2">Submit</button>
-															<button type="submit" id="updateBank"
-																class="btn btn-primary mr-2">Update</button>
-															<button type="button" class="btn btn-secondary" id="cancel">Cancel</button>
-														</div>
-													</form>
-													<!--end::Form-->
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-12 offset-xl-0">
-								<div class="card card-custom gutter-b">
-									<div class="card-body">
-									<div class="input-icon ml-10" style = "width: 30%;">
-																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
-																<span>
-																	<i class="flaticon2-search-1 text-muted"></i>
-																</span>
-															</div>
-											<br />
-										<!--begin: Datatable-->
-										<table data-toggle="table" class='a'
-											data-classes="table table-hover table-condensed "
-											data-striped="true" data-sort-name="Quality"
-											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=550 id="table-id">
-											<thead>
-												<tr>
-													<th class="col-sm-1 text-center" data-field="NO"
-														data-sortable="true">No</th>
-													<th class="col-sm-2 text-center" data-field="Bank-Name"
-														data-sortable="true">Bank Name</th>
-													
-														<th class="col-sm-3 text-center" data-field="Holder-Name"
-														data-sortable="true">Holder Name</th>
-														<th class="col-sm-1 text-center" data-field="Account-Type"
-														data-sortable="true">Account Type</th>
-														<th class="col-sm-3 text-center" data-field="Account-No"
-														data-sortable="true">Account No</th>
-														
-													
-													<th class="col-sm-2 text-center" data-field="Action"
-														data-sortable="false">Action</th>
-												</tr>
+                <div class="modal-body">
 
-											</thead>
-											<tbody class="data">
-											</tbody>
-										</table>
-										<!--end: Datatable-->
-									</div>
-								</div>
-							</div>
+                    Your session will expire in <span id="seconds-timer"></span> seconds. Do you want to extend the session?
 
+                </div>
 
-							<div class="alert alert-success  " role="alert" id="success_alert">
-								<div class="alert-text">
-								<span id="success_msg"></span>
-								</div>
-							</div>
-							
-							<div
-								class="alert alert-danger "
-								role="alert" id="danger_alert">
-								<div class="alert-text">
-									<span id="danger_msg"></span>
-								</div>
-							</div>
-							<div
-								class="alert alert-warning "
-								role="alert" id="warning_alert">
-								<div class="alert-text">
-									<span id="warning_msg"></span>
-								</div>
-							</div>
+                <div class="modal-footer">
 
-						</div>
-						<!--end::Container-->
-					</div>
-					<!--end::Entry-->
-				</div>
-				<!--end::Content-->
-				<!--begin::Footer-->
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				<!--end::Footer-->
-			</div>
-			<!--end::Wrapper-->
-		</div>
-		<!--end::Page-->
-	</div>
+                    <button id="btnOk" type="button" class="btn btn-default" style="padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: normal; border: 1px solid transparent; border-radius: 4px;  background-color: #428bca; color: #FFF;">Ok</button>
+
+                    <button id="btnSessionExpiredCancelled" type="button" class="btn btn-default" data-dismiss="modal" style="padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: normal; border: 1px solid transparent; border-radius: 4px; background-color: #428bca; color: #FFF;">Cancel</button>
+
+                    <button id="btnLogoutNow" type="button" class="btn btn-default" style="padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: normal; border: 1px solid transparent; border-radius: 4px;  background-color: #428bca; color: #FFF;">Logout now</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--End Show Session Expire Warning Popup here -->
+
+    <!--Start Show Session Expire Popup here -->
+
+    <div class="modal fade" id="session-expired-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Session Expired</h4>
+
+                </div>
+
+                <div class="modal-body">
+
+                    Your session is expired.
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button id="btnExpiredOk" onclick="sessionExpiredRedirect()" type="button" class="btn btn-primary" data-dismiss="modal" style="padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: normal; border: 1px solid transparent; border-radius: 4px; background-color: #428bca; color: #FFF;">Ok</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
 	<!--begin::Scrolltop-->
@@ -355,488 +135,207 @@ table.a {
 <script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
 	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
-	<script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-	
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
 
 
 	<script type="text/javascript">
 	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
+
+	var sessServerAliveTime = 10 * 60 * 200;
+	var sessionTimeout = 19 * 60000;
+
 	
-	$('#opening_amount').val('00');
-		$('#updateBank').hide();
-		$("#addBank").show();
-		  function JSalert(){
-				// A confirm dialog
-				alertify.confirm("Are you sure, you want to delete this file?", function (e) {
-				    if (e) {
-				        alertify.alert("File is Removed!");
-				    } else {
-				        alertify.alert("File is safe!");
-				    }
-				});
-				}	
-		$('#addBank').click(function() {
-			 $('#success_msg').text('Bank Data inserted/Updated Successfully!');
-			 $('#success_alert').addClass("show");
-	           $('#success_alert').removeClass("hide");
-	           $('#success_alert').addClass("showAlert");
-	           setTimeout(function(){
-	             $('#success_alert').removeClass("show");
-	             $('#success_alert').addClass("hide");
-	           },2000);
+	var sessServerAliveTime = 10 * 60 * 2;
+	var sessionTimeout = 1 * 60000;
+	var sessLastActivity;
+	var idleTimer, remainingTimer;
+	var isTimout = false;
 
-									var bank_name = $('#bank_name').val();
-									var account_holder_name = $('#account_holder_name').val();
-									var account_no = $('#account_no').val();
-									var IFSC_code = $('#IFSC_code').val();
-									var branch = $('#branch').val();
-									var acc_type = $('#acc_type').val();
-									var opening_amount= $('#opening_amount').val();
-									
-									var flag 		  = 1; 
-																
-									if(bank_name != '' || account_holder_name != ''){
-										$.ajax({
-											url : base + "/bakeshackAPI/api/insertUpdateBank",
-											type : "post",
-											dataType : "json",
-											async : false,
-											data : {
-												
-												"bank_name" : bank_name,
-												"account_holder_name" : account_holder_name,
-												"account_no" : account_no,
-												"IFSC_code" : IFSC_code,
-												"branch" : branch,
-												"acc_type" : acc_type,
-												"opening_amount" : opening_amount,
-												
-												"flag" : flag
-											},
-											error : function(xhr) {
-												var msg = "(insertUpdateRecipe)Sorry but there was an error : "
-														+ xhr.status
-														+ " "
-														+ xhr.statusText;
-												alert(msg);
-												 $('#warning_msg').text(msg);
-												 $('#warning_alert').addClass("show");
-										           $('#warning_alert').removeClass("hide");
-										           $('#warning_alert').addClass("showAlert");
-										           setTimeout(function(){
-										             $('#warning_alert').removeClass("show");
-										             $('#warning_alert').addClass("hide");
-										           },2000);
-												
-												
-												
-												
-												
-											},
-											success : function(response) {
-												if (response != null) {
+	var sess_intervalID, idleIntervalID;
+	var sess_lastActivity;
+	var timer;
+	var isIdleTimerOn = false;
+	localStorage.setItem('sessionSlide', 'isStarted');
 
-													if (response >= 1) {
+	function sessPingServer() {
+	    if (!isTimout) {
+	        //$.ajax({
+	        //    url: '/Admin/SessionTimeout',
+	        //    dataType: "json",
+	        //    async: false,
+	        //    type: "POST"
+	        //});
 
-														var msg = "Bank Data inserted/Updated Successfully.";
-														 $('#success_msg').text(msg);
-														 $('#success_alert').addClass("show");
-												           $('#success_alert').removeClass("hide");
-												           $('#success_alert').addClass("showAlert");
-												           setTimeout(function(){
-												             $('#success_alert').removeClass("show");
-												             $('#success_alert').addClass("hide");
-												           },2000);
+	        return true;
+	    }
+	}
 
-														
-														
-														location.reload(true);
+	function sessServerAlive() {
+	    sess_intervalID = setInterval('sessPingServer()', sessServerAliveTime);
+	}
 
-													} 										}
-											}
+	function initSessionMonitor() {
+	    $(document).bind('keypress.session', function (ed, e) {
+	        sessKeyPressed(ed, e);
+	    });
+	    $(document).bind('mousedown keydown', function (ed, e) {
 
-										});
-									}
+	        sessKeyPressed(ed, e);
+	    });
+	    sessServerAlive();
+	    startIdleTime();
+	}
 
-								})
+	$(window).scroll(function (e) {
+	    localStorage.setItem('sessionSlide', 'isStarted');
+	    startIdleTime();
+	});
 
-				"use strict";
-				//Class definition
-						
+	function sessKeyPressed(ed, e) {
+	    var target = ed ? ed.target : window.event.srcElement;
+	    var sessionTarget = $(target).parents("#session-expire-warning-modal").length;
 
- var bank_id;
-	var html = "";
+	    if (sessionTarget != null && sessionTarget != undefined) {
+	        if (ed.target.id != "btnSessionExpiredCancelled" && ed.target.id != "btnSessionModal" && ed.currentTarget.activeElement.id != "session-expire-warning-modal" && ed.target.id != "btnExpiredOk"
+	             && ed.currentTarget.activeElement.className != "modal fade modal-overflow in" && ed.currentTarget.activeElement.className != 'modal-header'
+	    && sessionTarget != 1 && ed.target.id != "session-expire-warning-modal") {
+	            localStorage.setItem('sessionSlide', 'isStarted');
+	            startIdleTime();
+	        }
+	    }
+	}
 
-	$.ajax({
-		url : base + "/bakeshackAPI/api/getBankDetails",
-		type : "post",
-		dataType : "json",
-		async : false,
-		data : {"bank_id": bank_id},
-		success:function(data)
-		{
-			  
-			
-			const row = data.find(d => d.bank_id == bank_id);
-			data.forEach((row)=> {
-				html +="<tr id= tr-id-2 class= tr-class-2>"
-				html += "<td>"+row.bank_id+"</td>"; 
-				 html += "<td>"+row.bank_name+"</td>";
-		           
-		            html += "<td>"+row.account_holder_name+"</td>";
-		            html += "<td>"+row.acc_type+"</td>";
-		            html += "<td>"+row.account_no+"</td>";
-		           
-		         
-	     	       	 html += '<td><a href="javascript:update('+row.bank_id+');" class="btn_action btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="12" height="2" rx="1"/></g></svg></span>'
-	         
+	function startIdleTime() {
+	    stopIdleTime();
+	    localStorage.setItem("sessIdleTimeCounter", $.now());
+	    idleIntervalID = setInterval('checkIdleTimeout()', 1000);
+	    isIdleTimerOn = false;
+	}
 
-	     	       	+ '<a href="javascript:deleteById('+row.bank_id+');"  class="btn_action btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
-		            html +="</tr>"
-			
-			
-			});
-			 $(".data").html(html);
-		}
-		
-	});	
+	var sessionExpired = document.getElementById("session-expired-modal");
+	function sessionExpiredClicked(evt) {
+	    window.location = "Logout.html";
+	}
 
+	sessionExpired.addEventListener("click", sessionExpiredClicked, false);
+	function stopIdleTime() {
+	    clearInterval(idleIntervalID);
+	    clearInterval(remainingTimer);
+	}
 
+	function checkIdleTimeout() {
+	     // $('#sessionValue').val() * 60000;
+	    var idleTime = (parseInt(localStorage.getItem('sessIdleTimeCounter')) + (sessionTimeout)); 
+	    if ($.now() > idleTime + 60000) {
+	        $("#session-expire-warning-modal").modal('hide');
+	        $("#session-expired-modal").modal('show');
+	        clearInterval(sess_intervalID);
+	        clearInterval(idleIntervalID);
 
-	$(document).ready(function (){
-		   var table = $('#table-id').DataTable();
-		 
-		});
+	        $('.modal-backdrop').css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 100);
+	        $("#session-expired-modal").css('z-index', 2000);
+	        $('#btnExpiredOk').css('background-color', '#428bca');
+	        $('#btnExpiredOk').css('color', '#fff');
 
-		// Update data by recipe name and id
-		function update(bank_id) {
-			$('.btn_action').hide();
+	        isTimout = true;
 
-			$("#updateBank").show();
-			$("#addBank").hide();
-			
+	        sessLogOut();
 
-			$.ajax({
-				url : base + "/bakeshackAPI/api/getBankDetails",
-				type : "post",
-				dataType : "json",
-				async : false,
-				data : {"flag":1,},
-				success:function(data)
-		        {
-					
-					const row = data.find(d => d.bank_id == bank_id);
-					
-					console.log(row);
-					
-					if(row != null){
-						$('#bank_name').val(row.bank_name);
-						$('#account_holder_name').val(row.account_holder_name);
-						$('#account_no').val(row.account_no);
-						$('#IFSC_code').val(row.IFSC_code);
-						$('#branch').val(row.branch);
-						$('#acc_type').val(row.acc_type);
-						$('#opening_amount').val(row.opening_amount);
-						
-					
-					}
+	    }
+	    else if ($.now() > idleTime) {
+	        ////var isDialogOpen = $("#session-expire-warning-modal").is(":visible");
+	        if (!isIdleTimerOn) {
+	            ////alert('Reached idle');
+	            localStorage.setItem('sessionSlide', false);
+	            countdownDisplay();
 
-		        }	
-			});				
+	            $('.modal-backdrop').css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 500);
+	            $('#session-expire-warning-modal').css('z-index', 1500);
+	            $('#btnOk').css('background-color', '#428bca');
+	            $('#btnOk').css('color', '#fff');
+	            $('#btnSessionExpiredCancelled').css('background-color', '#428bca');
+	            $('#btnSessionExpiredCancelled').css('color', '#fff');
+	            $('#btnLogoutNow').css('background-color', '#428bca');
+	            $('#btnLogoutNow').css('color', '#fff');
 
-			$('#updateBank')
-					.click(
-							function() {
+	            $("#seconds-timer").empty();
+	            $("#session-expire-warning-modal").modal('show');
 
-								var bank_name = $('#bank_name').val();
-								var account_holder_name = $('#account_holder_name').val();
-								var account_no = $('#account_no').val();
-								var IFSC_code = $('#IFSC_code').val();
-								var branch = $('#branch').val();
-								var acc_type = $('#acc_type').val();
-								var opening_amount = $('#opening_amount').val();
-								
+	            isIdleTimerOn = true;
+	        }
+	    }
+	}
 
+	$("#btnSessionExpiredCancelled").click(function () {
+	    $('.modal-backdrop').css("z-index", parseInt($('.modal-backdrop').css('z-index')) - 500);
+	});
 
-								var flag = 2; // Addition
+	$("#btnOk").click(function () {
+	    $("#session-expire-warning-modal").modal('hide');
+	    $('.modal-backdrop').css("z-index", parseInt($('.modal-backdrop').css('z-index')) - 500);
+	    startIdleTime();
+	    clearInterval(remainingTimer);
+	    localStorage.setItem('sessionSlide', 'isStarted');
+	});
 
-								if (bank_name != '') {
-								
-									$.ajax({
-										url : base
-														+ "/bakeshackAPI/api/insertUpdateBank",
-												type : "post",
-												dataType : "json",
-												async : false,
-												data : {
-													"bank_id" :bank_id,
-													"bank_name" : bank_name,
-													"account_holder_name" : account_holder_name,
-													"account_no" : account_no,
-													"IFSC_code" : IFSC_code,
-													"branch" : branch,
-													"acc_type" : acc_type,
-													"opening_amount" : opening_amount,
-													
-													"flag" : flag
-												},
-												error : function(xhr) {
-													var msg = "(insertUpdateBank)Sorry but there was an error : "
-															+ xhr.status
-															+ " "
-															+ xhr.statusText;
-													alert(msg);
-												},
-												success : function(response) {
-													if (response != null) {
+	$("#btnLogoutNow").click(function () {
+	    localStorage.setItem('sessionSlide', 'loggedOut');
+	    window.location = "Logout.html";
+	    sessLogOut();
+	    $("#session-expired-modal").modal('hide');
 
-														if (response >= 1) {
+	});
+	$('#session-expired-modal').on('shown.bs.modal', function () {
+	    $("#session-expire-warning-modal").modal('hide');
+	    $(this).before($('.modal-backdrop'));
+	    $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
+	});
 
-															var msg = "Bank Data Updated Successfully.";
-															alert(msg);
-															 $('#success_msg').text(msg);
-															 $('#success_alert').addClass("show");
-													           $('#success_alert').removeClass("hide");
-													           $('#success_alert').addClass("showAlert");
-													           setTimeout(function(){
-													             $('#success_alert').removeClass("show");
-													             $('#success_alert').addClass("hide");
-													           },2000);
-															window.location.reload();
-														 
-														}
-													}
-												}
+	$("#session-expired-modal").on("hidden.bs.modal", function () {
+	    window.location = "Logout.html";
+	});
+	$('#session-expire-warning-modal').on('shown.bs.modal', function () {
+	    $("#session-expire-warning-modal").modal('show');
+	    $(this).before($('.modal-backdrop'));
+	    $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
+	});
 
-											});
-								}
+	function countdownDisplay() {
 
-							})
+	    var dialogDisplaySeconds = 60;
 
-			"use strict";
-		}
-		$('#cancel')
-        .click(
-              function() {	
-            	 
-  
-            	  
-            	  
-            	  
-              window.location.reload();
-                         	})
+	    remainingTimer = setInterval(function () {
+	        if (localStorage.getItem('sessionSlide') == "isStarted") {
+	            $("#session-expire-warning-modal").modal('hide');
+	            startIdleTime();
+	            clearInterval(remainingTimer);
+	        }
+	        else if (localStorage.getItem('sessionSlide') == "loggedOut") {         
+	            $("#session-expire-warning-modal").modal('hide');
+	            $("#session-expired-modal").modal('show');
+	        }
+	        else {
 
-		// Delete data by Recipe_id
-		function deleteById(id) {
-			/* alertify.confirm("Are you sure, you want to delete this file?", function (e) {
-			    if (e) {
-			       // alertify.alert("File is Removed!");
-			   
+	            $('#seconds-timer').html(dialogDisplaySeconds);
+	            dialogDisplaySeconds -= 1;
+	        }
+	    }
+	    , 1000);
+	};
 
-			var bank_id = id;
-			var flag = 3;
-			$
-					.ajax({
-						url : base + "/bakeshackAPI/api/insertUpdateBank",
-						type : "post",
-						dataType : "json",
-						async : false,
-						data : {
-							
-							"bank_id" : bank_id,
-							"bank_name" : "",
-							"account_holder_name" : "",
-							"account_no" : "",
-							"IFSC_code" : "",
-							"branch" : "",
-							"acc_type" : "",
-							"opening_amount" :"",
-							
-							"flag" : flag
-						},
-
-						error : function(xhr) {
-							var msg = "(insertUpdateBank)Sorry but there was an error : "
-									+ xhr.status + " " + xhr.statusText;
-							alert(msg);
-							 $('#warning_msg').text(msg);
-							 $('#warning_alert').addClass("show");
-					           $('#warning_alert').removeClass("hide");
-					           $('#warning_alert').addClass("showAlert");
-					           setTimeout(function(){
-					             $('#warning_alert').removeClass("show");
-					             $('#warning_alert').addClass("hide");
-					           },2000);
-							
-							
-						},
-						success : function(response) {
-							if (response != null) {
-								
-								if (response >= 1) {
-
-									var msg = "Bank Data deleted Successfully.";
-									 $('#danger_msg').text(msg);
-									$('#danger_alert').addClass("show");
-						   	           $('#danger_alert').removeClass("hide");
-						   	           $('#danger_alert').addClass("showAlert");
-						   	           setTimeout(function(){
-						   	             $('#danger_alert').removeClass("show");
-						   	             $('#danger_alert').addClass("hide");
-						   	           },2000);
-									location.reload(true);
-
-								}
-							}
-						}
-
-					});
-			    } else {
-			        alertify.alert("File is safe!");
-			    }
-			}); */
-			
-			
-
-			$("#kt_sweetalert_demo_9").click(function(e) {
-			    Swal.fire({
-			        title: "Are you sure?",
-			        text: "You won't be able to revert this!",
-			        icon: "warning",
-			        showCancelButton: true,
-			        confirmButtonText: "Yes, delete it!",
-			        cancelButtonText: "No, cancel!",
-			        reverseButtons: true
-			    }).then(function(result) {
-			        if (result.value) {
-			           
-			        	var bank_id = id;
-						var flag = 3;
-						$
-								.ajax({
-									url : base + "/bakeshackAPI/api/insertUpdateBank",
-									type : "post",
-									dataType : "json",
-									async : false,
-									data : {
-										
-										"bank_id" : bank_id,
-										"bank_name" : "",
-										"account_holder_name" : "",
-										"account_no" : "",
-										"IFSC_code" : "",
-										"branch" : "",
-										"acc_type" : "",
-										"opening_amount" :"",
-										
-										"flag" : flag
-									},
-
-									error : function(xhr) {
-										var msg = "(insertUpdateBank)Sorry but there was an error : "
-												+ xhr.status + " " + xhr.statusText;
-										alert(msg);
-										 $('#warning_msg').text(msg);
-										 $('#warning_alert').addClass("show");
-								           $('#warning_alert').removeClass("hide");
-								           $('#warning_alert').addClass("showAlert");
-								           setTimeout(function(){
-								             $('#warning_alert').removeClass("show");
-								             $('#warning_alert').addClass("hide");
-								           },2000);
-										
-										
-									},
-									success : function(response) {
-										if (response != null) {
-											
-											if (response >= 1) {
-
-												var msg = "Bank Data deleted Successfully.";
-												 $('#danger_msg').text(msg);
-												$('#danger_alert').addClass("show");
-									   	           $('#danger_alert').removeClass("hide");
-									   	           $('#danger_alert').addClass("showAlert");
-									   	           setTimeout(function(){
-									   	             $('#danger_alert').removeClass("show");
-									   	             $('#danger_alert').addClass("hide");
-									   	           },2000);
-												location.reload(true);
-
-											}
-										}
-									}
-
-								});
-			        	
-			        	
-			        	
-			        	
-			        	
-			        	
-			        	Swal.fire(
-			                "Deleted!",
-			                "Your file has been deleted.",
-			                "success"
-			            )
-			            // result.dismiss can be "cancel", "overlay",
-			            // "close", and "timer"
-			        } else if (result.dismiss === "cancel") {
-			            Swal.fire(
-			                "Cancelled",
-			                "Your imaginary file is safe :)",
-			                "error"
-			            )
-			        }
-			    });
-			});
-			
-			
-			
-		}
-		
-		 $('.close-btn').click(function(){
-	           $('.alert').removeClass("show");
-	           $('.alert').addClass("hide");
-	         });		
-		
-		$(document).ready(function(){
-
-			  // Search all columns
-			  $('#txt_searchall').keyup(function(){
-			    // Search Text
-			    var search = $(this).val();
-
-			    // Hide all table tbody rows
-			    $('table tbody tr').hide();
-
-			    // Count total search result
-			    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
-
-			    if(len > 0){
-			      // Searching text in columns and show match row
-			      $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
-			        $(this).closest('tr').show();
-			      });
-			    }else{
-			      $('.notfound').show();
-			    }
-
-			  });
-
-			});
-		$.expr[":"].contains = $.expr.createPseudo(function(arg) {
-			   return function( elem ) {
-			     return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-			   };
-			});
-		 
+	function sessLogOut() {
+	   // $.ajax({
+	   //     url: 'Logout.html',
+	   //     dataType: "json",
+	  //      async: false,
+	  //      type: "POST"
+	 //   });
+	    
+	    window.location = "Logout.html";
+	}
 	</script>
-
-	
 </body>
 </html>
 

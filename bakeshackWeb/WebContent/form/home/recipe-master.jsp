@@ -20,9 +20,9 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 	
-	<link rel="stylesheet"
+	<!-- <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
 <style>
 table, th, td {
 	border: 1px solid white;
@@ -1004,9 +1004,10 @@ function updateby(id){
 		table_len=(Mtable.rows.length);
 		// Delete data by Recipe_id
 		function deleteById(id) {
+			var recipe_id = id;
 			Swal.fire({
 		        title: "Are you sure?",
-		        text: "You won't be able to revert this!",
+		        text: "You want to Delete Data!",
 		        icon: "warning",
 		        showCancelButton: true,
 		        confirmButtonText: "Yes, delete it!",
@@ -1015,7 +1016,7 @@ function updateby(id){
 		    }).then(function(result) {
 		        if (result.value) {
 
-			var recipe_id = id;
+		
 			var flag = 3;
 			$
 					.ajax({
@@ -1068,13 +1069,7 @@ function updateby(id){
 						}
 
 					});
-			Swal.fire(
-	                "Deleted!",
-	                "Your file has been deleted.",
-	                "success"
-	            )
-	            // result.dismiss can be "cancel", "overlay",
-	            // "close", and "timer"
+			
 	        } else if (result.dismiss === "cancel") {
 	            window.location.reload();
 	        }

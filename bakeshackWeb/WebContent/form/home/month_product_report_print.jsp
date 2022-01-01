@@ -120,9 +120,10 @@ table.a {
 	var base='<%=base%>';
 
 	 var today = new Date();
-	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	 var date = (today.getMonth()+1)+'-'+today.getFullYear();
 	 $('#finish').text(date);
 	 $('#from_date').val(date);
+	
 	 $('#till_date').val(date);
 	var product_name = " ";
 	const queryString = window.location.search;
@@ -190,7 +191,8 @@ table.a {
 						});
 					}
 				});	
-					url : base + "/bakeshackAPI/api/getMontProductDetails",
+				$.ajax({	
+				url : base + "/bakeshackAPI/api/getMontProductDetails",
 					type : "post",
 					dataType : "json",
 					async : false,

@@ -2340,25 +2340,92 @@ public class ConnectAPI {
 
 						bean = new ConnectDataBean();
 						beanData = bean.getProfitAndLossDetails( from_date, till_date).toString();
-						Logger.log("BAFNA", "beandata:: " + beanData);
+						Logger.log("BAKESHACK", "beandata:: " + beanData);
 
 					} catch (Exception e) {
 						System.out.println(e);
-						Logger.log("BAFNA", e);
+						Logger.log("BAKESHACK", e);
 					}
 
 					return beanData;
 				}
 		
 				
+				@POST
+				@Path("/getDailySaleOfMonthDetails")
+				@Produces(MediaType.TEXT_PLAIN)
+				@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+				public String getDailySaleOfMonthDetails(@FormParam("from_date") String from_date, @FormParam("till_date") String till_date) {
+					ConnectDataBean bean = null;
+					String beanData = null;
+					try {
+						bean = new ConnectDataBean();
+						beanData = bean.getDailySaleOfMonthDetails( from_date, till_date).toString();
+					} catch (Exception e) {
+						System.out.println(e);
+						Logger.log("BAKESHACK", e);
+					}
+					return beanData;
+				}
+						
+				
+				
+				@POST
+				@Path("/getDailyPurchaseOfMonthDetails")
+				@Produces(MediaType.TEXT_PLAIN)
+				@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+				public String getDailyPurchaseOfMonthDetails(@FormParam("from_date") String from_date, @FormParam("till_date") String till_date) {
+					ConnectDataBean bean = null;
+					String beanData = null;
+					try {
+						bean = new ConnectDataBean();
+						beanData = bean.getDailyPurchaseOfMonthDetails( from_date, till_date).toString();
+					} catch (Exception e) {
+						System.out.println(e);
+						Logger.log("BAKESHACK", e);
+					}
+					return beanData;
+				}
 				
 				
 				
 				
+				@POST
+				@Path("/getDailySaleOfYearDetails")
+				@Produces(MediaType.TEXT_PLAIN)
+				@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+				public String getDailySaleOfYearDetails(@FormParam("from_date") String from_date, @FormParam("till_date") String till_date) {
+					ConnectDataBean bean = null;
+					String beanData = null;
+					try {
+						bean = new ConnectDataBean();
+						beanData = bean.getDailySaleOfYearDetails( from_date, till_date).toString();
+					} catch (Exception e) {
+						System.out.println(e);
+						Logger.log("BAKESHACK", e);
+					}
+					return beanData;
+				}
+						
 				
 				
-				
-				
+				@POST
+				@Path("/getDailyPurchaseOfYearDetails")
+				@Produces(MediaType.TEXT_PLAIN)
+				@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+				public String getDailyPurchaseOfYearDetails(@FormParam("from_date") String from_date, @FormParam("till_date") String till_date) {
+					ConnectDataBean bean = null;
+					String beanData = null;
+					try {
+						bean = new ConnectDataBean();
+						beanData = bean.getDailyPurchaseOfYearDetails( from_date, till_date).toString();
+					} catch (Exception e) {
+						System.out.println(e);
+						Logger.log("BAKESHACK", e);
+					}
+					return beanData;
+				}
+					
 				
 				
 				

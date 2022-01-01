@@ -1495,23 +1495,17 @@ translateX(
 										
 										 Swal.fire({
 										        title: "Are you sure?",
-										        text: "You won't be able to revert this!",
+										        text: "You want to print!",
 										        icon: "warning",
 										        showCancelButton: true,
-										        confirmButtonText: "Yes, delete it!",
+										        confirmButtonText: "Yes, Print!",
 										        cancelButtonText: "No, cancel!",
 										        reverseButtons: true
 										    }).then(function(result) {
 										        if (result.value) {
 											 		var url = "sales_return_recipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&invoice_id=' + invoice_id;
 											  window.location.assign(url);
-											  Swal.fire(
-										                "Deleted!",
-										                "Your file has been deleted.",
-										                "success"
-										            )
-										            // result.dismiss can be "cancel", "overlay",
-										            // "close", and "timer"
+											 
 										        } else if (result.dismiss === "cancel") {
 										           window.location.reload();
 										        }
