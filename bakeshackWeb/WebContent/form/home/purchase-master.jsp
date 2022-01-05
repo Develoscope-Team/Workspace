@@ -717,7 +717,12 @@ translateX(
 		 {
 		 dd='0'+dd;
 		 }
-	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+dd;
+	 var mm=today.getMonth()+1;
+	 if(mm < 10){
+		 mm = '0' + mm;
+		
+	 }
+	 var date = today.getFullYear()+'-'+mm+'-'+dd;
 	 $('#order_date').val(date);
 	 $('#delivery_date').val(date);
 	 $('#amount').val('00');

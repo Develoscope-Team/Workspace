@@ -75,13 +75,14 @@ public class ConnectAPI {
 	}
 
 	
-	
 	@POST
-	@Path("/insertUpdateAmbulance")
+	@Path("/insertUpdateambulance")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public int insertUpdateAmbulance(@FormParam("ambulance_no") String ambulance_no,
-			@FormParam("ambulance_purchase_date") Date ambulance_purchase_date, @FormParam("price") String price, @FormParam("purchase_place") String purchase_place, @FormParam("ambulance_id") int ambulance_id,
+	public int insertUpdateambulance(@FormParam("ambulance_no") String ambulance_no, 
+			@FormParam("ambulance_purchase_date") String ambulance_purchase_date,
+			@FormParam("ambulance_price") String ambulance_price, @FormParam("purchase_place") String purchase_place,
+			@FormParam("ambulance_id") int ambulance_id,
 			@FormParam("flag") int flag) {
 		ConnectDataBean bean = null;
 		int beanData = 0;
@@ -90,7 +91,7 @@ public class ConnectAPI {
 			Logger.log("IPD", "ambulance_no:: " + ambulance_no);
 
 			bean = new ConnectDataBean();
-			beanData = bean.insertUpdateAmbulance(ambulance_no, ambulance_purchase_date, price, purchase_place, ambulance_id, flag);
+			beanData = bean.insertUpdateambulance(ambulance_no, ambulance_purchase_date, ambulance_price, purchase_place,  ambulance_id, flag);
 			Logger.log("IPD", "beandata:: " + beanData);
 
 			if (beanData > 0) {
@@ -105,68 +106,17 @@ public class ConnectAPI {
 	}
 
 	@POST
-	@Path("/getAmbulance")
+	@Path("/getambulance")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String getAmbulance() {
+	public String getambulance() {
 
 		ConnectDataBean bean = null;
 		String beanData = null;
 		try {
 
 			bean = new ConnectDataBean();
-			beanData = bean.getAmbulance().toString();
-//				Logger.log("IPD","beandata:: "+beanData);
-
-		} catch (Exception e) {
-			System.out.println(e);
-			Logger.log("IPD", e);
-		}
-
-		return beanData;
-	}
-	
-	
-	@POST
-	@Path("/insertUpdateQualification")
-	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public int insertUpdateQualification(@FormParam("qualification_name") String qualification_name,
-		    @FormParam("qualification_id") int qualification_id,
-			@FormParam("flag") int flag) {
-		ConnectDataBean bean = null;
-		int beanData = 0;
-		try {
-
-			Logger.log("IPD", "qualification_name:: " + qualification_name);
-
-			bean = new ConnectDataBean();
-			beanData = bean.insertUpdateQualification(qualification_name, qualification_id, flag);
-			Logger.log("IPD", "beandata:: " + beanData);
-
-			if (beanData > 0) {
-
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			Logger.log("IPD", e);
-		}
-
-		return beanData;
-	}
-
-	@POST
-	@Path("/getQualification")
-	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String getQualification() {
-
-		ConnectDataBean bean = null;
-		String beanData = null;
-		try {
-
-			bean = new ConnectDataBean();
-			beanData = bean.getQualification().toString();
+			beanData = bean.getambulance().toString();
 //				Logger.log("BAFNA","beandata:: "+beanData);
 
 		} catch (Exception e) {
@@ -176,5 +126,60 @@ public class ConnectAPI {
 
 		return beanData;
 	}
+	
+	
+	//BED MASTER
+	
+		@POST
+		@Path("/insertUpdatebed")
+		@Produces(MediaType.TEXT_PLAIN)
+		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+		public int insertUpdatebed(@FormParam("bed_no") int bed_no,
+				@FormParam("room_no") int room_no, @FormParam("bed_id") int bed_id,
+				@FormParam("flag") int flag) {
+			ConnectDataBean bean = null;
+			int beanData = 0;
+			try {
+
+				Logger.log("IPD", "bed_no:: " + bed_no);
+
+				bean = new ConnectDataBean();
+				beanData = bean.insertUpdatebed(bed_no, room_no, bed_id, flag);
+				Logger.log("IPD", "beandata:: " + beanData);
+
+				if (beanData > 0) {
+
+				}
+			} catch (Exception e) {
+				System.out.println(e);
+				Logger.log("IPD", e);
+			}
+
+			return beanData;
+		}
+
+		@POST
+		@Path("/getbed")
+		@Produces(MediaType.TEXT_PLAIN)
+		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+		public String getbed() {
+
+			ConnectDataBean bean = null;
+			String beanData = null;
+			try {
+
+				bean = new ConnectDataBean();
+				beanData = bean.getbed().toString();
+//					Logger.log("IPD","beandata:: "+beanData);
+
+			} catch (Exception e) {
+				System.out.println(e);
+				Logger.log("IPD", e);
+			}
+
+			return beanData;
+		}
+		
+	
 	
 }

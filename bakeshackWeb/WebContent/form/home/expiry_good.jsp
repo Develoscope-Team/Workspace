@@ -300,7 +300,13 @@ translateX(
 	 if(dd < 10){
 		 dd = '0' + dd;
 	 }
-	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ dd;
+	 
+	 var mm=today.getMonth()+1;
+	 if(mm < 10){
+		 mm = '0' + mm;
+		
+	 }
+	 var date = today.getFullYear()+'-'+mm+'-'+ dd;
 	 $('#product_date').val(date);
 	 $('#expiry_date').val(date);
 

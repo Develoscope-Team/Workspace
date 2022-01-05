@@ -122,12 +122,6 @@ try {
 										</table>
 									</div>
 
-
-
-
-
-
-
 <div class="row">
 									<div class="col-9 text-right mb-5">
 										<button type="button" id="add"
@@ -738,7 +732,7 @@ try {
 
 	 				if (response >= 1) {
 
-	 					var msg = "Template Data Updated Successfully.";
+	 					var msg = "Prescription Data Updated Successfully.";
 	 					alert(msg);
 
 	 				} 

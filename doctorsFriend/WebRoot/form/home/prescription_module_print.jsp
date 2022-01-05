@@ -36,7 +36,7 @@ table.a {
 								<div class="row py-4 px-4 px-md-0" id="header">
 									<div class="col-md-10 offset-1">
 										<!-- <div class="row " style="color:#132072"> -->
-										<div class="row text-info">
+										<div class="row text-info" style="position: static">
 											<img id="logo" alt="Logo"
 												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/src.png"
 												class="logo-default max-h-120px" />
@@ -54,6 +54,7 @@ table.a {
 												<h4>पोयनाड : भाजी मार्केट गल्ली</h4>
 												<h4 class="ml-2 font-weight-bolder">7775999536 |
 													9822786831(Whatsapp)</h4>
+													</br>
 											</div>
 										</div>
 
@@ -63,31 +64,31 @@ table.a {
 
 									</div>
 								</div>
-								<div id="name" class="col-md-10 offset-1">
+								<div id="name" class="col-md-10 offset-1" >
 									<span
 										class="d-flex justify-content-between align-items-baseline">
 
-										<div class="d-flex justify-content-start">
-											<h3
+										<div class="col-6 d-flex justify-content-start text-left" >
+											<h2
 												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Name:
-											</h3>
-											<h3 class="font-weight-bolder" id="patient_name"></h3>
+											</h2>
+											<h2 class="font-weight-bolder" id="patient_name"></h2>
 											
 										</div>
-										<div class="d-flex justify-content-start">
-											<h3
+										<div class="col-3 d-flex justify-content-start text-left">
+											<h2
 												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase" id="age_name">Age:
-											</h3>
-											<h3 class="font-weight-bolder" id="age"></h3>
+											</h2>
+											<h2 class="font-weight-bolder" id="age"></h2>
 										</div>
 										
 										
 
-										<div class="d-flex justify-content-start">
-											<h3
+										<div class="col-3 d-flex justify-content-start text-left">
+											<h2
 												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Date:
-											</h3>
-											<h3 class="font-weight-bolder" id="date">5/3/2021</h3>
+											</h2>
+											<h2 class="font-weight-bolder" id="date">5/3/2021</h2>
 											
 										</div>
 									</span>
@@ -98,26 +99,26 @@ table.a {
 									<span
 										class="d-flex justify-content-between align-items-baseline">
 
-										<div class="d-flex justify-content-start">
-											<h3
+										<div class=" col-6 d-flex justify-content-start text-left" >
+											<h2
 												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Patient Code:
-											</h3>
-											<h3 class="font-weight-bolderer" id="patient_code"></h3>
+											</h2>
+											<h2 class="font-weight-bolderer" id="patient_code"></h2>
 											
 										</div>
-										<div class="d-flex justify-content-start">
-											<h3
-												class="pl-0 pr-4 ml-25 font-weight-bolder text-muted text-uppercase" id="gender_name">Gender:
-											</h3>
-											<h3 class="font-weight-bolder" id="gender"></h3>
+										<div class="col-3 d-flex justify-content-start text-left">
+											<h2
+												class="pl-0 pr-4  font-weight-bolder text-muted text-uppercase" id="gender_name">Gender:
+											</h2>
+											<h2 class="font-weight-bolder" id="gender"></h2>
 										</div>
 										
 
-										<div class="d-flex justify-content-start ">
-											<h3
-												class="pl-0 pr-4 mr-7 font-weight-bolder text-muted text-uppercase " id="weight_name">Weight:
-											</h3>
-											<h3 class="font-weight-bolder" id="weight"></h3>
+										<div class="col-3 d-flex justify-content-start ">
+											<h2
+												class="pl-0 pr-4  font-weight-bolder text-muted text-uppercase " id="weight_name">Weight :
+											</h2>
+											<h2 class="font-weight-bolder" id="weight"></h2>
 											
 										</div>
 									</span>
@@ -444,7 +445,7 @@ table.a {
 							}
 
 							if (row.weight != '') {
-								$('#weight_name').text('Weight :');
+								/* $('#weight_name').text('Weight :'); */
 								$('#weight').text(row.weight + "kg.");
 							}
 

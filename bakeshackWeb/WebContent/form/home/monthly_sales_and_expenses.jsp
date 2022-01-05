@@ -233,10 +233,7 @@ table.a {
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
 
-	 var today = new Date();
-	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-	 
-	// $('#till_date').val(date);
+	
 	
 	 var category_name = " ";
 		const queryString = window.location.search;
