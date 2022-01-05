@@ -192,7 +192,18 @@ table.a {
 	var base='<%=base%>';
 
 	 var today = new Date();
-	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	 var mm=today.getMonth()+1;
+	
+	 var dd=today.getDate()+1;
+	 if(dd < 10){
+		 dd = '0' + dd;
+		
+	 }
+	 if(mm < 10){
+		 mm = '0' + mm;
+		
+	 }
+	 var date = today.getFullYear()+'-'+mm+'-'+dd;
 	//alert(date);
 	 $('#till_date').val(date);
 	 $('#from_date').val(date);

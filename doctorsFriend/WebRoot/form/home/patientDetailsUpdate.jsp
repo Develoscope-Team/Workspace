@@ -168,6 +168,14 @@ table.a {
 																		</select>
 																	</div>
 																</div>
+																<div class="col-xl-6">
+																	<div class="form-group">
+																		<label>Age</label> <input type="number"
+																			class="form-control  form-control-lg"
+																			name="age" id="age" /> <span
+																			class="msg text-danger" id="type2"> </span>
+																	</div>
+																</div>
 
 															</div>
 															
@@ -298,10 +306,14 @@ table.a {
         }
 	});	
 	
+	
+	
 	$('#patient_name').change(function(){
 
 		var patient_name = $(this).val();
-			
+		var patient_code = $('#patient_code').val();
+	//	alert(patient_code);
+		if(patient_code == "")	{
 		$.ajax({
 			url : base + "/dssAPI/dfapi/getPatientDetails",
 			type : "post",
@@ -325,9 +337,6 @@ table.a {
 					}
 					
 					$('#village').val(row.city_desc);
-					
-					
-					
 					$('#age').val(row.age);
 					$('#dob').val(row.birth_date);
 					$('#aadhar_no').val(row.aadhar_no);
@@ -350,13 +359,14 @@ table.a {
 
 	        }
 		});		
-
+		}
 	})
 	
+		
 	
-	
-	$('#show').click(function() {
-
+	 $('#show').click(function() {
+		
+		 
 							var patient_name = $('#patient_name').val();
 							var patient_code = $('#patient_code').val();
 							var mobile_no = $('#mobile_no').val();
@@ -364,6 +374,7 @@ table.a {
 							var village = $('#village').val();
 							var blood_group = $('#blood_group').val();
 							var gender = $('#gender').val();
+							var age = $('#age').val();
 							var flag = 2; // Addition
 
 							
@@ -385,6 +396,7 @@ table.a {
                                     "city_desc" : village,
                                     "blood_group" : blood_group,
                                     "gender" : gender,
+                                    "age" : age,
 									"flag" : 2
 								},
 								
@@ -424,6 +436,7 @@ table.a {
                                 "city_desc" : village,
                                 "blood_group" : blood_group,
                                 "gender" : gender,
+                                "age" : age,
 								"flag" : 1
 							},
 							
@@ -453,10 +466,10 @@ table.a {
 						
 						
 					}
-					window.location.reload();
+					window.location.reload();	 
 						})
 	
-	
+
 	
 	</script>
 </body>

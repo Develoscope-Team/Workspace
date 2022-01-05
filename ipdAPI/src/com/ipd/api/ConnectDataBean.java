@@ -128,7 +128,7 @@ public class ConnectDataBean {
 	}
 	
 	
-	public int insertUpdateAmbulance(String ambulance_no, Date ambulance_purchase_date, String price, String purchase_place, int ambulance_id, int flag) {
+	public int insertUpdateambulance(String ambulance_no, String ambulance_purchase_date, String ambulance_price, String purchase_place, int ambulance_id, int flag) {
 
 		Connection con = null;
 		CallableStatement cs = null;
@@ -137,18 +137,18 @@ public class ConnectDataBean {
 		int result = 0;
 		try {
 
-			System.out.println("Ambulance no in bean Ipd " + ambulance_no);
+			System.out.println("Ambulance No in bean Ipd " + ambulance_no);
 			System.out.println("Ambulance purchase date in bean Ipd " + ambulance_purchase_date);
-			System.out.println("Price in bean Ipd " + price);
-			System.out.println("Purchase place in bean Ipd " +  purchase_place);
-			System.out.println("Ambulance no in bean Ipd " + flag);
+			System.out.println("Ambulance price in bean Ipd " + ambulance_price);
+			System.out.println("Purchase place in bean Ipd " + purchase_place);
+			System.out.println("Ambulance  in bean Ipd " + flag);
 
 			con = cf.getConnection();
 			cs = con.prepareCall("{?=call fun_crud_ambulance(?,?,?,?,?,?)}");
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.setString(2, ambulance_no);
-			cs.setDate(3, ambulance_purchase_date);
-			cs.setString(4, price);
+			cs.setString(3, ambulance_purchase_date);
+			cs.setString(4, ambulance_price);
 			cs.setString(5, purchase_place);
 			cs.setInt(6, ambulance_id);
 			cs.setInt(7, flag);
@@ -180,20 +180,19 @@ public class ConnectDataBean {
 		return result;
 	}
 
-	public JSONArray getAmbulance() {
+	public JSONArray getambulance() {
 		Connection con = null;
 		CallableStatement cs = null;
 		ResultSet rs = null;
 
 		JSONArray jarr = null;
 		JSONObject finaljson = null;
-		String  ambulance_no = "", ambulance_purchase_date = "", price = "", purchase_place = "";
-		int ambulance_id = 0;
+		//String ambulance_id = "", ambulance_no = "", ambulance_purchase_date = "", ambulance_price = "", purchase_place = "";
 		try {
 			jarr = new JSONArray();
 
 			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_retrieve_ambulance(?)}");
+			cs = con.prepareCall("{?=call fun_retrieve_ambulance_details(?)}");
 			cs.registerOutParameter(1, Types.OTHER);
 			cs.setObject(2, rs);
 
@@ -204,18 +203,11 @@ public class ConnectDataBean {
 			while (rs.next()) {
 				JSONObject resultjson = new JSONObject();
 
-				ambulance_id = rs.getInt(1);
-				ambulance_no = rs.getString(2);
-				ambulance_purchase_date = rs.getString(3);
-				price = rs.getString(4);
-				purchase_place = rs.getString(5);
-				
-
-				resultjson.put("ambulance_id", ambulance_id);
-				resultjson.put("ambulance_no", ambulance_no);
-				resultjson.put("ambulance_purchase_date", ambulance_purchase_date);
-				resultjson.put("price", price);
-				resultjson.put("purchase_place", purchase_place);
+				resultjson.put("ambulance_id", rs.getInt(1));
+				resultjson.put("ambulance_no",  rs.getString(2));
+				resultjson.put("ambulance_purchase_date", rs.getString(3));
+				resultjson.put("ambulance_price",  rs.getString(4));
+				resultjson.put("purchase_place", rs.getString(5));
 
 				jarr.put(resultjson);
 			}
@@ -244,10 +236,9 @@ public class ConnectDataBean {
 
 		return jarr;
 	}
-  
 	
 	
-	public int insertUpdateQualification(String qualification_name, int qualification_id, int flag) {
+	public int insertUpdatebed(int bed_no, int room_no, int bed_id, int flag) {
 
 		Connection con = null;
 		CallableStatement cs = null;
@@ -256,15 +247,17 @@ public class ConnectDataBean {
 		int result = 0;
 		try {
 
-			System.out.println("Qualification name in bean Ipd " + qualification_name);
-			System.out.println("Qualification name in bean Ipd " + flag);
+			System.out.println("bed no in bean Ipd " + bed_no);
+			//System.out.println("Advice name in bean Ipd " + advice_desc);
+			System.out.println("flag in bean Ipd " + flag);
 
 			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_crud_qualification(?,?,?)}");
+			cs = con.prepareCall("{?=call fun_crud_bed(?,?,?,?)}");
 			cs.registerOutParameter(1, Types.INTEGER);
-			cs.setString(2, qualification_name);
-			cs.setInt(3, qualification_id);
-			cs.setInt(4, flag);
+			cs.setInt(2, bed_no);
+			cs.setInt(3, room_no);
+			cs.setInt(4, bed_id);
+			cs.setInt(5, flag);
 
 			cs.execute();
 			// rs = cs.getResultSet();
@@ -293,19 +286,19 @@ public class ConnectDataBean {
 		return result;
 	}
 
-	public JSONArray getQualification() {
+	public JSONArray getbed() {
 		Connection con = null;
 		CallableStatement cs = null;
 		ResultSet rs = null;
 
 		JSONArray jarr = null;
 		JSONObject finaljson = null;
-		String qualification_id = "", qualification_name = "";
+		String bed_id = "", bed_no = "", room_no = "";
 		try {
 			jarr = new JSONArray();
 
 			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_retrieve_qualification(?)}");
+			cs = con.prepareCall("{?=call fun_retrieve_bed_details(?)}");
 			cs.registerOutParameter(1, Types.OTHER);
 			cs.setObject(2, rs);
 
@@ -316,12 +309,11 @@ public class ConnectDataBean {
 			while (rs.next()) {
 				JSONObject resultjson = new JSONObject();
 
-				qualification_id = rs.getString(1);
-				qualification_name = rs.getString(2);
-				
-				resultjson.put("qualification_id", qualification_id);
-				resultjson.put("qualification_name", qualification_name);
-				
+			
+
+				resultjson.put("bed_id",  rs.getInt(1));
+				resultjson.put("bed_no", rs.getInt(2));
+				resultjson.put("room_no", rs.getInt(3));
 
 				jarr.put(resultjson);
 			}
@@ -350,5 +342,7 @@ public class ConnectDataBean {
 
 		return jarr;
 	}
+	
+	
 	
 }

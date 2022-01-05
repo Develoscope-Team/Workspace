@@ -121,11 +121,17 @@ table.a {
 	 if(dd < 10){
 		 dd = '0' + dd;
 	 }
-	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ dd;
+	 
+	 var mm=today.getMonth()+1;
+	 if(mm < 10){
+		 mm = '0' + mm;
+		
+	 }
+	 var date = today.getFullYear()+'-'+mm+'-'+ dd;
 	 $('#from_date').val(date);
 	 $('#till_date').val(date);
 	 var today = new Date(date);
-		var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+		var date = dd+'-'+mm+'-'+today.getFullYear();
 	 
 	 $('#finish').text(date);
 

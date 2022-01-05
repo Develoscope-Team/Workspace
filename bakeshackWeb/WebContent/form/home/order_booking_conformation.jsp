@@ -695,7 +695,13 @@ translateX(
 		 {
 		 dd='0'+dd;
 		 }
-	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+dd;
+	 var mm=today.getMonth()+1;
+	 if(mm < 10){
+		 mm = '0' + mm;
+		
+	 }
+	 
+	 var date = today.getFullYear()+'-'+mm+'-'+dd;
 //	 $('#partially_paid_amount').val('00');
 		$('#discount').val("00");
 		$('#delivery_charges').val("00");

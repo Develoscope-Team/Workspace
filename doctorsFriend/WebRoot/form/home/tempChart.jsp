@@ -86,7 +86,7 @@ table.a {
 		<div class="col-6">
 		<font size="+2"><u>Name : <span id="patient_name"></span></u></font>
 		</div><div class="col-6 text-right">
-		<font size="+2"><u>Date : <span id="date1"></span> To <span id="date2"></span> </u></font>
+		<font size="+2"><u>Date   </u> : <span id="date1"></span> To <span id="date2"></span></font>
 		</div>
 		 <br /></div>
 
@@ -153,8 +153,24 @@ table.a {
 	const date1  = urlParams.get('from_date');
 	const date2  = urlParams.get('till_date');
 	$('#patient_name').text(patient_name);
-	$('#date1').text(date1);
+	
+	if(date1 == "")
+		{
+		$('#date1').text("__/__/____");
+		}
+	else{
+		$('#date1').text(date1);
+	}
+	
+	if(date2 == "")
+	{
+	$('#date2').text("__/__/____");
+	}
+else{
 	$('#date2').text(date2);
+}
+
+	
 	
 	
 	 for(var i = 1; i <= 10; i++){

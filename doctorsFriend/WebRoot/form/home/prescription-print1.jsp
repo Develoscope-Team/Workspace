@@ -36,7 +36,7 @@ table.a {
 								<div class="row py-4 px-4 px-md-0" id="header">
 									<div class="col-md-10 offset-1">
 										<!-- <div class="row " style="color:#132072"> -->
-										<div class="row text-info">
+										<div class="row text-info" style="position: static">
 											<img id="logo" alt="Logo"
 												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/src.png"
 												class="logo-default max-h-120px" />
@@ -54,6 +54,7 @@ table.a {
 												<h4>पोयनाड : भाजी मार्केट गल्ली</h4>
 												<h4 class="ml-2 font-weight-bolder">7775999536 |
 													9822786831(Whatsapp)</h4>
+													</br>
 											</div>
 										</div>
 

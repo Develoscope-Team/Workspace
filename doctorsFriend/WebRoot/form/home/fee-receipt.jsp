@@ -45,7 +45,7 @@ try {
 											<div class="row text-info">
 
 												<img id="logo" alt="Logo"
-													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/gif/src.png"
+													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/src.png"
 													class="logo-default max-h-100px"  />
 
 												<div class="col-md-8 text-center">
@@ -127,7 +127,7 @@ try {
 											</div>
 											<div class="col-md-10 text-right" style="font-size: 20px">
 												<img id="logo" alt="Logo"
-													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/gif/sign.png"
+													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/sign.png"
 													class="logo-default max-h-80px" />
 											</div>
 											<div class="col-md-11 text-right" style="font-size: 20px;">

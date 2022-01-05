@@ -177,16 +177,11 @@ table.a {
 		     	var from_date = $('#from_date').val();
 		    	var till_date = $('#till_date').val();
 		    	
-		    	  if(from_date.length > 1 && till_date.length > 1){
 		    		  
 		    	  
 				var url = "tempChart.jsp" + '?patient_name=' + patient_name  +  '&from_date=' + from_date +  '&till_date=' + till_date;
 
 				window.location.assign(url);
-		    	  }
-		            else{
-		            	alert("Please select the Date Range");
-		            }
 			}  
 
 	</script>
