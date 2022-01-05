@@ -908,37 +908,37 @@ table.a {
 			
 			</div>
 			
-			
+		<!-- 	
 			<ul class="sticky-toolbar nav flex-column pl-2 pr-2 pt-3 pb-3 mt-4">
-			<!--begin::Item-->
+			begin::Item
 			<li class="nav-item mb-2" id="kt_demo_panel_toggle" data-toggle="tooltip" title="Check out gmail" data-placement="right">
 				<a class="btn btn-sm btn-icon btn-bg-light btn-icon-danger btn-hover-danger" href="https://mail.google.com">
 					<i class="flaticon2-mail"></i>
 				</a>
 			</li>
-			<!--end::Item-->
-			<!--begin::Item-->
+			end::Item
+			begin::Item
 			<li class="nav-item mb-2" data-toggle="tooltip" title="Whatsapp" data-placement="left">
 				<a class="btn btn-sm btn-icon btn-bg-light btn-icon-success btn-hover-success" href="https://web.whatsapp.com/" target="_blank">
 					<i class="flaticon-whatsapp"></i>
 				</a>
 			</li>
-			<!--end::Item-->
-			<!--begin::Item-->
+			end::Item
+			begin::Item
 			<li class="nav-item mb-2" data-toggle="tooltip" title="Instagram" data-placement="left">
 				<a class="btn btn-sm btn-icon btn-bg-light btn-icon-warning btn-hover-warning" href=" http://www.instagram.com/last_option_rk" target="_blank">
 					<i class="flaticon-instagram-logo"></i>
 				</a>
 			</li>
-			<!--end::Item-->
-			<!--begin::Item-->
+			end::Item
+			begin::Item
 			<li class="nav-item" id="kt_sticky_toolbar_chat_toggler" data-toggle="tooltip" title="Facebook" data-placement="left">
 				<a class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="https://www.facebook.com" target="_blank">
 					<i class="flaticon-facebook-logo-button"></i>
 				</a>
 			</li>
-			<!--end::Item-->
-		</ul>
+			end::Item
+		</ul> -->
 			
 			
 			

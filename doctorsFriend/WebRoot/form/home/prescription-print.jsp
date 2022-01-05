@@ -25,8 +25,8 @@ table.a {
 	<!--begin::Container-->
 	<div class="d-flex flex-row flex-column-fluid container">
 		<!--begin::Content Wrapper-->
-		<div class="main d-flex flex-column flex-row-fluid">
-			<div class="content flex-column-fluid" id="kt_content">
+		<div class="main d-flex flex-column flex-row-fluid" >
+			<div class="content flex-column-fluid" id="kt_content" >
 				<div class="card card-custom">
 					<div class="card-body p-0">
 						<!--begin::Invoice-->
@@ -36,7 +36,7 @@ table.a {
 								<div class="row py-4 px-4 px-md-0" id="header">
 									<div class="col-md-10 offset-1">
 										<!-- <div class="row " style="color:#132072"> -->
-										<div class="row text-info">
+										<div class="row text-info" >
 											<img id="logo" alt="Logo"
 												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/src.png"
 												class="logo-default max-h-120px" />
@@ -61,23 +61,23 @@ table.a {
 										
 
 										<!-- <div class="border-bottom bg-info " style="border: 1px solid black;"></div> -->
-										<div class=" col-md-12" style="border: 1px solid black;"></div>
+										<div class=" col-md-12" style="border: 1px solid black;"  ></div>
 										
 
 									</div>
 								</div>
-								<div id="name" class="col-md-10 offset-1">
+								<div id="name" class="col-md-10 offset-1" >
 									<span
 										class="d-flex justify-content-between align-items-baseline">
 
-										<div class="d-flex justify-content-start">
+										<div class="col-6 d-flex justify-content-start text-left" >
 											<h2
 												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Name:
 											</h2>
 											<h2 class="font-weight-bolder" id="patient_name"></h2>
 											
 										</div>
-										<div class="d-flex justify-content-start">
+										<div class="col-3 d-flex justify-content-start text-left">
 											<h2
 												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase" id="age_name">Age:
 											</h2>
@@ -86,7 +86,7 @@ table.a {
 										
 										
 
-										<div class="d-flex justify-content-start">
+										<div class="col-3 d-flex justify-content-start text-left">
 											<h2
 												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Date:
 											</h2>
@@ -101,24 +101,24 @@ table.a {
 									<span
 										class="d-flex justify-content-between align-items-baseline">
 
-										<div class="d-flex justify-content-start">
+										<div class=" col-6 d-flex justify-content-start text-left" >
 											<h2
 												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Patient Code:
 											</h2>
 											<h2 class="font-weight-bolderer" id="patient_code"></h2>
 											
 										</div>
-										<div class="d-flex justify-content-start">
+										<div class="col-3 d-flex justify-content-start text-left">
 											<h2
-												class="pl-0 pr-4 ml-25 font-weight-bolder text-muted text-uppercase" id="gender_name">Gender:
+												class="pl-0 pr-4  font-weight-bolder text-muted text-uppercase" id="gender_name">Gender:
 											</h2>
 											<h2 class="font-weight-bolder" id="gender"></h2>
 										</div>
 										
 
-										<div class="d-flex justify-content-start ">
+										<div class="col-3 d-flex justify-content-start ">
 											<h2
-												class="pl-0 pr-4 mr-7 font-weight-bolder text-muted text-uppercase " id="weight_name">
+												class="pl-0 pr-4  font-weight-bolder text-muted text-uppercase " id="weight_name">Weight :
 											</h2>
 											<h2 class="font-weight-bolder" id="weight"></h2>
 											
@@ -482,7 +482,7 @@ table.a {
 							}
 
 							if (row.weight != '') {
-								$('#weight_name').text('Weight :');
+								/* $('#weight_name').text('Weight :'); */
 								$('#weight').text(row.weight + "kg.");
 							}
 

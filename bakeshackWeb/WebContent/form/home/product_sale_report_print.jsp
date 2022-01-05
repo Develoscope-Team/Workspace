@@ -111,12 +111,6 @@ table.a {
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
 
-	 var today = new Date();
-	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-	
-	 $('#from_date').val(date);
-	 $('#till_date').val(date);
-	 $('#finish').text(date);
 
 	var product_name = " ";
 	const queryString = window.location.search;
