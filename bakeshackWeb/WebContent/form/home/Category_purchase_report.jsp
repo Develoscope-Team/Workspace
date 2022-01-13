@@ -364,16 +364,14 @@ translateX
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
+				
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
