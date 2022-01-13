@@ -11,6 +11,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 	try {
 %>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 
@@ -59,10 +60,10 @@ table.a {
 						<i class=" icon-2x fas fa-file-excel" style="color: #4A7DFF"></i>
 					</button>
 				</div>
-		<div class=" " id="card_Report">
+		<div class="" id="card_Report">
 			
 						<font size="+2"><u><center>Name: <span class=" " id="finish"></span></center></u></font></div><br />
-			<table class="table" style="border: 1px solid black">
+			<table class="table " style="border: 1px solid black">
 				<thead>
 					<tr>
 						<th style="text-align: center;" scope="col">Customer Name </th>
@@ -83,7 +84,11 @@ table.a {
 	</div>
 	</div>
 
-
+<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->

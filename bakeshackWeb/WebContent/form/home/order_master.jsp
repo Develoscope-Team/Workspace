@@ -82,7 +82,7 @@
 											<div class="example-preview">
 												<div class="card card-custom">
 													<form class="form" id="kt_form_1">
-														<div class=" ">
+														<div class="card-body ">
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
@@ -212,6 +212,16 @@
 																	class="btn font-weight-bold btn-primary ">ADD
 																</button>
 															</div>
+															
+																<div class="col-lg-12" >
+																	<div class="form-group">
+																		<label>Comment</label>
+																		<textarea rows="2"
+																			class="form-control form-control-solid"
+																			id="comment"></textarea>
+																	</div>
+																</div>
+															
 
 															<div class="row">
 																<div class="col-lg-6">
@@ -527,7 +537,9 @@ translateX(
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
@@ -838,13 +850,14 @@ translateX(
 			  html += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
 
 			 $('.add_product').append(html); 
-			  
-				 $('.add_product #product-'+ i).dblclick(function () {
+			 matches = i;
+		      $("#medicineModel").modal();
+				/*  $('.add_product #product-'+ i).dblclick(function () {
 					   mname=(this.id);
 					  var str = mname;
 			           matches = str.match(/(\d+)/);
 					  $("#medicineModel").modal();
-					});
+					}); */
 				 $('#raw_qty- '+ i).change(function () {
 					 var raw_qty = $(this).val();
 				
@@ -1222,8 +1235,9 @@ $('#add_sales_order').click(function() {
 			var received_bank = $('#received_bank').val();
 			var branch_name = $('#branch_name').val();
 			var account_no = $('#account_no').val();
+			var comment  = $('#comment').val();
 			var flag 		  = 1; // Addition
-			
+		/* 	alert(comment); */
 			
 			var product_count=0;
 			 var productList = [];
@@ -1268,6 +1282,7 @@ $('#add_sales_order').click(function() {
 											"account_no" : account_no,
 											"cancelation_date" :"",
 											"credit_period" : credit_period,
+											"comment" : comment,
 											"status" : 1 ,
 											"flag" : flag
 										},
@@ -1396,7 +1411,7 @@ $('#add_sales_order').click(function() {
 									Swal.fire({
 								        title: "Are you sure?",
 								        text: "You want to print!",
-								        icon: "warning",
+								        icon: "success",
 								        showCancelButton: true,
 								        confirmButtonText: "Yes, print!",
 								        cancelButtonText: "No, cancel!",

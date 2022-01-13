@@ -59,7 +59,7 @@ table.a {
 						<i class=" icon-2x fas fa-file-excel" style="color: #4A7DFF"></i>
 					</button>
 				</div>
-		<div class=" " id="card_Report">
+		<div class=" table-responsive" id="card_Report">
 			<font size="+3"><u><center>Yearly Profit And Loss Statement</center></u></font> <br />
 			<div class="  " >
 			<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font></div><br />
@@ -69,7 +69,7 @@ table.a {
 				
 				
 						
-			<table class="table" style="border: 1px solid black; ">
+			<table class="table "  style="border: 1px solid black; ">
 				
 
 
@@ -203,7 +203,11 @@ table.a {
 	</div>
 	</div>
 
-
+<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->

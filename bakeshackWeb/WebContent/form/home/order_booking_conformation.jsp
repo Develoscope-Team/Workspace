@@ -17,11 +17,11 @@ try {
 	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
+<!-- <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 	<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
 	
 </head>
 <body id="kt_body"
@@ -87,7 +87,7 @@ try {
 											<div class="example-preview">
 												<div class="card card-custom">
 													<form class="form" id="kt_form_1">
-														<div class=" ">
+														<div class="card-body">
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
@@ -610,7 +610,9 @@ translateX(
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
@@ -1064,13 +1066,6 @@ $('#add_sales_order').click(function() {
 												});
 									    	}
 										});
-												
-												
-												
-												
-												
-												
-							//	 alert(transaction_id);
 									  $.ajax({
 										    url : base + "/bakeshackAPI/api/insertUpdateInvoice",
 											type : "post",
@@ -1195,7 +1190,7 @@ $('#add_sales_order').click(function() {
 									  Swal.fire({
 									        title: "Are you sure?",
 									        text: "You want to print!",
-									        icon: "warning",
+									        icon: "success",
 									        showCancelButton: true,
 									        confirmButtonText: "Yes, print!",
 									        cancelButtonText: "No, cancel!",
@@ -1208,7 +1203,7 @@ $('#add_sales_order').click(function() {
 											  window.location.assign(url);
 											 
 										        } else if (result.dismiss === "cancel") {
-										        	 window.location.reload();
+										        	 window.location.reload("order_delivery.jsp");
 										        }
 										    });
 									 
@@ -1226,12 +1221,9 @@ $('#add ').click(function () {
 			  html += '<td style="width: 12%;"><input type="text" class="form-control total" name="unit_total" id="total-' + i + '" placeholder="Unit_total"></input></td>';
 			  html += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
 			 $('.add_product').append(html); 
-				 $('.add_product #product-'+ i).dblclick(function () {
-					   mname=(this.id);
-					  var str = mname;
-			           matches = str.match(/(\d+)/);
-					  $("#medicineModel").modal();
-					});
+			 matches=i;
+			 $("#medicineModel").modal();
+		
 	});
 				
 $('.add_product').on('click','.btn_delete',function(){

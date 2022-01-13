@@ -308,21 +308,15 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 										</div>
 									</div>
 									<div class="row col-12  ">
-										<div class=" text-center col-md-10" id="print_button">
-											<!-- <Button id="sudo" class="btn-print btn-primary font-weight-bold"/>
-											 PDF Invoice
-											</button> -->
+										<div class=" text-center col-md-10 offset-1 mt-5 mb-5" id="print_button">
+											
 											
 											<Button id="sudo1" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" />
 											Print Invoice
 											</button>
 											
 											</div>
-										<!-- <div class="col-md-10" id="pdf_inv">
-											<Button id="sudo" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" />
-											PDF Invoice
-											</button>
-											</div> -->
+										
 									</div>
 										<!-- end: Invoice action-->
 										<!-- end: Invoice-->
@@ -347,7 +341,11 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 		<!--end::Page-->
 	</div>
 
-
+<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%; margin-top:10px;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->

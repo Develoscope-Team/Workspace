@@ -2672,6 +2672,8 @@ public class ConnectDataBean {
 				resultjson.put("customer_name", rs.getString(1));
 				resultjson.put("product_list", rs.getString(2));
 				resultjson.put("delivery_date", rs.getDate(3));
+				resultjson.put("comment", rs.getString(4));
+				resultjson.put("order_code", rs.getString(5));
 
 				jarr.put(resultjson);
 			}
@@ -3680,7 +3682,7 @@ public class ConnectDataBean {
 			String delivery_date, String order_code, String product_list, String amount, String discount,
 			String payment_mode, String upi_name, String total_amount, String partial_paid_amount,
 			String balance_amount, String received_bank, String account_no, String transaction_code,
-			String cancelation_date, int status, int credit_period, int order_id, int flag) {
+			String cancelation_date,String comment, int status, int credit_period, int order_id, int flag) {
 
 		Connection con = null;
 		CallableStatement cs = null;
@@ -3693,7 +3695,7 @@ public class ConnectDataBean {
 			System.out.println("Payment Mode in bean " + customer_code);
 
 			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_crud_order_details(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+			cs = con.prepareCall("{?=call fun_crud_order_details(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.setInt(2, customer_code);
 			cs.setString(3, delivery_address);
@@ -3712,10 +3714,11 @@ public class ConnectDataBean {
 			cs.setString(16, account_no);
 			cs.setString(17, transaction_code);
 			cs.setString(18, cancelation_date);
-			cs.setInt(19, status);
-			cs.setInt(20, credit_period);
-			cs.setInt(21, order_id);
-			cs.setInt(22, flag);
+			cs.setString(19, comment);
+			cs.setInt(20, status);
+			cs.setInt(21, credit_period);
+			cs.setInt(22, order_id);
+			cs.setInt(23, flag);
 
 			cs.execute(); // rs = cs.getResultSet();
 

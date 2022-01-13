@@ -273,7 +273,7 @@ public class ConnectSchoolsAPI {
 			@FormParam("birth_date") Date birth_date, @FormParam("patient_code") String patient_code,
 			@FormParam("mobile_no") String mobile_no, @FormParam("city_desc") String city_desc,
 			@FormParam("blood_group") String blood_group,
-			@FormParam("gender") String gender,@FormParam("registration_date") Date registration_date,@FormParam("age") String age,
+			@FormParam("gender") String gender,@FormParam("registration_date") Date registration_date,
 			@FormParam("patient_id") int patient_id, @FormParam("flag") int flag) {
 		ConnectDataBean bean = null;
 		int beanData = 0;
@@ -283,7 +283,7 @@ public class ConnectSchoolsAPI {
 
 			bean = new ConnectDataBean();
 			beanData = bean.insertUpdatePatientDetails(patient_name, birth_date, patient_code, mobile_no, city_desc,
-					blood_group,gender, registration_date,age, patient_id, flag);
+					blood_group,gender, registration_date, patient_id, flag);
 			Logger.log("BAFNA", "beandata:: " + beanData);
 
 			if (beanData > 0) {

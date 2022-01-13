@@ -59,7 +59,7 @@ table.a {
 						<i class=" icon-2x fas fa-file-excel" style="color:  #4A7DFF"></i>
 					</button>
 				</div>
-		<div class=" " id="card_Report">
+		<div class=" mb-10 " id="card_Report">
 			<font size="+3"><u><center>Monthly Category Report</center></u></font> <br />
 			<div class=" mr-10 " >
 			<font size="+2"><u><center>Date: <span class=" " id="finish"></span></center></u></font></div><br />
@@ -88,7 +88,11 @@ table.a {
 		</div>
 	</div>
 	</div>
-
+<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
 
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">

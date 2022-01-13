@@ -184,8 +184,7 @@ table.a {
 									</div>
 														
 										
-														<span class="text-danger">double click on Field to
-															search new product</span>
+														
 															
 													<div  style="overflow-x:auto;">
 															<table class="table" id="Mtable">
@@ -351,7 +350,9 @@ translateX(
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->

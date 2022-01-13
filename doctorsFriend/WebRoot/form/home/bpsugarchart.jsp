@@ -10,14 +10,10 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
+<html lang="en">
+<!--begin::Head-->
 <head>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script src="//code.jquery.com/jquery.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+	
 <style>
 table, th, td {
 	border: 1px solid white;
@@ -31,40 +27,56 @@ table.a {
 	width: 100%;
 }
 </style>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
 </head>
+<!--end::Head-->
+<!--begin::Body-->
 
-<jsp:include page="../common/header.jsp"></jsp:include>
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/js/jquery.table2excel.js"></script>
-</head>
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/js/jspdf.min.js"></script>
-<jsp:include page="../common/header.jsp"></jsp:include>
-<jsp:include page="../common/jsfiles.jsp"></jsp:include>
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/js/pages/features/custom/spinners.js"></script>
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/js/main.js"></script>
-
-
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <body id="kt_body"
-	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
-	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading" 
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-7.jpg)">
+	<!--begin::Main-->
+	<!--begin::Header Mobile-->
+	
+	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Aside-->
-			<jsp:include page="/form/common/sidebar.jsp"></jsp:include>
+			
+      <jsp:include page="/form/common/navbar.jsp"></jsp:include>
+
 			<!--end::Aside-->
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
 				<!--begin::Header-->
-				<jsp:include page="/form/common/navbar.jsp"></jsp:include>
-				<!--end::Header-->
 				
+				
+				<jsp:include page="/form/common/header.jsp"></jsp:include>
+				<!--end::Header-->
+
+
+				<!--begin::Content-->
+				<div class="content d-flex flex-column flex-column-fluid"
+					id="kt_content">
+					<!--begin::Entry-->
+					<div class="d-flex flex-column-fluid">
+						<!--begin::Container-->
+
+						<div
+							class="container d-flex align-items-stretch justify-content-between">
+							<div class="col-xl-12 ">
+				
+					<h2
+									class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3 ml-4"  > B.P. and Diabetes Chart
+										</h2>
+								
+									<div class="col-xl-12 offset-xl-0">
+										<div class="example mb-10">
+											<div class="example-preview">
+												<div class="card card-custom">
+													<form class="form" id="kt_form_1">
 				
 				<div class="card card-custom gutter-b ">
 				<div class="dropdown dropdown-inline " >
@@ -72,7 +84,7 @@ table.a {
 						value="Create Print" id="Print" onclick="MyApp.printTable()">
 						<i class="icon-2x flaticon2-printer" style="color: #f64e60"></i>
 					</button>
-					<button type="button " class=" btn font-weight-bolder " style="float:right;"
+					<button type="button" class=" btn font-weight-bolder " style="float:right;"
 						value="Create PDF" id="PDF" onclick="run()">
 						<i class=" icon-2x fas fa-file-pdf " style="color: #f64e60"></i>
 					</button>
@@ -86,7 +98,7 @@ table.a {
 		<div class="col-6">
 		<font size="+2"><u>Name : <span id="patient_name"></span></u></font>
 		</div><div class="col-6 text-right">
-		<font size="+2"><u>Date</u> : <span id="date1"></span> To <span id="date2"></span> </font>
+		<font size="+2"><u>Date : <span id="date1"></span> To <span id="date2"></span> </u></font>
 		</div>
 		</div>
  <br />
@@ -121,7 +133,9 @@ table.a {
 	<!-- </div> -->
 				<!--end::Entry-->
 			</div>
-			<!--end::Content-->
+			<!--end::Content--></div>
+</div>
+</div>
 			<!--begin::Footer-->
 			<%-- <jsp:include page="../common/footer.jsp"></jsp:include> --%>
 			<!--end::Footer-->
@@ -129,8 +143,13 @@ table.a {
 		<!--end::Wrapper-->
 	</div>
 	<!--end::Page-->
+		
 	</div>
+	</div>
+	
 	<!--end::Main-->
+<jsp:include page="../common/footer.jsp"></jsp:include>
+
 
 
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
@@ -155,17 +174,8 @@ table.a {
 	const date1  = urlParams.get('from_date');
 	const date2  = urlParams.get('till_date');
 	$('#patient_name').text(patient_name);
-	if(date1 == "")	{
-	$('#date1').text("__/__/____");
-	}else{
 	$('#date1').text(date1);
-    }
-
-    if(date2 == ""){
-    $('#date2').text("__/__/____");
-    }else{
-    $('#date2').text(date2);
-    }
+	$('#date2').text(date2);
 	
 	
 	 for(var i = 1; i <= 10; i++){

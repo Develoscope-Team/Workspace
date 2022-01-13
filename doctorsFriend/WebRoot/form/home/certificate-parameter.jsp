@@ -4,49 +4,78 @@
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-	String dbConnVar = "BAFNA";
-	try {
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+String dbConnVar = "BAFNA";
+try {
 %>
-
-
-<jsp:include page="../common/header.jsp"></jsp:include>
-
-
-
-
-<body onafterprint="printP()" id="kt_body"
-	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
+<html lang="en">
+<!--begin::Head-->
+<head>
 	
+<style>
+table, th, td {
+	border: 1px solid white;
+	border-collapse: collapse;
+	background-color: #ffffff;
+}
+</style>
+<style>
+table.a {
+	table-layout: auto;
+	width: 100%;
+}
+</style>
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
+<body id="kt_body"
+	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading" 
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-7.jpg)">
+	<!--begin::Main-->
+	<!--begin::Header Mobile-->
 	
-	
-	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Aside-->
-			<jsp:include page="/form/common/sidebar.jsp"></jsp:include>
+			
+      <jsp:include page="/form/common/navbar.jsp"></jsp:include>
+
 			<!--end::Aside-->
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
 				<!--begin::Header-->
-				<jsp:include page="/form/common/navbar.jsp"></jsp:include>
+				
+				
+				<jsp:include page="/form/common/header.jsp"></jsp:include>
 				<!--end::Header-->
+
+
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
-						<div class="container">
 
-							<h2
-								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Generate
-								Certificate</h2>
+						<div
+							class="container d-flex align-items-stretch justify-content-between">
+							<div class="col-xl-12 ">
+				
+					<h2
+									class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3 ml-4"  > Certificate Parameter
+										</h2>
+								
+									<div class="col-xl-12 offset-xl-0">
+										<div class="example mb-10">
+											<div class="example-preview">
+												<div class="card card-custom">
 
 							<div class="row">
 								<div class="col-xl-12">
@@ -63,7 +92,7 @@
 																		class="form-control form-control-solid"
 																		name="cert_code" id="cert_code">
 																	
-																		<option value="" disabled selected hidden>Select
+																		<option value=" disabled selected hidden">Select
 																			Certificate</option>
 																		<option value="fit">Fit Certificate</option>
 																		<option value="unfit">Unfit Certificate</option>
@@ -100,10 +129,10 @@
 																<div class="form-group">
 																	<label>Extra Content</label>
 																	<input type="text" name="extra_content" id="extra_content" maxlength="200"
-																		class="form-control" rows="5" />
+																		class="form-control" row="5" />
 																		
 																	
-																	<h7><span class="msg text-info" id="type4">enter maximum 200 letters in input box </span></h7>
+																	<h6><span class="msg text-info" id="type4">enter maximum 200 letters in input box </span></h6>
 																</div>
 																</div>
 
@@ -154,7 +183,7 @@
 																	<label>Complaint</label><span class="text-danger">*</span>
 																	<select class="form-control form-control-solid"
 																		name="complaint_name" id="complaint_name">
-																		<option value="" disabled selected hidden>Select
+																		<option value=" disabled selected hidden">Select
 																			Complaint</option>
 																	</select>
 																</div>
@@ -167,10 +196,10 @@
 																<div class="form-group" id="extra1">
 																	<label>Extra Content</label>
 																	<input type="text" name="extra_content1" id="extra_content" maxlength="200"
-																		class="form-control" rows="5" />
+																		class="form-control" row="5" />
 																		
 																	
-																	<h7><span class="msg text-info" id="type4">enter maximum 200 letters in input box </span></h7>
+																	<h6><span class="msg text-info" id="type4">enter maximum 200 letters in input box </span></h>
 																</div>
 																
 																</div>
@@ -208,11 +237,15 @@
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
-				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				</div>
+				</div>
+				
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
+		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<!--end::Page-->
 	</div>
 	<!--end::Main-->

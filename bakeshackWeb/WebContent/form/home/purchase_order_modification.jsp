@@ -86,7 +86,7 @@ try {
 											<div class="example-preview">
 												<div class="card card-custom">
 													<form class="form" id="kt_form_1">
-														<div class=" ">
+														<div class="card-body">
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
@@ -592,7 +592,9 @@ translateX(
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
@@ -787,8 +789,9 @@ translateX(
 							  html += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
 
 							 $('.add_product').append(html); 
-							  
-								 $('.add_product #product-'+ i).dblclick(function () {
+							 matches=i;
+							 $("#medicineModel").modal();
+								/*  $('.add_product #product-'+ i).dblclick(function () {
 									   mname=(this.id);
 									   
 									  var str = mname;
@@ -796,7 +799,7 @@ translateX(
 							           
 									  $("#medicineModel").modal();
 									
-									});
+									}); */
 							
 								 $('#raw_qty- '+ i).change(function () {
 									 
