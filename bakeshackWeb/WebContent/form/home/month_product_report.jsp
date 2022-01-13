@@ -85,7 +85,7 @@ table.a {
 														<form method="get" class="form" id="kt_form_1">
 															<div class="card-body">
 																<div class="row">
-																	<div class="col-xl-5">
+																	<div class="col-xl-6">
 																		<div class="form-group">
 																			<label>Product Name</label><span class="text-danger">*</span>
 																			<div class="typeahead">
@@ -96,7 +96,7 @@ table.a {
 																			</div>
 																		</div>
 																	</div>
-																	<div class="col-xl-5">
+																	<div class="col-xl-6">
 																		<div class="form-group">
 																			<label>Product Code</label> <input type="text"
 																				class="form-control form-control-solid form-control-lg"
@@ -106,14 +106,14 @@ table.a {
 																</div>
 																
 																<div class="row ">
-																	<div class="col-xl-5">
+																	<div class="col-xl-6">
 																		<div class="form-group">
 																			<label>From Date</label> <input type="date"
 																				class="form-control h-40px  " name="from_date"
 																				id="from_date" />
 																		</div>
 																	</div>
-																	<div class="col-xl-5">
+																	<div class="col-xl-6">
 																		<div class="form-group">
 																			<label>To Date</label> <input type="date"
 																				class="form-control h-40px  " name="till_date"
@@ -153,7 +153,9 @@ table.a {
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->

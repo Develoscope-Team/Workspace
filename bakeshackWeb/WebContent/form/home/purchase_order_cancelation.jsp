@@ -17,12 +17,13 @@ try {
 	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
+<!-- <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 	
 	<link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+ -->
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
@@ -81,7 +82,7 @@ try {
 											<div class="example-preview">
 												<div class="card card-custom">
 													<form class="form" id="kt_form_1">
-														<div class=" ">
+														<div class="card-body">
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
@@ -206,17 +207,11 @@ try {
 
 																</table>
 															</div>
-															<div class="text-right mb-5 mr-22">
+															<!-- <div class="text-right mb-5 mr-22">
 																<button type="button" id="add"
 																	class="btn font-weight-bold btn-primary ">ADD
 																</button>
-
-
-
-
-
-
-															</div>
+															</div> -->
 
 															<div class="row">
 																<div class="col-lg-6">
@@ -575,7 +570,9 @@ translateX(
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
@@ -758,9 +755,10 @@ translateX(
 							  html += '<td style="width: 12%;"><input type="text" class="form-control total" name="unit_total" id="unit_total-' + i + '" placeholder="Unit_total"></input></td>';
 							  html += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
 
-							 $('.add_product').append(html); 
-							  
-								 $('.add_product #product-'+ i).dblclick(function () {
+							 $('.add_product').append(html);
+							 matches=i;
+							 $("#medicineModel").modal();
+								 /* $('.add_product #product-'+ i).dblclick(function () {
 									   mname=(this.id);
 									   
 									  var str = mname;
@@ -768,7 +766,7 @@ translateX(
 							           
 									  $("#medicineModel").modal();
 									
-									});
+									}); */
 							
 								 $('#raw_qty- '+ i).change(function () {
 									 

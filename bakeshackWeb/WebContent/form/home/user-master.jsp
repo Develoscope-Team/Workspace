@@ -11,6 +11,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 	try {
 %>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 <link rel="stylesheet"
@@ -75,14 +76,12 @@ table.a {
 					</div>
 					<!--end::Subheader-->
 					<!--begin::Entry-->
+					
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 												<div class="container">
 
-							<!-- <h2
-								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Category
-								Master</h2> -->
-
+						
 
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
@@ -93,7 +92,7 @@ table.a {
 													
 														
 									<div class="form-group" id="message"></div>
-									<div class="row">
+									<div class="row mt-5 ml-5 mr-5">
 									<div class="form-group col-md-6">
 										<label>User Name</label><span class="text-danger">*</span> <input
 											type="text" class="form-control form-control-solid"
@@ -113,7 +112,7 @@ table.a {
 									</div>
 									</div>
 									
-									<div class="row">
+									<div class="row mt-5 ml-5 mr-5">
 									<div class="form-group col-md-6">
 										<label>Password</label><span class="text-danger">*</span> <input
 											type="password" class="form-control form-control-solid"
@@ -134,7 +133,7 @@ table.a {
 									</div>
 									</div>
 									
-									<div class="row">
+									<div class="row mt-5 ml-5 mr-5">
 									<div class="form-group col-md-6">
 										<label>Gender</label> <select name="gender" id="gender"
 											class="form-control form-control-solid" required>
@@ -153,7 +152,7 @@ table.a {
 										</select>
 									</div>
 									</div>
-									<div class="row">
+									<div class="row mt-5 ml-5 mr-5">
 									<div class="form-group col-md-6">
 										<label>Qualification</label><span class="text-danger">*</span>
 										<input type="text" class="form-control form-control-solid"
@@ -168,7 +167,7 @@ table.a {
 											placeholder="Enter Birth Date" required />
 									</div>
 									</div>
-									<div class="row">
+									<div class="row mt-5 ml-5 mr-5">
 									<div class="form-group col-md-6">
 										<label>Address</label><span class="text-danger">*</span> <input
 											type="text-field" class="form-control form-control-solid"
@@ -183,7 +182,7 @@ table.a {
 										
 									</div>
 									</div>
-									<div class="row">
+								<div class="row mt-5 ml-5 mr-5">
 									<div class="form-group col-md-6">
 										<label>City</label><span class="text-danger">*</span> <input type="text"
 											class="form-control form-control-solid" name="city" id="city"
@@ -198,7 +197,7 @@ table.a {
 											min="0000000000" max="9999999999" maxlength="10" required />
 									</div>
 									</div>
-									<div class="row">
+									<div class="row mt-5 ml-5 mr-5">
 									<div class="form-group col-md-6">
 										<label>Email</label> <input type="email"
 											class="form-control form-control-solid" name="email"
@@ -382,11 +381,14 @@ translateX(
 
 						</div>						<!--end::Container-->
 					</div>
+					</div>
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
@@ -650,7 +652,7 @@ function update(id) {
 			$('#updateUserDetails').show();
 			$("#addUserDetails").hide();
 			$(".btn_action").hide();
-			
+			$(window).scrollTop(0);
 			
 			$.ajax({
 		        type:"POST",

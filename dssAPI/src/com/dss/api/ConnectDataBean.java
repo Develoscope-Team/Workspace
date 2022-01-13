@@ -568,7 +568,7 @@ public class ConnectDataBean {
 	// Patient Details
 
 	public int insertUpdatePatientDetails(String patient_name, Date birth_date, String patient_code, String mobile_no,
-			String city_desc, String blood_group, String gender, Date registration_date,String age,  int patient_id, int flag) {
+			String city_desc, String blood_group, String gender, Date registration_date, int patient_id, int flag) {
 		Connection con = null;
 		CallableStatement cs = null;
 		ResultSet rs = null;
@@ -579,7 +579,7 @@ public class ConnectDataBean {
 			System.out.println("In bean city : " + city_desc);
 
 			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_crud_patient_details(?,?,?,?,?,?,?,?,?,?,?)}");
+			cs = con.prepareCall("{?=call fun_crud_patient_details(?,?,?,?,?,?,?,?,?,?)}");
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.setString(2, patient_name);
 			cs.setDate(3, birth_date);
@@ -589,9 +589,8 @@ public class ConnectDataBean {
 			cs.setString(7, blood_group);
 			cs.setString(8, gender);
 			cs.setDate(9, registration_date);
-			cs.setString(10, age);
-			cs.setInt(11, flag);
-			cs.setInt(12, patient_id);
+			cs.setInt(10, flag);
+			cs.setInt(11, patient_id);
 
 			cs.execute();
 			// rs = cs.getResultSet();

@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -9,12 +10,69 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
+<html lang="en">
+<!--begin::Head-->
+<head>
+	
+<style>
+table, th, td {
+	border: 1px solid white;
+	border-collapse: collapse;
+	background-color: #ffffff;
+}
+</style>
+<style>
+table.a {
+	table-layout: auto;
+	width: 100%;
+}
+</style>
+</head>
+<!--end::Head-->
+<!--begin::Body-->
 
-<jsp:include page="../common/header.jsp"></jsp:include>
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
+<body id="kt_body"
+	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading" 
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-9.jpg)">
+	<!--begin::Main-->
+	<!--begin::Header Mobile-->
+	
+	<!--end::Header Mobile-->
+	<div class="d-flex flex-column flex-root">
+		<!--begin::Page-->
+		<div class="d-flex flex-row flex-column-fluid page">
+			<!--begin::Aside-->
+			
+      <jsp:include page="/form/common/navbar.jsp"></jsp:include>
 
-<body onafterprint="printP()" id="kt_body"
-	class="print-content-only quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-static page-loading">
+			<!--end::Aside-->
+			<!--begin::Wrapper-->
+			<div class="d-flex flex-column flex-row-fluid wrapper"
+				id="kt_wrapper">
+				<!--begin::Header-->
+				
+				
+				<jsp:include page="/form/common/header.jsp"></jsp:include>
+				<!--end::Header-->
 
+
+				<!--begin::Content-->
+				<div class="content d-flex flex-column flex-column-fluid"
+					id="kt_content">
+					<!--begin::Entry-->
+					<div class="d-flex flex-column-fluid">
+						<!--begin::Container-->
+
+						<div
+							class="container d-flex align-items-stretch justify-content-between">
+							<div class="col-xl-12 ">
+				
+				
+								
+									<div class="col-xl-12 offset-xl-0">
+										<div class="example mb-10">
+											<div class="example-preview">
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
@@ -34,7 +92,7 @@ try {
 									<!-- begin: Invoice-->
 									<!-- begin: Invoice header-->
 									<div class="row py-8 px-9 px-md-0" id="header">
-										<div class="col-md-10 offset-1">
+										<div class="col-md-0 offset-0">
 
 
 											<div class="row text-info">
@@ -154,7 +212,18 @@ try {
 		</div>
 		<!--end::Page-->
 	</div>
-
+	</div>
+	</div>
+	</div>
+	</div>
+	</div></div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	
+	<jsp:include page="../common/footer.jsp"></jsp:include>
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
 	<script>
 var basePath='<%=basePath%>';    

@@ -11,6 +11,7 @@
 	try {
 %>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 <link rel="stylesheet"
@@ -134,8 +135,8 @@ table.a {
 															</div>
 
 														</div>
-														<span class="text-danger">double click on Field to
-															search new product</span>
+														<!-- <span class="text-danger">double click on Field to
+															search new product</span> -->
 														<div class="card-body" style="overflow-x:auto;">
 
 															<table class="table" id="Mtable">
@@ -387,7 +388,9 @@ translateX(
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
@@ -474,8 +477,9 @@ translateX(
 			  html += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
 
 			 $('.add_product').append(html); 
-			  
-				 $('.add_product #product-'+ i).dblclick(function () {
+			 matches = i;
+		      $("#medicineModel").modal();
+				 /* $('.add_product #product-'+ i).dblclick(function () {
 					   mname=(this.id);
 					   
 					  var str = mname;
@@ -484,7 +488,7 @@ translateX(
 					  $("#medicineModel").modal();
 					
 					});
-			
+			 */
 				 
 				 $.ajax({
 						url : base + "/bakeshackAPI/api/getProductDetails",
@@ -813,7 +817,7 @@ function updateby(id){
 		// Update data by recipe name and id
 		function update(recipe_id) {
 			$('.btn_action').hide();
-
+			$(window).scrollTop(0);
 			$('#updateRecipe').show();
 			$("#addRecipe").hide();
 			

@@ -13,7 +13,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript"
 	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
 
@@ -43,7 +43,7 @@ table.a {
 	
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
-	<div class="col-xl-10 mt-20  offset-1">
+	<div class="col-10 mt-20  offset-1">
 	<div class="card card-custom gutter-b ">
 				<div class="dropdown dropdown-inline mt-5" >
 					<button type="button1" class="  btn  font-weight-bolder " style="float:right;"
@@ -59,7 +59,7 @@ table.a {
 						<i class=" icon-2x fas fa-file-excel" style="color: #4A7DFF"></i>
 					</button>
 				</div>
-		<div class=" " id="card_Report">
+		<div class="table-responsive" id="card_Report">
 			<font size="+3"><u><center>Monthly Profit And Loss Statement</center></u></font> <br />
 			<div class="  " >
 			<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font></div><br />
@@ -157,7 +157,11 @@ table.a {
 		</div>
 	</div>
 	</div>
-
+<!--begin::Footer-->
+				<div >
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
 
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">

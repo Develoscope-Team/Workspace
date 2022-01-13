@@ -11,6 +11,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 	try {
 %>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
@@ -278,7 +279,7 @@ translateX(
 				<jsp:include page="../common/footer.jsp"></jsp:include>
 				</div>
 				<!--end::Footer-->
-			</div>
+			</div> 
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
@@ -441,7 +442,7 @@ translateX(
 			$('#updateUPI').show();
 			$("#addUPI").hide();
 			$(".btn_action").hide();
-
+			$(window).scrollTop(0);
 			$.ajax({
 		        type:"POST",
 		        dataType: "json",

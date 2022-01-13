@@ -1796,7 +1796,8 @@ public class ConnectAPI {
 			@FormParam("partial_paid_amount") String partial_paid_amount,
 			@FormParam("balance_amount") String balance_amount, @FormParam("received_bank") String received_bank,
 			@FormParam("account_no") String account_no, @FormParam("transaction_code") String transaction_code,
-			@FormParam("cancelation_date") String cancelation_date, @FormParam("status") int status, @FormParam("credit_period") int credit_period,
+			@FormParam("cancelation_date") String cancelation_date,@FormParam("comment") String comment,
+			@FormParam("status") int status, @FormParam("credit_period") int credit_period,
 			@FormParam("order_id") int order_id, @FormParam("flag") int flag) {
 		ConnectDataBean bean = null;
 		int beanData = 0;
@@ -1807,7 +1808,7 @@ public class ConnectAPI {
 			bean = new ConnectDataBean();
 			beanData = bean.insertUpdateOrderBookingDetails(customer_code, delivery_address, order_date, delivery_date,
 					order_code, product_list, amount, discount, payment_mode, upi_name, total_amount,
-					partial_paid_amount, balance_amount, received_bank, account_no, transaction_code, cancelation_date,
+					partial_paid_amount, balance_amount, received_bank, account_no, transaction_code, cancelation_date,comment,
 					status,credit_period, order_id, flag);
 			Logger.log("BAKESHACK", "beandata:: " + beanData);
 

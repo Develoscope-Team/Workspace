@@ -11,6 +11,7 @@
 	try {
 %>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
  <link rel="stylesheet" href="style.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
@@ -38,17 +39,17 @@
 						</div>
 						<!--end::Login Header-->
 						<!--begin::Login Sign in form-->
-						<div class="bg-dark-o-90 rounded " style="width:400px">
+						<div class="bg-dark-o-90 rounded " style="width:100%">
 						<div class="login-signin text-white">
 							<div class="mb-20  ">
 								 <h3>  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</h3> 
 								<h3>  WelCome to Bake Shack</h3> 
 							</div>
 							<form class="form"  id="kt_login_signin_form">
-								<div class="form-group ml-10" style="width:300px">
+								<div class="form-group ml-5 mr-5" style="width:90%">
 									<input class="form-control h-auto text-white placeholder-white  bg-dark-o-90 rounded-pill border-0 py-4 px-8 mb-5" id="loginid" type="text" placeholder="Userid" name="username" autocomplete="off" />
 								</div>
-								<div class="form-group ml-10" style="width:300px">
+								<div class="form-group ml-5 mr-5" style="width:90%">
 									<input class="form-control h-auto text-white placeholder-white  bg-dark-o-90 rounded-pill border-0 py-4 px-8 mb-5" id="pass" type="password" placeholder="Password" name="password" />
 								</div>
 								<div class="form-group d-flex flex-wrap justify-content-between align-items-center px-8">

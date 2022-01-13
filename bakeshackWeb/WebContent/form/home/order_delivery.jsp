@@ -72,7 +72,7 @@
 											<div class="example-preview">
 												<div class="card card-custom">
 													<form class="form" id="kt_form_1">
-														<div class=" ">
+														<div class="card-body ">
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
@@ -215,13 +215,15 @@
 							<!--end::Entry-->
 						</div>
 						<!--end::Content-->
-						<%-- <!--begin::Footer-->
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				<!--end::Footer--> --%>
+						
 					</div>
 					<!--end::Wrapper-->
 				</div>
-				<!--end::Page-->
+				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
 			</div>
 
 

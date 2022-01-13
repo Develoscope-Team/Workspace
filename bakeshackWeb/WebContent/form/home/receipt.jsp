@@ -77,8 +77,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 								<!--begin::Heading-->
 								<div class="d-flex flex-column">
 									<!--begin::Title-->
-<!-- 									<h2 class="text-white font-weight-bold my-2 mr-5">Sales & Returns Entry</h2>
- -->										
+										
 									<!--end::Title-->
 
 								</div>
@@ -279,7 +278,9 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->

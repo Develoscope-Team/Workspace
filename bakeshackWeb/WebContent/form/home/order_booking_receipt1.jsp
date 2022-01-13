@@ -358,22 +358,21 @@
 										<!-- end: Invoice-->
 									</div>
 
-									<div class="row col-12  ">
-										<div class="col-md-10" id="print_button">
-											<Button id="sudo" class="btn-print btn-primary font-weight-bold"/>
+									<div class="row col-12 text-center ">
+										<div class=" text-center col-md-12" id="print_button">
+											<button id="sudo"
+												class="btn-print btn-primary font-weight-bold" >
+											PDF Invoice
+											</button>
+
+											<button id="sudo1"
+												class="btn-print btn-primary font-weight-bold"
+												onclick="document.title = '#invoice_no';" >
 											Print Invoice
 											</button>
-											<div class="col-md-10" id="print_button1">
-											<Button id="sudo1" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" />
-											PDF Invoice
-											</button>
-											</div>
-											</div>
-										<!-- <div class="col-md-10" id="pdf_inv">
-											<Button id="sudo" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" />
-											PDF Invoice
-											</button>
-											</div> -->
+
+										</div>
+
 									</div>
 
 								</div>
@@ -385,12 +384,10 @@
 					</div>
 					<!--end::Content-->
 					<!--begin::Footer-->
-
-
-
-				
-
-					<!--end::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
 				</div>
 				<!--end::Wrapper-->
 			</div>

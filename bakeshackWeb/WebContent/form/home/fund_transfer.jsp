@@ -353,6 +353,12 @@ translateX(
 					<!--end::Wrapper-->
 				</div>
 				<!--end::Page-->
+				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
+				
 			</div>
 
 

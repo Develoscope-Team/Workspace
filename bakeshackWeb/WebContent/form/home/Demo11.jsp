@@ -1,3 +1,4 @@
+
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
@@ -10,18 +11,19 @@ String dbConnVar = "BAKESHACk";
 try {
 %>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/BakeShack_IM/js/jspdf.min.js"></script>
-
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
@@ -39,12 +41,22 @@ table.a {
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	
+
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="col-10 mt-20 offset-1">
-		<div class="card card-custom gutter-b ">
-			<div class="dropdown dropdown-inline mb-5 ">
+	<div class="d-flex flex-column flex-root">
+		<!--begin::Page-->
+		<div class="d-flex flex-row flex-column-fluid page">
+			<!--begin::Wrapper-->
+			<div class="d-flex flex-column flex-row-fluid wrapper"
+				id="kt_wrapper">
+
+				<!--begin::Content-->
+				<div class="content d-flex flex-column flex-column-fluid"
+					id="kt_content">
+				<div class="card card-custom gutter-b ">
+			<div class="dropdown dropdown-inline mt-5">
 				<button type="button1" class="  btn  font-weight-bolder "
 					style="float: right;" value="Create Print" id="Print"
 					onclick="MyApp.printTable()">
@@ -60,41 +72,49 @@ table.a {
 					<i class=" icon-2x fas fa-file-excel" style="color: #4A7DFF"></i>
 				</button>
 			</div>
-			<div class=" table-responsive" id="card_Report">
-				<font size="+3"><u><center>Finish Good Report</center></u></font> <br />
-				<div class=" mr-10 " >
-			<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font></div><br />
-		
-				
+			<div class="table-responsive " id="card_Report">
+				<font size="+3"><u><center>Customer Wise Report</center></u></font>
 				<br />
+				<div class=" mr-10 ">
+								<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font></div>
 
-				<table class="table" style="border: 1px solid black">
+				
+				
+				<table class="table " style="border: 1px solid black">
 					<thead>
 						<tr>
-							<th style="text-align: center;" scope="col">Product Name</th>
-							<th style="text-align: center" scope="col">Product Code</th>
-							<th style="text-align: center" scope="col">Production Date</th>
+							<th style="text-align: center;" scope="col">Customer Name</th>
+							<th style="text-align: center" scope="col">Invoice Date</th>
+							<th style="text-align: center" scope="col">Order Code</th>
+							<th style="text-align: center" scope="col">Invoice Amount</th>
+							<th style="text-align: center" scope="col">Payment Mode</th>
 
-							<th style="text-align: center" scope="col">Quantity</th>
-							<th style="text-align: center" scope="col">Unit Price</th>
-							<th style="text-align: center" scope="col">Amount</th>
+
 						</tr>
 					</thead>
-					<tbody class="report_table_body text-center">
+					<tbody class="table_body text-center">
 					</tbody>
 				</table>
 			</div>
+			
 		</div>
-	</div>
-
-<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
 				</div>
+				<!--end::Content-->
+				<!--begin::Footer-->
+				
+			
+			
+				</div>
 				<!--end::Footer-->
+			</div>
+			<!--end::Wrapper-->
+		</div>
+		<!--end::Page-->
+	</div>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
-		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
+		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
 			<svg xmlns="http://www.w3.org/2000/svg"
 				xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
 				height="24px" viewBox="0 0 24 24" version="1.1">
@@ -109,88 +129,75 @@ table.a {
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
 	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
 	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/BakeShack_IM/js/main.js"></script>
-
-
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
+	<script
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
 	<script type="text/javascript">
 	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-
+	var customer_name = " ";
 	 var today = new Date();
-	 var dd=today.getDate();
-	 if(dd < 10){
-		 dd = '0' + dd;
-	 }
-	 
-	 var mm=today.getMonth()+1;
-	 if(mm < 10){
-		 mm = '0' + mm;
+	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const customer_code = urlParams.get('customer_code');
+	 customer_name = urlParams.get('customer_name');
+	const from_date = urlParams.get('from_date');
+	const till_date = urlParams.get('till_date');
+	var html;
+	
+	 var today = new Date(from_date);
 		
-	 }
-	 var date = today.getFullYear()+'-'+mm+'-'+ dd;
-	 $('#from_date').val(date);
-	 $('#till_date').val(date);
-	 var today = new Date(date);
-		var date = dd+'-'+mm+'-'+today.getFullYear();
-	 
+		var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+	
+	
 	 $('#finish').text(date);
-
-		var product_name = " ";
-		const queryString = window.location.search;
-		const urlParams = new URLSearchParams(queryString);
-		const product_code = urlParams.get('product_code');
-		 product_name = urlParams.get('product_name');
-	   
-		const  from_date = urlParams.get('from_date');
-		 const till_date = urlParams.get('till_date');
-		 
-		 var today = new Date(from_date);
-			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
-		 $('#finish').text(date);
-		 var today = new Date(till_date);
-			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
-		 $('#finish1').text(date);
-		var html;
+	 var today = new Date(till_date);
 		
-		$.ajax({
-			url : base + "/bakeshackAPI/api/getFinishGoodProductReportDetails",
-			type : "post",
-			dataType : "json",
-			async : false,
-			data : {
+		var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
+	 
+	 
+	 
+	 $('#finish1').text(date);
+	
+	$.ajax({
+		url : base + "/bakeshackAPI/api/getCustomerWiseReportDetails",
+		type : "post",
+		dataType : "json",
+		async : false,
+		data : {
+		
+			"customer_name":customer_name,
+		    "from_date" : from_date,
+		    "till_date" : till_date
+			},
+		success:function(data)
+	    {
+			/* alert("customer_name"); */
+			const row = data.find(d => d.customer_name == customer_name);
+			data.forEach((row)=> {
+	     	html +="<tr id= tr-id-2 class= tr-class-2>"
+			html += "<td>"+row.customer_name+"</td>"; 
+			 var today = new Date(row.order_date);
+				var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
 			
-				"product_name":product_name,
-			    "from_date" : from_date,
-			    "till_date" : till_date
-				},
-				
-			success:function(data)
-		    {
-					const row = data.find(d => d.product_name == product_name);
-				data.forEach((row)=> {
-				
-		     		 html +="<tr id= tr-id-2 class= tr-class-2>"
-		     		 html += "<td>"+row.product_name+"</td>"; 
-		     		 html += "<td>"+row.product_id+"</td>";
-		     		 var today = new Date(row.entry_date);
-		 			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-		     		 html += "<td>"+date+"</td>";
-					 html += "<td>"+row.purchase_quantity+"</td>";
-					 html += "<td>"+row.selling_price+"</td>";
-				   	var qty = row.purchase_quantity;
-					var price = row.selling_price;
-					var amount = parseInt(qty) * parseInt(price);
-		          	 html += "<td>"+amount+"</td>"; 
-		 	       	 html +="</tr>"
-					});
-				 $(".report_table_body").html(html);
-			}
-		});	
+			 html += "<td>"+date+"</td>";
+			 html += "<td>"+row.order_code+"</td>";
+			 html += "<td>"+row.total_amount+"</td>";
+/* 	            html += "<td>"+row.product_list+"</td>";
+ */	            html += "<td>"+row.payment_mode+"</td>";
+	           
+	            
+	 	       	 html +="</tr>"
+				});
+			 $(".table_body").html(html);
+		}
+	});	
+	
 	$(document).ready(function(){
 		  // Search all columns
 		  $('#txt_searchall').keyup(function(){
