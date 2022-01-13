@@ -68,9 +68,7 @@
 						<!--begin::Container-->
 						<div class="container">
 
-							<!-- <h2
-								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Category
-								Master</h2> -->
+						
 
 
 							<div class="col-xl-12 offset-xl-0">
@@ -80,7 +78,7 @@
 											<div class="example-preview">
 												<div class="card card-custom">
 													<form class="form" id="kt_form_1">
-														<div class=" ">
+														<div class="card-body ">
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
@@ -210,9 +208,6 @@
 																	class="btn font-weight-bold btn-primary ">ADD
 																</button>
 
-
-																<!-- <button type="button" id="calculate_Product_total"
-												class="btn font-weight-bold btn-primary ">Calculate</button> -->
 
 
 
@@ -656,8 +651,10 @@ translateX(
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-				<!--begin::Footer-->
+			<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
@@ -1074,13 +1071,15 @@ translateX(
 
 			 $('.add_product').append(html); 
 			  
-				 $('.add_product #product-'+ i).dblclick(function () {
+				 /* $('.add_product #product-'+ i).dblclick(function () {
 					   mname=(this.id);
 					  var str = mname;
 			           matches = str.match(/(\d+)/);
 					  $("#medicineModel").modal();
 					});
-			
+			 */
+			 matches=i;
+			 $("#medicineModel").modal();
 				 $('#raw_qty- '+ i).change(function () {
 					 var raw_qty = $(this).val();
 				 })

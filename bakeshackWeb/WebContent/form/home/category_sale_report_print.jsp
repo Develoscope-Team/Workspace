@@ -43,7 +43,7 @@ table.a {
 	
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
-	<div class="col-xl-10 mt-20 offset-1">
+	<div class="col-xl-12 mt-20 ">
 	<div class="card card-custom gutter-b ">
 				<div class="dropdown dropdown-inline mt-5" >
 					<button type="button1" class="  btn  font-weight-bolder " style="float:right;"
@@ -61,7 +61,7 @@ table.a {
 				</div>
 		<div class=" " id="card_Report">
 			<font size="+3"><u><center>Category Wise sale Report</center></u></font> <br />
-			<div class=" mr-10 " >
+			<div class="date_range mr-10 " >
 			<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font></div><br />
 			<table class="table" style="border: 1px solid black">
 				<thead>
@@ -82,7 +82,11 @@ table.a {
 		</div>
 	</div>
 	</div>
-
+<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
 
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
@@ -113,11 +117,7 @@ table.a {
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
 
-	 var today = new Date();
-	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 	
-	 $('#till_date').val(date);
-	 $('#finish').text(date);
 	 var category_name = " ";
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
@@ -125,13 +125,20 @@ table.a {
 		 category_name = urlParams.get('category_name');
         const  from_date = urlParams.get('from_date');
 		const till_date = urlParams.get('till_date');
-		 var today = new Date(from_date);
+		
+		
+		if(from_date != "" && till_date != "" )
+		{
+		var today = new Date(from_date);
 			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
 		 $('#finish').text(date);
 		 var today = new Date(till_date);
 			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();	
 		 $('#finish1').text(date);
-	
+		}
+		else{
+			$('.date_range').hide();
+		}
 	var html;
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getSaleProductCategoryReportDetails",

@@ -43,7 +43,7 @@
 											<div class="row text-info">
 
 												<img id="logo" alt="Logo"
-													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/src.png"
+													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/gif/src.png"
 													class="logo-default max-h-100px" />
 
 

@@ -21,9 +21,11 @@ try {
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		
+		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
 <style>
 table, th, td {
 	border: 1px solid white;
@@ -40,30 +42,186 @@ table.a {
 </head>
 
 
-  <title> New Document </title>
-  <meta name="Generator" content="EditPlus">
-  <meta name="Author" content="">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
+ 
+ 
+ 
+ 
   <script type="text/javascript">
-    var timeoutHandle = null;
-    function startTimer(timeoutCount) {
-        if (timeoutCount == 0) {
-            window.location.href = 'logout.jsp';
-        } else if (timeoutCount < 6) {
-            document.getElementById('sessionTimer').innerHTML = 'You have ' + (timeoutCount * 6000)/1000 + 'seconds until timeout' ;
-        }
-        timeoutHandle = setTimeout(function () { startTimer(timeoutCount-1);}, '6000');
-    }
-    function refreshTimer() {
-        killTimer(timeoutHandle);
-        startTimer(1);
-    }
+  
+	var url = "logout.jsp" ; 
+  var KTIdleTimerDemo = function() {
+	    var _init = function() {
+	        //Define default
+	        var docTimeout = 50000;
+
+	        /*
+	        Handle raised idle/active events
+	        */
+	        $(document).on("idle.idleTimer", function(event, elem, obj) {
+	            $("#docStatus")
+	                .val(function(i, v) {
+	                    return v + "Idle @ " + moment().format() + " \n";
+	                })
+	               
+	           // alert("alert 1");
+	            Swal.fire({
+			        title: "You Want To Logout!?",
+			        text: "our System idle from 50 sec!",
+			        icon: "warning",
+			        showCancelButton: true,
+			        confirmButtonText: "Yes, Logout!",
+			        cancelButtonText: "No, Continue!",
+			        reverseButtons: true
+			    }).then(function(result) {
+			        if (result.value) {
+			        	window.location.assign(url);
+			        } else if (result.dismiss === "cancel") {
+				        	 window.location.reload();
+				        }
+				    }); 
+	            setTimeout(function(){
+	            	window.location.assign(url);
+			           },50000);
+	        });
+	      /*   $(document).on("active.idleTimer", function(event, elem, obj, e) {
+	            $("#docStatus")
+	                .val(function(i, v) {
+	                    return v + "Active [" + e.type + "] [" + e.target.nodeName + "] @ " + moment().format() + " \n";
+	                })
+	                .addClass("alert-success")
+	                .removeClass("alert-warning")
+	                .scrollTop($("#docStatus")[0].scrollHeight);
+	           // alert("alert 2");
+	        }); */
+
+	        /*
+	        Handle button events
+	        */
+	       /*  $("#btPause").click(function() {
+	            $(document).idleTimer("pause");
+	            $("#docStatus")
+	                .val(function(i, v) {
+	                    return v + "Paused @ " + moment().format() + " \n";
+	                })
+	                .scrollTop($("#docStatus")[0].scrollHeight);
+	            $(this).blur();
+	            return false;
+	        }); */
+	        /* $("#btResume").click(function() {
+	            $(document).idleTimer("resume");
+	            $("#docStatus")
+	                .val(function(i, v) {
+	                    return v + "Resumed @ " + moment().format() + " \n";
+	                })
+	                .scrollTop($("#docStatus")[0].scrollHeight);
+	            $(this).blur();
+	            return false;
+	        }); */
+	       /*  $("#btElapsed").click(function() {
+	            $("#docStatus")
+	                .val(function(i, v) {
+	                    return v + "Elapsed (since becoming active): " + $(document).idleTimer("getElapsedTime") + " \n";
+	                })
+	                .scrollTop($("#docStatus")[0].scrollHeight);
+	            $(this).blur();
+	            return false;
+	        }); */
+	       /*  $("#btDestroy").click(function() {
+	            $(document).idleTimer("destroy");
+	            $("#docStatus")
+	                .val(function(i, v) {
+	                    return v + "Destroyed: @ " + moment().format() + " \n";
+	                })
+	                .removeClass("alert-success")
+	                .removeClass("alert-warning")
+	                .scrollTop($("#docStatus")[0].scrollHeight);
+	            alert("alert 3");
+	            $(this).blur();
+	            return false;
+	        }); */
+	      /*   $("#btInit").click(function() {
+	            // for demo purposes show init with just object
+	            $(document).idleTimer({
+	                timeout: docTimeout
+	            });
+	            $("#docStatus")
+	                .val(function(i, v) {
+	                    return v + "Init: @ " + moment().format() + " \n";
+	                })
+	                .scrollTop($("#docStatus")[0].scrollHeight);
+
+	            //Apply classes for default state
+	            if ($(document).idleTimer("isIdle")) {
+	                $("#docStatus")
+	                    .removeClass("alert-success")
+	                    .addClass("alert-warning");
+	                alert("alert 4");
+	            } else {
+	                $("#docStatus")
+	                    .addClass("alert-success")
+	                    .removeClass("alert-warning");
+	                alert("alert 5");
+	            }
+	            $(this).blur();
+	            return false;
+	        }); */
+
+	        //Clear old statuses
+	    /*     $("#docStatus").val(""); */
+
+	        //Start timeout, passing no options
+	        //Same as $.idleTimer(docTimeout, docOptions);
+	        $(document).idleTimer(docTimeout);
+
+	        //For demo purposes, style based on initial state
+	       /*  if ($(document).idleTimer("isIdle")) {
+	            $("#docStatus")
+	                .val(function(i, v) {
+	                    return v + "Initial Idle State @ " + moment().format() + " \n";
+	                })
+	                .removeClass("alert-success")
+	                .addClass("alert-warning")
+	                .scrollTop($("#docStatus")[0].scrollHeight);
+	            alert("alert 6");
+	        } else {
+	            $("#docStatus")
+	                .val(function(i, v) {
+	                    return v + "Initial Active State @ " + moment().format() + " \n";
+	                })
+	                .addClass("alert-success")
+	                .removeClass("alert-warning")
+	                .scrollTop($("#docStatus")[0].scrollHeight);
+	            alert("alert 7");
+	        } */
+
+
+	        //For demo purposes, display the actual timeout on the page
+	        $("#docTimeout").text(docTimeout / 1000);
+	    }
+
+	    return {
+	        //main function to initiate the module
+	        init: function() {
+	            _init();
+	        }
+	    };
+	}();
+
+	jQuery(document).ready(function() {
+	    KTIdleTimerDemo.init();
+	});
   </script>
  </head>
 
- <body onload="startTimer(8)">
-  <div id="sessionTimer"></div>
+ <body >
+  <div class="btn-group mb-10">
+    <a href="javascript:;" id="btPause" class="btn btn-outline-secondary">Pause</a>
+    <a href="javascript:;" id="btResume" class="btn btn-outline-secondary">Resume</a>
+    <a href="javascript:;" id="btElapsed" class="btn btn-outline-secondary">Elapsed</a>
+    <a href="javascript:;" id="btInit" class="btn btn-outline-secondary">Init</a>
+    <a href="javascript:;" id="btDestroy" class="btn btn-outline-secondary">Destroy</a>
+</div>
+<textarea id="docStatus" class="form-control"></textarea><br />
  </body>
 
 </html>

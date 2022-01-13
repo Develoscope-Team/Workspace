@@ -169,7 +169,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 									</div>
 										<div
 										class="row col-md-10 justify-content-center offset-1 mt-10 mb-10">
-										<div class="col-md-10" id="print_button">
+										<div class="col-md-6 offset-3" id="print_button" >
 
 
 											<button type="button"
@@ -190,7 +190,9 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->

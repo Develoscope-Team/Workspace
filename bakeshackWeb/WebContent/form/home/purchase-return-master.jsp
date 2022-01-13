@@ -68,19 +68,17 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 						<!--begin::Container-->
 						<div class="container">
 
-							<!-- <h2
-								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Category
-								Master</h2> -->
+						
 
 
-							<div class="col-xl-10 offset-xl-1">
+							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
 										<div class="example mb-10">
 											<div class="example-preview">
 												<div class="card card-custom">
 													<form class="form" id="kt_form_1">
-								<div class=" ">
+								<div class="card-body ">
 									<div class="row">
 										<div class="col-xl-6">
 											<div class="form-group">
@@ -566,7 +564,9 @@ translateX(
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->

@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -9,36 +10,71 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
-
+<html lang="en">
+<!--begin::Head-->
 <head>
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script src="//code.jquery.com/jquery.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-
+	
+<style>
+table, th, td {
+	border: 1px solid white;
+	border-collapse: collapse;
+	background-color: #ffffff;
+}
+</style>
+<style>
+table.a {
+	table-layout: auto;
+	width: 100%;
+}
+</style>
 </head>
-<jsp:include page="../common/header.jsp"></jsp:include>
+<!--end::Head-->
+<!--begin::Body-->
 
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <body id="kt_body"
-	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
-	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading" 
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-9.jpg)">
+	<!--begin::Main-->
+	<!--begin::Header Mobile-->
+	
+	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Aside-->
-			<jsp:include page="/form/common/sidebar.jsp"></jsp:include>
+			
+      <jsp:include page="/form/common/navbar.jsp"></jsp:include>
+
 			<!--end::Aside-->
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
 				<!--begin::Header-->
-				<jsp:include page="/form/common/navbar.jsp"></jsp:include>
+				
+				
+				<jsp:include page="/form/common/header.jsp"></jsp:include>
 				<!--end::Header-->
+
+
+				<!--begin::Content-->
+				<div class="content d-flex flex-column flex-column-fluid"
+					id="kt_content">
+					<!--begin::Entry-->
+					<div class="d-flex flex-column-fluid">
+						<!--begin::Container-->
+
+						<div
+							class="container d-flex align-items-stretch justify-content-between">
+							<div class="col-xl-12 ">
+				
+					<h2
+									class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3 ml-4"  > Fees Reciept Printing
+										</h2>
+								
+									<div class="col-xl-12 offset-xl-0">
+										<div class="example mb-10">
+											<div class="example-preview">
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
@@ -96,28 +132,32 @@ try {
 									</div>
 									<div class="row">
 
-										<div class="card-footer">
-											<div class="row">
+										
 
-												<div class="col-lg-6 offset-3">
-													<button type="button" id="Print_receipt"
+												
+													<button type="button" id="Print_receipt" 
 														onclick="invoice_print()"
-														class="btn font-weight-bold btn-primary text-right">Print
+														class="btn font-weight-bold btn-primary text-right ml-5">Print
 														Receipt</button>
-												</div>
+												
 
-											</div>
-										</div>
+										
 									</div>
 							</form>
 						</div>
 					</div>
 				</div>
-				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				</div>
+				</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
+	</div>
+	
+	
+	<jsp:include page="../common/footer.jsp"></jsp:include>
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
 
 	<script type="text/javascript">

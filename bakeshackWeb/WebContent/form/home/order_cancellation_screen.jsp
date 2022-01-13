@@ -70,10 +70,7 @@ try {
 						<!--begin::Container-->
 						<div class="container">
 
-							<!-- <h2
-								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Category
-								Master</h2> -->
-
+							
 
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
@@ -82,7 +79,7 @@ try {
 											<div class="example-preview">
 												<div class="card card-custom">
 													<form class="form" id="kt_form_1">
-														<div class=" ">
+														<div class="card-body">
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
@@ -429,7 +426,120 @@ try {
 									</div>
 								</div>
 							</div>
+	<style>
+.alert {
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
 
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+
+.alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.alert.show {
+	animation: show_slide 1s ease forwards;
+}
+
+@
+keyframes show_slide { 0%{
+	transform: translateX(100%);
+}
+
+40
+%
+{
+transform
+:
+translateX(
+-10%
+);
+}
+80
+%
+{
+transform
+:
+translateX(
+0%
+);
+}
+100
+%
+{
+transform
+:
+translateX(
+-10px
+);
+}
+}
+@
+keyframes hide_slide { 0%{
+	transform: translateX(-10px);
+}
+
+40
+%
+{
+transform
+:
+translateX(
+0%
+);
+}
+80
+%
+{
+transform
+:
+translateX(
+-10%
+);
+}
+100
+%
+{
+transform
+:
+translateX(
+100%
+);
+}
+}
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
+</style>
+							<div class="alert alert-success  " role="alert"
+								id="success_alert">
+								<div class="alert-text">
+									<span id="success_msg"></span>
+								</div>
+							</div>
+							<div class="alert alert-danger " role="alert" id="danger_alert">
+								<div class="alert-text">
+									<span id="danger_msg"></span>
+								</div>
+							</div>
+							<div class="alert alert-warning " role="alert" id="warning_alert">
+								<div class="alert-text">
+									<span id="warning_msg"></span>
+								</div>
+							</div>
 
 						</div>
 						<!--end::Container-->
@@ -437,8 +547,10 @@ try {
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-				<!--begin::Footer-->
+			<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
 				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
@@ -773,7 +885,14 @@ $('#add_sales_order').click(function() {
 														+ xhr.status
 														+ " "
 														+ xhr.statusText;
-												alert(msg);
+												 $('#warning_msg').text(msg);
+												 $('#warning_alert').addClass("show");
+										           $('#warning_alert').removeClass("hide");
+										           $('#warning_alert').addClass("showAlert");
+										           setTimeout(function(){
+										             $('#warning_alert').removeClass("show");
+										             $('#warning_alert').addClass("hide");
+										           },2000);
 											},
 											success : function(response) {
 												if (response != null) {
@@ -781,7 +900,14 @@ $('#add_sales_order').click(function() {
 													if (response >= 1) {
 
 														var msg = "Invoice Data inserted/Updated Successfully.";
-														alert(msg);
+														$('#success_msg').text(msg);
+														 $('#success_alert').addClass("show");
+												           $('#success_alert').removeClass("hide");
+												           $('#success_alert').addClass("showAlert");
+												           setTimeout(function(){
+												             $('#success_alert').removeClass("show");
+												             $('#success_alert').addClass("hide");
+												           },2000);
 													}
 												}
 											}
@@ -816,27 +942,66 @@ $('#add_sales_order').click(function() {
 														+ xhr.status
 														+ " "
 														+ xhr.statusText;
-												alert(msg);
+												 $('#warning_msg').text(msg);
+												 $('#warning_alert').addClass("show");
+										           $('#warning_alert').removeClass("hide");
+										           $('#warning_alert').addClass("showAlert");
+										           setTimeout(function(){
+										             $('#warning_alert').removeClass("show");
+										             $('#warning_alert').addClass("hide");
+										           },2000);
 											},
 											success : function(response) {
 												if (response != null) {
 
 													if (response >= 1) {
 
-														var msg = "Order Booking Data Modified Successfully.";
-														alert(msg);
+														var msg = "Order Booking Data Deleting Successfully.";
+														$('#success_msg').text(msg);
+														 $('#success_alert').addClass("show");
+												           $('#success_alert').removeClass("hide");
+												           $('#success_alert').addClass("showAlert");
+												           setTimeout(function(){
+												             $('#success_alert').removeClass("show");
+												             $('#success_alert').addClass("hide");
+												           },2000);
 
 													} 
 												}
 											}
 
 										}); 
-									  if (confirm("Do You Wish To Print Invoice!")) {
+									
+									  
+									  
+									  Swal.fire({
+									        title: "Are you sure?",
+									        text: "You want to print!",
+									        icon: "success",
+									        showCancelButton: true,
+									        confirmButtonText: "Yes, print!",
+									        cancelButtonText: "No, cancel!",
+									        reverseButtons: true
+									    }).then(function(result) {
+									        if (result.value) {
+											  
+										 		var url = "order_cancellation_recipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&transaction_id=' + transaction_id + '&partial_paid_amount=' + partial_paid_amount;
+
+											  window.location.assign(url);
+											 
+										        } else if (result.dismiss === "cancel") {
+										        	 window.location.reload("order_delivery.jsp");
+										        }
+										    });
+									  
+									  
+									  
+									 /*  if (confirm("Do You Wish To Print Invoice!")) {
 									 		var url = "order_cancellation_recipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&transaction_id=' + transaction_id + '&partial_paid_amount=' + partial_paid_amount;
 										  window.location.assign(url);
 											 } else {
 												  window.location.reload();
-											  }
+											  } */
 						})
  var i =r;					
 $('#add ').click(function () {

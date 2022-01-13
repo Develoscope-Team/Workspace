@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -9,14 +10,10 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
+<html lang="en">
+<!--begin::Head-->
 <head>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script src="//code.jquery.com/jquery.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+	
 <style>
 table, th, td {
 	border: 1px solid white;
@@ -30,25 +27,52 @@ table.a {
 	width: 100%;
 }
 </style>
-
 </head>
-<jsp:include page="../common/header.jsp"></jsp:include>
+<!--end::Head-->
+<!--begin::Body-->
 
-
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <body id="kt_body"
-	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
-	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading" 
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-9.jpg)">
+	<!--begin::Main-->
+	<!--begin::Header Mobile-->
+	
+	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Aside-->
-			<jsp:include page="/form/common/sidebar.jsp"></jsp:include>
+			
+      <jsp:include page="/form/common/navbar.jsp"></jsp:include>
+
 			<!--end::Aside-->
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
 				<!--begin::Header-->
-				<jsp:include page="/form/common/navbar.jsp"></jsp:include>
+				
+				
+				<jsp:include page="/form/common/header.jsp"></jsp:include>
+				<!--end::Header-->
+
+
+				<!--begin::Content-->
+				<div class="content d-flex flex-column flex-column-fluid"
+					id="kt_content">
+					<!--begin::Entry-->
+					<div class="d-flex flex-column-fluid">
+						<!--begin::Container-->
+
+						<div
+							class="container d-flex align-items-stretch justify-content-between">
+							<div class="col-xl-12 ">
+				
+					
+								
+									<div class="col-xl-12 offset-xl-0">
+										<div class="example mb-10">
+											<div class="example-preview">
 				<!--end::Header-->
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
@@ -61,7 +85,7 @@ table.a {
 						<div class="container">
 
 							 <h2
-								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3 mb-5">Medical Representative
+								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3 mb-5 ml-5">Medical Representative
 								Entry</h2> 
 
 
@@ -190,179 +214,6 @@ table.a {
 																</button>
 															</div>
 
-															<!-- <div class="row">
-																<div class="col-lg-6">
-																	<div class="form-group" id="amount_div">
-																		<label>Amount</label> <span class="text-danger"
-																			id="type">*</span><input type="number"
-																			class="form-control form-control-solid" name="amount"
-																			id="amount" placeholder="Enter Amount" />
-																	</div>
-																</div>
-																<div class="col-lg-6">
-																	<div class="form-group" id="amount_div">
-																		<label>Discount</label> ><input type="number"
-																			class="form-control form-control-solid"
-																			name="discount" id="discount"
-																			placeholder="Enter Discount" />
-																	</div>
-																</div>
-															</div> -->
-
-															<!-- <div class="row">
-																<div class="col-lg-6">
-																	<div class="form-group">
-																		<label>Payment mode</label> <select name="paymentMode"
-																			id="paymentMode"
-																			class="form-control form-control-solid">
-																			<option value="cash">Cash</option>
-																			<option value="upi">UPI</option>
-																			<option value="nb">Net Banking</option>
-																			<option value="cheque">Cheque</option>
-																			<option value="credit">Credit</option>
-																		</select>
-																	</div>
-																</div>
-
-																<div class="col-lg-4">
-																	<div class="form-group" id="amount_div">
-																		<label>Total Amount</label> <span class="text-danger"
-																			id="type">*</span><input type="number"
-																			class="form-control form-control-solid"
-																			name="invoice_total" id="total_amount"
-																			placeholder="Enter Total Amount" disabled />
-																	</div>
-																</div>
-
-																<div class="col-lg-2">
-																	<div class="form-group" id="amount_div">
-																		<label>If Paid Advance</label> <span
-																			class="switch switch-outline switch-icon switch-primary switch-sm ">
-																			<label> <input type="checkbox" name="select"
-																				id="if_partial" /> <span></span>
-																		</label>
-																		</span>
-																	</div>
-																</div>
-
-															</div>
- -->
-
-															<!-- <div class="row">
-																<div class="col-lg-6">
-																	<div class="form-group" id="upi_div">
-																		<label>UPI Name</label> <select type="text"
-																			class="form-control form-control-solid" name="upi_id"
-																			id="upi_id" placeholder="Enter UPI Transaction Id">
-																			<option value="" disable hidden field>select
-																				UPI</option>
-																		</select>
-																	</div>
-																	<div class="form-group" id="nb_div">
-
-																		<label>Received Bank</label> <select
-																			class="form-control form-control-solid"
-																			id="received_bank">
-																			<option value="">Select a bank</option>
-
-																		</select>
-																	</div>
-																	
-																	   <div class="form-group" id="credit_div">
-									
-										<label>Credit Period</label> <input type="text"
-													class="form-control form-control-solid" id="credit_period">
-													
-													 
-													 </input> 
-									</div>
-
-																</div>
-
-
-
-
-
-																<div class="col-lg-6">
-																	<div class="form-group" id="amount_div1">
-																		<label>Advance Paid Amount</label> <span
-																			class="text-danger" id="type">*</span><input
-																			type="number" class="form-control form-control-solid"
-																			name="invoice_paid_total" id="partially_paid_amount"
-																			placeholder="Enter Total Amount" />
-																	</div>
-																</div>
-															</div> -->
-
-
-
-															<!-- <div class="row" id="bank_details1">
-																<div class="col-lg-6">
-																	<div class="form-group" id="amount_div">
-																		<label>Branch Name</label> <span class="text-danger"
-																			id="type">*</span><input type="text"
-																			class="form-control form-control-solid"
-																			name="branch_name" id="branch_name"
-																			placeholder="Enter Branch Namel" />
-																	</div>
-																</div>
-																<div class="col-lg-6">
-																	<div class="form-group" id="amount_div">
-																		<label>Account No</label> <span class="text-danger"
-																			id="type">*</span><input type="number"
-																			class="form-control form-control-solid"
-																			name="account_no" id="account_no"
-																			placeholder="Enter Account No" />
-																	</div>
-																</div>
-															</div> -->
-
-
-
-															<!-- <div class="modal" id="medicineModel" tabindex="-1"
-																role="dialog" aria-labelledby="staticBackdrop"
-																aria-hidden="true">
-																<div
-																	class="modal-dialog  modal-xl modal-dialog-scrollable"
-																	role="document">
-																	<div class="modal-content">
-																		<div class="modal-header">
-																			<h5 class="modal-title" id="history_patient_name"></h5>
-																			<button type="button" class="close"
-																				data-dismiss="modal" aria-label="Close">
-																				<i aria-hidden="true" class="ki ki-close"></i>
-																			</button>
-																		</div>
-																		<div class="modal-body">
-																			<h3>THIS IS A modal for MEDISION SELECTION</h3>
-																			 <div class="input-icon ml-10" style = "width: 30%;">
-																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
-																<span>
-																	<i class="flaticon2-search-1 text-muted"></i>
-																</span>
-															</div>
-																			<div class="input-icon ml-10" style="width: 30%;">
-																				<input type="text"
-																					class="form-control form-control-solid"
-																					placeholder="Search..." id="txt_searchall" /> <span>
-																					<i class="flaticon2-search-1 text-muted"></i>
-																				</span>
-																			</div>
-																			<br />
-																			<div
-																				class="datatable datatable-bordered datatable-head-custom"
-																				id="kt_datatable"></div>
-
-
-																		</div>
-																		<div class="modal-footer">
-																			<button type="button"
-																				class="btn btn-light-primary font-weight-bold"
-																				data-dismiss="modal">Close</button>
-																		</div>
-																	</div>
-																</div>
-															</div> -->
 
 															<div class="card-footer">
 																<div class="row">
@@ -403,7 +254,12 @@ table.a {
 		</div>
 		<!--end::Page-->
 	</div>
-
+	</div>
+	</div></div>
+	</div>
+	
+	
+	<jsp:include page="../common/footer.jsp"></jsp:include>
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
 
 	<script type="text/javascript">

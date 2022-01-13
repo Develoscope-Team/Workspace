@@ -15,11 +15,30 @@ String dbConnVar = "BAKESHACk";
 try {
 %>
 
-
+<style>
+table, th, td {
+	border: 1px solid white;
+	border-collapse: collapse;
+	background-color: #ffffff;
+}
+</style>
+<style>
+table.a {
+	table-layout: auto;
+	width: 100%;
+}
+</style>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <link href="//www.amcharts.com/lib/3/plugins/export/export.css"
 	rel="stylesheet" type="text/css" />
 </head>
@@ -580,7 +599,11 @@ function showSlides() {
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-<jsp:include page="../common/footer.jsp"></jsp:include>
+<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>

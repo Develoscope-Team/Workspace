@@ -1,7 +1,15 @@
-<div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
+ <style>
+        #kt_footer {
+           
+           width:100%;
+            bottom: 0;
+        }
+</style>
+ 
+<footer class="footer bg-transparent py-4 d-flex flex-lg-column  mr-5 " id="kt_footer">
 	<!--begin::Container-->
 	<div
-		class="container d-flex flex-column flex-md-row align-items-center justify-content-center">
+		class="container d-flex flex-column  align-items-center justify-content-center">
 		<!--begin::Copyright-->
 		<div class="text-dark order-2 order-md-1">
 			<span class="text-muted font-weight-bold mr-2">2021 ©</span> <a
@@ -10,6 +18,7 @@
 		</div>
 	</div>
 	<!--end::Container-->
-</div>
+</footer>
+
 </body>
-</html>
+</html>  

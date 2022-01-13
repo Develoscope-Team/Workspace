@@ -314,20 +314,25 @@
 											</div>
 										</div>
 									</div>
-									<div class="row col-12  ">
-										<div class=" text-center col-md-10" id="print_button">
-											<Button id="sudo" class="btn-print btn-primary font-weight-bold"/>
-											 PDF Invoice
+									
+									
+									<div class="row col-12 text-center mt-5 mb-5">
+										<div class=" text-center col-md-12" id="print_button">
+											<button id="sudo"
+												class="btn-print btn-primary font-weight-bold" >
+											PDF Invoice
 											</button>
-											
-											<Button id="sudo1" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" />
+
+												<button id="sudo1" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" >
 											Print Invoice
 											</button>
-											
-											</div>
-										
+
+										</div>
+
 									</div>
-									<!-- end: Invoice action-->
+									
+									
+									
 									<!-- end: Invoice-->
 								</div>
 							</div>
@@ -352,7 +357,11 @@
 		<!--end::Page-->
 	</div>
 
-
+<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;  width:100%;" class="fixed ">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->

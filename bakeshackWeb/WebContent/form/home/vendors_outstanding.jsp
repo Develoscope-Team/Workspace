@@ -84,7 +84,11 @@ table.a {
 	</div>
 	</div>
 
-
+<!--begin::Footer-->
+				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
+				<jsp:include page="../common/footer.jsp"></jsp:include>
+				</div>
+				<!--end::Footer-->
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->

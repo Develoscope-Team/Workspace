@@ -10,14 +10,10 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
+<html lang="en">
+<!--begin::Head-->
 <head>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script src="//code.jquery.com/jquery.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+	
 <style>
 table, th, td {
 	border: 1px solid white;
@@ -31,44 +27,69 @@ table.a {
 	width: 100%;
 }
 </style>
-
 </head>
+<!--end::Head-->
+<!--begin::Body-->
 
-<jsp:include page="../common/header.jsp"></jsp:include>
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/js/pages/features/custom/spinners.js"></script>
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/js/main.js"></script>
-
-
-
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <body id="kt_body"
-	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
-	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading" 
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-9.jpg)">
+	<!--begin::Main-->
+	<!--begin::Header Mobile-->
+	
+	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Aside-->
-			<jsp:include page="/form/common/sidebar.jsp"></jsp:include>
+			
+      <jsp:include page="/form/common/navbar.jsp"></jsp:include>
+
 			<!--end::Aside-->
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
 				<!--begin::Header-->
-				<jsp:include page="/form/common/navbar.jsp"></jsp:include>
+				
+				
+				<jsp:include page="/form/common/header.jsp"></jsp:include>
 				<!--end::Header-->
+
+
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
 					<!--begin::Entry-->
-					<div class="d-flex flex-column-fluid offset-2">
+					<div class="d-flex flex-column-fluid">
+						<!--begin::Container-->
+
+						<div
+							class="container d-flex align-items-stretch justify-content-between">
+							<div class="col-xl-12 ">
+				
+						<h2
+									class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3 ml-4"  > Patient Wise Report
+										</h2>
+								
+									<div class="col-xl-12 offset-xl-0">
+										<div class="example mb-10">
+											<div class="example-preview">
+				<!--end::Header-->
+				<!--begin::Content-->
+				
+				<div class="content d-flex flex-column flex-column-fluid"
+					id="kt_content">
+					<!--begin::Entry-->
+					
+					<div class="d-flex flex-column-fluid offset-0	">
 						<!--begin::Container-->
 						<div class="container-fluid ">
-							<h2 class="text-left ">Patient Details Updation </h2>
+							
 
 
 							<div class="row">
-								<div class="col-xl-10">
+								<div class="col-xl-12">
 									<div class="card card-custom gutter-b">
 										<div class="card-body">
 											<div class="example mb-10">
@@ -168,14 +189,6 @@ table.a {
 																		</select>
 																	</div>
 																</div>
-																<div class="col-xl-6">
-																	<div class="form-group">
-																		<label>Age</label> <input type="number"
-																			class="form-control  form-control-lg"
-																			name="age" id="age" /> <span
-																			class="msg text-danger" id="type2"> </span>
-																	</div>
-																</div>
 
 															</div>
 															
@@ -213,14 +226,23 @@ table.a {
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
-				<jsp:include page="../common/footer.jsp"></jsp:include>
+				
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	
 	<!--end::Main-->
+	<jsp:include page="../common/footer.jsp"></jsp:include>
 
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
 
@@ -306,14 +328,10 @@ table.a {
         }
 	});	
 	
-	
-	
 	$('#patient_name').change(function(){
 
 		var patient_name = $(this).val();
-		var patient_code = $('#patient_code').val();
-	//	alert(patient_code);
-		if(patient_code == "")	{
+			
 		$.ajax({
 			url : base + "/dssAPI/dfapi/getPatientDetails",
 			type : "post",
@@ -337,6 +355,9 @@ table.a {
 					}
 					
 					$('#village').val(row.city_desc);
+					
+					
+					
 					$('#age').val(row.age);
 					$('#dob').val(row.birth_date);
 					$('#aadhar_no').val(row.aadhar_no);
@@ -359,14 +380,13 @@ table.a {
 
 	        }
 		});		
-		}
+
 	})
 	
-		
 	
-	 $('#show').click(function() {
-		
-		 
+	
+	$('#show').click(function() {
+
 							var patient_name = $('#patient_name').val();
 							var patient_code = $('#patient_code').val();
 							var mobile_no = $('#mobile_no').val();
@@ -374,7 +394,6 @@ table.a {
 							var village = $('#village').val();
 							var blood_group = $('#blood_group').val();
 							var gender = $('#gender').val();
-							var age = $('#age').val();
 							var flag = 2; // Addition
 
 							
@@ -396,7 +415,6 @@ table.a {
                                     "city_desc" : village,
                                     "blood_group" : blood_group,
                                     "gender" : gender,
-                                    "age" : age,
 									"flag" : 2
 								},
 								
@@ -436,7 +454,6 @@ table.a {
                                 "city_desc" : village,
                                 "blood_group" : blood_group,
                                 "gender" : gender,
-                                "age" : age,
 								"flag" : 1
 							},
 							
@@ -466,10 +483,10 @@ table.a {
 						
 						
 					}
-					window.location.reload();	 
+					window.location.reload();
 						})
 	
-
+	
 	
 	</script>
 </body>
