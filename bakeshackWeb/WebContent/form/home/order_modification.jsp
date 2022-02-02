@@ -8,25 +8,60 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 String dbConnVar = "BAKESHACk";
 try {
+	 String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp"); 
 %>
 <head>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<!-- <script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
- --></head>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<style>
+.alert {
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+.alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+}
+.alert.show {
+	animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide { 0%{	transform: translateX(100%);}
+40%{transform:translateX(-10%);}
+80%{transform:translateX(0%);}
+100%{transform:translateX(-10px);}
+}
+@keyframes hide_slide { 0%{	transform: translateX(-10px);}
+40%{transform:translateX(0%);}
+80%{transform:translateX(-10%);}
+100%{transform:translateX(100%);}
+}
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
+</style>
+</head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
@@ -35,7 +70,6 @@ try {
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
@@ -50,21 +84,15 @@ try {
 								<div class="d-flex flex-column">
 									<!--begin::Title-->
 									<h2 class="text-white font-weight-bold my-2 mr-5">Order Modification</h2>
-
 									<!--end::Title-->
-
 								</div>
 								<!--end::Heading-->
 							</div>
 							<div class="d-flex align-items-center">
-
 								<a href="sales-order-master.jsp"
 									class="btn btn-light-primary font-weight-boldest py-3 px-6 mr-6"><i
 									class="fa fas fa-calculator mr-2"></i>Billing</a>
-
-
 							</div>
-
 						</div>
 					</div>
 					<!--end::Subheader-->
@@ -72,12 +100,6 @@ try {
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
-
-							<!-- <h2
-								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Category
-								Master</h2> -->
-
-
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -96,16 +118,14 @@ try {
 																				name="customerName" id="customer_name" /><span
 																				class="msg text-danger" id="type1"> </span>
 																		</div>
-
 																	</div>
-
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Order Date</label> <input type="date"
+																		<label>Order Date</label> <input type="text"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid form-control-lg"
-																			placeholder="DD/MM/YYYY" name="order_dat"
+																			placeholder="YYYY-MM-DD" name="order_dat"
 																			id="order_date" />
 																	</div>
 																</div>
@@ -120,10 +140,10 @@ try {
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Delivery Date</label> <input type="date"
+																		<label>Delivery Date</label> <input type="text"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid"
-																			id="delivery_date" />
+																			placeholder="YYYY-MM-DD" id="delivery_date" />
 																	</div>
 																</div>
 															</div>
@@ -163,16 +183,16 @@ try {
 																					xmlns:xlink="http://www.w3.org/1999/xlink"
 																					width="24px" height="24px" viewBox="0 0 24 24"
 																					version="1.1">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon points="0 0 24 0 24 24 0 24" />
-        <path
+                                                                                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                                         <polygon points="0 0 24 0 24 24 0 24" />
+                                                                                        <path
 																						d="M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
 																						fill="#000000" fill-rule="nonzero" opacity="0.3" />
-        <path
+                                                                                         <path
 																						d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
 																						fill="#000000" fill-rule="nonzero" />
-    </g>
-</svg>
+                                                                                         </g>
+                                                                                 </svg>
 																				<!--end::Svg Icon-->
 																			</span>
 																		</button>
@@ -187,11 +207,7 @@ try {
 																	</div>
 																</div>
 															</div>
-
-
-
 															<div class="card-body" style="overflow-x: auto;">
-
 																<table class="table" id="Mtable">
 																	<thead>
 																		<tr>
@@ -202,13 +218,9 @@ try {
 																			<th scope="col">Unit Rate</th>
 																			<th scope="col">Total</th>
 																			<th scope="col">Action</th>
-
 																		</tr>
 																	</thead>
-
 																	<tbody class="add_product" id="add-product"></tbody>
-
-
 																</table>
 															</div>
 															<div class="text-right mb-5 mr-22">
@@ -216,7 +228,6 @@ try {
 																	class="btn font-weight-bold btn-primary ">ADD
 																</button>
 															</div>
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div">
@@ -235,7 +246,6 @@ try {
 																	</div>
 																</div>
 															</div>
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
@@ -250,7 +260,6 @@ try {
 																		</select>
 																	</div>
 																</div>
-
 																<div class="col-lg-4">
 																	<div class="form-group" id="amount_div">
 																		<label>Total Amount</label> <span class="text-danger"
@@ -271,7 +280,6 @@ try {
 																		</span>
 																	</div>
 																</div>
-
 															</div>
 															<div class="col-lg-6">
 																<div class="form-group" id="amount_div">
@@ -281,7 +289,6 @@ try {
 																		placeholder="Enter Discount" disabled/>
 																</div>
 															</div>
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group" id="upi_div">
@@ -293,15 +300,12 @@ try {
 																		</select>
 																	</div>
 																	<div class="form-group" id="nb_div">
-
 																		<label>Received Bank</label> <select
 																			class="form-control form-control-solid"
 																			id="received_bank">
 																			<option value="">Select a bank</option>
-
 																		</select>
 																	</div>
-
 																</div>
 															<div class="col-lg-6">
 																	<div class="form-group" id="amount_div1">
@@ -348,7 +352,6 @@ try {
 																			</button>
 																		</div>
 																		<div class="modal-body">
-																			<!-- <h3>THIS IS A modal for MEDISION SELECTION</h3> -->
 																			<div
 																				class="quick-search quick-search-inline ml-20 w-300px "
 																				id="kt_quick_search_inline">
@@ -361,18 +364,18 @@ try {
 																										xmlns:xlink="http://www.w3.org/1999/xlink"
 																										width="24px" height="24px" viewBox="0 0 24 24"
 																										version="1.1">
-															<g stroke="none" stroke-width="1" fill="none"
+															                                              <g stroke="none" stroke-width="1" fill="none"
 																											fill-rule="evenodd">
-																<rect x="0" y="0" width="24" height="24" />
-																<path
+																                                           <rect x="0" y="0" width="24" height="24" />
+																                                             <path
 																											d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
 																											fill="#000000" fill-rule="nonzero"
 																											opacity="0.3" />
-																<path
+																                                             <path
 																											d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
 																											fill="#000000" fill-rule="nonzero" />
-															</g>
-														</svg>
+															                                                </g>
+													                                                   </svg>
 																							</span>
 																							</span>
 																						</div>
@@ -385,27 +388,19 @@ try {
 																						</div>
 																					</div>
 																				</form>
-
-
-
-
 																				<div id="kt_quick_search_toggle"
 																					data-toggle="dropdown" data-offset="0px,1px"></div>
-
 																				<div
 																					class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
 																					<div class="quick-search-wrapper scroll"
 																						data-scroll="true" data-height="350"
 																						data-mobile-height="200"></div>
 																				</div>
-
 																			</div>
 																			<br />
 																			<div
 																				class="datatable datatable-bordered datatable-head-custom"
 																				id="kt_datatable"></div>
-
-
 																		</div>
 																		<div class="modal-footer">
 																			<button type="button"
@@ -415,12 +410,9 @@ try {
 																	</div>
 																</div>
 															</div>
-
 															<div class="card-footer">
 																<div class="row">
-
 																	<div class="col-lg-10 offset-1 text-center">
-
 																		<button type="button" id="add_sales_order"
 																			class="btn font-weight-bold btn-primary ">Submit</button>
 																		<button type="button" id="cancel"
@@ -438,105 +430,6 @@ try {
 									</div>
 								</div>
 							</div>
-
-	<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
 							<div class="alert alert-success  " role="alert"
 								id="success_alert">
 								<div class="alert-text">
@@ -559,18 +452,13 @@ translateX(
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
 
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -589,30 +477,17 @@ translateX(
 		</span>
 	</div>
 
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<%-- <script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
- --%>
-	<%-- <script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
- --%>
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
-
-
+<script type="text/javascript" src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+<script type="text/javascript" src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-	
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const customer_name = urlParams.get('customer_name');
 	const customer_code = urlParams.get('customer_code');
 	const order_code = urlParams.get('order_code');
-	
 	$('#order_no').val(order_code);
-	
 	var ccode=0;
 	$.ajax({
 			url : base + "/bakeshackAPI/api/getCustomerDetails",
@@ -625,8 +500,7 @@ translateX(
 				const row = data.find(d => d.customer_name == customer_name);
 				if(row != null){
 					ccode = row.customer_code; 
-				  
-					$('#customer_name').val(row.customer_name);
+				$('#customer_name').val(row.customer_name);
 				$('#customer_code').val(row.customer_code);
 				$('#mobile_no').val(row.mobile_no);
 				$('#billing_address').val(row.address);
@@ -636,12 +510,18 @@ translateX(
 				}
 	        }
 		});	
-	
 	 var j=0;
 	 var r=0;
 	 var invoice_code;
-//	 $('#partially_paid_amount').val('00');
 		$('#discount').val("00");
+		
+		// minimum setup
+	     $('#order_date,#delivery_date').datepicker({
+	      rtl: KTUtil.isRTL(),
+	      todayHighlight: true,
+	      orientation: "bottom left",
+	     format:'yyyy-mm-dd'
+	     });
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getOrderMasterDetails",
 		type : "post",
@@ -649,30 +529,22 @@ translateX(
 		async : false,
 		data : {"order_code": order_code},
 		success:function(data)
- 	{
-			
+     	{
 			const row = data.find(d => d.order_code == order_code);
 			data.forEach((row)=> {
-			
 				if(row.order_code == order_code )
 						{
-			
-					/* alert(row.odrer_date); */
-					 $('#order_date').val(row.order_date);
-					 $('#delivery_date').val(row.delivery_date);
+					$('#order_date').val(row.order_date);
+					$('#delivery_date').val(row.delivery_date);
 		         	$('#order_no').val(row.order_code);
 		         	var product_list = row.product_list;
 		         	$('#discount').val(row.discount);
 		         	$('#advance_paid').val(row.partial_paid_amount);
-		         		 document.getElementById('amount').value = row.amount;
-							 document.getElementById('total_amount').value =row.amount - row.discount;
-							 
-							 document.getElementById('partially_paid_amount').value = (row.amount - row.discount) - row.partial_paid_amount;
-		
+		         	document.getElementById('amount').value = row.amount;
+					document.getElementById('total_amount').value =row.amount - row.discount;
+					document.getElementById('partially_paid_amount').value = (row.amount - row.discount) - row.partial_paid_amount;
 		         	invoice_code = row.invoice_code;
-		         
 		         	const parsedData = JSON.parse(product_list);
-			         
 					 $(parsedData).each(function(index) {
 						r++;
 							$('#product-' + (index + 1)).val(parsedData[index]['product']);
@@ -680,11 +552,7 @@ translateX(
 							 $('#quantity-' + (index + 1)).val(parsedData[index]['quantity']); 
 							$('#unit_rate-' + (index + 1)).val(parsedData[index]['unit_rate']);
 							$('#total-' + (index + 1)).val(parsedData[index]['total']);
-						
-							
-							//alert(r);
 						});
-					 
 					 for(var i = 1; i <=r; i++){
 						  var html = '';
 						  html += '<tr>';
@@ -695,7 +563,6 @@ translateX(
 						  html += '<td style="width: 9%;"><input type="text" class="form-control  unit_rate" name="unit_rate" id="unit_rate-' + i + '" placeholder="unit_rate"  disabled/></td>';
 						  html += '<td style="width: 12%;"><input type="text" class="form-control  total" name="total" id="total-' + i + '" placeholder="total" disabled/></td>';
 						  html += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
-
 						  $('.add_product').append(html);
 				 }
 					 const parsedData1 = JSON.parse(product_list);
@@ -705,74 +572,66 @@ translateX(
 							$('#quantity-' + (index + 1)).val(parsedData1[index]['quantity']);
 							$('#unit_rate-' + (index + 1)).val(parsedData1[index]['unit_rate']);
 							$('#total-' + (index + 1)).val(parsedData1[index]['total']);
-							
 						});	
-				 
 					}
 			});
  	}
 	});	
 					function checkedBox(i){
-				
 						 if ($("#id-"+i).prop('checked')==true){ 
 							   $("#quantity-"+i).prop('disabled', false);
 							 }else{
 								 $("#quantity-"+i).prop('disabled', true);
 									$("#quantity-"+i).val('');
-									
-									
 							 }
-					    
 						}; 	
 						$('#if_partial').change(function(){
-							
-							
 							 if ($("#if_partial").prop('checked')==true){ 
 								 $('#amount_div1').show();
-								
 								 }else{
-									
 									 $('#amount_div1').hide();
 								 }
 							}); 
-						
 						 $('#upi_div').hide();
 						 $('#nb_div').hide();
 						 $('#cheque_div').hide();
 						 $('#amount_div1').hide();
 						 $('#bank_details1').hide();
 						 $('#bank_details2').hide();
-						 
 						$('#paymentMode').change(function(){
 							var payment_mode = $(this).val();
-									
 							if(payment_mode == 'upi'){
 								$('#upi_div').show();
 								$('#nb_div').hide();
 								$('#cheque_div').hide();
+								 $('#bank_details1').hide();
+								 $('#bank_details2').hide();
 							}else if(payment_mode == 'nb'){
 								$('#upi_div').hide();
 								$('#nb_div').show();
 							    $('#cheque_div').hide();
+							   
 							}else if(payment_mode == 'cheque'){
 								$('#upi_div').hide();
 								$('#nb_div').show();
 								$('#cheque_div').hide();
+								
 							}else if(payment_mode == 'credit'){
 								$('#upi_div').hide();
 								$('#nb_div').hide();
 								$('#cheque_div').hide();
 								$('.checkbox').prop('disabled', true);
 								$('#partially_paid_amount').val("00");
-								
+								 $('#bank_details1').hide();
+								 $('#bank_details2').hide();
 							}else{
 								$('#upi_div').hide();
 								$('#nb_div').hide();
 								$('#cheque_div').hide();
+								 $('#bank_details1').hide();
+								 $('#bank_details2').hide();
 							}
-							
 						});	
-						
 						 $.ajax({
 								url : base + "/bakeshackAPI/api/getBankDetails",
 								type : "post",
@@ -782,16 +641,13 @@ translateX(
 								success:function(data)
 							    {
 									data.forEach((element)=> {
-										
 									        $('#received_bank').append($(document.createElement('option')).prop({
 								                value: element.bank_id,
 								                text: element.bank_name
 								            }))
-										
 									});   
 							    }
 							});	
-						 
 							$('#received_bank').change(function(){
 								 $('#bank_details1').show();
 								 var bank = $(this).val();
@@ -804,11 +660,8 @@ translateX(
 										success:function(data)
 									    {
 											const row = data.find(d => d.bank_id == bank);
-												
-											    
 											       $('#branch_name').val(row.branch);
 										 			$('#account_no').val(row.account_no);  
-											
 									    }
 									});	
 							});
@@ -819,11 +672,9 @@ translateX(
 								var invoice_total = amount1-discount;
 								$('#total_amount').val(invoice_total);
 								$('#partially_paid_amount').val(invoice_total-parseInt(advance_paid));
-								
 								});
-	var balance_amount = 0;
+ var balance_amount = 0;
 $('#add_sales_order').click(function() {
-											
 									var customer_code = $('#customer_code').val();
 									var order_date = $('#order_date').val();
 									var delivery_date = $('#delivery_date').val();
@@ -841,8 +692,6 @@ $('#add_sales_order').click(function() {
 									var account_no = $('#account_no').val();
 									var flag 		  = 1; // Addition
 									var advance_amount = $('#advance_paid').val();
-									
-									
 									 var productList = [];
 									 $("table tbody tr").each(function(index) {
 									 	if($(this).find('.product').val() != null){
@@ -855,7 +704,6 @@ $('#add_sales_order').click(function() {
 									     	}); 
 									 	}
 									 });
-									
 								var jsonString = JSON.stringify(productList);	
 								 var transaction_id;
 								  $.ajax({
@@ -866,7 +714,6 @@ $('#add_sales_order').click(function() {
 										data : {"flag" : 1},
 										success:function(data)
 								    	{
-											//data.forEach((element)=> {
 											const row = data.find(d => d.transaction_code == transaction_id);
 											data.forEach((row)=> {
 											 transaction_id = row.transaction_code;
@@ -879,7 +726,6 @@ $('#add_sales_order').click(function() {
 											dataType : "json",
 											async : false,
 											data : {
-												
 												"customer_code"       : customer_code,
 												"order_code" 	      : order_code,
 												"invoice_date"        : order_date,
@@ -894,7 +740,6 @@ $('#add_sales_order').click(function() {
 												"transaction_code"    : transaction_id,
 												"advance_paid"        : 0,
 												"flag"                : flag
-												
 											},
 											error : function(xhr) {
 												var msg = "Data insertion/updation failed. Error : "
@@ -913,9 +758,7 @@ $('#add_sales_order').click(function() {
 											},
 											success : function(response) {
 												if (response != null) {
-
 													if (response >= 1) {
-
 														var msg = "Invoice Data inserted/Updated Successfully.";
 														 $('#success_msg').text(msg);
 														 $('#success_alert').addClass("show");
@@ -929,9 +772,6 @@ $('#add_sales_order').click(function() {
 												}
 											}
 										}); 
-									  
-									 
-									  
 									  $.ajax({
 											url : base + "/bakeshackAPI/api/insertUpdateOrderBookingDetails",
 											type : "post",
@@ -970,13 +810,10 @@ $('#add_sales_order').click(function() {
 										             $('#warning_alert').removeClass("show");
 										             $('#warning_alert').addClass("hide");
 										           },2000);
-
 											},
 											success : function(response) {
 												if (response != null) {
-
 													if (response >= 1) {
-
 														var msg = "Order Booking Data Modified Successfully.";
 														 $('#success_msg').text(msg);
 														 $('#success_alert').addClass("show");
@@ -986,14 +823,10 @@ $('#add_sales_order').click(function() {
 												             $('#success_alert').removeClass("show");
 												             $('#success_alert').addClass("hide");
 												           },2000);
-
 													} 
 												}
 											}
-
 										}); 
-									 
-									  
 									  Swal.fire({
 									        title: "Are you sure?",
 									        text: "You want to print!",
@@ -1004,19 +837,13 @@ $('#add_sales_order').click(function() {
 									        reverseButtons: true
 									    }).then(function(result) {
 									        if (result.value) {
-											  
 										 		var url = "order_booking_receipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&transaction_id=' + transaction_id + '&partial_paid_amount=' + partial_paid_amount;
-
 											  window.location.assign(url);
-											 
 										        } else if (result.dismiss === "cancel") {
 										        	 window.location.reload("order_delivery.jsp");
 										        }
 										    });
-									  
-									
 						})
-		
 var i =r;					
 $('#add ').click(function () {
 		i++;
@@ -1032,22 +859,13 @@ $('#add ').click(function () {
 			 $('.add_product').append(html);
 			 matches=i;
 			 $("#medicineModel").modal();
-				 /* $('.add_product #product-'+ i).dblclick(function () {
-					   mname=(this.id);
-					  var str = mname;
-			           matches = str.match(/(\d+)/);
-					  $("#medicineModel").modal();
-					}); */
-			
 	});
 				
 $('.add_product').on('click','.btn_delete',function(){
 	$(this).closest('tr').remove();	
-	
 	 var calculate_total =0;
 	 for(var j = 1 ;j<=i ;j++)
 	 {
-		 
 		 if($("#total-"+j).val() != null){
 		 var calculate_unit_total =  $("#total-"+j).val();	 
 		 calculate_total += parseInt(calculate_unit_total);
@@ -1057,7 +875,6 @@ $('.add_product').on('click','.btn_delete',function(){
 		 }
 	 }
 });				
-		
 			function weightConverter(k,valNum) {
 				 var calculate_unit_price = $("#unit_rate-"+k).val();
 				 $("#total-"+k).val(calculate_unit_price*valNum); 
@@ -1173,9 +990,7 @@ $('.add_product').on('click','.btn_delete',function(){
 		KTBootstrapDaterangepicker.init();
 	});	
 		
-
 	function update(id){
-		
 		$.ajax({
 	        type:"POST",
 	        dataType: "json",
@@ -1187,19 +1002,14 @@ $('.add_product').on('click','.btn_delete',function(){
 	            const row = data.find(d => d.product_id ==id);
 	            $('#product-'+ matches).val(row.product_name);
 	            $("#unit-"+ matches).val(row.unit);
-	           
-	        	
 	        	$("#unit_rate-"+ matches).val(row.selling_price);
-	        	
 	        }
 	     });
 		 $("#medicineModel").modal('hide');
 	} 																			
-	
 </script>
 </body>
 </html>
-
 <%
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);

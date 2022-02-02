@@ -9,9 +9,15 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
-
+<%
+String session1 = (String) session.getAttribute("login_id");
+if (session.getAttribute("login_id") != null) {
+ String sessionName = (String) session.getAttribute("login_id");
+} else
+ response.sendRedirect("../common/login.jsp");
+%>
 <jsp:include page="../common/header.jsp"></jsp:include>
-
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <style type="text/css" media="print">
 @page {
 	size: A4 landscape;
@@ -19,18 +25,20 @@ try {
 </style>
 
 <body onafterprint="printP()" id="kt_body"
-	class="print-content-only quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-static page-loading">
-
+	class="print-content-only quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-static page-loading"
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-rk4.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    top: 0;">
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
-
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
-
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
@@ -41,70 +49,44 @@ try {
 									<!-- begin: Invoice header-->
 									<div class="row py-8 px-9 px-md-0" id="header">
 										<div class="col-md-10 offset-1">
-
 											<div class="row text-info">
-
 												<img id="logo" alt="Logo"
 													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/gif/src.png"
 													class="logo-default max-h-100px"  />
-
 												<div class="col-md-8 text-center">
 													<h1 class="font-weight-bolder" style="font-size: 40px;">SHREE
 														RAJENDRA CLINIC</h1>
-
 													<div class="text-right">
-
 														<h1>Dr. Rakesh F. Bafna</h1>
 														<p style="font-size: 18px">B.H.M.S(Reg No. 27450)</p>
-
 													</div>
-
 													<h3>पोयनाड : भाजी मार्केट गल्ली</h3>
 													<h3 class="ml-2 font-weight-bolder">7775999536 |
 														9822786831(Whatsapp)</h3>
 												</div>
-
 											</div>
-
 											<div class="border-bottom bg-info w-100"></div>
 											<div class="border-bottom bg-info w-100"></div>
 											<div class="border-bottom bg-info w-100"></div>
-
 										</div>
 									</div>
-
 									<div class="col-md-12 mb-10 text-center text-info">
-										<h1 class="font-weight-bolder" style="font-size: 35px;">Fee
-											Receipt</h1>
+										<h1 class="font-weight-bolder" style="font-size: 35px;">Fee	Receipt</h1>
 									</div>
-
-									<div id="name" class="col-md-9 mb-20 offset-1 ">
-										<span
-											class="d-flex justify-content-between align-items-baseline">
-
-											<div class="d-flex justify-content-start"
-												style="font-size: 20px;">
-												<h2
-													class="pl-0 pr-4 font-weight-bold text-info text-uppercase">Receipt
-													No:</h2>
+									<div id="name" class="col-md-9 mb-10 offset-1 ">
+										<span class="d-flex justify-content-between align-items-baseline">
+											<div class="d-flex justify-content-start" style="font-size: 20px;">
+												<h2	class="pl-0 pr-4 font-weight-bold text-info text-uppercase">Receipt	No:</h2>
 												<h2 class="font-weight-bold" id="receipt_no"></h2>
 											</div>
-
-											<div class="d-flex justify-content-start"
-												style="font-size: 20px;">
-												<h2
-													class="pl-0 pr-4 font-weight-bold text-info text-uppercase">Date:
-												</h2>
+											<div class="d-flex justify-content-start" style="font-size: 20px;">
+												<h2	class="pl-0 pr-4 font-weight-bold text-info text-uppercase">Date:	</h2>
 												<h2 class="font-weight-bold" id="date1">__/__/____</h2>
 											</div>
 										</span>
-
 									</div>
 									<div class="row py-9 px-8 id=body">
-
-										<div class="col-md-10 ml-20 mr-20 mb-40 "
-											style="font-size: 20px;">
-
+										<div class="col-md-10 ml-20 mr-20 mb-30 " style="font-size: 20px;">
 											<p class="">
 												Received amount of <span
 													class="amount font-weight:500 font-decoration:underline mr-3">
@@ -121,7 +103,6 @@ try {
 													__________________ </span> rs. & other charges___________.
 
 											</p>
-
 											<div class="col-md-10 text-right" style="font-size: 20px">
 												<label>Thanks</label>
 											</div>
@@ -134,11 +115,7 @@ try {
 												<label>Dr.Rakesh Bafna</label>
 											</div>
 										</div>
-
 									</div>
-
-									<!-- end: Invoice action-->
-									<!-- end: Invoice-->
 								</div>
 							</div>
 							<!-- end::Card-->
@@ -147,20 +124,17 @@ try {
 					</div>
 					<!--end::Entry-->
 				</div>
-
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
-
-	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
-	<script>
+<jsp:include page="../common/footer.jsp"></jsp:include>
+<jsp:include page="../common/jsfiles.jsp"></jsp:include>
+<script>
 var basePath='<%=basePath%>';    
 var base='<%=base%>';  
-
 window.print();
-
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const patient_code = urlParams.get('patient_code');
@@ -176,10 +150,7 @@ $.ajax({
 		},
 	success:function(data)
     {
-		
 		 const row = data.find(d => d.visit_id ==vid); 
-		 
-		
 		 $('#receipt_no').text(row.receipt_no);
 		 $('#date1').text(row.payment_date);
 		 $('.amount').text(row.paid_amount);
@@ -188,7 +159,6 @@ $.ajax({
 		 $('.invoice_amt').text(row.invoice_total);
 		 $('.balance_amt').text(row.balance_amount);
     }
-    
 });	
 $.ajax({
 	url : base + "/dssAPI/dfapi/getPatientDetails",
@@ -205,26 +175,16 @@ $.ajax({
 		$('.received_by').text(row.patient_name);
 		
     }
-    
 });	
 
 function printP()
 {
 	var url = "form-wizard.jsp";
-
 	window.location.assign(url);
 	}
-
 </script>
-
 </body>
 </html>
-
-
-
-
-
-
 <%
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);

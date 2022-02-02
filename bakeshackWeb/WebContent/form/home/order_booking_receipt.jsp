@@ -1,78 +1,61 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 String dbConnVar = "BAKESHACk";
 try {
+	  String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp");  
 %>
 <head>
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
 <script src="//code.jquery.com/jquery.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jquery.table2excel.js"></script>
-
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
-
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jquery.table2excel.js"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 </head>
 <body onafterprint="printP()" id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
-	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include> 
 	<!--end::Header Mobile-->
-	<div class="d-flex flex-column flex-root" style="bottom: 0;">
+	<div class="d-flex flex-column flex-root" >
 		<!--begin::Page-->
-		<div class="d-flex flex-row flex-column-fluid page" style="bottom: 0;">
+		<div class="d-flex flex-row flex-column-fluid page" >
 			<!--begin::Wrapper-->
-			<div class="d-flex flex-column flex-row-fluid wrapper"
-				style="bottom: 0;" id="kt_wrapper">
-
+			<div class="d-flex flex-column flex-row-fluid wrapper"  id="kt_wrapper">
 				<!--begin::Content-->
-				<div class="content d-flex flex-column flex-column-fluid"
-					style="bottom: 0;" id="kt_content">
-
+				<div class="content d-flex flex-column flex-column-fluid"  id="kt_content">
 					<!--begin::Entry-->
 					<div class="d-flex flex-column">
 						<!--begin::Container-->
 						<!--begin::Container-->
-						<div class="container " style="font-size: 16px;">
-
+						<div class="container mt-10 " style="font-size: 16px;">
 							<!-- begin::Card-->
 							<div class="card card-custom overflow-hidden">
 								<div class="card_body p-0" id="ab"
 									style="background-colou: #ffeexx; width: 100%;">
 									<!-- begin: Invoice-->
 									<!-- begin: Invoice header-->
-									<div
-										class="row justify-content-center bgi-size-cover bgi-no-repeat">
+									<div class="row justify-content-center bgi-size-cover bgi-no-repeat">
 										<div class="  col-md-10 ">
 											<img alt="Logo"
 												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Footer1.png"
 												class="logo-default " id="pri1"
 												style="position: fixed; top: 0;" />
-											<h1
-												class=" text-black font-weight-boldest mt-35  mb-20  text-center ml-25 ">
-												<u> SALES ORDER </u>
-											</h1>
+											<h1	class=" text-black font-weight-boldest mt-40  mb-20  text-center ml-25 "><u> SALES ORDER </u></h1>
 											<div id="name" class="col-md-12">
-												<span
-													class="d-flex justify-content-between align-items-baseline">
-
+												<span class="d-flex justify-content-between align-items-baseline">
 													<div class="d-flex justify-content-start">
 														<div class="  font-weight-bolder ml-3 ">
 															<u>Invoice No:</u>
@@ -80,7 +63,6 @@ try {
 														<span class="invoice-no font-weight-bolder ml-2"
 															id="invoice_no"></span>
 													</div>
-
 													<div class="d-flex justify-content-start">
 														<div class="  font-weight-bolder ">
 															<u>Invoice Date:</u>&#160;&#160;
@@ -107,7 +89,6 @@ try {
 												<table class="table"
 													style="border: none; border-bottom-style: none;">
 													<thead>
-
 														<tr>
 															<th class="pl-0 font-weight-bold text-muted "
 																style="font-size: 16px;" id="no" cellspacing="0"
@@ -127,17 +108,12 @@ try {
 														</tr>
 													</thead>
 													<tbody class="t_body text-center">
-
 													</tbody>
 												</table>
 											</div>
-
 										</div>
-
-
 									</div>
 									<div class="row col-md-10 justify-content offset-1 ">
-
 										<div class="col-7 ">
 											<label> </label> <span class="font-weight-bold "
 												id="amount_in_word0"><lable></lable></span>
@@ -148,12 +124,8 @@ try {
 										<div class="col-2 text-center ">
 											<span class="font-weight-bolder text-right" id="discount"></span>
 										</div>
-
 									</div>
-
-
 									<div class="row col-md-10 justify-content offset-1 ">
-
 										<div class="col-7 ">
 											<label> Amount In Word :</label> <span
 												class="font-weight-bold " id="amount_in_word"><lable></lable></span>
@@ -164,10 +136,8 @@ try {
 										<div class="col-2 text-center ">
 											<span class="font-weight-bolder text-right" id="total"></span>
 										</div>
-
 									</div>
 									<div class="row col-md-10 justify-content-center offset-1 ">
-
 										<div class="col-7">
 											<label>Payment Mode :</label> <span
 												class="amount_in_word1 font-weight-bold"
@@ -179,10 +149,8 @@ try {
 										<div class="col-2 text-center">
 											<span class=" font-weight-bolder" id="total_paid"></span>
 										</div>
-
 									</div>
 									<div class="row col-md-10 justify-content-center offset-1">
-
 										<div class="col-3">
 											<label> </label>
 										</div>
@@ -197,10 +165,7 @@ try {
 											<hr>
 											<span class=" font-weight-bolder" id="balance_amount"></span>
 										</div>
-
 									</div>
-
-
 									<!-- end: Invoice body-->
 									<div class="row col-md-10 justify-content mt-15 ml-6">
 										<div class="col-md-10" style="position: relative;">
@@ -215,22 +180,15 @@ try {
 										</div>
 									</div>
 									<!-- begin: Invoice footer-->
-
-									<div
-										class="row col-md-10 justify-content-center mt-20 offset-1"
+									<div class="row col-md-10 justify-content-center mt-20 offset-1"
 										style="font-size: 16px;">
 										<div class="col-md-12">
 											<h2 class=" text-black font-weight-bolder  text-center "
 												style="font-size: 18px;">
-												<u> Bank Details</u>
-											</h2>
-
-											<div
-												class="d-flex justify-content-between flex-column flex-md-row font-size-16">
-
+												<u> Bank Details</u></h2>
+											<div class="d-flex justify-content-between flex-column flex-md-row font-size-16">
 												<table id="bank_details_table"
 													style="width: 100%; font-size: 16px; border: 1px solid black;">
-
 													<tr style="border: 1px solid black;">
 														<td class="  font-weight-bolder"
 															style="border: 1px solid black;">&#160;&#160; Bank
@@ -238,7 +196,6 @@ try {
 														<td class="  font-weight-bolder " style="font-size: 16px;"
 															style="margin-left: 2px"><span class="ml-2"
 															id="bank_name"></span></td>
-
 													</tr>
 													<tr style="border: 1px solid black; margin-left: 2px">
 														<td class="  font-weight-bolder"
@@ -247,7 +204,6 @@ try {
 														<th class="  font-weight-bolder   "
 															style="font-size: 16px;"><span class="ml-2"
 															id="account_holder_name"></span></th>
-
 													</tr>
 													<tr style="border: 1px solid black;">
 														<td class=" font-weight-bolder"
@@ -256,7 +212,6 @@ try {
 														<th class="  font-weight-bolder     "
 															style="font-size: 16px;"><span class="ml-2"
 															id="account_no"></span></th>
-
 													</tr>
 													<tr style="border: 1px solid black;">
 														<td class=" font-weight-bolder"
@@ -265,22 +220,14 @@ try {
 														<th class="  font-weight-bolder   "
 															style="font-size: 16px;"><span class="ml-2"
 															id="IFSC_code"></span></th>
-
 													</tr>
 												</table>
-
-
 											</div>
 										</div>
-
 									</div>
 									<div class="row col-md-10 justify-content-right mt-20 offset-1"
 										style="font-size: 16px;">
 										<div class="col-md-12"></div>
-
-										<!-- end: Invoice footer-->
-										<!-- begin: Invoice action-->
-
 										<div class="modal" id="bankModel" tabindex="-1" role="dialog"
 											aria-labelledby="staticBackdrop" aria-hidden="true">
 											<div class="modal-dialog  modal-dialog-scrollable"
@@ -295,17 +242,12 @@ try {
 													</div>
 													<div class="modal-body">
 														<div class="form-group" id="nb_div">
-
 															<label>Received Bank</label> <select
 																class="form-control form-control-solid"
 																id="received_bank">
 																<option value="">Select a bank</option>
-
 															</select>
 														</div>
-
-
-
 													</div>
 													<div class="modal-footer">
 														<button type="button"
@@ -315,26 +257,15 @@ try {
 												</div>
 											</div>
 										</div>
-
 								</div>
-
-									<div class="row col-12 text-center ">
+									<div class="row col-12 text-center mt-15 mb-10">
 										<div class=" text-center col-md-12" id="print_button">
-											<button id="sudo"
-												class="btn-print btn-primary font-weight-bold" >
-											PDF Invoice
-											</button>
-
-											<button id="sudo1"
-												class="btn-print btn-primary font-weight-bold"
-												onclick="document.title = '#invoice_no';" >
+											<button id="sudo" class="btn-print btn-primary font-weight-bold" >PDF Invoice</button>
+												<button id="sudo1" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" >
 											Print Invoice
 											</button>
-
 										</div>
-
 									</div>
-
 								</div>
 								<!-- end::Card-->
 							</div>
@@ -345,22 +276,15 @@ try {
 					<img alt="Logo"
 						src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Footer.png"
 						class="  logo-default   " id="pri"
-						style="position: fixed; bottom: 0;" />
-
-
+						style="position: fixed; bottom: 0; width:100%" />
 					<!--end::Footer-->
 				</div>
 				<!--end::Wrapper-->
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
 			<!--end::Page-->
 		</div>
 	</div>
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -378,24 +302,15 @@ try {
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
-	<script
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-
-
-
+	<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+	<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
+	<script	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
 	 $("#pri").hide();
 	 $("#pri1").hide();
 	 $("#dis").hide();
-	    
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const customer_code = urlParams.get('customer_code');
@@ -403,9 +318,7 @@ try {
 	const transaction_code = urlParams.get('transaction_code');
 	const partial_paid_amount = urlParams.get('partial_paid_amount');
 	const discount = urlParams.get('discount');
-	
 	var ccode=0;
-	
 	if(partial_paid_amount != 00)
 		{
 	var invoice_id;
@@ -417,7 +330,6 @@ try {
 			data : {"flag": 1},
 			success:function(data)
 	    	{
-				//data.forEach((element)=> {
 				const row = data.find(d => d.invoice_id == invoice_id);
 				data.forEach((row)=> {
 					$('#invoice_no').text(row.invoice_id);
@@ -429,7 +341,6 @@ try {
 		 {
 		 $('#invoice_no').text(order_code);
 		 }
-	
 	$.ajax({
 			url : base + "/bakeshackAPI/api/getCustomerDetails",
 			type : "post",
@@ -441,10 +352,8 @@ try {
 				const row = data.find(d => d.customer_code == customer_code);
 				if(row != null){
 					ccode = row.customer_code; 
-				  
 					$('#bill_to').text(row.customer_name);
 					$('#bill_to1').text(row.address);
-				
 				}else{
 					$('#customer_code').val("");
 				}
@@ -457,14 +366,9 @@ try {
 	 var bank = "";
 	if(discount=="0.00")
 		{
-		
 		$("#dis").hide()
 		}else{
-
 			$("#dis").show()
-			
-		
-		
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getOrderMasterDetails",
 		type : "post",
@@ -473,10 +377,8 @@ try {
 		data : {"order_code": order_code},
 		success:function(data)
 	{
-			
 			const row = data.find(d => d.order_code == order_code);
 			data.forEach((row)=> {
-			
 				if(row.order_code == order_code )
 						{
 					amount_in_word = row.partial_paid_amount;
@@ -491,7 +393,6 @@ try {
 		         	bank = row.received_bank;
 		         	if(bank == '')
 		         		{
-		         		//alert("please select the bank");
 		         		  $("#bankModel").modal();
 		         		}
 		         	else{
@@ -508,7 +409,6 @@ try {
 		     					       $('#account_holder_name').text(row.account_holder_name);
 		     					       $('#IFSC_code').text(row.IFSC_code);
 		     				 			$('#account_no').text(row.account_no);  
-		     					
 		     			    }
 		     			});	
 		         	}
@@ -530,14 +430,11 @@ try {
 					 		  html += '<td style=" border:none;"><input type="text" class=" form-control quantity   d-flex flex-column-fluid" id="quantity-' + i +'" name="quantity" style="background-color:#FFFFFF; border:0px; width: 120px; text-align:center; font-size: 16px;" disabled></td>';
 						 	  html += '<td style=" border:none;"><input type="text" class=" form-control unit  d-flex flex-column-fluid" id="unit-' + i +'" name="unit" style="background-color:#FFFFFF; border:0px; width: 150px; text-align:center; font-size: 16px;" disabled></td>';
 					 		  html += '<td style=" border:none;"><input type="text" class=" form-control Unit Rate   d-flex flex-column-fluid" id="unit_rate-' + i +'" name="unit_rate" style="background-color:#FFFFFF; border:0px; width: 150px; text-align:center; font-size: 16px;" disabled></td>';
-						 	 // html += '<td><a type="button"   onClick="nextPage(' + i + ')";  id="nextPage-' + i +'" class="btn_edit btn font-weight-bold btn-danger btn-icon btn-light-danger text-center"  style="border:0px; width:50px; text-align:center; " ><i class="la la-edit"></i></a>';
-						 	 html += '</tr>';
+   						 	 html += '</tr>';
 						  $('.t_body').append(html);
 				 }
 					 const parseData1 = JSON.parse(product_list);
 					 $(parseData1).each(function(index) {
-						
-						
 						 $('#id-' + (index + 1)).val(index + 1);
 						    $('#product-' + (index + 1)).val(parseData1[index]['product']);
 							$('#quantity-' + (index + 1)).val(parseData1[index]['quantity']);
@@ -547,15 +444,12 @@ try {
 							var total2 = parseFloat(total).toFixed(2);
 							$('#unit_rate-' + (index + 1)).val(total2);
 							total1 = parseInt(total) + parseInt(total);
-						
 						});	
-				 
 					}
 			});
 	}
 	});	
 		}
-		
 	 $.ajax({
 			url : base + "/bakeshackAPI/api/getBankDetails",
 			type : "post",
@@ -565,12 +459,10 @@ try {
 			success:function(data)
 		    {
 				data.forEach((element)=> {
-					
 				        $('#received_bank').append($(document.createElement('option')).prop({
 			                value: element.bank_id,
 			                text: element.bank_name
 			            }))
-					
 				});   
 		    }
 		});	
@@ -585,31 +477,24 @@ try {
 				success:function(data)
 			    {
 					const row = data.find(d => d.bank_id == bank);
-						
-					    
 					       $('#bank_name').text(row.bank_name);
 					       $('#account_holder_name').text(row.account_holder_name);
 					       $('#IFSC_code').text(row.IFSC_code);
 				 			$('#account_no').text(row.account_no);  
-					
 			    }
 			});	
 	});
 		 function number2text(value) {
 			    var fraction = Math.round(frac(value)*100);
 			    var f_text  = "";
-
 			    if(fraction > 0) {
 			        f_text = "AND "+convert_number(fraction)+" PAISE";
 			    }
-
 			    return convert_number(value)+" RUPEE "+f_text+" ONLY.";
 			}
-
 			function frac(f) {
 			    return f % 1;
 			}
-
 			function convert_number(number)
 			{
 			    if ((number < 0) || (number > 999999999)) 
@@ -649,10 +534,8 @@ try {
 			            convert_number(Dn) + " HUNDRED"); 
 			    } 
 
-
 			    var ones = Array("", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX","SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE", "THIRTEEN","FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN","NINETEEN"); 
 			var tens = Array("", "", "TWENTY", "THIRTY", "FOURTY", "FIFTY", "SIXTY","SEVENTY", "EIGHTY", "NINETY"); 
-
 			    if (tn>0 || one>0) 
 			    { 
 			        if (!(res=="")) 
@@ -665,7 +548,6 @@ try {
 			        } 
 			        else 
 			        { 
-
 			            res += tens[tn];
 			            if (one>0) 
 			            { 
@@ -673,7 +555,6 @@ try {
 			            } 
 			        } 
 			    }
-
 			    if (res=="")
 			    { 
 			        res = "ZERO"; 
@@ -682,44 +563,34 @@ try {
 			
 			    return res;
 			}
-		 
 			number2text(amount_in_word);
-			
-			
 			$("#sudo").click(function(){
-				
 				$("#print_button").hide();
 				 $("#pri").show();
 				 $("#pri1").show();
 				 $("#sign").show();
-				 
+				 $("#kt_header_mobile").hide();
 				  window.print();
 				    return false;
 				    window.location.reload();
-				
-				
 			})
 					$("#sudo1").click(function(){
-				
 				$("#print_button1").hide();
 				$("#print_button").hide();
 				 $("#pri").hide();
 				 $("#pri1").hide();
 				 $("#sign").hide();
+				 $("#kt_header_mobile").hide();
 				  window.print();
 				    return false;
 				    window.location.reload();
-				
-				
 			})
-			
 				function printP(){
 				window.location.reload();
 	}
 	</script>
 </body>
 </html>
-
 <%
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);

@@ -2,7 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -10,339 +9,285 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
+<%
+String session1 = (String) session.getAttribute("login_id");
+if (session.getAttribute("login_id") != null) {
+ String sessionName = (String) session.getAttribute("login_id");
+} else
+ response.sendRedirect("../common/login.jsp");
+%>
 <html lang="en">
 <!--begin::Head-->
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
-
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
 }
 </style>
 </head>
-<!--end::Head-->
-<!--begin::Body-->
-
-
-<body id="kt_body"
-style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-77.jpeg)"
+<body onafterprint="printP()" id="kt_body"
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-rk4.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    top: 0;"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
 	<!--begin::Main-->
 	<!--begin::Header Mobile-->
 	<jsp:include page="/form/common/header.jsp"></jsp:include>
-				
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Aside-->
-			
-      <jsp:include page="/form/common/navbar.jsp"></jsp:include>
-
+			<jsp:include page="/form/common/navbar.jsp"></jsp:include>
 			<!--end::Aside-->
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-				<!--begin::Header-->
-				
-				
-				<!--end::Header-->
-
-
-				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
-<div
-							class="container d-flex align-items-stretch justify-content-between"">
-							<div class="col-xl-12 offset-xl-0 ">
-									<div class="col-xl-12 offset-xl-0 ">
-										<div class="example mb-10">
-											<div class="example-preview">
+						<div class="col-xl-10 offset-xl-1">
+							<div class="card card-custom">
+								<div class="card-body p-0">
+									<!--begin::Invoice-->
+									<div class="row justify-content-center pt-3 px-3 pt-md-5 px-md-0">
+										<div class="col-md-12">
+											<!-- begin: Invoice header-->
+											<div class="row py-4 px-4 px-md-0" id="header">
+												<div class="col-md-10 offset-1">
+													<!-- <div class="row " style="color:#132072"> -->
+													<div class="row text-info">
+														<img id="logo" alt="Logo"
+															src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/src.png"
+															class="logo-default max-h-120px" />
+														<div class="col-md-7 text-center">
+															<h1 class="font-weight-bolder text-right"
+																style="font-size: 38px;">SHREE RAJENDRA CLINIC</h1>
+															<div class="text-right mt-0" style="font-size: 38px;">
+																<h2>Dr. Rakesh F. Bafna</h2>
+																<h3>B.H.M.S(Reg No. 27450)</h3>
+															</div>
+															<h4>पोयनाड : भाजी मार्केट गल्ली</h4>
+															<h4 class="ml-2 font-weight-bolder">7775999536 |
+																9822786831(Whatsapp)</h4>
+														</div>
+													</div>
+													<br />
+													<div class=" col-md-12" style="border: 1px solid black;"></div>
+												</div>
+											</div>
+											<div id="name" class="col-md-10 offset-1">
+												<span
+													class="d-flex justify-content-between align-items-baseline">
+													<div class="d-flex justify-content-start">
+														<h3	class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Name: </h3>
+														<h3 class="font-weight-bolder" id="patient_name"></h3>
+													</div>
+													<div class="d-flex justify-content-start">
+														<h3	class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase"
+															id="age_name">Age:</h3>
+														<h3 class="font-weight-bolder" id="age"></h3>
+													</div>
+													<div class="d-flex justify-content-start">
+														<h3	class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Date:
+														</h3>
+														<h3 class="font-weight-bolder" id="date">5/3/2021</h3>
+													</div>
+												</span>
+											</div>
+											<div class="col-md-10 offset-1">
+												<span
+													class="d-flex justify-content-between align-items-baseline">
+													<div class="d-flex justify-content-start">
+														<h3	class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Patient
+															Code:</h3>
+														<h3 class="font-weight-bolderer" id="patient_code"></h3>
+													</div>
+													<div class="d-flex justify-content-start">
+														<h3
+															class="pl-0 pr-4 ml-25 font-weight-bolder text-muted text-uppercase"
+															id="gender_name">Gender:</h3>
+														<h3 class="font-weight-bolder" id="gender"></h3>
+													</div>
+													<div class="d-flex justify-content-start ">
+														<h3
+															class="pl-0 pr-4 mr-7 font-weight-bolder text-muted text-uppercase "
+															id="weight_name">Weight:</h3>
+														<h3 class="font-weight-bolder" id="weight"></h3>
 
-						<div class="card card-custom">
-					<div class="card-body p-0">
-						<!--begin::Invoice-->
-						<div class="row justify-content-center pt-3 px-3 pt-md-5 px-md-0">
-							<div class="col-md-12">
-								<!-- begin: Invoice header-->
-								<div class="row py-4 px-4 px-md-0" id="header">
-									<div class="col-md-10 offset-1">
-										<!-- <div class="row " style="color:#132072"> -->
-										<div class="row text-info">
-											<img id="logo" alt="Logo"
-												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/src.png"
-												class="logo-default max-h-120px" />
-											<div class="col-md-7 text-center">
+													</div>
+												</span>
+											</div>
+											<div class=" col-md-10  offset-1"
+												style="border: 1px solid black;"></div>
+											<div class="col-md-10 offset-1">
+												<div class=" px-8 mt-3 px-md-0" id="complaint">
+													<div class="row">
+														<h3 class="ml-3 font-weight-bold">Complaints:</h3>
+														<h3 class="ml-3" id="complaints_desc"></h3>
+													</div>
+													<div class="row">
+														<h3 class="ml-3 font-weight-bold">Diagnosis:</h3>
+														<h3 class="ml-3" id="diagnosis_desc"></h3>
+														<h3 class="ml-3 font-weight-bold"></h3>	,
+														<h3 class="ml-3" id="other_complaints"></h3>
+													</div>
+												</div>
+											</div>
+											<br />
+											<div class=" col-md-10  offset-1"
+												style="border: 1px solid black;"></div>
+											<br />
+											<div class="row  pb-10   offset-1 ">
+												<div class="col-md-11 ">
+													<div class="table-responsive">
+														<table class="table ">
+															<thead>
+																<tr>
+																	<th
+																		class="pt-0 pb-5 pl-0 font-weight-bolder text-muted font-size-lg text-uppercase text-center"
+																		style="font-size: 20px; border-bottom: 1px solid black;">type</th>
+																	<th
+																		class="pt-0 pb-5 pl-0 font-weight-bolder text-muted font-size-lg text-uppercase text-center"
+																		style="font-size: 20px; border-bottom: 1px solid black;">Med.
+																		Name</th>
+																	<th
+																		class="pt-0 pb-5  font-weight-bolder text-muted font-size-lg text-uppercase text-center"
+																		style="font-size: 20px; border-bottom: 1px solid black;">Dose</th>
+																	<th
+																		class="pt-0 pb-5  font-weight-bolder text-muted font-size-lg text-uppercase text-center"
+																		style="font-size: 20px; border-bottom: 1px solid black;">Times</th>
+																	<th
+																		class="pt-0 pb-5  pr-0 font-weight-bolder text-muted font-size-lg text-uppercase text-center"
+																		style="font-size: 20px; border-bottom: 1px solid black;">Qty</th>
+																	<th
+																		class="pt-0 pb-5  pr-0 font-weight-bolder text-muted font-size-lg text-uppercase text-center"
+																		style="font-size: 20px; border-bottom: 1px solid black;">Remark</th>
+																</tr>
+															</thead>
+															<tbody id="mTbl" style="font-size: 20px;">
 
-												<h1 class="font-weight-bolder text-right"
-													style="font-size: 38px;">SHREE RAJENDRA CLINIC</h1>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-10 offset-1">
+												<div class="row">
+													<h3 class="ml-3 mr-2 font-weight-bolder" id="temp_name"></h3>
+													<h3 class=" mr-5" id="temp"></h3>
 
-												<div class="text-right mt-0" style="font-size: 38px;">
+													<h3 class="ml-3 mr-2 font-weight-bolder"
+														id="blood_sugar_text"></h3>
+													<h3 class=" "></h3>
 
-													<h2>Dr. Rakesh F. Bafna</h2>
-													<h3>B.H.M.S(Reg No. 27450)</h3>
+													<h3 class="ml-3 mr-2 font-weight-bolder"
+														id="blood_sugar_name_f"></h3>
+													<h3 class=" mr-5" id="blood_sugar_f"></h3>
+
+													<h3 class="ml-3 mr-2 font-weight-bolder"
+														id="blood_sugar_name_p"></h3>
+													<h3 class=" mr-5" id="blood_sugar_p"></h3>
+													<h3 class="ml-3 mr-2 font-weight-bolder"
+														id="blood_pressure_name"></h3>
+													<h3 class="ml-3 mr-5" id="blood_pressure"></h3>
+												</div>
+												<div class="row">
+													<h3 class="ml-3 mr-2 font-weight-bolder" id="pulse_name"></h3>
+													<h3 class=" mr-5" id="pulse"></h3>
+													<h3 class="ml-3 mr-2 font-weight-bolder" id="hb_name"></h3>
+													<h3 class=" mr-5" id="hb"></h3>
+
+													<h3 class="ml-3 mr-2 font-weight-bolder" id="kco_name"></h3>
+													<h3 class=" mr-5" id="kco_value"></h3>
+													<h3 class="ml-3 mr-2 font-weight-bolder" id="allergy_name"></h3>
+													<h3 class=" mr-5" id="allergy_value"></h3>
 
 												</div>
-												<h4>पोयनाड : भाजी मार्केट गल्ली</h4>
-												<h4 class="ml-2 font-weight-bolder">7775999536 |
-													9822786831(Whatsapp)</h4>
-											</div>
-										</div>
-
-										<!-- <div class="border-bottom bg-info " style="border: 1px solid black;"></div> -->
-										<div class=" col-md-12" style="border: 1px solid black;"></div>
-										
-
-									</div>
-								</div>
-								<div id="name" class="col-md-10 offset-1">
-									<span
-										class="d-flex justify-content-between align-items-baseline">
-
-										<div class="d-flex justify-content-start">
-											<h3
-												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Name:
-											</h3>
-											<h3 class="font-weight-bolder" id="patient_name"></h3>
-											
-										</div>
-										<div class="d-flex justify-content-start">
-											<h3
-												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase" id="age_name">Age:
-											</h3>
-											<h3 class="font-weight-bolder" id="age"></h3>
-										</div>
-										
-										
-
-										<div class="d-flex justify-content-start">
-											<h3
-												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Date:
-											</h3>
-											<h3 class="font-weight-bolder" id="date">5/3/2021</h3>
-											
-										</div>
-									</span>
-									
-
-								</div>
-								<div  class="col-md-10 offset-1">
-									<span
-										class="d-flex justify-content-between align-items-baseline">
-
-										<div class="d-flex justify-content-start">
-											<h3
-												class="pl-0 pr-4 font-weight-bolder text-muted text-uppercase">Patient Code:
-											</h3>
-											<h3 class="font-weight-bolderer" id="patient_code"></h3>
-											
-										</div>
-										<div class="d-flex justify-content-start">
-											<h3
-												class="pl-0 pr-4 ml-25 font-weight-bolder text-muted text-uppercase" id="gender_name">Gender:
-											</h3>
-											<h3 class="font-weight-bolder" id="gender"></h3>
-										</div>
-										
-
-										<div class="d-flex justify-content-start ">
-											<h3
-												class="pl-0 pr-4 mr-7 font-weight-bolder text-muted text-uppercase " id="weight_name">Weight:
-											</h3>
-											<h3 class="font-weight-bolder" id="weight"></h3>
-											
-										</div>
-									</span>
-									
-
-								</div>
-
-								
-							<div class=" col-md-10  offset-1" style="border: 1px solid black;"></div>
-							
-							<div class="col-md-10 offset-1">
-
-											<div class=" px-8 mt-3 px-md-0" id="complaint">
-											<div class="row">
-											<h3 class="ml-3 font-weight-bold">Complaints:</h3><h3 class="ml-3" id="complaints_desc"></h3>
-											</div>
-											
-											<div class="row">
-											<h3 class="ml-3 font-weight-bold">Diagnosis:</h3><h3 class="ml-3" id="diagnosis_desc"></h3>
-											
-											
-											
-											<h3 class="ml-3 font-weight-bold"></h3>,<h3 class="ml-3" id="other_complaints"></h3>
-											</div>
-											
-												
-											</div>
-											</div>
-							
-							<br />
-							<div class=" col-md-10  offset-1" style="border: 1px solid black;"></div>
-							<br />
-							
-							
-								<div class="row  pb-10   offset-1 " > 
-									<div class="col-md-11 ">
-										<div class="table-responsive">
-											<table class="table ">
-												<thead>
-													<tr >
-														<th
-															class="pt-0 pb-5 pl-0 font-weight-bolder text-muted font-size-lg text-uppercase text-center"
-															style="font-size: 20px; border-bottom: 1px solid black; " >type</th>
-														<th
-															class="pt-0 pb-5 pl-0 font-weight-bolder text-muted font-size-lg text-uppercase text-center"
-															style="font-size: 20px; border-bottom: 1px solid black;">Med. Name</th>
-														<th
-															class="pt-0 pb-5  font-weight-bolder text-muted font-size-lg text-uppercase text-center"
-															style="font-size: 20px; border-bottom: 1px solid black;">Dose</th>
-														<th
-															class="pt-0 pb-5  font-weight-bolder text-muted font-size-lg text-uppercase text-center"
-															style="font-size: 20px; border-bottom: 1px solid black;">Times</th>
-														<th
-															class="pt-0 pb-5  pr-0 font-weight-bolder text-muted font-size-lg text-uppercase text-center"
-															style="font-size: 20px; border-bottom: 1px solid black;">Qty</th>
-															<th
-															class="pt-0 pb-5  pr-0 font-weight-bolder text-muted font-size-lg text-uppercase text-center"
-															style="font-size: 20px; border-bottom: 1px solid black;">Remark</th>
-													</tr>
-												</thead>
-												<tbody id="mTbl" style="font-size: 20px; ">
-
-												</tbody>
-											</table>
-										</div>
-									
-
-									</div>
-									
-
-								
-								</div>
-								
-								<div class="col-md-10 offset-1">
-
-											
-											<div class="row">
-											<h3 class="ml-3 mr-2 font-weight-bolder" id="temp_name"></h3><h3 class=" mr-5" id="temp"></h3>
-											
-											<h3 class="ml-3 mr-2 font-weight-bolder"  id="blood_sugar_text"></h3><h3 class=" " ></h3>
-											
-											<h3 class="ml-3 mr-2 font-weight-bolder" id="blood_sugar_name_f"></h3><h3 class=" mr-5" id="blood_sugar_f"></h3>
-											
-											<h3 class="ml-3 mr-2 font-weight-bolder" id="blood_sugar_name_p"></h3><h3 class=" mr-5" id="blood_sugar_p" ></h3>
-											<h3 class="ml-3 mr-2 font-weight-bolder"  id="blood_pressure_name"></h3><h3 class="ml-3 mr-5" id="blood_pressure"></h3>
-											
-											
-											
-											
-											</div>
-											
-											<div class="row">
-											<h3 class="ml-3 mr-2 font-weight-bolder" id="pulse_name"></h3><h3 class=" mr-5" id="pulse"></h3>
-											<h3 class="ml-3 mr-2 font-weight-bolder"  id="hb_name"></h3><h3 class=" mr-5" id="hb"></h3>
-											
-											<h3 class="ml-3 mr-2 font-weight-bolder" id="kco_name"></h3><h3 class=" mr-5" id="kco_value" ></h3>
-											<h3 class="ml-3 mr-2 font-weight-bolder" id="allergy_name"></h3><h3 class=" mr-5" id="allergy_value" ></h3>
-											
-											</div>
 											</div>
 											</br>
-								
-								 <div class="row advice">
-        <div class="col-7 ml-10">
-        <div class="advice  h3 ml-20 mt-2 col-md-12" id="kco">
-										<h6 class="font-weight-bolder" style="font-size: 20px;"
-											id="advice_name"></h6>
-										<h6 class="font-weight-bold mt-5" style="font-size: 20px;"
-											id="advice"></h6>
-									</div>
-									<div class="col-md-8 ml-2 mt-3 text-center font-weight-bold " style="font-size: 20px;">
-										<p>> फेर तपासणी   - <span class="mr-2 " id="re_visit"></span>दिवसांनी</p>
-									</div>
-        </div>
-         <div class="col-4 ml-10">
-         <div class=" text-center" style="font-size: 27px">
-										<label>Thanks</label>
-									</div>
-									<div class=" text-center ml-2" style="font-size: 27px">
-										<img id="logo" alt="Logo"
-											src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/sign.png"
-											class="logo-default max-h-80px" />
-									</div>
-									<div class=" text-center" style="font-size: 25px;">
-										<label>Dr.Rakesh Bafna</label>
-									</div>
-        </div>
-        </div>
-							</div>
-							<div class="col-md-10 " style="border-top: 1px solid black;">
-
-							<!--end: Invoice body-->
-
-							<div class="row footer1">
-								<div class="col-md-12  text-center mt-3  style="font-size: 26px;"">
-									<div class="row justify-content-center  ">
-										<h2 class="font-weight-bold ">वेळ :</h2>
-										<h2>
-											<span id="time">सकाळी ९ ते १.३०</span> <span>सायं. ४
-												ते ८ वाजता.</span>	
-										</h2>
+											<div class="row advice">
+												<div class="col-7 ml-10">
+													<div class="advice  h3 ml-20 mt-2 col-md-12" id="kco">
+														<h6 class="font-weight-bolder" style="font-size: 20px;"
+															id="advice_name"></h6>
+														<h6 class="font-weight-bold mt-5" style="font-size: 20px;"
+															id="advice"></h6>
+													</div>
+													<div
+														class="col-md-8 ml-2 mt-3 text-center font-weight-bold "
+														style="font-size: 20px;">
+														<p>
+															> फेर तपासणी - <span class="mr-2 " id="re_visit"></span>दिवसांनी
+														</p>
+													</div>
+												</div>
+												<div class="col-4 ml-10">
+													<div class=" text-center" style="font-size: 27px">
+														<label>Thanks</label>
+													</div>
+													<div class=" text-center ml-2" style="font-size: 27px">
+														<img id="logo" alt="Logo"
+															src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/sign.png"
+															class="logo-default max-h-80px" />
+													</div>
+													<div class=" text-center" style="font-size: 25px;">
+														<label>Dr.Rakesh Bafna</label>
+													</div>
+												</div>
+											</div>
 										</div>
-									
-									<div class="  ">
-											<h2   id="notice">दवाखाना रविवारी सुद्धा चालू राहील</h2>
+										<div class="col-md-10 " style="border-top: 1px solid black;">
+											<!--end: Invoice body-->
+											<div class="row footer1">
+												<div class="col-md-12  text-center mt-3  "
+													style="font-size: 26px;">
+													<div class="row justify-content-center  ">
+														<h2 class="font-weight-bold ">वेळ :</h2>
+														<h2>
+															<span id="time">सकाळी ९ ते १.३०</span> <span>सायं.
+																४ ते ८ वाजता.</span>
+														</h2>
+													</div>
+													<div class="  ">
+														<h2 id="notice">दवाखाना रविवारी सुद्धा चालू राहील</h2>
+													</div>
+												</div>
+											</div>
+										</div>
+
 									</div>
-									
-								
-
-								
 								</div>
-
-
 							</div>
 						</div>
-
 					</div>
 				</div>
-
 			</div>
-								</div>
-							</div>			
-						</div>
+			<!--end::Container-->
+		</div>
+	</div>
 
-						<!--end::Container-->
-					</div>
-				</div>
-				</div>
-				</div>
-				</div>
-				</div>
-				</div>
-				<!--end::Entry-->
+	<!--end::Entry-->
 
-				<!--end::Content-->
-				<!--begin::Footer-->
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-<!--end::Footer-->
-			
+	<!--end::Content-->
+	<!--begin::Footer-->
+	<jsp:include page="../common/footer.jsp"></jsp:include>
+	<!--end::Footer-->
+
 	<!--end::Main-->
-	
+
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->
@@ -360,107 +305,10 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-	<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
 
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
 	<!--end::Scrolltop-->
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
-	
+
 	<script type="text/javascript">
 	
 	var basePath='<%=basePath%>';    

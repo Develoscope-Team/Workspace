@@ -1,46 +1,63 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-String dbConnVar = "BAKESHACk";
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<% String path = request.getContextPath();
+   String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+   String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+   String dbConnVar = "BAKESHACk";
 try {
+	String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
+<style>
+.alert {
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+ .alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+} 
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
+</style>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Wrapper-->
-			<div class="d-flex flex-column flex-row-fluid wrapper"
-				id="kt_wrapper">
-
+			<div class="d-flex flex-column flex-row-fluid wrapper"	id="kt_wrapper">
 				<!--begin::Content-->
-				<div class="content d-flex flex-column flex-column-fluid"
-					id="kt_content">
-				
-					
+				<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 					<!--begin::Entry-->
 					<div class="d-flex flex-column">
-
 						<!--begin::Container-->
 						<div class="container  ">
-							<h2 class="text-white font-weight-bold  my-2 mr-40">Fund
-								Transfer</h2>
+							 <h2 class="text-white font-weight-bold my-2 mr-5 mb-15 mt-13">Fund Transfer</h2> 
 							<div class="row">
 								<div class="col-xl-12 offset-0">
 									<div class="card card-custom gutter-b">
@@ -56,8 +73,7 @@ try {
 																			<label>Payment Mode</label> <select name="sort_by"
 																				id="payment_mode"
 																				class="form-control form-control-solid">
-																				<option value="" disable hidden field>Select
-																					Mode</option>
+																				<option value="" disable hidden field>Select Mode</option>
 																				<option value="cash">Cash</option>
 																				<option value="upi">UPI</option>
 																				<option value="nb">Net Banking</option>
@@ -65,11 +81,8 @@ try {
 																				<option value="credit">Credit</option>
 																				<option value="credit">Wallet</option>
 																				<option value="card_machine">Card Machine</option>
-
 																			</select>
-
 																		</div>
-																		
 																		<div class="form-group" id=current_cash>
 																			<label>Current Amount</label> <span
 																				class="text-danger" id="type">*</span><input
@@ -77,27 +90,21 @@ try {
 																				class="form-control form-control-solid" id="current"
 																				disabled />
 																		</div>
-																		
 																		<div class="form-group" id="upi_div">
 																			<label>UPI Name</label> <select type="text"
 																				class="form-control form-control-solid"
 																				name="upi_id" id="upi_id"
 																				placeholder="Enter UPI Transaction Id">
-																				<option value="" disable hidden field>select
-																					UPI</option>
+																				<option value="" disable hidden field>select UPI</option>
 																			</select>
 																		</div>
 																		<div class="form-group" id="nb_div">
-
 																			<label> Bank</label> <select
 																				class="form-control form-control-solid"
 																				id="received_bank">
-																				<option value="" disable hidden field>Select
-																					a bank</option>
-
+																				<option value="" disable hidden field>Select a bank</option>
 																			</select>
 																		</div>
-						
 																					<div class="form-group bank_deatails1111">
 																						<label>Account Holder Name</label><span
 																							class="text-danger" id="type">*</span> <input
@@ -141,18 +148,15 @@ try {
 																			<label>Received Mode</label> <select name="sort_by"
 																				id="payment_mode1"
 																				class="form-control form-control-solid">
-																				<option value="" disable hidden field>Select
-																					Mode</option>
+																				<option value="" disable hidden field>Select Mode</option>
 																				<option value="cash">Cash</option>
 																				<option value="upi">UPI</option>
 																				<option value="nb">Net Banking</option>
 																				<option value="cheque">Cheque</option>
 																				<option value="credit">Wallet</option>
-
 																				<option value="card_machine">Card Machine</option>
 																			</select>
 																		</div>
-																		
 																		<div class="form-group" id="current_cash1">
 																			<label>Current Amount</label> <span
 																				class="text-danger" id="type">*</span><input
@@ -160,29 +164,21 @@ try {
 																				class="form-control form-control-solid"
 																				id="current1" disabled />
 																		</div>
-																		
-																		
 																		<div class="form-group" id="upi_div1">
 																			<label>UPI Name</label> <select type="text"
 																				class="form-control form-control-solid"
 																				name="upi_id" id="upi_id1"
 																				placeholder="Enter UPI Transaction Id">
-																				<option value="" disable hidden field>select
-																					UPI</option>
+																				<option value="" disable hidden field>select UPI</option>
 																			</select>
 																		</div>
 																		<div class="form-group" id="nb_div1">
-
 																			<label> Bank</label> <select
 																				class="form-control form-control-solid"
 																				id="received_bank1">
-																				<option value="" disable hidden field>Select
-																					a bank</option>
-
+																				<option value="" disable hidden field>Select a bank</option>
 																			</select>
 																		</div>
-
-																		
 																		<div class="form-group bank_details2222">
 																						<label>Account Holder Name</label><span
 																							class="text-danger" id="type">*</span> <input
@@ -194,8 +190,6 @@ try {
 																					</div>
 																	</div>
 																</div>
-
-															
 																<div class="row">
 																	<div class="col-xl-8 offset-2" >
 																		<div class="form-group">
@@ -207,20 +201,16 @@ try {
 																		</div>
 																	</div>
 																</div>
-
 															</div>
 															<div class="card-footer text-center">
 																<div class="row">
 																	<div class="col-lg-3"></div>
 																	<div class="col-lg-6">
 																		<button type="button" id="show" 
-																			class="btn font-weight-bold btn-primary mr-2 ">
-																			Transfer</button>
-
+																			class="btn font-weight-bold btn-primary mr-2 ">Transfer</button>
 																	</div>
 																</div>
 															</div>
-
 														</form>
 														<!--end::Form-->
 													</div>
@@ -229,106 +219,7 @@ try {
 										</div>
 									</div>
 								</div>
-
 							</div>
-	<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
 							<div class="alert alert-success  " role="alert"
 								id="success_alert">
 								<div class="alert-text">
@@ -345,23 +236,17 @@ translateX(
 									<span id="warning_msg"></span>
 								</div>
 							</div>
-
 						</div>
 						<!--end::Content-->
-						
 					</div>
 					<!--end::Wrapper-->
 				</div>
 				<!--end::Page-->
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
-				
 			</div>
+	  </div>
+</div>
 
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 			<!--begin::Scrolltop-->
 			<div id="kt_scrolltop" class="scrolltop">
 				<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -386,14 +271,9 @@ translateX(
 				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
 			<script
 				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-
-
-
 			<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-	
 	 $('#upi_div').hide();
 	 $('#nb_div').hide();
 	 $('#cheque_div').hide();
@@ -402,7 +282,6 @@ translateX(
 	 $('.bank_deatails11').hide();
 	 $('.bank_deatails111').hide();
 	 $('.bank_deatails1111').hide();
-	 
 	 $('#upi_div1').hide();
 	 $('#nb_div1').hide();
 	 $('#cheque_div1').hide();
@@ -411,14 +290,6 @@ translateX(
 	 $('.bank_details22').hide();
 	 $('.bank_details222').hide();
 	 $('.bank_details2222').hide();
-	 
-	
-	
-	
-
-	 
-	 
-	 
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getBankDetails",
 		type : "post",
@@ -428,16 +299,13 @@ translateX(
 		success:function(data)
         {
 			data.forEach((element)=> {
-				
 			        $('#received_bank').append($(document.createElement('option')).prop({
 		                value: element.bank_id,
 		                text: element.bank_name
 		            }))
-				
 			});   
         }
 	});	
-	
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getUpiDetails",
 		type : "post",
@@ -447,16 +315,13 @@ translateX(
 		success:function(data)
         {
 			data.forEach((element)=> {
-				
 			        $('#upi_id').append($(document.createElement('option')).prop({
 		                value: element.upi_master_id,
 		                text: element.upi_name
 		            }))
-				
 			});   
         }
 	});	
-	 
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getBankDetails",
 		type : "post",
@@ -466,16 +331,13 @@ translateX(
 		success:function(data)
         {
 			data.forEach((element)=> {
-				
 			        $('#received_bank1').append($(document.createElement('option')).prop({
 		                value: element.bank_id,
 		                text: element.bank_name
 		            }))
-				
 			});   
         }
 	});	
-	
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getUpiDetails",
 		type : "post",
@@ -485,23 +347,15 @@ translateX(
 		success:function(data)
         {
 			data.forEach((element)=> {
-				
 			        $('#upi_id1').append($(document.createElement('option')).prop({
 		                value: element.upi_master_id,
 		                text: element.upi_name
 		            }))
-				
 			});   
         }
 	});	
-	 
-	
-	
-	
-	
 	$('#payment_mode').change(function(){
 		var payment_mode = $(this).val();
-				
 		if(payment_mode == 'upi'){
 			$('#upi_div').show();
 			$('#current_cash').show();
@@ -511,7 +365,6 @@ translateX(
 			 $('.bank_deatails11').hide();
 			 $('.bank_deatails111').hide();
 			 $('.bank_deatails1111').hide();
-			 
 			 $.ajax({
 					url : base + "/bakeshackAPI/api/getPaymentModeWiseTotal",
 					type : "post",
@@ -525,18 +378,10 @@ translateX(
 						    if(row.payment_mode == 'upi')
 							   {
 						    	 $('#current').val(row.total);
-						    	
 							   }
 							});
-						
 				    }
 				});	
-			 
-			 
-			 
-			 
-			 
-			 
 		}else if(payment_mode == 'nb'){
 			$('#upi_div').hide();
 			$('#current_cash').show();
@@ -546,9 +391,6 @@ translateX(
 			 $('.bank_deatails11').show();
 			 $('.bank_deatails111').show();
 			 $('.bank_deatails1111').show();
-			 
-			 
-			 
 			 $.ajax({
 					url : base + "/bakeshackAPI/api/getPaymentModeWiseTotal",
 					type : "post",
@@ -562,10 +404,8 @@ translateX(
 						    if(row.payment_mode == 'nb')
 							   {
 						    	 $('#current').val(row.total);
-						    
 							   }
 							});
-						
 				    }
 				});	
 		}else if(payment_mode == 'cheque'){
@@ -578,7 +418,6 @@ translateX(
 			 $('.bank_deatails11').show();
 			 $('.bank_deatails111').show();
 			 $('.bank_deatails1111').show();
-			 
 			 $.ajax({
 					url : base + "/bakeshackAPI/api/getPaymentModeWiseTotal",
 					type : "post",
@@ -592,16 +431,10 @@ translateX(
 						    if(row.payment_mode == 'cheque')
 							   {
 						    	 $('#current').val(row.total);
-						    	
 							   }
 							});
-						
 				    }
 				});	
-			 
-			 
-			 
-			 
 		}else if(payment_mode == 'credit'){
 			$('#upi_div').hide();
 			$('#current_cash').show();
@@ -611,7 +444,6 @@ translateX(
 			 $('.bank_deatails11').hide();
 			 $('.bank_deatails111').hide();
 			 $('.bank_deatails1111').hide();
-			 
 			 $.ajax({
 					url : base + "/bakeshackAPI/api/getPaymentModeWiseTotal",
 					type : "post",
@@ -625,14 +457,10 @@ translateX(
 						    if(row.payment_mode == 'credit')
 							   {
 						    	 $('#current').val(row.total);
-						    	
 							   }
 							});
-						
 				    }
 				});	
-
-			
 		}else{
 			$('#upi_div').hide();
 			$('#nb_div').hide();
@@ -642,7 +470,6 @@ translateX(
 			 $('.bank_deatails11').hide();
 			 $('.bank_deatails111').hide();
 			 $('.bank_deatails1111').hide();
-			 
 			 $.ajax({
 					url : base + "/bakeshackAPI/api/getPaymentModeWiseTotal",
 					type : "post",
@@ -656,15 +483,11 @@ translateX(
 						    if(row.payment_mode == 'cash')
 							   {
 						    	 $('#current').val(row.total);
-						    	
 							   }
 							});
-						
 				    }
 				});	
-
 		}
-		
 	});	
 	 $('#received_bank').change(function(){
 		 var bank = $(this).val();
@@ -678,19 +501,15 @@ translateX(
 				success:function(data)
 			    {
 					const row = data.find(d => d.bank_id == bank);
-						
-					    
 					       $('#Bank_name').val(row.bank_name);
 					       $('#account_no').val(row.account_no);
 					       $('#IFSC_code').val(row.IFSC_code);
 				 			$('#account_holder_name').val(row.account_holder_name);  
-					
 			    }
 			});	
 	});
 	$('#payment_mode1').change(function(){
 		var payment_mode = $(this).val();
-				
 		if(payment_mode == 'upi'){
 			$('#upi_div1').show();
 			$('#nb_div1').hide();
@@ -700,8 +519,6 @@ translateX(
 			 $('.bank_details22').hide();
 			 $('.bank_details222').hide();
 			 $('.bank_details2222').hide();
-			 
-			 
 			 $.ajax({
 					url : base + "/bakeshackAPI/api/getPaymentModeWiseTotal",
 					type : "post",
@@ -715,15 +532,10 @@ translateX(
 						    if(row.payment_mode == 'upi')
 							   {
 						    	 $('#current1').val(row.total);
-						    	
 							   }
 							});
-						
 				    }
 				});	
-			 
-			 
-			 
 		}else if(payment_mode == 'nb'){
 			$('#upi_div1').hide();
 			$('#nb_div1').show();
@@ -733,7 +545,6 @@ translateX(
 			 $('.bank_details22').show();
 			 $('.bank_details222').show();
 			 $('.bank_details2222').show();
-			 
 			 $.ajax({
 					url : base + "/bakeshackAPI/api/getPaymentModeWiseTotal",
 					type : "post",
@@ -747,13 +558,10 @@ translateX(
 						    if(row.payment_mode == 'nb')
 							   {
 						    	 $('#current1').val(row.total);
-						    	
 							   }
 							});
-						
 				    }
 				});	
-			 
 		}else if(payment_mode == 'cheque'){
 			$('#upi_div1').hide();
 			$('#nb_div1').show();
@@ -763,7 +571,6 @@ translateX(
 			 $('.bank_details22').show();
 			 $('.bank_details222').show();
 			 $('.bank_details2222').show();
-			 
 			 $.ajax({
 					url : base + "/bakeshackAPI/api/getPaymentModeWiseTotal",
 					type : "post",
@@ -777,10 +584,8 @@ translateX(
 						    if(row.payment_mode == 'cheque')
 							   {
 						    	 $('#current1').val(row.total);
-						    	
 							   }
 							});
-						
 				    }
 				});	
 		}else if(payment_mode == 'credit'){
@@ -793,7 +598,6 @@ translateX(
 			 $('.bank_details22').hide();
 			 $('.bank_details222').hide();
 			 $('.bank_details2222').hide();
-			 
 			 $.ajax({
 					url : base + "/bakeshackAPI/api/getPaymentModeWiseTotal",
 					type : "post",
@@ -807,13 +611,10 @@ translateX(
 						    if(row.payment_mode == 'credit')
 							   {
 						    	 $('#current1').val(row.total);
-						    	
 							   }
 							});
-						
 				    }
 				});	
-			
 		}else{
 			$('#upi_div1').hide();
 			$('#nb_div1').hide();
@@ -823,8 +624,6 @@ translateX(
 			 $('.bank_details222').hide();
 			 $('.bank_details2222').hide();
 			 $('#current_cash1').show();
-			 
-			 
 			 $.ajax({
 					url : base + "/bakeshackAPI/api/getPaymentModeWiseTotal",
 					type : "post",
@@ -838,19 +637,14 @@ translateX(
 						    if(row.payment_mode == 'cash')
 							   {
 						    	 $('#current1').val(row.total);
-						    
 							   }
 							});
-						
 				    }
 				});	
 		}
-		
 	});
-	
 	 $('#received_bank1').change(function(){
 		 var bank = $(this).val();
-		
 		 $.ajax({
 				url : base + "/bakeshackAPI/api/getBankDetails",
 				type : "post",
@@ -860,18 +654,13 @@ translateX(
 				success:function(data)
 			    {
 					const row = data.find(d => d.bank_id == bank);
-						
-					    
 					       $('#Bank_name1').val(row.bank_name);
 					       $('#account_no1').val(row.account_no);
 					       $('#IFSC_code1').val(row.IFSC_code);
 				 			$('#account_holder_name1').val(row.account_holder_name);  
-					
 			    }
 			});	
 	});
-	 
-	
 	 var today = new Date();
 	 var dd = today.getDate();
 	 if(dd < 10)
@@ -879,15 +668,8 @@ translateX(
 		    dd = '0' + dd;
 		 }
 	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+ dd;
-	 
-	//alert(current);
-	
-	
-	$('#show')
-	.click(
-			function() {
+	$('#show').click(function() {
 				var sender_current_amount=$('#current').val();
-				
 				var sender_payment_mode = $('#payment_mode').val();
 				var sender_upi_name = $('#upi_id').val();
 				var sender_select_bank = $('#received_bank').val();
@@ -895,9 +677,6 @@ translateX(
 				var sender_acc_no = $('#account_no').val();
 				var sender_ifsc_code = $('#IFSC_code').val();
 				var sender_acc_holder_name = $('#account_holder_name').val();
-				
-			
-				
 				var receiver_payment_mode = $('#payment_mode1').val();
 				var receiver_upi_name = $('#upi_id1').val();
 				var receiver_select_bank = $('#received_bank1').val();
@@ -907,14 +686,10 @@ translateX(
 				var receiver_ifsc_code = $('#IFSC_code1').val();
 				var receiver_acc_holder_name = $('#account_holder_name1').val();
 				var amount = $('#amount').val();
-				
 				var flag = 1; // Addition
-			
 				var sender_current_amount1 = sender_current_amount;
-				
 				if(sender_current_amount1 < amount)
 				{
-					
 					 $('#warning_msg').text("Insufficient funds");
 					 $('#warning_alert').addClass("show");
 			           $('#warning_alert').removeClass("hide");
@@ -924,12 +699,9 @@ translateX(
 			             $('#warning_alert').addClass("hide");
 			           },2000);
 				} else{
-				
 				 if (amount  != "") {
-					
 					$.ajax({
-								url : base
-										+ "/bakeshackAPI/api/insertUpdatefundTransferMaster",
+								url : base	+ "/bakeshackAPI/api/insertUpdatefundTransferMaster",
 								type : "post",
 								dataType : "json",
 								async : false,
@@ -951,10 +723,8 @@ translateX(
 									"receiver_ifsc_code" : receiver_ifsc_code,
 									"receiver_acc_holder_name" : receiver_acc_holder_name,
 									"amount" : amount,
-									
 									"flag" :flag
 								},
-								
 								error : function(xhr) {
 									var msg = "(insertUpdatefund_transfer_master)Sorry but there was an error : "
 											+ xhr.status
@@ -971,9 +741,7 @@ translateX(
 								},
 								success : function(response) {
 									if (response != null) {
-
 										if (response >= 1) {
-
 											var msg = "Transfer Data inserted Successfully.";
 											 $('#success_msg').text(msg);
 											 $('#success_alert').addClass("show");
@@ -983,23 +751,16 @@ translateX(
 									             $('#success_alert').removeClass("show");
 									             $('#success_alert').addClass("hide");
 									           },2000);
-
 										} 
 									}
 								}
-
 							});
-					
-					
-					
-					
 					 $.ajax({
 						    url : base + "/bakeshackAPI/api/insertUpdateInvoice",
 							type : "post",
 							dataType : "json",
 							async : false,
 							data : {
-								
 								"customer_code"       : 0,
 								"order_code" 	      : 0,
 								"invoice_date"        : date,
@@ -1013,7 +774,6 @@ translateX(
 								"balance_amt"      : 0,
 								"transaction_code" : 00000000,
 								"flag"             : 1
-								
 							},
 							error : function(xhr) {
 								var msg = "Data insertion/updation failed. Error : "
@@ -1031,9 +791,7 @@ translateX(
 							},
 							success : function(response) {
 								if (response != null) {
-
 									if (response >= 1) {
-
 										var msg = "Invoice Data inserted/Updated Successfully.";
 										 $('#success_msg').text(msg);
 										 $('#success_alert').addClass("show");
@@ -1043,23 +801,17 @@ translateX(
 								             $('#success_alert').removeClass("show");
 								             $('#success_alert').addClass("hide");
 								           },2000);
-										
-										
-
 									}
 								}
 							}
 
 						}); 
-					
-					
 					 $.ajax({
 						    url : base + "/bakeshackAPI/api/insertUpdateInvoice",
 							type : "post",
 							dataType : "json",
 							async : false,
 							data : {
-								
 								"customer_code"       : 0,
 								"order_code" 	      : 0,
 								"invoice_date"        : date,
@@ -1073,7 +825,6 @@ translateX(
 								"balance_amt"         : 0,
 								"transaction_code"    : 00000000,
 								"flag"                : 1
-								
 							},
 							error : function(xhr) {
 								var msg = "Data insertion/updation failed. Error : "
@@ -1091,9 +842,7 @@ translateX(
 							},
 							success : function(response) {
 								if (response != null) {
-
 									if (response >= 1) {
-
 										var msg = "Invoice Data inserted/Updated Successfully.";
 										 $('#success_msg').text(msg);
 										 $('#success_alert').addClass("show");
@@ -1103,30 +852,18 @@ translateX(
 								             $('#success_alert').removeClass("show");
 								             $('#success_alert').addClass("hide");
 								           },2000);
-										
-										
-
 									}
 								}
 							}
-
 						}); 
-					
 						}
-				
 				}
-			
-			
          window.location.reload();
-				
 			})
-
 "use strict";
-
 </script>
 </body>
 </html>
-
 <%
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);

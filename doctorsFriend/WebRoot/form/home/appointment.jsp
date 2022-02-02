@@ -2,7 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -27,12 +26,10 @@ table, th, td {
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-
 table.a {
 	table-layout: auto;
 	width: 100%;
 }
-
 .alert {
 	z-index: 9999;
 	padding: 20px 40px;
@@ -119,7 +116,7 @@ transform:translateX(0%);
 						<!--begin::Container-->
 						<div class="container d-flex align-items-stretch justify-content-between">
 							<div class="col-xl-12 offset-xl-1">
-								<h2	class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3 ml-4">Patient Details Update</h2>
+								<h2	class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3 ml-4">Patient Appointment Booking</h2>
 								<div class="col-xl-10 offset-xl-0">
 									<div class="example mb-10">
 										<div class="example-preview">
@@ -224,6 +221,17 @@ transform:translateX(0%);
 																	                           </div>
 																                       </div>
 																				</div>
+																				<div class="row">
+																					<div class="col-xl-12">
+																						<div class="form-group">
+																							<label>Complaints</label> <select name="complaints"
+																								id="complaints" class="form-control" >
+																								<option value="" disabled selected hidden>Select
+																									Complaints</option>
+																							</select>
+																						</div>
+																					</div>
+																				</div>
 																			</div>
 																			<div class="card-footer text-center">
 																				<div class="row">
@@ -231,7 +239,7 @@ transform:translateX(0%);
 																					<div class="col-lg-6">
 																						<button type="button" id="show"
 																							class="btn font-weight-bold btn-primary mr-2 ">
-																							Update</button>
+																							Appointment Booking</button>
 																					</div>
 																				</div>
 																			</div>
@@ -325,6 +333,22 @@ transform:translateX(0%);
              name: 'pName',
              source: bloodhound
          });
+         $.ajax({
+     		url : base + "/dssAPI/dfapi/getComplaints",
+     		type : "post",
+     		dataType : "json",
+     		async : false,
+     		data : {"flag":1},
+     		success:function(data)
+             {
+     			data.forEach((element)=> {
+     			        $('#complaints').append($(document.createElement('option')).prop({
+     		                value: element.complaint_name,
+     		                text: element.complaint_name
+     		            }))
+     			});   
+             }
+     	});	     
 	$.ajax({
 		url : base + "/dssAPI/dfapi/getCityDetails",
 		type : "post",
@@ -342,10 +366,8 @@ transform:translateX(0%);
         }
 	});	
 	$('#patient_code').val("00");
-
 	$('#patient_name').change(function(){
 	var value_code =  $('#patient_code').val();
-	
 		if(value_code == 00 )
 		{
 		var patient_name = $(this).val();
@@ -365,7 +387,6 @@ transform:translateX(0%);
 					}else{
 						$('#patient_history').hide();
 					}
-					alert(row.age);
 					$('#village').val(row.city_desc);
 					$('#age').val(row.age);
 					$('#dob').val(row.birth_date);
@@ -384,13 +405,12 @@ transform:translateX(0%);
 					$('#mobile_no').val("");
 					$('#kco').val("");
 					$('#allergy').val("");
+					$('#patient_code').val("00");
 				}
 	        }
 		});		
 		}
 	})
-
-	
 	$('#show').click(function() {
 							var patient_name = $('#patient_name').val();
 							var patient_code = $('#patient_code').val();
@@ -400,10 +420,11 @@ transform:translateX(0%);
 							var blood_group = $('#blood_group').val();
 							var gender = $('#gender').val();
 							var age = $('#age').val();
+							var complaints = $('#complaints').val();
 							var flag = 2; // Addition
-					if(patient_code > 0){
+				 if(patient_code > 0){
 							$.ajax({
-								url : "http://localhost:8080/dssAPI/dfapi/insertUpdatePatientDetails",
+								url : base + "/dssAPI/dfapi/insertUpdatePatientDetails",
 								type : "post",
 								dataType : "json",
 								async : false,
@@ -434,9 +455,7 @@ transform:translateX(0%);
 								},
 								success : function(response) {
 									if (response != null) {
-
 										if (response >= 1) {
-
 											var msg = "Patient Data Updated Successfully.";
 											$('#success_msg').text(msg);
 											 $('#success_alert').addClass("show");
@@ -453,7 +472,7 @@ transform:translateX(0%);
 					}
 					else{
 						$.ajax({
-							url : "http://localhost:8080/dssAPI/dfapi/insertUpdatePatientDetails",
+							url : base + "/dssAPI/dfapi/insertUpdatePatientDetails",
 							type : "post",
 							dataType : "json",
 							async : false,
@@ -484,9 +503,7 @@ transform:translateX(0%);
 							},
 							success : function(response) {
 								if (response != null) {
-
 									if (response >= 1) {
-
 										var msg = "Patient Data Inserted Successfully.";
 										$('#success_msg').text(msg);
 										 $('#success_alert').addClass("show");
@@ -496,13 +513,80 @@ transform:translateX(0%);
 								             $('#success_alert').removeClass("show");
 								             $('#success_alert').addClass("hide");
 								           },2000);
-
 									} 
 								}
 							}
-
 						});
 						}
+				var patient
+					$.ajax({
+						url : base + "/dssAPI/dfapi/getPatientDetails",
+						type : "post",
+						dataType : "json",
+						async : false,
+						data : {
+							"flag" : 1
+						},
+						success : function(data) {
+							if (data != null) {
+								data.forEach(function(e) {
+									if(e.patient_name == patient_name)
+									{
+										alert(e.patient_code);
+									}
+								});
+							}
+						}
+					});	
+					 $.ajax({
+						url :base + "/dssAPI/dfapi/insertUpdateAppointmentBooking",
+						type : "post",
+						dataType : "json",
+						async : false,
+						data : {
+							"patient_name" : patient_name,
+                            "patient_code" : patient_code,
+                            "mobile_no" : mobile_no,
+                            "city" : village,
+                            "gender" : gender,
+                            "age": age,
+                            "complaint" : complaints,
+                            "appointment_date" : date ,
+                            "status" : 1,
+							"flag" : 1
+						},
+						error : function(xhr) {
+							var msg = "Data insertion failed Error : "
+									+ xhr.status
+									+ " "
+									+ xhr.statusText;
+							$('#warning_msg').text(msg);
+							 $('#warning_alert').addClass("show");
+					           $('#warning_alert').removeClass("hide");
+					           $('#warning_alert').addClass("showAlert");
+					           setTimeout(function(){
+					             $('#warning_alert').removeClass("show");
+					             $('#warning_alert').addClass("hide");
+					           },2000);
+						},
+						success : function(response) {
+							if (response != null) {
+
+								if (response >= 1) {
+
+									var msg = "Appointment Booking Successfully.";
+									$('#success_msg').text(msg);
+									 $('#success_alert').addClass("show");
+							           $('#success_alert').removeClass("hide");
+							           $('#success_alert').addClass("showAlert");
+							           setTimeout(function(){
+							             $('#success_alert').removeClass("show");
+							             $('#success_alert').addClass("hide");
+							           },2000);
+								} 
+							}
+						}
+					});
 					window.location.reload();
 						})
 	</script>

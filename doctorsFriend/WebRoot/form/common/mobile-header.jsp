@@ -1,7 +1,7 @@
 <%@page import="com.faces.VO_Face"%>
 		<div id="kt_header_mobile" class="header-mobile header-mobile-fixed">
 			<!--begin::Logo-->
-			<a href="./index.jsp">
+			<a id="dashboard_logo">
 				<img alt="Logo" src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/logo.png" class="logo-default max-h-50px" />
 			</a>
 			<!--end::Logo-->
@@ -25,4 +25,28 @@
 				</button>
 			</div>
 			<!--end::Toolbar-->
+			<%
+			String session1 = (String) session.getAttribute("login_id");
+			if (session.getAttribute("login_id") != null) {
+				String sessionName = (String) session.getAttribute("login_id");
+		
+			} else
+			response.sendRedirect("LoginForm.html");
+			%>
+			
 		</div>
+	<script>
+  var login_id='<%=session1%>';
+	$("#create_button").click(function(){
+		var url = "./patientDetailsUpdate.jsp";
+		window.location.assign(url);
+	})
+	
+	$('#dashboard_logo').click(function(){
+		
+		var url = "/doctorsFriend/form/home/index.jsp"  + '?login_id=' + login_id ;  
+		
+		window.location.assign(url);
+	})
+
+	</script>

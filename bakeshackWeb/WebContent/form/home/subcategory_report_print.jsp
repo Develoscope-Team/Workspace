@@ -1,14 +1,18 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
-import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-	String dbConnVar = "BAKESHACk";
-	try {
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+String dbConnVar = "BAKESHACk";
+try {
+	 String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp"); 
 %>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,21 +21,15 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 
 <script type="text/javascript"
 	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
-
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
@@ -41,60 +39,58 @@ table.a {
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="col-10 mt-20 offset-1 ">
-	<div class="card card-custom gutter-b ">
-				<div class="dropdown dropdown-inline mt-5" >
-					<button type="button1" class="  btn  font-weight-bolder " style="float:right;"
-						value="Create Print" id="Print" onclick="MyApp.printTable()">
-						<i class="icon-2x flaticon2-printer" style="color: #4A7DFF"></i>
-					</button>
-					<button type="button " class=" btn font-weight-bolder " style="float:right;"
-						value="Create PDF" id="PDF" onclick="run()">
-						<i class=" icon-2x fas fa-file-pdf " style="color:  #4A7DFF"></i>
-					</button>
-					<button onclick="dataContentExportExl('card_Report', 'user-data')"
-						class="  btn  font-weight-bolder " style="float:right;" value="Create Excel" id="Excel">
-						<i class=" icon-2x fas fa-file-excel" style="color:  #4A7DFF"></i>
-					</button>
+		<div class="card card-custom gutter-b ">
+			<div class="dropdown dropdown-inline mt-5">
+				<button type="button" class="  btn  font-weight-bolder "
+					style="float: right;" value="Create Print" id="Print"
+					onclick="MyApp.printTable()">
+					<i class="icon-2x flaticon2-printer" style="color: #4A7DFF"></i>
+				</button>
+				<button type="button" class=" btn font-weight-bolder "
+					style="float: right;" value="Create PDF" id="PDF" onclick="run()">
+					<i class=" icon-2x fas fa-file-pdf " style="color: #4A7DFF"></i>
+				</button>
+				<button onclick="dataContentExportExl('card_Report', 'user-data')"
+					class="  btn  font-weight-bolder " style="float: right;"
+					value="Create Excel" id="Excel">
+					<i class=" icon-2x fas fa-file-excel" style="color: #4A7DFF"></i>
+				</button>
+			</div>
+			<div class="table-responsive mb-10 " id="card_Report">
+				<font size="+3"><u><center>Monthly Category	Report</center></u></font> <br />
+				<div class=" mr-10 ">
+					<font size="+2"><u><center>	Date: <span class=" " id="finish"></span> </center></u></font>
 				</div>
-		<div class="table-responsive mb-10 " id="card_Report">
-			<font size="+3"><u><center>Monthly Category Report</center></u></font> <br />
-			<div class=" mr-10 " >
-			<font size="+2"><u><center>Date: <span class=" " id="finish"></span></center></u></font></div><br />
-			<table class="table" style="border: 1px solid black">
-				<thead>
-					<tr>
-						<th style="text-align: center;" scope="col">Subcategory Name </th>
-						<th style="text-align: center" scope="col">Jan.</th>
-						<th style="text-align: center" scope="col">Feb.</th>
-						<th style="text-align: center" scope="col">Mar.</th>
-						<th style="text-align: center" scope="col">Apr.</th>
-						<th style="text-align: center" scope="col">May.</th>
-						<th style="text-align: center" scope="col">Jun.</th>
-						<th style="text-align: center" scope="col">Jul.</th>
-						<th style="text-align: center" scope="col">Aug.</th>
-						<th style="text-align: center" scope="col">Sep.</th>
-						<th style="text-align: center" scope="col">Oct.</th>
-						<th style="text-align: center" scope="col">Nov.</th>
-						<th style="text-align: center" scope="col">Dec.</th>
-						
-					</tr>
-				</thead>
-				<tbody class="table_body text-center">
-				</tbody>
-			</table>
+				<br />
+				<table class="table" style="border: 1px solid black">
+					<thead>
+						<tr>
+							<th style="text-align: center;" scope="col">Subcategory Name
+							</th>
+							<th style="text-align: center" scope="col">Jan.</th>
+							<th style="text-align: center" scope="col">Feb.</th>
+							<th style="text-align: center" scope="col">Mar.</th>
+							<th style="text-align: center" scope="col">Apr.</th>
+							<th style="text-align: center" scope="col">May.</th>
+							<th style="text-align: center" scope="col">Jun.</th>
+							<th style="text-align: center" scope="col">Jul.</th>
+							<th style="text-align: center" scope="col">Aug.</th>
+							<th style="text-align: center" scope="col">Sep.</th>
+							<th style="text-align: center" scope="col">Oct.</th>
+							<th style="text-align: center" scope="col">Nov.</th>
+							<th style="text-align: center" scope="col">Dec.</th>
+						</tr>
+					</thead>
+					<tbody class="table_body text-center">
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-	</div>
-<!--begin::Footer-->
-				<div >
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -112,18 +108,13 @@ table.a {
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
-<script type="text/javascript"
+	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
-
-
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-
 	 var today = new Date();
 	 var date = (today.getMonth()+1)+'-'+today.getFullYear();
 	 $('#finish').text(date);
@@ -134,7 +125,6 @@ table.a {
 	const urlParams = new URLSearchParams(queryString);
 	const product_code = urlParams.get('product_code');
 	subcategory_name = urlParams.get('subcategory_name');
-   
 	const  from_date = urlParams.get('from_date');
 	 const till_date = urlParams.get('till_date');
 	var j=0;
@@ -145,26 +135,18 @@ table.a {
 		dataType : "json",
 		async : false,
 		data : {
-		
 			},
 		success:function(data)
 	    {
-			/* alert("invoice_code"); */
 			const row = data.find(d => d.subcategory_name == subcategory_name);
 			data.forEach((row)=> {
-				//var d = new Date(row.product_name);
-				/* alert(row.product_name); */
-				//let month = d.getMonth()+1;
 				j++;
-				/* alert(j); */
 			});
-			
 		}
 	});	
 				for(var i = 1; i <= j; i++){
 				 	  var html = '';
 				 	  html += '<tr>'
-					 // html += '<td>' + i + '</td>';
 			 	      html += '<td><input type="text" class=" " id="subcategory_name-' + i +'" name="subcategory_name" style="background-color:#FFFFFF; border:0px; width: 100px; text-align:center" disabled></td>';
 				 	  html += '<td><input type="text" class=" " id="jan-' + i +'" name="jan" style="background-color:#FFFFFF; border:0px; width: 50px; text-align:center" disabled></td>';
 			 		  html += '<td><input type="text" class=" " id="feb-' + i +'" name="feb" style="background-color:#FFFFFF; border:0px; width: 50px; text-align:center" disabled></td>';
@@ -178,54 +160,39 @@ table.a {
 			 	      html += '<td><input type="text" class=" " id="oct-' + i +'" name="oct" style="background-color:#FFFFFF; border:0px; width: 50px; text-align:center" disabled></td>';
 			 	      html += '<td><input type="text" class=" " id="nov-' + i +'" name="nov" style="background-color:#FFFFFF; border:0px; width: 50px; text-align:center" disabled></td>';
 			 	      html += '<td><input type="text" class=" " id="dec-' + i +'" name="dec" style="background-color:#FFFFFF; border:0px; width: 50px; text-align:center" disabled></td>';
-
-			 		  //  html += '<td><a type="button"   onClick="nextPage(' + i + ')";  id="nextPage-' + i +'" class="btn_edit btn font-weight-bold btn-primary btn-icon btn-primary text-center"  style="border:0px; width:50px; text-align:center; " ><i class="la la-edit"></i></a>';
 				 	 html += '</tr>';
 				 	  $('.table_body').append(html);
 		}
-				
 				var k=0;
-				
 				$.ajax({
 					url : base + "/bakeshackAPI/api/getSubcategoryDetails",
 					type : "post",
 					dataType : "json",
 					async : false,
 					data : {
-					
 						},
 					success:function(data)
 				    {
-						/* alert("invoice_code"); */
 						const row = data.find(d => d.subcategory_name == subcategory_name);
 						data.forEach((row)=> {
 							k++;
 							$('#subcategory_name-'+k).val(row.subcategory_name);
 						});
-						
 					}
 				});	
-				
-				
-				
 				$.ajax({
 					url : base + "/bakeshackAPI/api/getMontSubcategoryDetails",
 					type : "post",
 					dataType : "json",
 					async : false,
 					data : {
-					
 						},
 					success:function(data)
 				    {
-						/* alert("invoice_code"); */
 						const row = data.find(d => d.subcategory_name == subcategory_name);
 						data.forEach((row)=> {	
-							
 							var d = new Date(row.subcategory_name);
-							/*  alert(row.subcategory_name);  */
 							let month = d.getMonth()+1;
-			/* 	alert(row.entry_date); */
 				for(var i = 1; i <= j; i++){
 					var subcategory_name = $('#subcategory_name-'+i).val()
 					if(subcategory_name == row.entry_date)
@@ -272,64 +239,16 @@ table.a {
            });
 					}
 				});	
-				
-				
-				
-				
-				
-				
-				
-				/* alert("month" + month +"-"+row.product_name); */
-	 //    	html +="<tr id= tr-id-2 class= tr-class-2>"
-/* 			html += "<td>"+row.product_name+"</td>"; 
- */			/*  html += "<td>"+row.entry_date+"</td>";
-	     	 if(month == 1){
-	     		 html += "<td>"+row.distributed_quantity+"</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     		 html += "<td>"+"-"+ "</td>";
-	     				           
-	     		 }     
-	     	 else if(month == 11){
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+"-"+ "</td>";
- html += "<td>"+row.distributed_quantity+"</td>";
- html += "<td>"+"-"+ "</td>";
-		           
- }            
-	          /*   html += "<td>"+row.payment_mode+"</td>"; */
-	           
-	            
-	 	       //	 html +="</tr>" */
 			
 	$(document).ready(function(){
 		  // Search all columns
 		  $('#txt_searchall').keyup(function(){
 		    // Search Text
 		    var search = $(this).val();
-
 		    // Hide all table tbody rows
 		    $('table tbody tr').hide();
-
 		    // Count total search result
 		    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
-
 		    if(len > 0){
 		      // Searching text in columns and show match row
 		      $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
@@ -338,7 +257,6 @@ table.a {
 		    }else{
 		      $('.notfound').show();
 		    }
-
 		  });
 		});
 	$.expr[":"].contains = $.expr.createPseudo(function(arg) {
@@ -351,13 +269,11 @@ table.a {
 	     this.printTable = function () {
 	         var tab = document.getElementById('card_Report');
 	         printHeader:"<h1>Example Table Header<h1>"
-
 	         var style = "<style>";
 	             style = style + "table {width: 100%;font: 17px Calibri;}";
 	             style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
 	             style = style + "padding: 2px 3px;text-align: center;}";
 	             style = style + "</style>";
-
 	         var win = window.open('', '', 'height=700,width=700');
 	         win.document.write(style);          //  add the style.
 	         win.document.write(card_Report.outerHTML);
@@ -385,15 +301,11 @@ table.a {
 		    var dataFileType = 'application/vnd.ms-excel';
 		    var tableSelect = document.getElementById(memberId);
 		    var dataContentSource = tableSelect.innerHTML.replace(/ /g, '%20');
-		    
 		    // Specify file name
 		    filename = filename?filename+'.xls':'export_excel_data.xls';
-		    
 		    // Create download link element
 		    fourceFileSaveDataUrl = document.createElement("a");
-		    
 		    document.body.appendChild(fourceFileSaveDataUrl);
-		    
 		    if(navigator.msSaveOrOpenBlob){
 		        var blob = new Blob(['\ufeff', dataContentSource], {
 		            type: dataFileType
@@ -402,21 +314,18 @@ table.a {
 		    }else{
 		        // Create a link to the file
 		        fourceFileSaveDataUrl.href = 'data:' + dataFileType + ', ' + dataContentSource;
-		    
 		        // Setting the file name
 		        fourceFileSaveDataUrl.download = filename;
-		        
 		        //triggering the function
 		        fourceFileSaveDataUrl.click();
 		    }
 		};
-
 	</script>
 </body>
 </html>
 
 <%
-	} catch (Exception e) {
-		Logger.log(dbConnVar, "" + e);
-	}
+} catch (Exception e) {
+Logger.log(dbConnVar, "" + e);
+}
 %>

@@ -795,98 +795,106 @@ public class ConnectDataBean {
 	}
 
 //Role master
-	public int insertUpdateRole(String role_type, int role_id, int flag) {
-		Connection con = null;
-		CallableStatement cs = null;
-		ResultSet rs = null;
-		int result = 0;
-		try {
-			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_crud_role(?,?,?)}");
-			cs.registerOutParameter(1, Types.INTEGER);
-			cs.setString(2, role_type);
-			cs.setInt(3, role_id);
-			cs.setInt(4, flag);
-			cs.execute(); // rs = cs.getResultSet();
-			result = cs.getInt(1);
-
-		} catch (Exception e) {
-			Logger.log(dbConnVar, e);
-		} finally {
+		public int insertUpdateRole(String role_type , String role_permission, int role_id, int flag) {
+			Connection con = null;
+			CallableStatement cs = null;
+			ResultSet rs = null;
+			int result = 0;
 			try {
-				if (con != null) {
-					cf.freeConnection(con);
-					con.close();
+				con = cf.getConnection();
+				cs = con.prepareCall("{?=call fun_crud_role(?,?,?,?)}");
+				cs.registerOutParameter(1, Types.INTEGER);
+				cs.setString(2, role_type);
+				cs.setString(3, role_permission);
+				cs.setInt(4, role_id);
+				cs.setInt(5, flag);
+				cs.execute();
+				// rs = cs.getResultSet();
+				result = cs.getInt(1);
+			} catch (Exception e) {
+				Logger.log(dbConnVar, e);
+			} finally {
+				try {
+					if (con != null) {
+						cf.freeConnection(con);
+						con.close();
+					}
+					if (cs != null) {
+						cs.close();
+					}
+					if (rs != null) {
+						rs.close();
+					}
+				} catch (Exception e1) {
+					Logger.log(dbConnVar, e1);
 				}
-				if (cs != null) {
-					cs.close();
-				}
-				if (rs != null) {
-					rs.close();
-				}
-			} catch (Exception e1) {
-				Logger.log(dbConnVar, e1);
 			}
+			return result;
 		}
 
-		return result;
-	}
+		public JSONArray getRoleDetails() {
+			Connection con = null;
+			CallableStatement cs = null;
+			ResultSet rs = null;
 
-	public JSONArray getRoleDetails() {
-		Connection con = null;
-		CallableStatement cs = null;
-		ResultSet rs = null;
-
-		JSONArray jarr = null;
-		JSONObject finaljson = null;
-		String role_id = "", role_type = "";
-		try {
-			jarr = new JSONArray();
-
-			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_retrieve_role_details(?)}");
-			cs.registerOutParameter(1, Types.OTHER);
-			cs.setObject(2, rs);
-			con.setAutoCommit(false); // without this the Result set is not returning
-			cs.execute();
-			rs = (ResultSet) cs.getObject(1);
-			while (rs.next()) {
-				JSONObject resultjson = new JSONObject();
-				role_id = rs.getString(1);
-				role_type = rs.getString(2);
-				resultjson.put("role_id", role_id);
-				resultjson.put("role_type", role_type);
-				jarr.put(resultjson);
-			}
-			finaljson = new JSONObject();
-			finaljson.put("data", jarr);
-
-		} catch (Exception e) {
-			Logger.log(dbConnVar, e);
-		} finally {
+			JSONArray jarr = null;
+			JSONObject finaljson = null;
+		
 			try {
-				if (con != null) {
-					con.close();
-				}
-				if (cs != null) {
-					cs.close();
-				}
-				if (rs != null) {
-					rs.close();
-				}
-			} catch (Exception e1) {
-				Logger.log(dbConnVar, e1);
-			}
-		}
+				jarr = new JSONArray();
 
-		return jarr;
-	}
+				con = cf.getConnection();
+				cs = con.prepareCall("{?=call fun_retrieve_role_details(?)}");
+				cs.registerOutParameter(1, Types.OTHER);
+				cs.setObject(2, rs);
+
+				con.setAutoCommit(false); // without this the Result set is not returning
+				cs.execute();
+				rs = (ResultSet) cs.getObject(1);
+
+				while (rs.next()) {
+					JSONObject resultjson = new JSONObject();
+
+					
+
+					resultjson.put("role_id", rs.getInt(1));
+					resultjson.put("role_type",  rs.getString(2));
+					resultjson.put("role_permission", rs.getString(3));
+
+					jarr.put(resultjson);
+				}
+
+				finaljson = new JSONObject();
+
+				finaljson.put("data", jarr);
+
+			} catch (Exception e) {
+				Logger.log(dbConnVar, e);
+			} finally {
+				try {
+					if (con != null) {
+						con.close();
+					}
+					if (cs != null) {
+						cs.close();
+					}
+					if (rs != null) {
+						rs.close();
+					}
+				} catch (Exception e1) {
+					Logger.log(dbConnVar, e1);
+				}
+			}
+
+			return jarr;
+		}
+		
 
 //user Master
 
 	public int insertUpdateUsersDetails(String users_name, String login_id, String password, String birth_date,
 			String role_type, String address, String city_desc, String district_desc, String gender, String mobile_no,
-			String email_id, String gov_id, int flag, int users_id) {
+			String email_id, String gov_id, String qualification, int flag, int users_id) {
 		Connection con = null;
 		CallableStatement cs = null;
 		ResultSet rs = null;
@@ -895,7 +903,7 @@ public class ConnectDataBean {
 		try {
 
 			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_crud_users_details(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+			cs = con.prepareCall("{?=call fun_crud_users_details(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.setString(2, users_name);
 			cs.setString(3, login_id);
@@ -909,12 +917,11 @@ public class ConnectDataBean {
 			cs.setString(11, mobile_no);
 			cs.setString(12, email_id);
 			cs.setString(13, gov_id);
-			cs.setInt(14, flag);
-			cs.setInt(15, users_id);
+			cs.setString(14, qualification);
+			cs.setInt(15, flag);
+			cs.setInt(16, users_id);
 			cs.execute(); // rs = cs.getResultSet();
-
 			result = cs.getInt(1);
-
 		} catch (Exception e) {
 			Logger.log(dbConnVar, e);
 		} finally {
@@ -959,10 +966,6 @@ public class ConnectDataBean {
 
 			while (rs.next()) {
 				JSONObject resultjson = new JSONObject();
-
-				
-
-				
 				resultjson.put("users_id", rs.getInt(1));
 				resultjson.put("login_id", rs.getString(2));
 				resultjson.put("password", rs.getString(3));
@@ -976,6 +979,7 @@ public class ConnectDataBean {
 				resultjson.put("mobile_no",  rs.getString(11));
 				resultjson.put("email_id",  rs.getString(12));
 				resultjson.put("gov_id", rs.getString(13));
+				resultjson.put("qualification", rs.getString(14));
 
 				jarr.put(resultjson);
 			}
@@ -5364,365 +5368,52 @@ public class ConnectDataBean {
 					return jarr;
 				}			
 						
-				
-				/*
-	 * 
-	 * 
-	 * 
-	 * 
-	 * //recipe master
-	 * 
-	 * 
-	 * public int insertUpdateRecipe(String recipe_name, String recipe_code,int
-	 * product,String product_req, int recipe_id, int flag) { Connection con = null;
-	 * CallableStatement cs = null; ResultSet rs = null;
-	 * 
-	 * 
-	 * int result=0; try {
-	 * 
-	 * con = cf.getConnection(); cs =
-	 * con.prepareCall("{?=call fun_crud_recipe(?,?,?,?,?,?)}");
-	 * cs.registerOutParameter(1, Types.INTEGER); cs.setString(2, recipe_name);
-	 * cs.setString(3, recipe_code); cs.setInt(4, product); cs.setString(5,
-	 * product_req); cs.setInt(6, recipe_id); cs.setInt(7, flag);
-	 * 
-	 * cs.execute(); //rs = cs.getResultSet();
-	 * 
-	 * result=cs.getInt(1);
-	 * 
-	 * } catch (Exception e) { Logger.log(dbConnVar, e); } finally { try { if (con
-	 * != null) { cf.freeConnection(con); con.close(); } if (cs != null) {
-	 * cs.close(); } if (rs != null) { rs.close(); } } catch (Exception e1) {
-	 * Logger.log(dbConnVar, e1); } }
-	 * 
-	 * return result; }
-	 * 
-	 * 
-	 * 
-	 * public JSONArray getRecipeDetails() { Connection con = null;
-	 * CallableStatement cs = null; ResultSet rs = null;
-	 * 
-	 * JSONArray jarr =null; JSONObject finaljson = null; try { jarr= new
-	 * JSONArray();
-	 * 
-	 * con = cf.getConnection(); cs =
-	 * con.prepareCall("{?=call fun_retrieve_recipe_details(?)}");
-	 * cs.registerOutParameter(1, Types.OTHER); cs.setObject(2, rs);
-	 * 
-	 * 
-	 * con.setAutoCommit(false); // without this the Result set is not returning
-	 * cs.execute(); rs = (ResultSet) cs.getObject(1);
-	 * 
-	 * while (rs.next()) { JSONObject resultjson = new JSONObject();
-	 * 
-	 * 
-	 * resultjson.put("recipe_id", rs.getInt(1)); resultjson.put("recipe_name",
-	 * rs.getString(2)); resultjson.put("recipe_code", rs.getString(3));
-	 * resultjson.put("product", rs.getString(4)); resultjson.put("product_req",
-	 * rs.getString(5));
-	 * 
-	 * 
-	 * 
-	 * jarr.put(resultjson); }
-	 * 
-	 * finaljson = new JSONObject();
-	 * 
-	 * finaljson.put("data", jarr);
-	 * 
-	 * } catch (Exception e) { Logger.log(dbConnVar, e); } finally { try { if (con
-	 * != null) { con.close(); } if (cs != null) { cs.close(); } if (rs != null) {
-	 * rs.close(); } } catch (Exception e1) { Logger.log(dbConnVar, e1); } }
-	 * 
-	 * return jarr; }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * public String getOrderCode() { Connection con = null; CallableStatement cs =
-	 * null; ResultSet rs = null;
-	 * 
-	 * String order_code="";
-	 * 
-	 * try {
-	 * 
-	 * con = cf.getConnection(); cs =
-	 * con.prepareCall("{?=call fun_generate_order_code()}");
-	 * cs.registerOutParameter(1, Types.VARCHAR);
-	 * 
-	 * 
-	 * con.setAutoCommit(false); // without this the Result set is not returning
-	 * cs.execute(); order_code = cs.getString(1);
-	 * 
-	 * 
-	 * } catch (Exception e) { Logger.log(dbConnVar, e); } finally { try { if (con
-	 * != null) { con.close(); } if (cs != null) { cs.close(); } if (rs != null) {
-	 * rs.close(); } } catch (Exception e1) { Logger.log(dbConnVar, e1); } }
-	 * 
-	 * return order_code; }
-	 * 
-	 * public int insertUpdateOrderedProduct(String ordered_product, int
-	 * ordered_product_id, int flag) { Connection con = null; CallableStatement cs =
-	 * null; ResultSet rs = null;
-	 * 
-	 * 
-	 * int result=0; try {
-	 * 
-	 * con = cf.getConnection(); cs =
-	 * con.prepareCall("{?=call fun_crud_Ordered_product(?,?,?)}");
-	 * cs.registerOutParameter(1, Types.INTEGER); cs.setString(2, ordered_product);
-	 * cs.setInt(3, ordered_product_id); cs.setInt(4, flag);
-	 * 
-	 * cs.execute(); //rs = cs.getResultSet();
-	 * 
-	 * result=cs.getInt(1);
-	 * 
-	 * } catch (Exception e) { Logger.log(dbConnVar, e); } finally { try { if (con
-	 * != null) { cf.freeConnection(con); con.close(); } if (cs != null) {
-	 * cs.close(); } if (rs != null) { rs.close(); } } catch (Exception e1) {
-	 * Logger.log(dbConnVar, e1); } }
-	 * 
-	 * return result; }
-	 * 
-	 * 
-	 * 
-	 * public JSONArray getOrderedProductDetails() { Connection con = null;
-	 * CallableStatement cs = null; ResultSet rs = null;
-	 * 
-	 * JSONArray jarr =null; JSONObject finaljson = null; try { jarr= new
-	 * JSONArray();
-	 * 
-	 * con = cf.getConnection(); cs =
-	 * con.prepareCall("{?=call fun_retrieve_ordered_product_details(?)}");
-	 * cs.registerOutParameter(1, Types.OTHER); cs.setObject(2, rs);
-	 * 
-	 * 
-	 * con.setAutoCommit(false); // without this the Result set is not returning
-	 * cs.execute(); rs = (ResultSet) cs.getObject(1);
-	 * 
-	 * while (rs.next()) { JSONObject resultjson = new JSONObject();
-	 * 
-	 * 
-	 * resultjson.put("ordered_product_id", rs.getInt(1));
-	 * resultjson.put("ordered_product", rs.getString(2));
-	 * 
-	 * 
-	 * jarr.put(resultjson); }
-	 * 
-	 * finaljson = new JSONObject();
-	 * 
-	 * finaljson.put("data", jarr);
-	 * 
-	 * } catch (Exception e) { Logger.log(dbConnVar, e); } finally { try { if (con
-	 * != null) { con.close(); } if (cs != null) { cs.close(); } if (rs != null) {
-	 * rs.close(); } } catch (Exception e1) { Logger.log(dbConnVar, e1); } }
-	 * 
-	 * return jarr; }
-	 * 
-	 *
-	 * 
-	 * //Generate Invoice Code
-	 * 
-	 * public String getInvoiceId() { Connection con = null; CallableStatement cs =
-	 * null; ResultSet rs = null;
-	 * 
-	 * String invoice_code="";
-	 * 
-	 * try {
-	 * 
-	 * con = cf.getConnection(); cs =
-	 * con.prepareCall("{?=call fun_generate_invoice_code()}");
-	 * cs.registerOutParameter(1, Types.VARCHAR);
-	 * 
-	 * 
-	 * con.setAutoCommit(false); // without this the Result set is not returning
-	 * cs.execute(); invoice_code = cs.getString(1);
-	 * 
-	 * 
-	 * } catch (Exception e) { Logger.log(dbConnVar, e); } finally { try { if (con
-	 * != null) { con.close(); } if (cs != null) { cs.close(); } if (rs != null) {
-	 * rs.close(); } } catch (Exception e1) { Logger.log(dbConnVar, e1); } }
-	 * 
-	 * return invoice_code; }
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * //getting invoice master info public JSONArray getInvoiceDetails1() {
-	 * Connection con = null; CallableStatement cs = null; ResultSet rs = null;
-	 * 
-	 * JSONArray jarr = null; JSONObject finaljson = null;
-	 * 
-	 * try { jarr = new JSONArray();
-	 * 
-	 * con = cf.getConnection(); cs =
-	 * con.prepareCall("{?=call fun_retrieve_invoice_details(?)}");
-	 * cs.registerOutParameter(1, Types.OTHER); cs.setObject(2, rs);
-	 * 
-	 * con.setAutoCommit(false); // without this the Result set is not returning
-	 * cs.execute(); rs = (ResultSet) cs.getObject(1);
-	 * 
-	 * while (rs.next()) { JSONObject resultjson = new JSONObject();
-	 * 
-	 * resultjson.put("invoice_code", rs.getInt(1)); resultjson.put("customer_code",
-	 * rs.getInt(2)); resultjson.put("order_code", rs.getString(3));
-	 * resultjson.put("invoice_date", rs.getString(4)); resultjson.put("paid_date",
-	 * rs.getString(5)); resultjson.put("invoice_amonut", rs.getDouble(6));
-	 * resultjson.put("to_be_paid", rs.getDouble(7)); resultjson.put("paid_amount",
-	 * rs.getDouble(8)); resultjson.put("balance_amt", rs.getDouble(9));
-	 * 
-	 * jarr.put(resultjson); }
-	 * 
-	 * finaljson = new JSONObject();
-	 * 
-	 * finaljson.put("data", jarr);
-	 * 
-	 * } catch (Exception e) { Logger.log(dbConnVar, e); } finally { try { if (con
-	 * != null) { con.close(); } if (cs != null) { cs.close(); } if (rs != null) {
-	 * rs.close(); } } catch (Exception e1) { Logger.log(dbConnVar, e1); } }
-	 * 
-	 * return jarr; }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * //sales and return data retrive
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * public JSONArray getUpcomingOrderDetails() { Connection con = null;
-	 * CallableStatement cs = null; ResultSet rs = null;
-	 * 
-	 * JSONArray jarr =null; JSONObject finaljson = null; try { jarr= new
-	 * JSONArray();
-	 * 
-	 * con = cf.getConnection(); cs =
-	 * con.prepareCall("{?=call fun_retrieve_upcoming_order_for_dashboard(?)}");
-	 * cs.registerOutParameter(1, Types.OTHER); cs.setObject(2, rs);
-	 * 
-	 * 
-	 * con.setAutoCommit(false); // without this the Result set is not returning
-	 * cs.execute(); rs = (ResultSet) cs.getObject(1);
-	 * 
-	 * while (rs.next()) { JSONObject resultjson = new JSONObject();
-	 * 
-	 * 
-	 * resultjson.put("product_list", rs.getString(1));
-	 * resultjson.put("delivery_date", rs.getString(2));
-	 * 
-	 * 
-	 * 
-	 * jarr.put(resultjson); }
-	 * 
-	 * finaljson = new JSONObject();
-	 * 
-	 * finaljson.put("data", jarr);
-	 * 
-	 * } catch (Exception e) { Logger.log(dbConnVar, e); } finally { try { if (con
-	 * != null) { con.close(); } if (cs != null) { cs.close(); } if (rs != null) {
-	 * rs.close(); } } catch (Exception e1) { Logger.log(dbConnVar, e1); } }
-	 * 
-	 * return jarr; }
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
+				public JSONArray getUser_Role_Details() {
+					Connection con = null;
+					CallableStatement cs = null;
+					ResultSet rs = null;
+					JSONArray jarr = null;
+					JSONObject finaljson = null;
+					try {
+						jarr = new JSONArray();
+						con = cf.getConnection();
+						cs = con.prepareCall("{?=call fun_retrieve_user_role_details(?)}");
+						cs.registerOutParameter(1, Types.OTHER);
+						cs.setObject(2, rs);
+						con.setAutoCommit(false); // without this the Result set is not returning
+						cs.execute();
+						rs = (ResultSet) cs.getObject(1);
+						while (rs.next()) {
+							JSONObject resultjson = new JSONObject();
+							resultjson.put("users_id", rs.getInt(1));
+							resultjson.put("login_id",  rs.getString(2));
+							resultjson.put("password", rs.getString(3));
+							resultjson.put("users_name", rs.getString(4));
+							resultjson.put("role_type", rs.getString(5));
+							resultjson.put("role_permission", rs.getString(6));
+							resultjson.put("email_id", rs.getString(7));
+							jarr.put(resultjson);
+						}
+						finaljson = new JSONObject();
+						finaljson.put("data", jarr);
+					} catch (Exception e) {
+						Logger.log(dbConnVar, e);
+					} finally {
+						try {
+							if (con != null) {
+								con.close();
+							}
+							if (cs != null) {
+								cs.close();
+							}
+							if (rs != null) {
+								rs.close();
+							}
+						} catch (Exception e1) {
+							Logger.log(dbConnVar, e1);
+						}
+					}
+					return jarr;
+				}
 
 }

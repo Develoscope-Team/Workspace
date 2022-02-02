@@ -17,9 +17,11 @@ table.a {
 }
 </style>
 
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 
 <jsp:include page="../common/header.jsp"></jsp:include>
 <body onafterprint="printP()" id="kt_body"
+style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-77.jpeg)"
 	class="print-content-only quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-static page-loading">
 
 	<!--begin::Container-->

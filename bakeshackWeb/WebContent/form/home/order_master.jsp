@@ -4,30 +4,65 @@
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()+ path + "/";
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
+		String session1 = (String) session.getAttribute("login_id");
+		if (session.getAttribute("login_id") != null) {
+			String sessionName = (String) session.getAttribute("login_id");
+		} else
+			response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<!-- <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<style>
+.alert {
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+.alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+}
+.alert.show {
+	animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide { 0%{	transform: translateX(100%);}
+40%{transform:translateX(-10%);}
+80%{transform:translateX(0%);}
+100%{transform:translateX(-10px);}
+}
+@keyframes hide_slide { 0%{	transform: translateX(-10px);}
+40%{transform:translateX(0%);}
+80%{transform:translateX(-10%);}
+100%{transform:translateX(100%);}
+}
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
+</style>
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
@@ -36,37 +71,28 @@
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
 					<!--begin::Subheader-->
 					<div class="subheader py-2 py-lg-12 subheader-transparent"
 						id="kt_subheader">
-						<div
-							class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+						<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
 							<!--begin::Info-->
 							<div class="d-flex align-items-center flex-wrap mr-1">
 								<!--begin::Heading-->
 								<div class="d-flex flex-column">
 									<!--begin::Title-->
-									<h2 class="text-white font-weight-bold my-2 mr-5">Order
-										Booking</h2>
-
+									<h2 class="text-white font-weight-bold my-2 mr-5">Order	Booking</h2>
 									<!--end::Title-->
-
 								</div>
 								<!--end::Heading-->
 							</div>
 							<div class="d-flex align-items-center">
-
 								<a href="sales-order-master.jsp"
 									class="btn btn-light-primary font-weight-boldest py-3 px-6 mr-6"><i
 									class="fa fas fa-calculator mr-2"></i>Billing</a>
-
-
 							</div>
-
 						</div>
 					</div>
 					<!--end::Subheader-->
@@ -74,7 +100,6 @@
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
-
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -93,16 +118,14 @@
 																				name="customerName" id="customer_name" /><span
 																				class="msg text-danger" id="type1"> </span>
 																		</div>
-
 																	</div>
-
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Order Date</label> <input type="date"
+																		<label>Order Date</label> <input type="text"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid form-control-lg"
-																			placeholder="DD/MM/YYYY" name="order_dat"
+																			placeholder="YYYY-MM-DD" name="order_date"
 																			id="order_date" />
 																	</div>
 																</div>
@@ -117,10 +140,10 @@
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Delivery Date</label> <input type="date"
+																		<label>Delivery Date</label> <input type="text"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid"
-																			id="delivery_date" />
+																			placeholder="YYYY-MM-DD"id="delivery_date" />
 																	</div>
 																</div>
 															</div>
@@ -158,18 +181,17 @@
 																				<!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Communication/Add-user.svg-->
 																				<svg xmlns="http://www.w3.org/2000/svg"
 																					xmlns:xlink="http://www.w3.org/1999/xlink"
-																					width="24px" height="24px" viewBox="0 0 24 24"
-																					version="1.1">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon points="0 0 24 0 24 24 0 24" />
-        <path
+																					width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                                   <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                                                                    <path
 																						d="M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
 																						fill="#000000" fill-rule="nonzero" opacity="0.3" />
-        <path
+                                                                                      <path
 																						d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
 																						fill="#000000" fill-rule="nonzero" />
-    </g>
-</svg> <!--end::Svg Icon-->
+                                                                                         </g>
+                                                                            </svg> <!--end::Svg Icon-->
 																			</span>
 																		</button>
 																	</div>
@@ -183,11 +205,7 @@
 																	</div>
 																</div>
 															</div>
-
-
-
 															<div class="card-body" style="overflow-x: auto;">
-
 																<table class="table" id="Mtable">
 																	<thead>
 																		<tr>
@@ -201,10 +219,7 @@
 
 																		</tr>
 																	</thead>
-
 																	<tbody class="add_product" id="add-product"></tbody>
-
-
 																</table>
 															</div>
 															<div class="text-right mb-5 mr-22">
@@ -212,7 +227,6 @@
 																	class="btn font-weight-bold btn-primary ">ADD
 																</button>
 															</div>
-															
 																<div class="col-lg-12" >
 																	<div class="form-group">
 																		<label>Comment</label>
@@ -221,8 +235,6 @@
 																			id="comment"></textarea>
 																	</div>
 																</div>
-															
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div">
@@ -241,7 +253,6 @@
 																	</div>
 																</div>
 															</div>
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
@@ -256,7 +267,6 @@
 																		</select>
 																	</div>
 																</div>
-
 																<div class="col-lg-4">
 																	<div class="form-group" id="amount_div">
 																		<label>Total Amount</label> <span class="text-danger"
@@ -266,7 +276,6 @@
 																			placeholder="Enter Total Amount" disabled />
 																	</div>
 																</div>
-
 																<div class="col-lg-2">
 																	<div class="form-group" id="amount_div">
 																		<label>If Paid Advance</label> <span
@@ -277,10 +286,7 @@
 																		</span>
 																	</div>
 																</div>
-
 															</div>
-
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group" id="upi_div">
@@ -292,30 +298,17 @@
 																		</select>
 																	</div>
 																	<div class="form-group" id="nb_div">
-
 																		<label>Received Bank</label> <select
 																			class="form-control form-control-solid"
 																			id="received_bank">
 																			<option value="">Select a bank</option>
-
 																		</select>
 																	</div>
-																	
 																	   <div class="form-group" id="credit_div">
-									
-										<label>Credit Period</label> <input type="text"
-													class="form-control form-control-solid" id="credit_period">
-													
-													 
-													 </input> 
-									</div>
-
+										                               <label>Credit Period</label> <input type="text"
+													               class="form-control form-control-solid" id="credit_period">
+								                        	</div>
 																</div>
-
-
-
-
-
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div1">
 																		<label>Advance Paid Amount</label> <span
@@ -326,9 +319,6 @@
 																	</div>
 																</div>
 															</div>
-
-
-
 															<div class="row" id="bank_details1">
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div">
@@ -349,9 +339,6 @@
 																	</div>
 																</div>
 															</div>
-
-
-
 															<div class="modal" id="medicineModel" tabindex="-1"
 																role="dialog" aria-labelledby="staticBackdrop"
 																aria-hidden="true">
@@ -367,20 +354,16 @@
 																			</button>
 																		</div>
 																		<div class="modal-body">
-																			<!-- <h3>THIS IS A modal for MEDISION SELECTION</h3> -->
 																			 <div class="input-icon ml-10" style = "width: 30%;">
 																<input type="text" class="form-control form-control-solid" placeholder="Search..." id="txt_searchall" />
 																<span>
 																	<i class="flaticon2-search-1 text-muted"></i>
 																</span>
 															</div>
-																		
 																			<br />
 																			<div
 																				class="datatable datatable-bordered datatable-head-custom"
 																				id="kt_datatable"></div>
-
-
 																		</div>
 																		<div class="modal-footer">
 																			<button type="button"
@@ -390,18 +373,14 @@
 																	</div>
 																</div>
 															</div>
-
 															<div class="card-footer">
 																<div class="row">
-
 																	<div class="col-lg-10 offset-1 text-center">
-
 																		<button type="button" id="add_sales_order"
 																			class="btn font-weight-bold btn-primary ">Submit</button>
 																		<button type="button" id="cancel"
 																			class="btn font-weight-bold btn-secondary">Cancel</button>
 																	</div>
-
 																</div>
 															</div>
 														</div>
@@ -413,106 +392,6 @@
 									</div>
 								</div>
 							</div>
-			
-							
-					<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
 							<div class="alert alert-success  " role="alert"
 								id="success_alert">
 								<div class="alert-text">
@@ -536,56 +415,32 @@ translateX(
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
-
-
+	<jsp:include page="../common/footer.jsp"></jsp:include>	
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
-			<svg xmlns="http://www.w3.org/2000/svg"
-				xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-				height="24px" viewBox="0 0 24 24" version="1.1">
+			<svg xmlns="http://www.w3.org/2000/svg"	xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-						<polygon points="0 0 24 0 24 24 0 24" />
-						<rect fill="#000000" opacity="0.3" x="11" y="10" width="2"
-					height="10" rx="1" />
-						<path
-					d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+						<polygon points="0 0 24 0 24 24 0 24" /><rect fill="#000000" opacity="0.3" x="11" y="10" width="2" height="10" rx="1" />
+						<path d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
 					fill="#000000" fill-rule="nonzero" />
 					</g>
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<%-- <script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
- --%>
-	<%-- <script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
- --%>
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
-
-
+	<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+	<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-	
 	$('#partially_paid_amount').val('00');
 	$('#discount').val("00");
 	 $('#credit_div').hide();
-	
 	$("#customer_name").change(function(){
 		var text=	$("#customer_name").val();
 		var letters = /^[A-Za-z(). ]+$/;
@@ -597,7 +452,6 @@ translateX(
 	     }
 	   else
 	     {
-		  
 		   $('#type1').text('Please Enter Letters Only.');
 	    $("#customer_name").val('');
 	     return false;
@@ -609,28 +463,22 @@ translateX(
 		 var phoneno = /^\d{10}$/;
 		 if(text.match(phoneno))
 	     {
-				
 			 $('#type2').text('');
 		      return true;
 	     }
 	   else
 	     {
-		  
 		   $('#type2').text('Please Enter 10 Digits Only.');
 	    $("#mobile_no").val('');
 	     return false;
 	     }
 		});
-	
-	
-	
 	 $('#upi_div').hide();
 	 $('#nb_div').hide();
 	 $('#cheque_div').hide();
 	 $('#amount_div1').hide();
 	 $('#bank_details1').hide();
 	 $('#bank_details2').hide();
-	 
 	 var j=0;
 	 var today = new Date();
 	 var dd = today.getDate();
@@ -638,16 +486,13 @@ translateX(
 		 {
 		    dd = '0' + dd;
 		 }
-	 
 	 var mm=today.getMonth()+1;
 	 if(mm < 10){
 		 mm = '0' + mm;
-		
 	 }
 	 var date = today.getFullYear()+'-'+mm+'-'+ dd;
 	 $('#order_date').val(date);
 	 $('#delivery_date').val(date);
-	 
 	 var order_code;
 	 $.ajax({
 			url : base +"/bakeshackAPI/api/getLatestOrder",
@@ -659,13 +504,18 @@ translateX(
 				const row = data.find(d => d.order_code != 0);
 				data.forEach((row)=> {
 				$('#order_no').val(row.order_code);
-				   
 				});
 	    	}
 		});	
 	 
+	 // minimum setup
+     $('#order_date,#delivery_date').datepicker({
+      rtl: KTUtil.isRTL(),
+      todayHighlight: true,
+      orientation: "bottom left",
+     format:'yyyy-mm-dd'
+     });
 		 var cName = [];
-			
 			$.ajax({
 			url : base + "/bakeshackAPI/api/getCustomerDetails",
 			type : "post",
@@ -681,14 +531,12 @@ translateX(
 				}  
 	     }
 			});
-			
 			 var bloodhound = new Bloodhound({
 	             datumTokenizer: Bloodhound.tokenizers.whitespace,
 	             queryTokenizer: Bloodhound.tokenizers.whitespace,
 	             // `states` is an array of state names defined in "The Basics"
 	             local: cName
 	         });
-
 	         $('#customer_name').typeahead({
 	             hint: true,
 	             highlight: true,
@@ -700,7 +548,6 @@ translateX(
 	         var Grand_Total = 0; 
 	     	var ccode = 0;
 	         $('#customer_name').change(function(){
-	        		
 	 			var customer_name = $(this).val();
 	 			$.ajax({
 	 				url : base + "/bakeshackAPI/api/getCustomerDetails",
@@ -713,7 +560,6 @@ translateX(
 	 					const row = data.find(d => d.customer_name == customer_name);
 	 					if(row != null){
 	 						 ccode = row.customer_code; 
-	 					  
 	 						$('#customer_name').val(row.customer_name);
 							$('#customer_code').val(row.customer_code);
 							$('#mobile_no').val(row.mobile_no);
@@ -725,21 +571,14 @@ translateX(
 	 		        }
 	 			});	
          })
-		
-
 	 var medData;
 		var r=0;
 		var table_len=(Mtable.rows.length);
 		$('#add_user ').click(function () {
-		
-			
-				
 				var customer_name = $('#customer_name').val();
 				var mobile_no = $('#mobile_no').val();
 				var address = $('#billing_address').val();
 				var flag 		  = 1; 
-											
-				
 				if(customer_name != '' ){
 					$.ajax({
 						url : base + "/bakeshackAPI/api/insertUpdateCustomer",
@@ -1022,6 +861,8 @@ translateX(
 				$('#nb_div').hide();
 				$('#cheque_div').hide();
 				 $('#credit_div').hide();
+				 $('#bank_details1').hide();
+				 $('#bank_details2').hide();
 			}else if(payment_mode == 'nb'){
 				$('#upi_div').hide();
 				$('#nb_div').show();
@@ -1040,12 +881,16 @@ translateX(
 				$('#partially_paid_amount').val("00");
 				 $('#credit_div').show();
 					$('#credit_period').val("00");
+					 $('#bank_details1').hide();
+					 $('#bank_details2').hide();
 				
 			}else{
 				$('#upi_div').hide();
 				$('#nb_div').hide();
 				$('#cheque_div').hide();
 				$('#credit_div').hide(); 
+				 $('#bank_details1').hide();
+				 $('#bank_details2').hide();
 			}
 			
 		});
@@ -1425,7 +1270,36 @@ $('#add_sales_order').click(function() {
 									        }
 									    });
 		})		
-					
+	document.addEventListener('keypress', function (e) {
+    if (e.keyCode === 13 || e.which === 13) {
+        e.preventDefault();
+        return false;
+    }
+}); 
+									  
+	/*  var KTBootstrapDatepicker = function () {
+         var arrows;
+         var demos = function () {
+        	 // minimum setup
+             $('#order_date,#delivery_date').datepicker({
+              rtl: KTUtil.isRTL(),
+              todayHighlight: true,
+              orientation: "bottom left",
+              templates: arrows
+             });
+         }
+         return {
+          // public functions
+          init: function() {
+           demos();
+          }
+         };
+        }();
+        jQuery(document).ready(function() {
+         KTBootstrapDatepicker.init();
+        });
+					 */				  
+									  
 </script>
 </body>
 </html>

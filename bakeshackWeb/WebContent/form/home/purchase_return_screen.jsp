@@ -3,12 +3,16 @@
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-	String dbConnVar = "BAKESHACk";
-	try {
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+String dbConnVar = "BAKESHACk";
+try {
+	String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
@@ -40,8 +44,8 @@
 								<!--begin::Heading-->
 								<div class="d-flex flex-column">
 									<!--begin::Title-->
-									<h2 class="text-white font-weight-bold my-2 mr-5">Purchase &
-										Returns Entry</h2>
+									<h2 class="text-white font-weight-bold my-2 mr-5">Purchase
+										& Returns Entry</h2>
 
 									<!--end::Title-->
 
@@ -70,7 +74,7 @@
 															<div class="row ml-10 mr-10 mt-10">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>vendors Name</label><span class="text-danger">*</span>
+																		<label>Vendors Name</label><span class="text-danger">*</span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid form-control-lg"
@@ -82,7 +86,7 @@
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>vendors Code</label> <input type="text"
+																		<label>Vendors Code</label> <input type="text"
 																			class="form-control form-control-solid"
 																			id="vendors_code" />
 																	</div>
@@ -175,28 +179,28 @@
 																	</div>
 																</div>
 															</div>
-																<div class="card1 card-custom gutter-b">
-																<div class="col-xl-12"style="overflow-x:auto;">
+															<div class="card1 card-custom gutter-b">
+																<div class="col-xl-12" style="overflow-x: auto;">
 
 																	<table class="table text-center" id="Mtable">
-																	<thead>
-																	<tr>
-																		<!-- <th scope="col">No</th> -->
-																		<th scope="col">Sales & order ID</th>
-																	<!-- 	<th scope="col">Invoice Code</th> -->
-																		<th scope="col">Invoice date</th>
-																		<th scope="col">Order Code</th>
-																	
-																		<th scope="col">Action</th>
+																		<thead>
+																			<tr>
+																				<!-- <th scope="col">No</th> -->
+																				<th scope="col">Sales & order ID</th>
+																				<!-- 	<th scope="col">Invoice Code</th> -->
+																				<th scope="col">Invoice date</th>
+																				<th scope="col">Order Code</th>
 
-																	</tr>
-																</thead>
+																				<th scope="col">Action</th>
 
-																<tbody class="add_product" id="add-product"></tbody>
+																			</tr>
+																		</thead>
+
+																		<tbody class="add_product" id="add-product"></tbody>
 
 
-															</table>
-															</div>
+																	</table>
+																</div>
 															</div>
 													</form>
 												</div>
@@ -210,48 +214,43 @@
 							<!--end::Entry-->
 						</div>
 						<!--end::Content-->
-						
+
 					</div>
 					<!--end::Wrapper-->
 				</div>
 				<!--end::Page-->
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
-</div>
-</div>
-
-			<!--begin::Scrolltop-->
-			<div id="kt_scrolltop" class="scrolltop">
-				<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
-					<svg xmlns="http://www.w3.org/2000/svg"
-						xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-						height="24px" viewBox="0 0 24 24" version="1.1">
+		</div>
+	</div>
+<jsp:include page="../common/footer.jsp"></jsp:include>
+	<!--begin::Scrolltop-->
+	<div id="kt_scrolltop" class="scrolltop">
+		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
+			<svg xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+				height="24px" viewBox="0 0 24 24" version="1.1">
 					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 						<polygon points="0 0 24 0 24 24 0 24" />
 						<rect fill="#000000" opacity="0.3" x="11" y="10" width="2"
-							height="10" rx="1" />
+					height="10" rx="1" />
 						<path
-							d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
-							fill="#000000" fill-rule="nonzero" />
+					d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+					fill="#000000" fill-rule="nonzero" />
 					</g>
 				</svg> <!--end::Svg Icon-->
-				</span>
-			</div>
+		</span>
+	</div>
 
-			<script type="text/javascript"
-				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-			<script type="text/javascript"
-				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
-			<script
-				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
+	<script type="text/javascript"
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+	<script type="text/javascript"
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
+	<script
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
 
 
 
-			<script type="text/javascript">
+	<script type="text/javascript">
 	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
@@ -432,7 +431,7 @@
 </html>
 
 <%
-	} catch (Exception e) {
-		Logger.log(dbConnVar, "" + e);
-	}
+} catch (Exception e) {
+Logger.log(dbConnVar, "" + e);
+}
 %>

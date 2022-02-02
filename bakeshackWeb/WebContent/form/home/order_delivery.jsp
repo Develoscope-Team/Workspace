@@ -1,14 +1,17 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()	+ path + "/";
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
+		String session1 = (String) session.getAttribute("login_id");
+		if (session.getAttribute("login_id") != null) {
+			String sessionName = (String) session.getAttribute("login_id");
+		} else
+			response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
@@ -17,7 +20,6 @@
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
@@ -26,20 +28,16 @@
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
 					<!--begin::Subheader-->
 					<div class="subheader py-2 py-lg-12 subheader-transparent"
 						id="kt_subheader">
-						<div
-							class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+						<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
 							<!--begin::Info-->
-							
 							<div class="d-flex align-items-center flex-wrap mr-1">
 								<!--begin::Heading-->
-								
 								<div class=" d-flex flex-column">
 									<!--begin::Title-->
 									<h2 class="text-white font-weight-bold my-2 mr-5">
@@ -48,23 +46,15 @@
 								</div>
 								<!--end::Heading-->
 								<div class="d-flex align-items-center">
-								
 									<a href="sales-order-master.jsp" class="btn btn-light-primary font-weight-boldest py-3 px-6 mr-6"><i class="fa fas fa-calculator mr-2"></i>Billing</a>
-								
-								
 								</div>
-							
-							<!--end::Info-->
-
 						</div>
 					</div>
 					<!--end::Subheader-->
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
-
 						<!--begin::Container-->
 						<div class="container">
-
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -72,7 +62,7 @@
 											<div class="example-preview">
 												<div class="card card-custom">
 													<form class="form" id="kt_form_1">
-														<div class="card-body ">
+														<div class="card-body">
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
@@ -114,7 +104,6 @@
 																			</button>
 																		</div>
 																		<div class="modal-body">
-																			<!-- <h3>THIS IS A modal for MEDISION SELECTION</h3> -->
 																			<div
 																				class="quick-search quick-search-inline ml-20 w-300px "
 																				id="kt_quick_search_inline">
@@ -183,7 +172,6 @@
 															</div>
 																<div class="card1 card-custom gutter-b">
 																<div class="col-xl-12"style="overflow-x:auto;">
-
 																	<table class="table text-center" id="Mtable">
 																	<thead>
 																	<tr>
@@ -193,14 +181,11 @@
 																		<th style="width: 30%;">Order date</th>
 																	   <th style="width: 10%;"> Status</th>
 																		<th style="width: 35%;">Action</th>
-
 																	</tr>
 																</thead>
-
 																<tbody class="add_product" id="add-product"></tbody>
-
-
 															</table>
+															</div>
 															</div>
 															</div>
 													</form>
@@ -211,22 +196,16 @@
 									</div>
 								</div>
 							</div>
-
 							<!--end::Entry-->
 						</div>
 						<!--end::Content-->
-						
 					</div>
 					<!--end::Wrapper-->
 				</div>
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
-
-
+    </div>
+</div>
+<jsp:include page="../common/footer.jsp"></jsp:include>
 			<!--begin::Scrolltop-->
 			<div id="kt_scrolltop" class="scrolltop">
 				<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -244,26 +223,14 @@
 				</svg> <!--end::Svg Icon-->
 				</span>
 			</div>
-
-			<script type="text/javascript"
-				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-			<script type="text/javascript"
-				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
-			<script
-				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-
-
-
-			<script type="text/javascript">
-	
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
+<script	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
+<script type="text/javascript">
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-	
-	
 	 var j=0;
-		
 	 var cName = [];
-		
 		$.ajax({
 		url : base + "/bakeshackAPI/api/getCustomerDetails",
 		type : "post",
@@ -271,22 +238,20 @@
 		async : false,
 		data : {"flag":1},
 		success:function(data)
-  {
+        {
 			if(data != null){
 				data.forEach(function(e){
 					cName.push(e.customer_name);
 				})
 			}  
-  }
+         }
 		});
-		
 		 var bloodhound = new Bloodhound({
           datumTokenizer: Bloodhound.tokenizers.whitespace,
           queryTokenizer: Bloodhound.tokenizers.whitespace,
           // `states` is an array of state names defined in "The Basics"
           local: cName
       });
-
       $('#customer_name').typeahead({
           hint: true,
           highlight: true,
@@ -295,11 +260,8 @@
           name: 'cName',
           source: bloodhound
       });
-      
-      
       var ccode = 0;
 	 $('#customer_name').change(function(){
-	
 		 var customer_name = $(this).val();
 			$.ajax({
 				url : base + "/bakeshackAPI/api/getCustomerDetails",
@@ -312,7 +274,6 @@
 					const row = data.find(d => d.customer_name == customer_name);
 					if(row != null){
 						 ccode = row.customer_code; 
-					  
 						$('#customer_name').val(row.customer_name);
 						$('#customer_code').val(row.customer_code);
 					}else{
@@ -320,9 +281,6 @@
 					}
 		        }
 			});	
-			
-			
-			
 			$.ajax({
 				url : base + "/bakeshackAPI/api/getOrderMasterDetails",
 				type : "post",
@@ -331,21 +289,15 @@
 				data : {"customer_code": ccode},
 				success:function(data)
 		    	{
-					
 					const row = data.find(d => d.customer_code == ccode);
 					data.forEach((row)=> {
-						
 					if(row.customer_code == ccode )
 						{
-						
 						j++;
-						
-						
 						}
 					});
 		    	}
 			});	
-			
 			for(var i = 1; i <= j; i++){
 			 	  var html = '';
 			 	  html += '<tr>'
@@ -360,12 +312,10 @@
 		 		              '<a type="button"   onClick="deleteOrder(' + i + ')";  id="nextPage3-' + i +'" class="btn_edit btn font-weight-bold btn-light-danger btn-icon btn-primary text-center mr-3"  style="border:0px; width:30px; height:30px; text-align:center; " title="Cancel Order" ><i class="la flaticon-cancel"></i></a>'+
 		 		               '<a type="button"   onClick="viewOrder(' + i + ')";  id="nextPage4-' + i +'" class="btn_edit btn font-weight-bold btn-light-success btn-icon btn-primary text-center mr-3"  style="border:0px; width:30px; height:30px; text-align:center; " title="View Order"><i class="la flaticon-eye"></i></a></td>';
                 html += '<td><input type="text-center" class=" " id="invoice_code-' + i +'" name="invoice_code" style="background-color:#FFFFFF; border:0px;  text-align:center" hidden></td>';
-
 		 		               html += '</tr>';
 			 	  $('.add_product').append(html);
 	}
 			var k=0;
- 			
 			$.ajax({
 				url : base + "/bakeshackAPI/api/getOrderMasterDetails",
 				type : "post",
@@ -374,30 +324,25 @@
 				data : {"customer_code": ccode},
 				success:function(data)
 		 	{
-					
 					const row = data.find(d => d.customer_code != '');
 					data.forEach((row)=> {
-					
 						if(row.customer_code == ccode )
 								{
 						  k++;
 						  var status = row.status;
 						  if(status == '0')
 							  {
-							  
 								$('#status1-' + k).text('Canceled');
 								$('#status2-' + k).hide();
 								$('#status3-' + k).hide();
 								$('#nextPage1-' + k).hide();
 								$('#nextPage2-' + k).hide();
 								$('#nextPage3-' + k).hide();
-								
 							  }
 						  else if(status == '1'){
 							  $('#status1-' + k).hide();
 								$('#status2-' + k).text('Pending');
 								$('#status3-' + k).hide();
-							 
 						  }
 						  else{
 							  $('#status1-' + k).hide();
@@ -406,27 +351,17 @@
 								$('#nextPage1-' + k).hide();
 								$('#nextPage2-' + k).hide();
 								$('#nextPage3-' + k).hide();
-							 
 						  }
 						  $('#order_booking_id-' + k).val(row.order_master_id);
 							$('#invoice_code-' + k).val(row.invoice_code);
 							$('#invoice_date-' + k).val(row.order_date);
 							$('#order_code-' + k).val(row.order_code);
-						
 							}
 					});
 		 	}
 			});	
-			
-			
-			
 	 });
-	
-		
-		 
-	 
 		 function nextPage(i){
-		
 			  let customer_name = $('#customer_name').val();
 	          let customer_code =  $('#customer_code').val();
               let order_booking_id =  $('#order_booking_id-'+i).val();
@@ -434,13 +369,9 @@
 		 	  let invoice_date = $('#invoice_date-'+i).val();
 		 	  let order_code = $('#order_code-'+i).val();
 		 		var url = "order_booking_conformation.jsp" + '?customer_name=' + customer_name + '&customer_code=' + customer_code + '&order_code=' + order_code;
-
 				window.location.assign(url);
-		 
 		 }
-		 
 		 function modifyOrder(i){
-				
 			  let customer_name = $('#customer_name').val();
 	          let customer_code =  $('#customer_code').val();
              let order_booking_id =  $('#order_booking_id-'+i).val();
@@ -448,14 +379,9 @@
 		 	  let invoice_date = $('#invoice_date-'+i).val();
 		 	  let order_code = $('#order_code-'+i).val();
 		 		var url = "order_modification.jsp" + '?customer_name=' + customer_name + '&customer_code=' + customer_code + '&order_code=' + order_code;
-
 				window.location.assign(url);
-		 
 		 }
-		 
-		 
 		 function deleteOrder(i){
-				
 			  let customer_name = $('#customer_name').val();
 	          let customer_code =  $('#customer_code').val();
              let order_booking_id =  $('#order_booking_id-'+i).val();
@@ -463,13 +389,9 @@
 		 	  let invoice_date = $('#invoice_date-'+i).val();
 		 	  let order_code = $('#order_code-'+i).val();
 		 		var url = "order_cancellation_screen.jsp" + '?customer_name=' + customer_name + '&customer_code=' + customer_code + '&order_code=' + order_code;
-
 				window.location.assign(url);
-		 
 		 }
-		 
 		 function viewOrder(i){
-				
 			  let customer_name = $('#customer_name').val();
 	          let customer_code =  $('#customer_code').val();
              let order_booking_id =  $('#order_booking_id-'+i).val();
@@ -477,10 +399,14 @@
 		 	  let invoice_date = $('#invoice_date-'+i).val();
 		 	  let order_code = $('#order_code-'+i).val();
 		 		var url = "order_booking_receipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&invoice_id=' + invoice_code;
-
 				window.location.assign(url);
-		 
 		 }
+ document.addEventListener('keypress', function (e) {
+			    if (e.keyCode === 13 || e.which === 13) {
+			        e.preventDefault();
+			        return false;
+			    }
+	}); 		 
 </script>
 </body>
 </html>

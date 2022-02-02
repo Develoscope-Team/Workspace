@@ -3,12 +3,16 @@
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-	String dbConnVar = "BAKESHACk";
-	try {
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+String dbConnVar = "BAKESHACk";
+try {
+	String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
@@ -40,8 +44,7 @@
 								<!--begin::Heading-->
 								<div class="d-flex flex-column">
 									<!--begin::Title-->
-									<h2 class="text-white font-weight-bold my-2 mr-5">Purchase 
-										Invoice</h2>
+									<h2 class="text-white font-weight-bold my-2 mr-5">Purchase Invoice</h2>
 
 									<!--end::Title-->
 
@@ -53,8 +56,6 @@
 								<a href="purchase-master.jsp"
 									class="btn btn-light-primary font-weight-boldest py-3 px-6 mr-6"><i
 									class="fa fas fa-calculator mr-2"></i>Purchase Billing</a>
-
-
 							</div>
 
 						</div>
@@ -62,10 +63,8 @@
 					<!--end::Subheader-->
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
-
 						<!--begin::Container-->
 						<div class="container">
-
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -77,7 +76,7 @@
 															<div class="row">
 																<div class="col-xl-6">
 																	<div class="form-group">
-																		<label>vendors Name</label><span class="text-danger">*</span>
+																		<label>Vendors Name</label><span class="text-danger">*</span>
 																		<div class="typeahead">
 																			<input type="text"
 																				class="form-control form-control-solid form-control-lg"
@@ -89,17 +88,13 @@
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>vendors Code</label> <input type="text"
+																		<label>Vendors Code</label> <input type="text"
 																			class="form-control form-control-solid"
 																			id="vendors_code" />
 																	</div>
 																</div>
 															</div>
-
-
-
-
-
+</div>
 															<div class="modal" id="medicineModel" tabindex="-1"
 																role="dialog" aria-labelledby="staticBackdrop"
 																aria-hidden="true">
@@ -182,27 +177,27 @@
 																	</div>
 																</div>
 															</div>
-																<div class="card1 card-custom gutter-b">
-																<div class="col-xl-12"style="overflow-x:auto;">
+															<div class="card1 card-custom gutter-b">
+																<div class="col-xl-12" style="overflow-x: auto;">
 
 																	<table class="table text-center" id="Mtable">
-																	<thead>
-																	<tr>
-																		<!-- <th scope="col">No</th> -->
-																		<th scope="col">Purchase ID</th>
-																		<th scope="col">Order Code</th>
-																		<th scope="col">Invoice date</th>
-																		<th scope="col">Status</th>
-																		<th scope="col">Action</th>
+																		<thead>
+																			<tr>
+																				<!-- <th scope="col">No</th> -->
+																				<th scope="col">Purchase ID</th>
+																				<th scope="col">Order Code</th>
+																				<th scope="col">Invoice date</th>
+																				<th scope="col">Status</th>
+																				<th scope="col">Action</th>
 
-																	</tr>
-																</thead>
+																			</tr>
+																		</thead>
 
-																<tbody class="add_product" id="add-product"></tbody>
+																		<tbody class="add_product" id="add-product"></tbody>
 
 
-															</table>
-															</div>
+																	</table>
+																</div>
 															</div>
 													</form>
 												</div>
@@ -216,18 +211,16 @@
 							<!--end::Entry-->
 						</div>
 						<!--end::Content-->
-						
+
 					</div>
 					<!--end::Wrapper-->
 				</div>
 				<!--end::Page-->
 			</div>
-<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
-
+		</div>
+				<!--end::Page-->
+</div>	
+<jsp:include page="../common/footer.jsp"></jsp:include>
 			<!--begin::Scrolltop-->
 			<div id="kt_scrolltop" class="scrolltop">
 				<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -252,19 +245,11 @@
 				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
 			<script
 				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-
-
-
 			<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-	
-	
 	 var j=0;
-		
 	 var vName = [];
-		
 		$.ajax({
 		url : base + "/bakeshackAPI/api/getVendorsDetails",
 		type : "post",
@@ -272,13 +257,13 @@
 		async : false,
 		data : {"flag":1},
 		success:function(data)
-  {
+         {
 			if(data != null){
 				data.forEach(function(e){
 					vName.push(e.vendors_name);
 				})
 			}  
-  }
+         }
 		});
 		
 		 var bloodhound = new Bloodhound({
@@ -296,11 +281,8 @@
           name: 'vName',
           source: bloodhound
       });
-      
-      
       var ccode = 0;
 	 $('#vendors_name').change(function(){
-	
 		 var vendors_name = $(this).val();
 			$.ajax({
 				url : base + "/bakeshackAPI/api/getVendorsDetails",
@@ -313,7 +295,6 @@
 					const row = data.find(d => d.vendors_name == vendors_name);
 					if(row != null){
 						 ccode = row.vendors_code; 
-					  
 						$('#vendors_name').val(row.vendors_name);
 						$('#vendors_code').val(row.vendors_code);
 					}else{
@@ -321,9 +302,6 @@
 					}
 		        }
 			});	
-			
-			/* alert(ccode); */
-			
 			$.ajax({
 				url : base + "/bakeshackAPI/api/getpurchaseorderDetails",
 				type : "post",
@@ -332,16 +310,11 @@
 				data : {"vendors_code": ccode},
 				success:function(data)
 		    	{
-					//alert(j);
 					const row = data.find(d => d.vendors_code == ccode);
 					data.forEach((row)=> {
-						
 					if(row.vendors_code == ccode )
 						{
-						
 						j++;
-						
-						
 						}
 					});
 		    	}
@@ -350,12 +323,9 @@
 			for(var i = 1; i <= j; i++){
 			 	  var html = '';
 			 	  html += '<tr>'
-				 /*  html += '<td>' + i + '</td>'; */
 		 	      html += '<td><input type="text-center" class="  sales_order_id " id="sales_order_id-' + i +'" name="sales_order_id" style="background-color:#FFFFFF; border:0px; width: 80px; text-align:center" disabled></td>';
-			 	 // html += '<td><input type="text-center" class=" sales_order_id  " id="invoice_code-' + i +'" name="invoice_code" style="background-color:#FFFFFF; border:0px; text-align:center" disabled></td>';
 		 		  html += '<td><input type="text-center" class=" sales_order_id    " id="order_code-' + i +'" name="order_code" style="background-color:#FFFFFF; border:0px; text-align:center " disabled></td>';
 			 	 html += '<td><input type="text-center" class="  sales_order_id   " id="invoice_date-' + i +'" name="invoice_date" style="background-color:#FFFFFF; border:0px; text-align:center" disabled></td>';
-		 		 // html += '<td><input type="text-center" class=" sales_order_id    " id="order_code-' + i +'" name="order_code" style="background-color:#FFFFFF; border:0px; text-align:center " disabled></td>';
 		          html += '<td><span class="label font-weight-bold label-lg label-light-danger label-inline" id="status1-' + i +'"></span>'+
                   '<span class="label font-weight-bold label-lg label-light-success label-inline" id="status2-' + i +'"></span>'+
                   '<span class="label font-weight-bold label-lg label-light-primary label-inline" id="status3-' + i +'"></span></td>';			 
@@ -376,10 +346,8 @@
 				data : {"vendors_code": ccode},
 				success:function(data)
 		 	{
-					
 					const row = data.find(d => d.vendors_code != '');
 					data.forEach((row)=> {
-					
 						if(row.vendors_code == ccode )
 								{
 						  k++;
@@ -390,20 +358,17 @@
 							 var status = row.status;
 							  if(status == '0')
 								  {
-								  
 									$('#status1-' + k).text('Canceled');
 									$('#status2-' + k).hide();
 									$('#status3-' + k).hide();
 									$('#nextPage1-' + k).hide();
 									$('#nextPage2-' + k).hide();
 									$('#nextPage3-' + k).hide();
-									
 								  }
 							  else if(status == '1'){
 								  $('#status1-' + k).hide();
 									$('#status2-' + k).text('Pending');
 									$('#status3-' + k).hide();
-								 
 							  }
 							  else{
 								  $('#status1-' + k).hide();
@@ -412,109 +377,55 @@
 									$('#nextPage1-' + k).hide();
 									$('#nextPage2-' + k).hide();
 									$('#nextPage3-' + k).hide();
-								 
 							  }
-						 
 							}
 					});
 		 	}
 			});	
-			
-			
-			
 	 });
-			
-		
-		
-		
-		 
-	 
 		 function nextPage(i){
-		
 			  let vendors_name = $('#vendors_name').val();
 	          let vendors_code =  $('#vendors_code').val();
               let purchase_id =  $('#sales_order_id-'+i).val();
 		 	  let invoice_code = $('#invoice_code-'+i).val();
 		 	  let invoice_date = $('#invoice_date-'+i).val();
 		 	  let order_code = $('#order_code-'+i).val();
-		 		/* alert(vendors_name); */
 		 		var url = "purchase_order_conformation_master.jsp" + '?vendors_name=' + vendors_name + '&vendors_code=' + vendors_code + '&order_code=' + order_code;
-		 		//var url = "sales-return-master.jsp"  ;
-
 				window.location.assign(url);
-		 
 		 }
-		 
-		
-		 
 		 function modifyOrder(i){
-				
 			 let vendors_name = $('#vendors_name').val();
 	          let vendors_code =  $('#vendors_code').val();
              let purchase_id =  $('#sales_order_id-'+i).val();
 		 	  let invoice_code = $('#invoice_code-'+i).val();
-		 	 // let invoice_date = $('#invoice_date-'+i).val();
 		 	  let order_code = $('#order_code-'+i).val();
-		 		/* alert(customer_name); */
 		 		var url = "purchase_order_modification.jsp" + '?vendors_name=' + vendors_name + '&vendors_code=' + vendors_code + '&order_code=' + order_code;
-		 		//var url = "sales-return-master.jsp"  ;
-
 				window.location.assign(url);
-		 
 		 }
-		 
-		 
 		 function deleteOrder(i){
-				
 			 let vendors_name = $('#vendors_name').val();
 	          let vendors_code =  $('#vendors_code').val();
              let purchase_id =  $('#sales_order_id-'+i).val();
-		 	//  let invoice_code = $('#invoice_code-'+i).val();
 		 	  let invoice_date = $('#invoice_date-'+i).val();
 		 	  let order_code = $('#order_code-'+i).val();
-		 		/* alert(customer_name); */
 		 		var url = "purchase_order_cancelation.jsp" + '?vendors_name=' + vendors_name + '&vendors_code=' + vendors_code + '&order_code=' + order_code;
-		 		//var url = "sales-return-master.jsp"  ;
-
 				window.location.assign(url);
-		 
 		 }
-		 
 		 function viewOrder(i){
-				
 			 let vendors_name = $('#vendors_name').val();
 	          let vendors_code =  $('#vendors_code').val();
              let purchase_id =  $('#sales_order_id-'+i).val();
-		 	//  let invoice_code = $('#invoice_code-'+i).val();
 		 	  let invoice_date = $('#invoice_date-'+i).val();
 		 	  let order_code = $('#order_code-'+i).val();
-		 		/* alert(customer_name); */
-		 	//	var url = "order_booking_conformation.jsp" + '?customer_name=' + customer_name + '&customer_code=' + customer_code + '&order_code=' + order_code;
 		 		var url = "purchase_order_booking_receipt.jsp" + '?vendors_name=' + vendors_name + '&vendors_code=' + vendors_code + '&order_code=' + order_code;
-
-		 		//var url = "sales-return-master.jsp"  ;
-
 				window.location.assign(url);
-		 
 		 }
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
 </script>
 </body>
 </html>
 
 <%
-	} catch (Exception e) {
-		Logger.log(dbConnVar, "" + e);
-	}
+} catch (Exception e) {
+Logger.log(dbConnVar, "" + e);
+}
 %>

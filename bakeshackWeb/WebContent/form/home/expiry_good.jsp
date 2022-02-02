@@ -1,69 +1,94 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()	+ path + "/";
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
+		String session1 = (String) session.getAttribute("login_id");
+		if (session.getAttribute("login_id") != null) {
+			String sessionName = (String) session.getAttribute("login_id");
+		} else
+			response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
 }
+.alert {
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+ .alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+} 
+/* .alert.show {
+	animation: show_slide 1s ease forwards;
+} */
+/* @keyframes show_slide { 0%{
+	transform: translateX(100%);
+} */
+/* 40%{transform:translateX(-10%);}
+80%{transform:translateX(0%);}
+100%{transform:translateX(-10px);}
+}
+@keyframes hide_slide { 0%{
+	transform: translateX(-10px);
+}
+40%{transform:translateX(0%);}
+80%{transform:translateX(-10%);}
+100%{transform:translateX(100%);}
+} */
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
 </style>
 <link rel="shortcut icon" href="assets/BakeShack_IM/media/logos/favicon.ico" />
-
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Wrapper-->
-			<div class="d-flex flex-column flex-row-fluid wrapper"
-				id="kt_wrapper">
-
+			<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 				<!--begin::Content-->
-				<div class="content d-flex flex-column flex-column-fluid"
-					id="kt_content">
+				<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
-
-							 <h2
-								class="text-white font-weight-bold my-2 mr-5 mb-10">Expiry Goods</h2> 
-
-
-							<div class="col-xl-12 offset-xl-0">
+							 <h2 class="text-white font-weight-bold my-2 mr-5 mb-15 mt-13">Expiry Goods</h2> 
+							<div class="col-12 offset-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
 										<div class="example mb-10">
@@ -81,7 +106,6 @@ table.a {
 																</select>
 															</div>
 														</div>
-
 																<div class="form-group col-md-6">
 																	<label>Product Qty</label> <input type="text"
 																		id="product_qty"
@@ -97,31 +121,28 @@ table.a {
 																		placeholder="Enter price" />
 																</div>
 																<div class="form-group col-md-6">
-																	<label>Resion</label>
+																	<label>Reason</label>
 																	<input type="text" name="resion" id="resion" maxlength="200"
-																		class="form-control" rows="5" />
-																		
-																	
+																		class="form-control form-control-solid" rows="5" />
 																	<h7><span class="msg text-info" id="type4">enter maximum 200 letters in input box </span></h7>
 																</div>
 															</div>
 															<div class="row">
 																<div class="form-group col-md-6">
-																	<label>Product Date</label> <input type="date"
+																	<label>Product Date</label> <input type="text"
 																		id="product_date"
 																		class="form-control form-control-solid" />
 																</div>
 																<div class="form-group col-md-6">
-																	<label>Expiry Date</label> <input type="date"
+																	<label>Expiry Date</label> <input type="text"
 																		id="expiry_date"
 																		class="form-control form-control-solid" />
 																</div>
 															</div>
-															
 														<div class="text-center">
 															<button type="submit" id="verify"
 																class="btn btn-primary mr-2">Verify</button>
-															
+														</div>
 														</div>
 													</form>
 													<!--end::Form-->
@@ -131,141 +152,35 @@ table.a {
 									</div>
 								</div>
 							</div>
-				
-					<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
-							<div class="alert alert-success  " role="alert"
+							<div class="alert alert-success" role="alert"
 								id="success_alert">
 								<div class="alert-text">
 									<span id="success_msg"></span>
 								</div>
 							</div>
-							<div class="alert alert-danger " role="alert" id="danger_alert">
+							<div class="alert alert-danger" role="alert" id="danger_alert">
 								<div class="alert-text">
 									<span id="danger_msg"></span>
 								</div>
 							</div>
-							<div class="alert alert-warning " role="alert" id="warning_alert">
+							<div class="alert alert-warning" role="alert" id="warning_alert">
 								<div class="alert-text">
 									<span id="warning_msg"></span>
 								</div>
 							</div>
-							
-
 						</div>
 						<!--end::Container-->
 					</div>
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
 
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -283,16 +198,12 @@ translateX(
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
 	<script
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-
-
-
 	<script type="text/javascript">
 	
 	var basePath='<%=basePath%>';    
@@ -302,21 +213,21 @@ translateX(
 	 if(dd < 10){
 		 dd = '0' + dd;
 	 }
-	 
 	 var mm=today.getMonth()+1;
 	 if(mm < 10){
 		 mm = '0' + mm;
-		
 	 }
 	 var date = today.getFullYear()+'-'+mm+'-'+ dd;
+	 
+	 // minimum setup
+     $('#product_date,#expiry_date').datepicker({
+      rtl: KTUtil.isRTL(),
+      todayHighlight: true,
+      orientation: "bottom left",
+     	format:'yyyy-mm-dd'
+     });
 	 $('#product_date').val(date);
 	 $('#expiry_date').val(date);
-
-		
-		
-		
-		
-
 		$.ajax({
 			url : base + "/bakeshackAPI/api/getProductDetails",
 			type : "post",
@@ -326,26 +237,19 @@ translateX(
 			success:function(data)
 	        {
 				data.forEach((element)=> {
-					
 				        $('#product_name').append($(document.createElement('option')).prop({
 			                value: element.product_name,
 			                text: element.product_name
 			            }))
-					
 				});   
 	        }
 		});	
-		
 		 var j=0;
 		var r=0;
 		   var rcode = 0;
 		  var unit1 =0;
 			 $('#product_name').change(function(){
-			
 				 var product_name = $(this).val();
-				 
-				
-
 					$.ajax({
 						url : base + "/bakeshackAPI/api/getProductDetails",
 						type : "post",
@@ -356,29 +260,16 @@ translateX(
 				        {
 							const row = data.find(d => d.product_name == product_name);
 							if(row != null){
-								 
 								unit1 = row.unit;
 								$('#price').val(row.selling_price);
 								$('#price').addClass("text-muted");
-								
-								
 							}else{
 								$('#price').val("");
 							}
-					
 				        }
 					});	
-					 
-		
-		
 			 })
-		
-
-
-		$('#verify')
-		.click(
-				function() {
-
+		$('#verify').click(function() {
 					var product_name = $('#product_name').val();
 					var product_qty = $('#product_qty').val();
 					var price = $('#price').val();
@@ -386,12 +277,9 @@ translateX(
 					var product_date = $('#product_date').val();
 					var expiry_date = $('#expiry_date').val();
 					var flag = 1; // Addition
-
 					if (product_name  != "" ) {
-						$
-								.ajax({
-									url : base
-											+ "/bakeshackAPI/api/insertUpdateExpiryGood",
+						$.ajax({
+									url : base + "/bakeshackAPI/api/insertUpdateExpiryGood",
 									type : "post",
 									dataType : "json",
 									async : false,
@@ -420,9 +308,8 @@ translateX(
 									},
 									success : function(response) {
 										if (response != null) {
-
+											
 											if (response >= 1) {
-
 												var msg = "Expiry_good Data inserted Successfully.";
 												 $('#success_msg').text(msg);
 												 $('#success_alert').addClass("show");
@@ -432,18 +319,12 @@ translateX(
 										             $('#success_alert').removeClass("show");
 										             $('#success_alert').addClass("hide");
 										           },2000);
-
 											} 
 										}
 									}
-
 								});
-						
-						
-						$
-						.ajax({
-							url : base
-									+ "/bakeshackAPI/api/insertUpdateQuantityDetails",
+						$.ajax({
+							url : base + "/bakeshackAPI/api/insertUpdateQuantityDetails",
 							type : "post",
 							dataType : "json",
 							async : false,
@@ -479,9 +360,8 @@ translateX(
 							},
 							success : function(response) {
 								if (response != null) {
-
+									
 									if (response >= 1) {
-
 										var msg = "Product Quantity Data inserted Successfully.";
 										 $('#success_msg').text(msg);
 										 $('#success_alert').addClass("show");
@@ -491,22 +371,14 @@ translateX(
 								             $('#success_alert').removeClass("show");
 								             $('#success_alert').addClass("hide");
 								           },2000);
-								         
-
 									} 
 								}
 							}
-
 						});
-						
-						
 					}
-
 				})
-
 		$(document).ready(function (){
 			   var table = $('#table-id').DataTable();
-			 
 			});
 	
 </script>
