@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 //import com.bakeshack.api.ConnectDataBean;
 //import com.bakeshack.api.ConnectDataBean;
 import com.customLog.*;
@@ -24,34 +23,7 @@ import jdk.nashorn.internal.parser.JSONParser;
 @Path("/dfapi")
 public class ConnectSchoolsAPI {
 
-	@POST
-	@Path("/getAdminLoginDetails")
-	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public int getAdminLoginDetails(@FormParam("UserName") String UserName, @FormParam("Password") String Password) {
-		String loginDetailsstr = "";
-		ConnectDataBean bean = null;
-		int beanData = 0;
-		try {
-			System.out.println("I am here");
-
-			Logger.log("BAFNA", "UserName:: " + UserName);
-			Logger.log("BAFNA", "Password:: " + Password);
-			// beanData = new JSONObject();
-			bean = new ConnectDataBean();
-			beanData = bean.getUsersDetails(UserName, Password);
-			Logger.log("BAFNA", "beandata:: " + beanData);
-
-			if (beanData > 0) {
-
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			Logger.log("BAFNA", e);
-		}
-
-		return beanData;
-	}
+	
 
 	@POST
 	@Path("/insertUpdateMedicineDetails")
@@ -274,6 +246,7 @@ public class ConnectSchoolsAPI {
 			@FormParam("mobile_no") String mobile_no, @FormParam("city_desc") String city_desc,
 			@FormParam("blood_group") String blood_group,
 			@FormParam("gender") String gender,@FormParam("registration_date") Date registration_date,
+			@FormParam("age") String age,
 			@FormParam("patient_id") int patient_id, @FormParam("flag") int flag) {
 		ConnectDataBean bean = null;
 		int beanData = 0;
@@ -283,7 +256,7 @@ public class ConnectSchoolsAPI {
 
 			bean = new ConnectDataBean();
 			beanData = bean.insertUpdatePatientDetails(patient_name, birth_date, patient_code, mobile_no, city_desc,
-					blood_group,gender, registration_date, patient_id, flag);
+					blood_group,gender, registration_date,age, patient_id, flag);
 			Logger.log("BAFNA", "beandata:: " + beanData);
 
 			if (beanData > 0) {
@@ -1190,21 +1163,19 @@ public class ConnectSchoolsAPI {
 		@Path("/insertUpdateRole")
 		@Produces(MediaType.TEXT_PLAIN)
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-		public int insertUpdateRoleDetails(@FormParam("role_type") String role_type, @FormParam("role_id") int role_id,
+		public int insertUpdateRole(@FormParam("role_type") String role_type,
+				@FormParam("role_permission") String role_permission,
+				@FormParam("role_id") int role_id,
 				@FormParam("flag") int flag) {
 			ConnectDataBean bean = null;
 			int beanData = 0;
 			try {
-				System.out.println("I am here");
-
-				Logger.log("BAFNA", "Role:: " + role_type + "role_id" + role_id);
-
+				System.out.println(role_permission);
+				Logger.log("BAFNA", "Role:: " + role_type + "role_id" + role_permission);
 				bean = new ConnectDataBean();
-				beanData = bean.insertUpdateRole(role_type, role_id, flag);
+				beanData = bean.insertUpdateRole(role_type, role_permission ,role_id, flag);
 				Logger.log("BAFNA", "beandata:: " + beanData);
-
 				if (beanData > 0) {
-
 				}
 			} catch (Exception e) {
 				System.out.println(e);
@@ -1238,6 +1209,28 @@ public class ConnectSchoolsAPI {
 		}
 
 		
+		
+		@POST
+		@Path("/getUser_Role_Details")
+		@Produces(MediaType.TEXT_PLAIN)
+		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+		public String getUser_Role_Details() {
+			ConnectDataBean bean = null;
+			String beanData = null;
+			try {
+				System.out.println("getRoleDetails");
+				bean = new ConnectDataBean();
+				beanData = bean.getUser_Role_Details().toString();
+				Logger.log("BAFNA", "beandata:: " + beanData);
+			} catch (Exception e) {
+				System.out.println(e);
+				Logger.log("BAFNA", e);
+			}
+			return beanData;
+		}
+
+		
+		
 //getting Users Details
 		@POST
 		@Path("/getUsersDetails")
@@ -1252,61 +1245,51 @@ public class ConnectSchoolsAPI {
 
 				bean = new ConnectDataBean();
 				beanData = bean.getUsersDetails().toString();
-//					Logger.log("BAFNA","beandata:: "+ beanData);
 
 			} catch (Exception e) {
 				System.out.println(e);
-				Logger.log("BAFNA", e);
+				Logger.log("BAKESHACK", e);
 			}
 
 			return beanData;
 		}
 		
-		
 //insertion in users Master
-		
 		@POST
 		@Path("/insertUpdateUsersDetails")
 		@Produces(MediaType.TEXT_PLAIN)
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-		public int insertUpdateUsersDetails(
-				@FormParam("users_name") String users_name,
-				@FormParam("password") String password,
-				@FormParam("birth_date") String birth_date,
-				@FormParam("role_type") String role_type,
-				@FormParam("address") String address,
-				@FormParam("city_desc") String city_desc,
-				@FormParam("district_desc") String district_desc,
-				@FormParam("gender") String gender,
-				@FormParam("mobile_no") String mobile_no,
-				@FormParam("email_id") String email_id,
-				@FormParam("gov_id") String gov_id,
-				@FormParam("flag") int flag, 
-				@FormParam("users_id") int users_id) {
+		public int insertUpdateUsersDetails(@FormParam("users_name") String users_name,
+				@FormParam("login_id") String login_id, @FormParam("password") String password,
+				@FormParam("birth_date") String birth_date, @FormParam("role_type") String role_type,
+				@FormParam("address") String address, @FormParam("city_desc") String city_desc,
+				@FormParam("district_desc") String district_desc, @FormParam("gender") String gender,
+				@FormParam("mobile_no") String mobile_no, @FormParam("email_id") String email_id,
+				@FormParam("gov_id") String gov_id, @FormParam("qualification") String qualification, 
+				@FormParam("flag") int flag, @FormParam("users_id") int users_id) {
 			ConnectDataBean bean = null;
 			int beanData = 0;
 			try {
 				System.out.println("I am here");
 
-				Logger.log("BAFNA", "users_name:: " + users_name);
-				Logger.log("BAFNA", "password:: " + password);
+				Logger.log("BAKESHACK", "users_name:: " + users_name);
+				Logger.log("BAKESHACK", "password:: " + password);
 
 				bean = new ConnectDataBean();
-				beanData = bean.insertUpdateUsersDetails(users_name,password,birth_date,role_type,address, city_desc,district_desc,gender,mobile_no,
-						email_id, gov_id, flag, users_id);
-				Logger.log("BAFNA", "beandata:: " + beanData);
+				beanData = bean.insertUpdateUsersDetails(users_name, login_id, password, birth_date, role_type, address,
+						city_desc, district_desc, gender, mobile_no, email_id, gov_id,qualification, flag, users_id);
+				Logger.log("BAKESHACK", "beandata:: " + beanData);
 
 				if (beanData > 0) {
 
 				}
 			} catch (Exception e) {
 				System.out.println(e);
-				Logger.log("BAFNA", e);
+				Logger.log("BAKESHACK", e);
 			}
 
 			return beanData;
 		}
-		
 // getting patient History
 		@POST
 		@Path("/getPatientHistory")
@@ -2085,4 +2068,81 @@ public class ConnectSchoolsAPI {
 				}
 				
 
+//Appointment Booking
+				@POST
+				@Path("/insertUpdateAppointmentBooking")
+				@Produces(MediaType.TEXT_PLAIN)
+				@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+				public int insertUpdateAppointmentBooking(
+						@FormParam("patient_name") String patient_name,
+						@FormParam("patient_code") String patient_code,
+						@FormParam("mobile_no") String mobile_no,
+						@FormParam("city") String city,
+						@FormParam("gender") String gender,
+						@FormParam("age") String age,
+						@FormParam("complaint") String complaint,
+						@FormParam("appointment_date") Date appointment_date,
+						@FormParam("status") int status,
+						@FormParam("appointment_id") int appointment_id,
+						@FormParam("flag") int flag) {
+					ConnectDataBean bean = null;
+					int beanData = 0;
+					try {
+						System.out.println(patient_name);
+						Logger.log("BAFNA", "Patient Name:: " + patient_name);
+						bean = new ConnectDataBean();
+						beanData = bean.insertUpdateAppointmentBooking(patient_name, patient_code, mobile_no, city,
+								gender, age,complaint,appointment_date,status, appointment_id, flag);
+						Logger.log("BAFNA", "beandata:: " + beanData);
+						if (beanData > 0) {
+						}
+					} catch (Exception e) {
+						System.out.println(e);
+						Logger.log("BAFNA", e);
+					}
+					return beanData;
+				}
+
+				@POST
+				@Path("/getAppoinmentDetails")
+				@Produces(MediaType.TEXT_PLAIN)
+				@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+				public String getAppoinmentDetails() {
+					ConnectDataBean bean = null;
+					String beanData = null;
+					try {
+						System.out.println("getAppoinmentDetails");
+						bean = new ConnectDataBean();
+						beanData = bean.getAppoinmentDetails().toString();
+						Logger.log("BAFNA", "beandata:: " + beanData);
+					} catch (Exception e) {
+						System.out.println(e);
+						Logger.log("BAFNA", e);
+					}
+					return beanData;
+				}
+
+//navbar collection
+				
+				@POST
+				@Path("/getNavbarCollection")
+				@Produces(MediaType.TEXT_PLAIN)
+				@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+				public String getNavbarCollection() {
+					ConnectDataBean bean = null;
+					String beanData = null;
+					try {
+						bean = new ConnectDataBean();
+						beanData = bean.getNavbarCollection().toString();
+						Logger.log("BAFNA", "beandata:: " + beanData);
+					} catch (Exception e) {
+						System.out.println(e);
+						Logger.log("BAFNA", e);
+					}
+					System.out.println(beanData);
+					return beanData;
+				}
+				
+				
+				
 }

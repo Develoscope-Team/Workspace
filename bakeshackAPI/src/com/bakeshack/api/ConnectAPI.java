@@ -1,22 +1,16 @@
 package com.bakeshack.api;
 
 import javax.ws.rs.Path;
-
 import java.sql.Date;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.customLog.*;
-
 import com.fasterxml.jackson.core.JsonParser;
-
 import jdk.nashorn.internal.parser.JSONParser;
 
 @Path("/api")
@@ -449,49 +443,6 @@ public class ConnectAPI {
 		return beanData;
 	}
 
-	// Role Master
-
-	@POST
-	@Path("/insertUpdateRole")
-	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public int insertUpdateRoleDetails(@FormParam("role_type") String role_type, @FormParam("role_id") int role_id,
-			@FormParam("flag") int flag) {
-		ConnectDataBean bean = null;
-		int beanData = 0;
-		try {
-			System.out.println("I am here");
-			Logger.log("BAKESHACK", "Role:: " + role_type + "role_id" + role_id);
-			bean = new ConnectDataBean();
-			beanData = bean.insertUpdateRole(role_type, role_id, flag);
-			Logger.log("BAKESHACK", "beandata:: " + beanData);
-			if (beanData > 0) {
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			Logger.log("BAKESHACK", e);
-		}
-		return beanData;
-	}
-
-	@POST
-	@Path("/getRoleDetails")
-	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String getRoleDetails() {
-		ConnectDataBean bean = null;
-		String beanData = null;
-		try {
-			System.out.println("getRoleDetails");
-			bean = new ConnectDataBean();
-			beanData = bean.getRoleDetails().toString();
-			Logger.log("BAKESHACK", "beandata:: " + beanData);
-		} catch (Exception e) {
-			System.out.println(e);
-			Logger.log("BAKESHACK", e);
-		}
-		return beanData;
-	}
 
 	// user master
 
@@ -527,7 +478,8 @@ public class ConnectAPI {
 			@FormParam("address") String address, @FormParam("city_desc") String city_desc,
 			@FormParam("district_desc") String district_desc, @FormParam("gender") String gender,
 			@FormParam("mobile_no") String mobile_no, @FormParam("email_id") String email_id,
-			@FormParam("gov_id") String gov_id, @FormParam("flag") int flag, @FormParam("users_id") int users_id) {
+			@FormParam("gov_id") String gov_id,@FormParam("qualification") String qualification,
+			@FormParam("flag") int flag, @FormParam("users_id") int users_id) {
 		ConnectDataBean bean = null;
 		int beanData = 0;
 		try {
@@ -538,7 +490,7 @@ public class ConnectAPI {
 
 			bean = new ConnectDataBean();
 			beanData = bean.insertUpdateUsersDetails(users_name, login_id, password, birth_date, role_type, address,
-					city_desc, district_desc, gender, mobile_no, email_id, gov_id, flag, users_id);
+					city_desc, district_desc, gender, mobile_no, email_id, gov_id,qualification, flag, users_id);
 			Logger.log("BAKESHACK", "beandata:: " + beanData);
 
 			if (beanData > 0) {
@@ -2427,425 +2379,82 @@ public class ConnectAPI {
 					return beanData;
 				}
 					
-				
-				
-				
-				
-				
-				
-				
-				/*
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * //Recipe master
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/insertUpdateRecipe")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public int
-	 * insertUpdateRecipe(
-	 * 
-	 * @FormParam("recipe_name") String recipe_name,
-	 * 
-	 * @FormParam("recipe_code") String recipe_code,
-	 * 
-	 * @FormParam("product") int product,
-	 * 
-	 * @FormParam("product_req") String product_req,
-	 * 
-	 * @FormParam("recipe_id") int recipe_id,
-	 * 
-	 * @FormParam("flag") int flag) {
-	 * 
-	 * ConnectDataBean bean = null; int beanData = 0; try {
-	 * System.out.println("recipe_name   : " + recipe_name);
-	 * System.out.println("pcode   : " + product);
-	 * 
-	 * 
-	 * Logger.log("BAKESHACK", "recipe_name:: " + recipe_name);
-	 * 
-	 * bean = new ConnectDataBean(); beanData = bean.insertUpdateRecipe(recipe_name,
-	 * recipe_code ,product ,product_req, recipe_id, flag); Logger.log("BAKESHACK",
-	 * "beandata:: " + beanData);
-	 * 
-	 * if (beanData > 0) {
-	 * 
-	 * } } catch (Exception e) { System.out.println(e); Logger.log("BAKESHACK", e);
-	 * }
-	 * 
-	 * return beanData; }
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/getRecipeDetails")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public String
-	 * getRecipeDetails() {
-	 * 
-	 * ConnectDataBean bean = null; String beanData = null; try {
-	 * System.out.println("getRecipeDetails");
-	 * 
-	 * bean = new ConnectDataBean(); beanData = bean.getRecipeDetails().toString();
-	 * Logger.log("BAKESHACK", "beandata:: " + beanData);
-	 * 
-	 * } catch (Exception e) { System.out.println(e); Logger.log("BAKESHACK", e); }
-	 * 
-	 * return beanData; } //customer masterd
-	 * 
-	 *
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/getOrderCode")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public String getOrderCode()
-	 * {
-	 * 
-	 * ConnectDataBean bean = null; String beanData = null; try {
-	 * System.out.println("getOrderCode");
-	 * 
-	 * bean = new ConnectDataBean(); beanData = bean.getOrderCode().toString();
-	 * Logger.log("BAKESHACK", "beandata:: " + beanData);
-	 * 
-	 * } catch (Exception e) { System.out.println(e); Logger.log("BAKESHACK", e); }
-	 * 
-	 * return beanData; }
-	 * 
-	 * 
-	 * //Recipe master
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/insertUpdateOrderedProduct")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public int
-	 * insertUpdateOrderedProduct(
-	 * 
-	 * @FormParam("ordered_product") String ordered_product,
-	 * 
-	 * @FormParam("ordered_product_id") int ordered_product_id,
-	 * 
-	 * @FormParam("flag") int flag) {
-	 * 
-	 * ConnectDataBean bean = null; int beanData = 0; try {
-	 * System.out.println("ordered_product   : " + ordered_product);
-	 * //System.out.println("pcode   : " + product);
-	 * 
-	 * 
-	 * Logger.log("BAKESHACK", "ordered_product:: " + ordered_product);
-	 * 
-	 * bean = new ConnectDataBean(); beanData =
-	 * bean.insertUpdateOrderedProduct(ordered_product, ordered_product_id, flag);
-	 * Logger.log("BAKESHACK", "beandata:: " + beanData);
-	 * 
-	 * if (beanData > 0) {
-	 * 
-	 * } } catch (Exception e) { System.out.println(e); Logger.log("BAKESHACK", e);
-	 * }
-	 * 
-	 * return beanData; }
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/getOrderedProductDetails")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public String
-	 * getOrderedProductDetails() {
-	 * 
-	 * ConnectDataBean bean = null; String beanData = null; try {
-	 * System.out.println("getOrderProductDetails");
-	 * 
-	 * bean = new ConnectDataBean(); beanData =
-	 * bean.getOrderedProductDetails().toString(); Logger.log("BAKESHACK",
-	 * "beandata:: " + beanData);
-	 * 
-	 * } catch (Exception e) { System.out.println(e); Logger.log("BAKESHACK", e); }
-	 * 
-	 * return beanData; }
-	 * 
-	 * 
-	 * 
-	 * // Bank Master
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/insertUpdateBank")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public int insertUpdateBank(
-	 * 
-	 * @FormParam("bank_name") String bank_name,
-	 * 
-	 * @FormParam("account_holder_name") String account_holder_name,
-	 * 
-	 * @FormParam("account_no") String account_no,
-	 * 
-	 * @FormParam("IFSC_code") String IFSC_code,
-	 * 
-	 * @FormParam("branch") String branch,
-	 * 
-	 * @FormParam("acc_type") String acc_type,
-	 * 
-	 * @FormParam("opening_amount") String opening_amount,
-	 * 
-	 * @FormParam("bank_id") int bank_id,
-	 * 
-	 * @FormParam("flag") int flag) { ConnectDataBean bean = null; int beanData = 0;
-	 * try { System.out.println("I am here");
-	 * 
-	 * 
-	 * 
-	 * bean = new ConnectDataBean(); beanData =
-	 * bean.insertUpdateBank(bank_name,account_holder_name,account_no,IFSC_code,
-	 * branch, acc_type,opening_amount,bank_id,flag);
-	 * 
-	 * 
-	 * if (beanData > 0) {
-	 * 
-	 * } } catch (Exception e) { System.out.println(e); Logger.log("BAKESHACK", e);
-	 * }
-	 * 
-	 * return beanData; }
-	 * 
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/getBankDetails")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public String
-	 * getBankDetails() {
-	 * 
-	 * ConnectDataBean bean = null; String beanData = null; try {
-	 * 
-	 * 
-	 * bean = new ConnectDataBean(); beanData = bean.getBankDetails().toString();
-	 * 
-	 * 
-	 * } catch (Exception e) { System.out.println(e); Logger.log("BAKESHACK", e); }
-	 * 
-	 * return beanData; }
-	 * 
-	 * //generate Invoice code
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/getInvoiceId")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public String getInvoiceId()
-	 * {
-	 * 
-	 * ConnectDataBean bean = null; String beanData = null; try {
-	 * 
-	 * 
-	 * bean = new ConnectDataBean(); beanData = bean.getInvoiceId().toString();
-	 * Logger.log("BAKESHACK", "beandata:: " + beanData);
-	 * 
-	 * } catch (Exception e) { System.out.println(e); Logger.log("BAKESHACK", e); }
-	 * 
-	 * return beanData; }
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/getInvoiceDetails1")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public String
-	 * getInvoiceDetails1() {
-	 * 
-	 * ConnectDataBean bean = null; String beanData = null; try {
-	 * System.out.println("getInvoiceDetails");
-	 * 
-	 * bean = new ConnectDataBean(); beanData =
-	 * bean.getInvoiceDetails1().toString(); Logger.log("BAKESHACK", "beandata:: " +
-	 * beanData);
-	 * 
-	 * } catch (Exception e) { System.out.println(e); Logger.log("BAKESHACK", e); }
-	 * 
-	 * return beanData; }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 *
-	 * 
-	 *
-	 * 
-	 * //Purchase product category wise report
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * //Finish Good Product report
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * ///generated invoice
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/getMontSubcategoryDetails")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public String
-	 * getMontSubcategoryDetails() { ConnectDataBean bean = null; String beanData =
-	 * null; try { System.out.println(product_name);
-	 * 
-	 * bean = new ConnectDataBean(); beanData =
-	 * bean.getMontSubcategoryDetails().toString(); Logger.log("BAFNA",
-	 * "beandata:: " + beanData);
-	 * 
-	 * } catch (Exception e) { System.out.println(e); Logger.log("BAFNA", e); }
-	 * 
-	 * return beanData; }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * @POST
-	 * 
-	 * @Path("/getUpcomingOrderDetails")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public String
-	 * getUpcomingOrderDetails() { ConnectDataBean bean = null; String beanData =
-	 * null; try { System.out.println(product_name);
-	 * 
-	 * bean = new ConnectDataBean(); beanData =
-	 * bean.getUpcomingOrderDetails().toString(); Logger.log("BAFNA", "beandata:: "
-	 * + beanData);
-	 * 
-	 * } catch (Exception e) { System.out.println(e); Logger.log("BAFNA", e); }
-	 * 
-	 * return beanData; }
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 *
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
+	
+				@POST
+				@Path("/insertUpdateRole")
+				@Produces(MediaType.TEXT_PLAIN)
+				@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+				public int insertUpdateRole(@FormParam("role_type") String role_type,
+						@FormParam("role_permission") String role_permission,
+						@FormParam("role_id") int role_id,
+						@FormParam("flag") int flag) {
+					ConnectDataBean bean = null;
+					int beanData = 0;
+					try {
+						System.out.println(role_permission);
+						Logger.log("BAFNA", "Role:: " + role_type + "role_id" + role_permission);
+						bean = new ConnectDataBean();
+						beanData = bean.insertUpdateRole(role_type, role_permission ,role_id, flag);
+						Logger.log("BAFNA", "beandata:: " + beanData);
+						if (beanData > 0) {
+						}
+					} catch (Exception e) {
+						System.out.println(e);
+						Logger.log("BAFNA", e);
+					}
+
+					return beanData;
+				}
+
+				@POST
+				@Path("/getRoleDetails")
+				@Produces(MediaType.TEXT_PLAIN)
+				@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+				public String getRoleDetails() {
+
+					ConnectDataBean bean = null;
+					String beanData = null;
+					try {
+						System.out.println("getRoleDetails");
+
+						bean = new ConnectDataBean();
+						beanData = bean.getRoleDetails().toString();
+						Logger.log("BAFNA", "beandata:: " + beanData);
+
+					} catch (Exception e) {
+						System.out.println(e);
+						Logger.log("BAFNA", e);
+					}
+
+					return beanData;
+				}
+
+				@POST
+				@Path("/getUser_Role_Details")
+				@Produces(MediaType.TEXT_PLAIN)
+				@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+				public String getUser_Role_Details() {
+					ConnectDataBean bean = null;
+					String beanData = null;
+					try {
+						System.out.println("getRoleDetails");
+						bean = new ConnectDataBean();
+						beanData = bean.getUser_Role_Details().toString();
+						Logger.log("BAFNA", "beandata:: " + beanData);
+					} catch (Exception e) {
+						System.out.println(e);
+						Logger.log("BAFNA", e);
+					}
+					return beanData;
+				}
+
+
+
+
+
+
+
+
+
+
 }

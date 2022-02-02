@@ -1,37 +1,32 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()	+ path + "/";
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
+		 String session1 = (String) session.getAttribute("login_id");
+		if (session.getAttribute("login_id") != null) {
+			String sessionName = (String) session.getAttribute("login_id");
+		} else
+			response.sendRedirect("../common/login.jsp");  
 %>
 <head>
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<!-- <link rel="stylesheet"	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
 <script src="//code.jquery.com/jquery.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
-	
-
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
 </head>
-<body id="kt_body"
+<body onafterprint="printP()" id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
-	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+    <jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
@@ -39,11 +34,9 @@
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
-
 					<!--begin::Entry-->
 					<div class="d-flex flex-column">
 						<!--begin::Container-->
@@ -54,25 +47,16 @@
 								<div class="card-body p-0">
 									<!-- begin: Invoice-->
 									<!-- begin: Invoice header-->
-									<div
-										class="row justify-content-center bgi-size-cover bgi-no-repeat">
+									<div class="row justify-content-center bgi-size-cover bgi-no-repeat">
 										<div class="col-md-10 ">
 											<img alt="Logo"
 												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Footer1.png"
 												class="logo-default " id="pri1"
 												style="position: fixed; top: 0;" />
-
-
-											<!-- <h1 class=" text-black font-weight-boldest mb-10 mt-25 text-center ml-25">SALES ORDER INVOICE</h1> -->
-
-											<h1
-												class=" text-black font-weight-boldest mt-35  mb-20  text-center ml-25 "><u> Sales Cancellation Invoice</u>
+											<h1	class=" text-black font-weight-boldest mt-40  mb-20  text-center ml-25 "><u> Sales Cancellation Invoice</u>
 											</h1>
-
 											<div id="name" class="col-md-12">
-												<span
-													class="d-flex justify-content-between align-items-baseline">
-
+												<span class="d-flex justify-content-between align-items-baseline">
 													<div class="d-flex justify-content-start">
 														<div class="  font-weight-bolder ml-3 ">
 															<u>Invoice No:</u>
@@ -80,7 +64,6 @@
 														<span class="invoice-no font-weight-bolder ml-2"
 															id="invoice_no"></span>
 													</div>
-
 													<div class="d-flex justify-content-start">
 														<div class="  font-weight-bolder ">
 															<u>Invoice Date:</u>&#160;&#160;
@@ -88,20 +71,14 @@
 														<span class="font-weight-bolder " id="invoice_date"></span>
 													</div>
 												</span>
-
 												<div class="d-flex flex-column flex-root">
 													<div class="font-weight-bolder ml-3">
 														<u>Bill To:</u>&#160;&#160;<span
 															class=" font-weight-bold mr-10" id="bill_to"></span>
 													</div>
 													<span class="ml-20 col-3" id="bill_to1"></span>
-
-
 												</div>
-
 											</div>
-
-
 										</div>
 									</div>
 									<!-- end: Invoice header-->
@@ -109,30 +86,23 @@
 									<div class="row justify-content-center  ml-3">
 										<div class="col-md-10">
 											<div class="table-responsive">
-												<table class="table" style="border:none; border-bottom-style: none;"
-													>
+												<table class="table" style="border:none; border-bottom-style: none;">
 													<thead>
-													
 														<tr>
 															<th class="pl-0 font-weight-bold text-muted "
 																style="font-size: 16px;" id="no"
-																
 																cellspacing="0" cellpadding="0">Sr.No</th>
 															<th class="text-center font-weight-bold text-muted "
 																style="font-size: 16px;" id="product_name"
-																
 																cellspacing="0" cellpadding="0">Product Details</th>
 															<th class="text-center font-weight-bold text-muted "
 																style="font-size: 16px;" id="quantity"
-																
 																cellspacing="0" cellpadding="0">Quantity</th>
 															<th class="text-center font-weight-bold text-muted "
 																style="font-size: 16px; " id="selling_price"
-																
 																cellspacing="0" cellpadding="0">Unit Price</th>
 															<th class="text-center pr-0 font-weight-bold text-muted "
 																style="font-size: 16px; " id="amount"
-																
 																cellspacing="0" cellpadding="0">Amount (₹)</th>
 														</tr>
 													</thead>
@@ -155,7 +125,6 @@
 										</div>
 									</div>
 									<div class="row col-md-10 justify-content offset-1 ">
-
 										<div class="col-7 ">
 											<label> Amount In Word :</label> <span
 												class="font-weight-bold " id="amount_in_word"><lable></lable></span>
@@ -166,13 +135,8 @@
 										<div class="col-2 text-center ">
 											<span class="font-weight-bolder text-right" id="total"></span>
 										</div>
-
 									</div>
-									
-									
-									
 									<div class="row col-md-10 justify-content-center offset-1 ">
-
 										<div class="col-7">
 											<label>Payment Mode :</label> <span
 												class="amount_in_word1 font-weight-bold"
@@ -184,10 +148,8 @@
 										<div class="col-2 text-center">
 											<span class=" font-weight-bolder" id="total_paid"></span>
 										</div>
-
 									</div>
 									<div class="row col-md-10 justify-content-center offset-1">
-
 										<div class="col-3">
 											<label> </label>
 										</div>
@@ -202,10 +164,7 @@
 											<hr>
 											<span class=" font-weight-bolder" id="balance_amount"></span>
 										</div>
-
 									</div>
-
-
 									<!-- end: Invoice body-->
 									<div class="row col-md-10 justify-content mt-15 ml-6" >
 									<div class="col-md-10" style="position: relative;  ">
@@ -217,7 +176,6 @@
 									</div>
 									</div>
 									<!-- begin: Invoice footer-->
-
 									<div
 										class="row col-md-10 justify-content-center mt-20 offset-1"
 										style="font-size: 16px;">
@@ -226,15 +184,10 @@
 												style="font-size: 18px;">
 												<u> Bank Details</u>
 											</h2>
-
 											<div
 												class="d-flex justify-content-between flex-column flex-md-row font-size-16">
 												<table id="bank_details_table"
 													style="width: 100%; font-size: 16px; border: 1px solid black;">
-
-
-
-
 													<tr style="border: 1px solid black;">
 														<td class="  font-weight-bolder"
 															style="border: 1px solid black;">&#160;&#160; Bank
@@ -242,7 +195,6 @@
 														<td class="  font-weight-bolder " style="font-size: 16px;"
 															style="margin-left: 2px"><span
 															class="ml-2" id="bank_name"></span></td>
-
 													</tr>
 													<tr style="border: 1px solid black; margin-left: 2px">
 														<td class="  font-weight-bolder"
@@ -251,7 +203,6 @@
 														<th class="  font-weight-bolder   "
 															style="font-size: 16px;"><span
 															class="ml-2" id="account_holder_name"></span></th>
-
 													</tr>
 													<tr style="border: 1px solid black;">
 														<td class=" font-weight-bolder"
@@ -260,7 +211,6 @@
 														<th class="  font-weight-bolder     "
 															style="font-size: 16px;"><span
 															class="ml-2" id="account_no"></span></th>
-
 													</tr>
 													<tr style="border: 1px solid black;">
 														<td class=" font-weight-bolder"
@@ -269,17 +219,11 @@
 														<th class="  font-weight-bolder   "
 															style="font-size: 16px;"><span
 															class="ml-2" id="IFSC_code"></span></th>
-
 													</tr>
 												</table>
-
-
 											</div>
 										</div>
 									</div>
-									<!-- end: Invoice footer-->
-									<!-- begin: Invoice action-->
-
 									<div class="modal" id="bankModel" tabindex="-1" role="dialog"
 										aria-labelledby="staticBackdrop" aria-hidden="true">
 										<div class="modal-dialog  modal-dialog-scrollable"
@@ -302,9 +246,6 @@
 
 														</select>
 													</div>
-
-
-
 												</div>
 												<div class="modal-footer">
 													<button type="button"
@@ -314,25 +255,14 @@
 											</div>
 										</div>
 									</div>
-									
-									
-									<div class="row col-12 text-center mt-5 mb-5">
+									<div class="row col-12 text-center mt-15 mb-10">
 										<div class=" text-center col-md-12" id="print_button">
-											<button id="sudo"
-												class="btn-print btn-primary font-weight-bold" >
-											PDF Invoice
-											</button>
-
+											<button id="sudo" class="btn-print btn-primary font-weight-bold" >PDF Invoice</button>
 												<button id="sudo1" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" >
 											Print Invoice
 											</button>
-
 										</div>
-
 									</div>
-									
-									
-									
 									<!-- end: Invoice-->
 								</div>
 							</div>
@@ -347,21 +277,14 @@
 				<img alt="Logo"
 					src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Footer.png"
 					class="  logo-default   " id="pri"
-					style="position: fixed; bottom: 0;" />
-
-
+					style="position: fixed; bottom: 0; width:100%" />
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
-
-<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;  width:100%;" class="fixed ">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -380,17 +303,10 @@
 		</span>
 	</div>
 
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
-	<script
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-
-
-
+	<script type="text/javascript" src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+	<script type="text/javascript" src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
+	<script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
 	 $("#pri").hide();
@@ -402,7 +318,6 @@
 	const transaction_code = urlParams.get('transaction_id');
 	const partial_paid_amount = urlParams.get('partial_paid_amount');
 	var ccode=0;
-	
 	if(partial_paid_amount != 00)
 	{
 var invoice_id;
@@ -414,7 +329,6 @@ var invoice_id;
 		data : {"flag": 1},
 		success:function(data)
     	{
-			//data.forEach((element)=> {
 			const row = data.find(d => d.invoice_id == invoice_id);
 			data.forEach((row)=> {
 				$('#invoice_no').text(row.invoice_id);
@@ -426,8 +340,6 @@ var invoice_id;
 	 {
 	 $('#invoice_no').text(order_code);
 	 }
- 
- 
 	$.ajax({
 			url : base + "/bakeshackAPI/api/getCustomerDetails",
 			type : "post",
@@ -439,10 +351,8 @@ var invoice_id;
 				const row = data.find(d => d.customer_code == customer_code);
 				if(row != null){
 					ccode = row.customer_code; 
-				  
 					$('#bill_to').text(row.customer_name);
 					$('#bill_to1').text(row.address);
-				
 				}else{
 					$('#customer_code').val("");
 				}
@@ -461,7 +371,6 @@ var invoice_id;
 		data : {"order_code": order_code},
 		success:function(data)
 	{
-			
 			const row = data.find(d => d.order_code == order_code);
 			data.forEach((row)=> {
 				if(row.order_code == order_code )
@@ -506,7 +415,6 @@ var invoice_id;
 							$('#unit_rate-' + (index + 1)).val(parsedData[index]['unit_rate']);
 							$('#total-' + (index + 1)).val(parsedData[index]['total']);
 						});
-					 
 					 for(var i = 1; i <=r; i++){
 						  var html = '';
 						  html += '<tr style="border:none;">'
@@ -530,7 +438,6 @@ var invoice_id;
 							var total2 = parseFloat(total).toFixed(2);
 							$('#unit_rate-' + (index + 1)).val(total2);
 							total1 = parseInt(total) + parseInt(total);
-						
 						});	
 					}
 			});
@@ -545,7 +452,6 @@ var invoice_id;
 			success:function(data)
 		    {
 				data.forEach((element)=> {
-					
 				        $('#received_bank').append($(document.createElement('option')).prop({
 			                value: element.bank_id,
 			                text: element.bank_name
@@ -571,22 +477,17 @@ var invoice_id;
 			    }
 			});	
 	});
-		
 		 function number2text(value) {
 			    var fraction = Math.round(frac(value)*100);
 			    var f_text  = "";
-
 			    if(fraction > 0) {
 			        f_text = "AND "+convert_number(fraction)+" PAISE";
 			    }
-
 			    return convert_number(value)+" RUPEE "+f_text+" ONLY.";
 			}
-
 			function frac(f) {
 			    return f % 1;
 			}
-
 			function convert_number(number)
 			{
 			    if ((number < 0) || (number > 999999999)) 
@@ -619,14 +520,11 @@ var invoice_id;
 			        res += (((res=="") ? "" : " ") +
 			            convert_number(Hn) + " THOUSAND"); 
 			    } 
-
 			    if (Dn) 
 			    { 
 			        res += (((res=="") ? "" : " ") + 
 			            convert_number(Dn) + " HUNDRED"); 
 			    } 
-
-
 			    var ones = Array("", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX","SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE", "THIRTEEN","FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN","NINETEEN"); 
 			var tens = Array("", "", "TWENTY", "THIRTY", "FOURTY", "FIFTY", "SIXTY","SEVENTY", "EIGHTY", "NINETY"); 
 
@@ -642,7 +540,6 @@ var invoice_id;
 			        } 
 			        else 
 			        { 
-
 			            res += tens[tn];
 			            if (one>0) 
 			            { 
@@ -650,42 +547,40 @@ var invoice_id;
 			            } 
 			        } 
 			    }
-
 			    if (res=="")
 			    { 
 			        res = "ZERO"; 
 			    }
 			    $('#amount_in_word').text("RUPEES " +" "+ res+ " " +" ONLY.");
-			
 			    return res;
 			}
 			number2text(amount_in_word);
-			
-			
 			$("#sudo").click(function(){
-				
 				$("#print_button").hide();
 				$("#print_button1").hide();
 				 $("#pri").show();
 				 $("#pri1").show();
 				 $("#sign").show();
+				 $("#kt_header_mobile").hide();
 				 
 				  window.print();
 				    return false;
 				    window.location.reload();
 			})
-					$("#sudo1").click(function(){
-				
+			$("#sudo1").click(function(){
 				$("#print_button1").hide();
 				$("#print_button").hide();
 				 $("#pri").hide();
 				 $("#pri1").hide();
 				 $("#sign").hide();
+				 $("#kt_header_mobile").hide();
 				  window.print();
 				    return false;
 				    window.location.reload();
 			})
-					 
+			function printP(){
+				window.location.reload();
+	}			
 	</script>
 </body>
 </html>

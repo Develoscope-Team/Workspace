@@ -40,7 +40,7 @@
 							</button>
 							<!--end::Aside Toggle-->
 							<!--begin::Logo-->
-							<a href="index.jsp"> <img alt="Logo"
+							<a id="dashboard_logo"> <img alt="Logo"
 								src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/gif/logo.png"
 								class="logo-sticky max-h-65px" />
 							</a>
@@ -259,29 +259,63 @@
 							<div class="topbar-item">
 								<div
 									class="btn btn-icon btn-sm btn-primary font-weight-bolder p-0"
-									id="kt_quick_notifications_toggle">3</div>
+									id="kt_quick_notifications_toggle"></div>
 							</div>
 							<!--end::Notifications-->
 						</div>
 						<!--end::Topbar-->
+						
+							<%
+			String session1 = (String) session.getAttribute("login_id");
+			if (session.getAttribute("login_id") != null) {
+				String sessionName = (String) session.getAttribute("login_id");
+		
+			} else
+			response.sendRedirect("LoginForm.html");
+			%>
 					</div>
 					<!--end::Container-->
 				</div>
 				
 				
 				<script>
+				var basePath='<%=basePath%>';    
+				var base='<%=base%>';
+				var login_id='<%=session1%>';
 	$("#create_button").click(function(){
 		var url = "./patientDetailsUpdate.jsp";
 		window.location.assign(url);
 	})
 	
+	$('#dashboard_logo').click(function(){
+		
+		var url = "/doctorsFriend/form/home/index.jsp"  + '?login_id=' + login_id ;  
+		
+		window.location.assign(url);
+	})
 	
-	
-	
-	
+	var appointment_count = 0;
+	$.ajax({
+		url : base + "/dssAPI/dfapi/getAppoinmentDetails",
+		type : "post",
+		dataType : "json",
+		async : false,
+		data : {
+			"flag" : 1
+		},
+		success : function(data) {
+			if (data != null) {
+				data.forEach(function(e) {
+					appointment_count++;
+						
+						});
+			}
+		}
+	});
+	$("#kt_quick_notifications_toggle").text(appointment_count);
 	</script>
 	
-				<%
+<%
 	} catch (Exception e) {
 		Logger.log(dbConnVar, "" + e);
 	}

@@ -1,82 +1,36 @@
-
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 String dbConnVar = "BAKESHACk";
 try {
-%>
+		String session1 = (String) session.getAttribute("login_id");
+			if (session.getAttribute("login_id") != null) {
+				String sessionName = (String) session.getAttribute("login_id");
+			} else
+				response.sendRedirect("../common/login.jsp");
+			%>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
 }
-</style>
-</head>
-<body id="kt_body"
-	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
-	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
-	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
-	<!--end::Header Mobile-->
-	<div class="d-flex flex-column flex-root">
-		<!--begin::Page-->
-		<div class="d-flex flex-row flex-column-fluid page">
-			<!--begin::Wrapper-->
-			<div class="d-flex flex-column flex-row-fluid wrapper"
-				id="kt_wrapper">
-
-				<!--begin::Content-->
-				<div class="content d-flex flex-column flex-column-fluid"
-					id="kt_content">
-					<!--begin::Subheader-->
-					<div class="subheader py-2 py-lg-12 subheader-transparent"
-						id="kt_subheader">
-						<div
-							class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-							<!--begin::Info-->
-							<div class="d-flex align-items-center flex-wrap mr-1">
-								<!--begin::Heading-->
-								<div class="d-flex flex-column">
-									<!--begin::Title-->
-									<h2 class="text-white font-weight-bold my-2 mr-5">Bank
-										Master</h2>
-									<!--end::Title-->
-
-								</div>
-								<!--end::Heading-->
-							</div>
-							<!--end::Info-->
-
-						</div>
-					</div>
-
-					<style>
 .alert {
 	padding: 20px 40px;
 	min-width: 40%;
@@ -89,91 +43,63 @@ table.a {
 	opacity: 0;
 	pointer-events: none;
 }
-
 .alert.hide {
 	animation: hide_slide 1s ease forwards;
 }
-
 .alert.showAlert {
 	opacity: 1;
 	pointer-events: auto;
 }
-
 .alert.show {
 	animation: show_slide 1s ease forwards;
 }
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
+@keyframes show_slide { 0%{	transform: translateX(100%);}
+40%{transform:translateX(-10%);}
+80%{transform:translateX(0%);}
+100%{transform:translateX(-10px);}
 }
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
+@keyframes hide_slide { 0%{	transform: translateX(-10px);}
+40%{transform:translateX(0%);}
+80%{transform:translateX(-10%);}
+100%{transform:translateX(100%);}
 }
 .alert-text {
 	padding: 0 20px;
 	font-size: 18px;
 }
 </style>
+</head>
+<body id="kt_body"
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
+	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
+	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+	<!--end::Header Mobile-->
+	<div class="d-flex flex-column flex-root">
+		<!--begin::Page-->
+		<div class="d-flex flex-row flex-column-fluid page">
+			<!--begin::Wrapper-->
+			<div class="d-flex flex-column flex-row-fluid wrapper"
+				id="kt_wrapper">
+				<!--begin::Content-->
+				<div class="content d-flex flex-column flex-column-fluid"
+					id="kt_content">
+					<!--begin::Subheader-->
+					<div class="subheader py-2 py-lg-12 subheader-transparent"
+						id="kt_subheader">
+						<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+							<!--begin::Info-->
+							<div class="d-flex align-items-center flex-wrap mr-1">
+								<!--begin::Heading-->
+								<div class="d-flex flex-column">
+									<!--begin::Title-->
+									<h2 class="text-white font-weight-bold my-2 mr-5">Bank Master</h2>
+									<!--end::Title-->
+								</div>
+								<!--end::Heading-->
+							</div>
+							<!--end::Info-->
+						</div>
+					</div>
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
@@ -252,9 +178,7 @@ translateX(
 																	</div>
 																</div>
 															</div>
-
 														</div>
-
 														<div class="text-center">
 															<button type="button" id="addBank"
 																class="btn btn-primary mr-2">Submit</button>
@@ -333,28 +257,21 @@ translateX(
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
+				
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
+	<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
-			<svg xmlns="http://www.w3.org/2000/svg"
-				xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-				height="24px" viewBox="0 0 24 24" version="1.1">
+			<svg xmlns="http://www.w3.org/2000/svg"	xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"	height="24px" viewBox="0 0 24 24" version="1.1">
 					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 						<polygon points="0 0 24 0 24 24 0 24" />
-						<rect fill="#000000" opacity="0.3" x="11" y="10" width="2"
-					height="10" rx="1" />
-						<path
-					d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+						<rect fill="#000000" opacity="0.3" x="11" y="10" width="2"	height="10" rx="1" />
+						<path d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
 					fill="#000000" fill-rule="nonzero" />
 					</g>
 				</svg> <!--end::Svg Icon-->
@@ -388,7 +305,6 @@ translateX(
 											dataType : "json",
 											async : false,
 											data : {
-												
 												"bank_name" : bank_name,
 												"account_holder_name" : account_holder_name,
 												"account_no" : account_no,
@@ -396,7 +312,6 @@ translateX(
 												"branch" : branch,
 												"acc_type" : acc_type,
 												"opening_amount" : opening_amount,
-												
 												"flag" : flag
 											},
 											error : function(xhr) {
@@ -404,7 +319,6 @@ translateX(
 														+ xhr.status
 														+ " "
 														+ xhr.statusText;
-												//alert(msg);
 												 $('#warning_msg').text(msg);
 												 $('#warning_alert').addClass("show");
 										           $('#warning_alert').removeClass("hide");
@@ -546,13 +460,11 @@ translateX(
 							})
 			"use strict";
 		}
-		$('#cancel')
-        .click(
-              function() {		
+		$('#cancel').click(function() {		
                window.location.reload();
                          	})
 		// Delete data by Recipe_id
-		function deleteById(id) {
+function deleteById(id) {
 			var bank_id = id;
 			Swal.fire({
 		        title: "Are you sure?",
@@ -564,7 +476,6 @@ translateX(
 		        reverseButtons: true
 		    }).then(function(result) {
 		        if (result.value) {
-		        	
 					var flag = 3;
 					$.ajax({
 								url : base + "/bakeshackAPI/api/insertUpdateBank",
@@ -585,7 +496,6 @@ translateX(
 								error : function(xhr) {
 									var msg = "(insertUpdateBank)Sorry but there was an error : "
 											+ xhr.status + " " + xhr.statusText;
-									alert(msg);
 									 $('#warning_msg').text(msg);
 									 $('#warning_alert').addClass("show");
 							           $('#warning_alert').removeClass("hide");
@@ -600,7 +510,7 @@ translateX(
 										if (response >= 1) {
 											var msg = "Bank Data deleted Successfully.";
 											 $('#danger_msg').text(msg);
-											$('#danger_alert').addClass("show");
+											  $('#danger_alert').addClass("show");
 								   	           $('#danger_alert').removeClass("hide");
 								   	           $('#danger_alert').addClass("showAlert");
 								   	           setTimeout(function(){
@@ -612,7 +522,6 @@ translateX(
 									}
 								}
 							});
-		        	
 		        } else if (result.dismiss === "cancel") {
 		        	location.reload(true);
 		        }
@@ -642,7 +551,13 @@ translateX(
 			     return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
 			   };
 			});
-		 
+document.addEventListener('keypress', function (e) {
+		    if (e.keyCode === 13 || e.which === 13) {
+		        e.preventDefault();
+		        return false;
+		    }
+}); 
+	 
 	</script>
 </body>
 </html>

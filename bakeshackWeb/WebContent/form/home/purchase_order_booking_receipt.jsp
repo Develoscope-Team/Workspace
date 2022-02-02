@@ -1,34 +1,30 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()	+ path + "/";
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
+		  String session1 = (String) session.getAttribute("login_id");
+		if (session.getAttribute("login_id") != null) {
+			String sessionName = (String) session.getAttribute("login_id");
+		} else
+			response.sendRedirect("../common/login.jsp");  
 %>
 <head>
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script src="//code.jquery.com/jquery.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 </head>
 <body onafterprint="printP()" id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	
-	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+	 <jsp:include page="/form/common/mobile-header.jsp"></jsp:include> 
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
@@ -36,11 +32,9 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
-					
 					<!--begin::Entry-->
 					<div class="d-flex flex-column">
 						<!--begin::Container-->
@@ -51,25 +45,15 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 								<div class="card-body p-0">
 									<!-- begin: Invoice-->
 									<!-- begin: Invoice header-->
-									<div
-										class="row justify-content-center bgi-size-cover bgi-no-repeat">
+									<div class="row justify-content-center bgi-size-cover bgi-no-repeat">
 										<div class="  col-md-10 ">
 										<img alt="Logo"
 												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Footer1.png"
 												class="logo-default " id="pri1"
 												style="position: fixed; top: 0;" />
-
-
-											<h1
-												class=" text-black font-weight-boldest mt-35  mb-20  text-center ml-25 "><u>PURCHASE ORDER </u>
-												</h1>
-
-
-
+											<h1	class=" text-black font-weight-boldest mt-35  mb-20  text-center ml-25 "><u>PURCHASE ORDER </u>	</h1>
 											<div id="name" class="col-md-12">
-												<span
-													class="d-flex justify-content-between align-items-baseline">
-
+												<span class="d-flex justify-content-between align-items-baseline">
 													<div class="d-flex justify-content-start">
 														<div class="  font-weight-bolder ml-3 ">
 															<u>Invoice No:</u>
@@ -126,8 +110,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 																cellspacing="0" cellpadding="0">Amount (₹)</th>
 														</tr>
 													</thead>
-													<tbody class="t_body text-center"
-														>
+													<tbody class="t_body text-center">
 
 													</tbody>
 												</table>
@@ -135,7 +118,6 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 										</div>
 									</div>
 									<div class="row col-md-10 justify-content offset-1 ">
-
 										<div class="col-7 ">
 											<label>  </label> <span
 												class="font-weight-bold " id="amount_in_word0"><lable></lable></span>
@@ -146,11 +128,9 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 										<div class="col-2 text-center ">
 											<span class="font-weight-bolder text-right" id="discount"></span>
 										</div>
-
 									</div>
 
 									<div class="row col-md-10 justify-content offset-1 ">
-
 										<div class="col-7 ">
 											<label> Amount In Word :</label> <span
 												class="font-weight-bold " id="amount_in_word"><lable></lable></span>
@@ -164,7 +144,6 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 
 									</div>
 									<div class="row col-md-10 justify-content-center offset-1 ">
-
 										<div class="col-7">
 											<label>Payment Mode :</label> <span
 												class="amount_in_word1 font-weight-bold"
@@ -176,10 +155,8 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 										<div class="col-2 text-center">
 											<span class=" font-weight-bolder" id="total_paid"></span>
 										</div>
-
 									</div>
 									<div class="row col-md-10 justify-content-center offset-1">
-
 										<div class="col-3">
 											<label> </label>
 										</div>
@@ -194,11 +171,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 											<hr>
 											<span class=" font-weight-bolder" id="balance_amount"></span>
 										</div>
-
 									</div>
-
-
-									
 									<!-- end: Invoice body-->
 									<div class="row col-md-10 justify-content mt-15 ml-6" >
 									<div class="col-md-10" style="position: relative;  ">
@@ -291,9 +264,6 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 
 														</select>
 													</div>
-
-
-
 												</div>
 												<div class="modal-footer">
 													<button type="button"
@@ -303,16 +273,12 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 											</div>
 										</div>
 									</div>
-									<div class="row col-12  ">
-										<div class="text-center col-md-4 offset-4" id="print_button">
-											
-											
-											<Button id="sudo1" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" />
+									<div class="row col-12 text-center mt-15 mb-10">
+										<div class=" text-center col-md-12" id="print_button">
+												<button id="sudo1" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" >
 											Print Invoice
 											</button>
-											
-											</div>
-										
+										</div>
 									</div>
 										<!-- end: Invoice action-->
 										<!-- end: Invoice-->
@@ -338,12 +304,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 		</div>
 		<!--end::Page-->
 	</div>
-<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -362,34 +323,22 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 		</span>
 	</div>
 
-<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+	<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
 	<script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-	
-
-
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
 	 $("#pri").hide();
 	 $("#pri1").hide();
 	 $("#dis").hide();
-	
-	
-	    
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const vendors_code = urlParams.get('vendors_code');
 	const order_code = urlParams.get('order_code');
 	const partial_paid_amount = urlParams.get('partial_paid_amount');
 	const discount = urlParams.get('discount');
-
 	var ccode=0;
-	
-	
 	if(partial_paid_amount != 00)
 	{
 var invoice_id;
@@ -401,7 +350,6 @@ var invoice_id;
 		data : {"flag": 1},
 		success:function(data)
     	{
-			//data.forEach((element)=> {
 			const row = data.find(d => d.invoice_id == invoice_id);
 			data.forEach((row)=> {
 				$('#invoice_no').text(row.invoice_id);
@@ -424,10 +372,8 @@ var invoice_id;
 				const row = data.find(d => d.vendors_code == vendors_code);
 				if(row != null){
 					ccode = row.customer_code; 
-				  
 					$('#bill_to').text(row.vendors_name);
 					$('#bill_to1').text(row.address);
-				
 				}else{
 					$('#customer_code').val("");
 				}
@@ -446,10 +392,8 @@ var invoice_id;
 		data : {"order_code": order_code},
 		success:function(data)
 	{
-			
 			const row = data.find(d => d.order_code == order_code);
 			data.forEach((row)=> {
-			
 				if(row.order_code == order_code )
 						{
 					amount_in_word = row.partial_paid_amount;
@@ -462,11 +406,8 @@ var invoice_id;
 		        	$('#amount_in_word1').text(row.payment_mode);
 		         	var product_list = row.product_list;
 		         	bank = row.received_bank;
-		         	 
 		         	if(bank == '')
 		         		{
-		         	
-		         	
 		         		  $("#bankModel").modal();
 		         		}
 		         	else{
@@ -479,8 +420,6 @@ var invoice_id;
 		     				success:function(data)
 		     			    {
 		     					const row = data.find(d => d.bank_id == bank);
-		     						
-		     					   
 		     					       $('#bank_name').text(row.bank_name);
 		     					       $('#account_holder_name').text(row.account_holder_name);
 		     					       $('#IFSC_code').text(row.IFSC_code);
@@ -490,7 +429,6 @@ var invoice_id;
 		     			});	
 		         	}
 	         	const parsedData = JSON.parse(product_list);
-			         
 					 $(parsedData).each(function(index) {
 						r++;
 							$('#product-' + (index + 1)).val(parsedData[index]['product']);
@@ -499,7 +437,6 @@ var invoice_id;
 							$('#unit_rate-' + (index + 1)).val(parsedData[index]['unit_rate']);
 							$('#total-' + (index + 1)).val(parsedData[index]['total']);
 						});
-					 
 					 for(var i = 1; i <=r; i++){
 						  var html = '';
 						  html += '<tr style="border:none;">'
@@ -514,8 +451,6 @@ var invoice_id;
 				 }
 					 const parseData1 = JSON.parse(product_list);
 					 $(parseData1).each(function(index) {
-						
-						
 						 $('#id-' + (index + 1)).val(index + 1);
 						    $('#product-' + (index + 1)).val(parseData1[index]['product']);
 							$('#quantity-' + (index + 1)).val(parseData1[index]['quantity']);
@@ -525,9 +460,7 @@ var invoice_id;
 							var total2 = parseFloat(total).toFixed(2);
 							$('#unit_rate-' + (index + 1)).val(total2);
 							total1 = parseInt(total) + parseInt(total);
-						
 						});	
-				 
 					}
 			});
 	}
@@ -541,12 +474,10 @@ var invoice_id;
 			success:function(data)
 		    {
 				data.forEach((element)=> {
-					
 				        $('#received_bank').append($(document.createElement('option')).prop({
 			                value: element.bank_id,
 			                text: element.bank_name
 			            }))
-					
 				});   
 		    }
 		});	
@@ -561,8 +492,6 @@ var invoice_id;
 				success:function(data)
 			    {
 					const row = data.find(d => d.bank_id == bank);
-						
-					    
 					       $('#bank_name').text(row.bank_name);
 					       $('#account_holder_name').text(row.account_holder_name);
 					       $('#IFSC_code').text(row.IFSC_code);
@@ -573,18 +502,15 @@ var invoice_id;
 		 function number2text(value) {
 			    var fraction = Math.round(frac(value)*100);
 			    var f_text  = "";
-
 			    if(fraction > 0) {
 			        f_text = "AND "+convert_number(fraction)+" PAISE";
 			    }
-
 			    return convert_number(value)+" RUPEE "+f_text+" ONLY.";
 			}
 
 			function frac(f) {
 			    return f % 1;
 			}
-
 			function convert_number(number)
 			{
 			    if ((number < 0) || (number > 999999999)) 
@@ -648,19 +574,14 @@ var invoice_id;
 			            } 
 			        } 
 			    }
-
 			    if (res=="")
 			    { 
 			    	 res = "ZERO"; 
 			    }
 			    $('#amount_in_word').text("RUPEES " +" "+ res+ " " +" ONLY.");
-			
 			    return res;
 			}
-		 
-		 
 			number2text(amount_in_word);
-			
 			$("#sudo").click(function(){
 				/* alert("hi"); */
 				$("#print_button1").hide();
@@ -668,20 +589,18 @@ var invoice_id;
 				 $("#pri").show();
 				 $("#pri1").show();
 				 $("#sign").show();
-				 
+				 $("#kt_header_mobile").hide();
 				  window.print();
 				    return false;
 				    window.location.reload();
-				
-				
 			})
-					$("#sudo1").click(function(){
-				/* alert("hi"); */
+				$("#sudo1").click(function(){
 				$("#print_button1").hide();
 				$("#print_button").hide();
 				 $("#pri").hide();
 				 $("#pri1").hide();
 				 $("#sign").hide();
+				 $("#kt_header_mobile").hide();
 				  window.print();
 				    return false;
 				    window.location.reload();

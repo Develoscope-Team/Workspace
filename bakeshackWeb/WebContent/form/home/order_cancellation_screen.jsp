@@ -1,29 +1,67 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 String dbConnVar = "BAKESHACk";
 try {
+	 /*  String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp");  */
 %>
 <head>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<style>
+.alert {
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+.alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+}
+.alert.show {
+	animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide { 0%{	transform: translateX(100%);}
+40%{transform:translateX(-10%);}
+80%{transform:translateX(0%);}
+100%{transform:translateX(-10px);}
+}
+@keyframes hide_slide { 0%{	transform: translateX(-10px);}
+40%{transform:translateX(0%);}
+80%{transform:translateX(-10%);}
+100%{transform:translateX(100%);}
+}
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
+</style>
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
@@ -32,46 +70,33 @@ try {
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
 					<!--begin::Subheader-->
 					<div class="subheader py-2 py-lg-12 subheader-transparent"
 						id="kt_subheader">
-						<div
-							class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+						<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
 							<!--begin::Info-->
 							<div class="d-flex align-items-center flex-wrap mr-1">
 								<!--begin::Heading-->
 								<div class="d-flex flex-column">
 									<!--begin::Title-->
 									<h2 class="text-white font-weight-bold my-2 mr-5">Order Cancellation</h2>
-
-									<!--end::Title-->
-
 								</div>
 								<!--end::Heading-->
 							</div>
 							<div class="d-flex align-items-center">
-
 								<a href="sales-order-master.jsp"
 									class="btn btn-light-primary font-weight-boldest py-3 px-6 mr-6"><i
 									class="fa fas fa-calculator mr-2"></i>Billing</a>
-
-
 							</div>
-
 						</div>
 					</div>
-					<!--end::Subheader-->
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
-
-							
-
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -90,16 +115,14 @@ try {
 																				name="customerName" id="customer_name" /><span
 																				class="msg text-danger" id="type1"> </span>
 																		</div>
-
 																	</div>
-
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Order Date</label> <input type="date"
+																		<label>Order Date</label> <input type="text"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid form-control-lg"
-																			placeholder="DD/MM/YYYY" name="order_dat"
+																			placeholder="YYYY-MM-DD" name="order_dat"
 																			id="order_date" />
 																	</div>
 																</div>
@@ -114,10 +137,10 @@ try {
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Cancellation Date</label> <input type="date"
+																		<label>Cancellation Date</label> <input type="text"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid"
-																			id="delivery_date" />
+																			placeholder="YYYY-MM-DD" id="delivery_date" />
 																	</div>
 																</div>
 															</div>
@@ -181,33 +204,22 @@ try {
 																	</div>
 																</div>
 															</div>
-
-
-
 															<div class="card-body" style="overflow-x: auto;">
-
 																<table class="table" id="Mtable">
 																	<thead>
 																		<tr>
-																		<!-- 	<th scope="col">No</th> -->
 																			<th scope="col" class="text-center">Product</th>
 																			<th scope="col" class="text-center">Unit</th>
 																			<th scope="col" class="text-center">Quantity</th>
 																			<th scope="col" class="text-center">Unit Rate</th>
 																			<th scope="col" class="text-center">Total</th>
-																		<!-- 	<th scope="col">Action</th> -->
-
 																		</tr>
 																	</thead>
-
 																	<tbody class="add_product" id="add-product"></tbody>
-
-
 																</table>
 															</div>
 															<div class="text-right mb-5 mr-22">
 																</div>
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div">
@@ -226,7 +238,6 @@ try {
 																	</div>
 																</div>
 															</div>
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
@@ -241,7 +252,6 @@ try {
 																		</select>
 																	</div>
 																</div>
-
 																<div class="col-lg-4">
 																	<div class="form-group" id="amount_div">
 																		<label>Total Amount</label> <span class="text-danger"
@@ -251,7 +261,6 @@ try {
 																			placeholder="Enter Total Amount" disabled />
 																	</div>
 																</div>
-
 																<div class="col-lg-2">
 																	<div class="form-group" id="amount_div">
 																		<label>If Paid Partial</label> <span
@@ -262,7 +271,6 @@ try {
 																		</span>
 																	</div>
 																</div>
-
 															</div>
 															<div class="col-lg-6">
 																<div class="form-group" id="amount_div">
@@ -272,7 +280,6 @@ try {
 																		placeholder="Enter Discount" disabled/>
 																</div>
 															</div>
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group" id="upi_div">
@@ -284,17 +291,13 @@ try {
 																		</select>
 																	</div>
 																	<div class="form-group" id="nb_div">
-
 																		<label>Received Bank</label> <select
 																			class="form-control form-control-solid"
 																			id="received_bank">
 																			<option value="">Select a bank</option>
-
 																		</select>
 																	</div>
-
 																</div>
-
 															<div class="col-lg-6">
 																	<div class="form-group" id="amount_div1">
 																		<label>Advance Return</label> <span
@@ -386,14 +389,11 @@ try {
 																						data-scroll="true" data-height="350"
 																						data-mobile-height="200"></div>
 																				</div>
-
 																			</div>
 																			<br />
 																			<div
 																				class="datatable datatable-bordered datatable-head-custom"
 																				id="kt_datatable"></div>
-
-
 																		</div>
 																		<div class="modal-footer">
 																			<button type="button"
@@ -403,18 +403,14 @@ try {
 																	</div>
 																</div>
 															</div>
-
 															<div class="card-footer">
 																<div class="row">
-
 																	<div class="col-lg-10 offset-1 text-center">
-
 																		<button type="button" id="add_sales_order"
 																			class="btn font-weight-bold btn-primary ">Submit</button>
 																		<button type="button" id="cancel"
 																			class="btn font-weight-bold btn-secondary">Cancel</button>
 																	</div>
-
 																</div>
 															</div>
 														</div>
@@ -426,104 +422,6 @@ try {
 									</div>
 								</div>
 							</div>
-	<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
 							<div class="alert alert-success  " role="alert"
 								id="success_alert">
 								<div class="alert-text">
@@ -547,17 +445,12 @@ translateX(
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-			<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
@@ -576,31 +469,17 @@ translateX(
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<%-- <script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
- --%>
-	<%-- <script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
- --%>
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
-
-
+	<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+	<script type="text/javascript" src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-	
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const customer_name = urlParams.get('customer_name');
 	const customer_code = urlParams.get('customer_code');
 	const order_code = urlParams.get('order_code');
-	
 	$('#order_no').val(order_code);
-	
 	var ccode=0;
 	$.ajax({
 			url : base + "/bakeshackAPI/api/getCustomerDetails",
@@ -613,7 +492,6 @@ translateX(
 				const row = data.find(d => d.customer_name == customer_name);
 				if(row != null){
 					ccode = row.customer_code; 
-				  
 					$('#customer_name').val(row.customer_name);
 				$('#customer_code').val(row.customer_code);
 				$('#mobile_no').val(row.mobile_no);
@@ -629,6 +507,14 @@ translateX(
 	 var r=0;
 	 var invoice_code;
 		$('#discount').val("00");
+		
+		 // minimum setup
+	      $('#order_date,#delivery_date').datepicker({
+	       rtl: KTUtil.isRTL(),
+	       todayHighlight: true,
+	       orientation: "bottom left",
+	      format:'yyyy-mm-dd'
+	      });
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getOrderMasterDetails",
 		type : "post",
@@ -648,17 +534,12 @@ translateX(
 		         	$('#order_no').val(row.order_code);
 		         	$('#discount').val(row.discount);
 		         	var product_list = row.product_list;
-		        
 		         	$('#advance_paid').val(row.partial_paid_amount);
 		         		 document.getElementById('amount').value = row.amount;
 							 document.getElementById('total_amount').value =row.amount - row.discount;
-							 
 							 document.getElementById('partially_paid_amount').value = row.partial_paid_amount; 
-		
 		         	invoice_code = row.invoice_code;
-		         
 		         	const parsedData = JSON.parse(product_list);
-			         
 					 $(parsedData).each(function(index) {
 						r++;
 							$('#product-' + (index + 1)).val(parsedData[index]['product']);
@@ -667,7 +548,6 @@ translateX(
 							$('#unit_rate-' + (index + 1)).val(parsedData[index]['unit_rate']);
 							$('#total-' + (index + 1)).val(parsedData[index]['total']);
 						});
-					 
 					 for(var i = 1; i <=r; i++){
 						  var html = '';
 						  html += '<tr>';
@@ -676,7 +556,6 @@ translateX(
 						  html += '<td style="width: 9%;"><input type="text" class="form-control  quantity" name="quantity" id="quantity-' + i + '" placeholder="quantity" disabled  oninput="weightConverter(' + i + ',this.value)"/></td>';
 						  html += '<td style="width: 9%;"><input type="text" class="form-control  unit_rate" name="unit_rate" id="unit_rate-' + i + '" placeholder="unit_rate"  disabled/></td>';
 						  html += '<td style="width: 12%;"><input type="text" class="form-control  total" name="total" id="total-' + i + '" placeholder="total" disabled/></td>';
-
 						  $('.add_product').append(html);
 				 }
 					 const parsedData1 = JSON.parse(product_list);
@@ -686,38 +565,25 @@ translateX(
 							$('#quantity-' + (index + 1)).val(parsedData1[index]['quantity']);
 							$('#unit_rate-' + (index + 1)).val(parsedData1[index]['unit_rate']);
 							$('#total-' + (index + 1)).val(parsedData1[index]['total']);
-							
 						});	
-				 
 					}
 			});
  	}
 	});	
 					function checkedBox(i){
-				
 						 if ($("#id-"+i).prop('checked')==true){ 
 							   $("#quantity-"+i).prop('disabled', false);
 							 }else{
 								 $("#quantity-"+i).prop('disabled', true);
 									$("#quantity-"+i).val('');
-									
-									
 							 }
-					    
 						}; 	
 						$('#if_partial').change(function(){
-							
-							
 							 if ($("#if_partial").prop('checked')==true){ 
 								 $('#amount_div1').show();
-								
 								 }else{
-									
 									 $('#amount_div1').hide();
-										
-										
 								 }
-						    
 							}); 
 						 $('#upi_div').hide();
 						 $('#nb_div').hide();
@@ -725,14 +591,14 @@ translateX(
 						 $('#amount_div1').hide();
 						 $('#bank_details1').hide();
 						 $('#bank_details2').hide();
-						 
 						$('#paymentMode').change(function(){
 							var payment_mode = $(this).val();
-									
 							if(payment_mode == 'upi'){
 								$('#upi_div').show();
 								$('#nb_div').hide();
 								$('#cheque_div').hide();
+								$('#bank_details1').hide();
+								 $('#bank_details2').hide();
 							}else if(payment_mode == 'nb'){
 								$('#upi_div').hide();
 								$('#nb_div').show();
@@ -747,15 +613,17 @@ translateX(
 								$('#cheque_div').hide();
 								$('.checkbox').prop('disabled', true);
 								$('#partially_paid_amount').val("00");
+								$('#bank_details1').hide();
+								 $('#bank_details2').hide();
 								
 							}else{
 								$('#upi_div').hide();
 								$('#nb_div').hide();
 								$('#cheque_div').hide();
+								$('#bank_details1').hide();
+								 $('#bank_details2').hide();
 							}
-							
 						});	
-						
 						 $.ajax({
 								url : base + "/bakeshackAPI/api/getBankDetails",
 								type : "post",
@@ -765,16 +633,13 @@ translateX(
 								success:function(data)
 							    {
 									data.forEach((element)=> {
-										
 									        $('#received_bank').append($(document.createElement('option')).prop({
 								                value: element.bank_id,
 								                text: element.bank_name
 								            }))
-										
 									});   
 							    }
 							});	
-						 
 							$('#received_bank').change(function(){
 								 $('#bank_details1').show();
 								 var bank = $(this).val();
@@ -787,11 +652,8 @@ translateX(
 										success:function(data)
 									    {
 											const row = data.find(d => d.bank_id == bank);
-												
-											    
 											       $('#branch_name').val(row.branch);
 										 			$('#account_no').val(row.account_no);  
-											
 									    }
 									});	
 							});
@@ -805,7 +667,6 @@ translateX(
 								});
 	var balance_amount = 0;
 $('#add_sales_order').click(function() {
-											
 									var customer_code = $('#customer_code').val();
 									var order_date = $('#order_date').val();
 									var delivery_date = $('#delivery_date').val();
@@ -823,8 +684,6 @@ $('#add_sales_order').click(function() {
 									var account_no = $('#account_no').val();
 									var flag 		  = 1; // Addition
 									var advance_amount = $('#advance_paid').val();
-									
-									
 									 var productList = [];
 									 $("table tbody tr").each(function(index) {
 									 	if($(this).find('.product').val() != null){
@@ -837,7 +696,6 @@ $('#add_sales_order').click(function() {
 									     	}); 
 									 	}
 									 });
-									
 								var jsonString = JSON.stringify(productList);	
 								 var transaction_id;
 								  $.ajax({
@@ -855,15 +713,12 @@ $('#add_sales_order').click(function() {
 											});
 								    	}
 									});
-											
-												
 									  $.ajax({
 										    url : base + "/bakeshackAPI/api/insertUpdateInvoice",
 											type : "post",
 											dataType : "json",
 											async : false,
 											data : {
-												
 												"customer_code"       : customer_code,
 												"order_code" 	      : order_code,
 												"invoice_date"        : order_date,
@@ -1150,7 +1005,6 @@ $('.add_product').on('click','.btn_delete',function(){
 		
 
 	function update(id){
-		
 		$.ajax({
 	        type:"POST",
 	        dataType: "json",
@@ -1162,15 +1016,17 @@ $('.add_product').on('click','.btn_delete',function(){
 	            const row = data.find(d => d.product_id ==id);
 	            $('#product-'+ matches).val(row.product_name);
 	            $("#unit-"+ matches).val(row.unit);
-	           
-	        	
 	        	$("#unit_rate-"+ matches).val(row.selling_price);
-	        	
 	        }
 	     });
 		 $("#medicineModel").modal('hide');
 	} 																			
-	
+document.addEventListener('keypress', function (e) {
+	    if (e.keyCode === 13 || e.which === 13) {
+	        e.preventDefault();
+	        return false;
+	    }
+	}); 	
 </script>
 </body>
 </html>

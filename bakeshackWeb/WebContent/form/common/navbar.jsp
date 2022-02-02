@@ -2,20 +2,21 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 String dbConnVar = "BAKESHACk";
 try {
+     String session1 = (String) session.getAttribute("login_id");
+	 if (session.getAttribute("login_id") != null) {
+	 String sessionName = (String) session.getAttribute("login_id");
+	 } else
+	 response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
-
 </head>
-
-
 <body id="kt_header" class="header header-fixed">
 	<!--begin::Container-->
 	<div
@@ -54,55 +55,53 @@ try {
 							<div class="menu-submenu menu-submenu-classic menu-submenu-left">
 								<ul class="menu-subnav">
 
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_category_master"><a
 										href="category-master.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Category Master</span>
 									</a></li>
 
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_subcategory_master"><a
 										href="subcategory-master.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Subcategory Master</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_unit_master"><a
 										href="unit-master.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Unit Master</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_product_master"><a
 										href="product-master.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Product Master</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_recipe_master"><a
 										href="recipe-master.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Recipe Master</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_upi_master"><a
 										href="upi-master.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">UPI Master</span>
 									</a></li>
 
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_bank_master"><a
 										href="bank-master.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Bank Master</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_role_master"><a
 										href="role-master.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Role Master</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_user_master"><a
 										href="user-master.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">User Master</span>
 									</a></li>
-
-
 								</ul>
 							</div></li>
 						<li class="menu-item menu-item-submenu menu-item-rel"
@@ -114,22 +113,16 @@ try {
 							<div class="menu-submenu menu-submenu-classic menu-submenu-left">
 								<ul class="menu-subnav">
 									<li class="menu-item menu-item-submenu"
-										data-menu-toggle="hover" aria-haspopup="true"><a
+										data-menu-toggle="hover" aria-haspopup="true" id="navbar_sales_and_order"><a
 										href="javascript:;" class="menu-link menu-toggle"> <span
 											class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Shopping/Box2.svg-->
-												<svg xmlns="http://www.w3.org/2000/svg"
-													xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-													height="24px" viewBox="0 0 24 24" version="1.1">
-																		<g stroke="none" stroke-width="1" fill="none"
-														fill-rule="evenodd">
+												<svg xmlns="http://www.w3.org/2000/svg"	xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"	height="24px" viewBox="0 0 24 24" version="1.1">
+																		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																			<rect x="0" y="0" width="24" height="24" />
-																			<path
-														d="M4,9.67471899 L10.880262,13.6470401 C10.9543486,13.689814 11.0320333,13.7207107 11.1111111,13.740321 L11.1111111,21.4444444 L4.49070127,17.526473 C4.18655139,17.3464765 4,17.0193034 4,16.6658832 L4,9.67471899 Z M20,9.56911707 L20,16.6658832 C20,17.0193034 19.8134486,17.3464765 19.5092987,17.526473 L12.8888889,21.4444444 L12.8888889,13.6728275 C12.9050191,13.6647696 12.9210067,13.6561758 12.9368301,13.6470401 L20,9.56911707 Z"
+																			<path	d="M4,9.67471899 L10.880262,13.6470401 C10.9543486,13.689814 11.0320333,13.7207107 11.1111111,13.740321 L11.1111111,21.4444444 L4.49070127,17.526473 C4.18655139,17.3464765 4,17.0193034 4,16.6658832 L4,9.67471899 Z M20,9.56911707 L20,16.6658832 C20,17.0193034 19.8134486,17.3464765 19.5092987,17.526473 L12.8888889,21.4444444 L12.8888889,13.6728275 C12.9050191,13.6647696 12.9210067,13.6561758 12.9368301,13.6470401 L20,9.56911707 Z"
 														fill="#000000" />
-																			<path
-														d="M4.21611835,7.74669402 C4.30015839,7.64056877 4.40623188,7.55087574 4.5299008,7.48500698 L11.5299008,3.75665466 C11.8237589,3.60013944 12.1762411,3.60013944 12.4700992,3.75665466 L19.4700992,7.48500698 C19.5654307,7.53578262 19.6503066,7.60071528 19.7226939,7.67641889 L12.0479413,12.1074394 C11.9974761,12.1365754 11.9509488,12.1699127 11.9085461,12.2067543 C11.8661433,12.1699127 11.819616,12.1365754 11.7691509,12.1074394 L4.21611835,7.74669402 Z"
-														fill="#000000" opacity="0.3" />
-																		</g>
+																			<path	d="M4.21611835,7.74669402 C4.30015839,7.64056877 4.40623188,7.55087574 4.5299008,7.48500698 L11.5299008,3.75665466 C11.8237589,3.60013944 12.1762411,3.60013944 12.4700992,3.75665466 L19.4700992,7.48500698 C19.5654307,7.53578262 19.6503066,7.60071528 19.7226939,7.67641889 L12.0479413,12.1074394 C11.9974761,12.1365754 11.9509488,12.1699127 11.9085461,12.2067543 C11.8661433,12.1699127 11.819616,12.1365754 11.7691509,12.1074394 L4.21611835,7.74669402 Z"
+														fill="#000000" opacity="0.3" />	</g>
 																	</svg> <!--end::Svg Icon-->
 										</span> <span class="menu-text">Sales &amp; Order</span> <i
 											class="menu-arrow"></i>
@@ -153,27 +146,23 @@ try {
 														class="menu-bullet menu-bullet-dot"> <span></span>
 													</i> <span class="menu-text"> Sales & Return</span>
 												</a></li>
-
-
 											</ul>
 										</div></li>
 									<li class="menu-item menu-item-submenu"
-										data-menu-toggle="hover" aria-haspopup="true"><a
+										data-menu-toggle="hover" aria-haspopup="true" id="navbar_purchase_and_order"><a
 										href="javascript:;" class="menu-link menu-toggle"> <span
 											class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/Thunder-move.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg"
 													xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
 													height="24px" viewBox="0 0 24 24" version="1.1">
-																		<g stroke="none" stroke-width="1" fill="none"
-														fill-rule="evenodd">
+																		<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 																			<rect x="0" y="0" width="24" height="24" />
 																			<path
 														d="M16.3740377,19.9389434 L22.2226499,11.1660251 C22.4524142,10.8213786 22.3592838,10.3557266 22.0146373,10.1259623 C21.8914367,10.0438285 21.7466809,10 21.5986122,10 L17,10 L17,4.47708173 C17,4.06286817 16.6642136,3.72708173 16.25,3.72708173 C15.9992351,3.72708173 15.7650616,3.85240758 15.6259623,4.06105658 L9.7773501,12.8339749 C9.54758575,13.1786214 9.64071616,13.6442734 9.98536267,13.8740377 C10.1085633,13.9561715 10.2533191,14 10.4013878,14 L15,14 L15,19.5229183 C15,19.9371318 15.3357864,20.2729183 15.75,20.2729183 C16.0007649,20.2729183 16.2349384,20.1475924 16.3740377,19.9389434 Z"
 														fill="#000000" />
 																			<path
 														d="M4.5,5 L9.5,5 C10.3284271,5 11,5.67157288 11,6.5 C11,7.32842712 10.3284271,8 9.5,8 L4.5,8 C3.67157288,8 3,7.32842712 3,6.5 C3,5.67157288 3.67157288,5 4.5,5 Z M4.5,17 L9.5,17 C10.3284271,17 11,17.6715729 11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L4.5,20 C3.67157288,20 3,19.3284271 3,18.5 C3,17.6715729 3.67157288,17 4.5,17 Z M2.5,11 L6.5,11 C7.32842712,11 8,11.6715729 8,12.5 C8,13.3284271 7.32842712,14 6.5,14 L2.5,14 C1.67157288,14 1,13.3284271 1,12.5 C1,11.6715729 1.67157288,11 2.5,11 Z"
-														fill="#000000" opacity="0.3" />
-																		</g>
+														fill="#000000" opacity="0.3" />	</g>
 																	</svg> <!--end::Svg Icon-->
 										</span> <span class="menu-text">Purchase &amp; Order </span> <i
 											class="menu-arrow"></i>
@@ -199,17 +188,17 @@ try {
 												</a></li>
 											</ul>
 										</div></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_production_master"><a
 										href="production-master.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Production</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_expiry_good_master"><a
 										href="expiry_good.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Expiry Goods</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_fund_transfer_master"><a
 										href="fund_transfer.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Fund Transfer</span>
@@ -225,73 +214,69 @@ try {
 							<div class="menu-submenu menu-submenu-classic menu-submenu-left">
 								<ul class="menu-subnav">
 
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_finish_good_report"><a
 										href="finish_good_report.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Finish Good Category Report </span>
 									</a></li>
 
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_customer_report"><a
 										href="customer_report.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text"> Customer Report </span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_product_sale_report"><a
 										href="product_sale_report.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Product Sale Report </span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_product_purchase_report"><a
 										href="product_purchase_report.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Product Purchase Report</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_category_sale_report"><a
 										href="Category_sale_report.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Category Sale Report</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_category_purchase_report"><a
 										href="Category_purchase_report.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Category Purchase Report</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_monthly_product_report"><a
 										href="month_product_report_print.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Monthly product Report</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_monthly_subcategory_report"><a
 										href="subcategory_report_print.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">Monthly Subcategory Report</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_in_out_ledger_report"><a
 										href="in_out_ledger.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">IN-OUT Ledger</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_pnl_day_wise_report"><a
 										href="pnl_search.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">PNL Day Wise</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_pnl_month_wise_report"><a
 										href="pnl_monthly_search.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">PNL Month Wise</span>
 									</a></li>
-									<li class="menu-item" aria-haspopup="true"><a
+									<li class="menu-item" aria-haspopup="true" id="navbar_pnl_year_wise_report"><a
 										href="pnl_yearly_search.jsp" class="menu-link"> <i
 											class="menu-bullet menu-bullet-dot"> <span></span>
 										</i> <span class="menu-text">PNL Year Wise</span>
 									</a></li>
-
-
-
 								</ul>
 							</div></li>
-
 					</ul>
 					<!--end::Header Nav-->
 				</div>
@@ -311,11 +296,8 @@ try {
 						class="btn btn-icon btn-hover-transparent-white btn-lg btn-dropdown mr-1">
 						<span class="svg-icon svg-icon-xl"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/General/Search.svg-->
 							<svg xmlns="http://www.w3.org/2000/svg"
-								xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-								height="24px" viewBox="0 0 24 24" version="1.1">
-													<g stroke="none" stroke-width="1" fill="none"
-									fill-rule="evenodd">
-														<rect x="0" y="0" width="24" height="24" />
+								xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"	height="24px" viewBox="0 0 24 24" version="1.1">
+													<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24" />
 														<path
 									d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
 									fill="#000000" fill-rule="nonzero" opacity="0.3" />
@@ -329,8 +311,7 @@ try {
 				</div>
 				<!--end::Toggle-->
 				<!--begin::Dropdown-->
-				<div
-					class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg">
+				<div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg" id="navbar_search_modal">
 					<div class="quick-search quick-search-dropdown "
 						id="kt_quick_search_dropdown">
 						<!--begin:Form-->
@@ -402,8 +383,7 @@ try {
 				</div>
 				<!--end::Toggle-->
 				<!--begin::Dropdown-->
-				<div
-					class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-xl dropdown-menu-anim-up" style="width:900px">
+				<div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-xl dropdown-menu-anim-up" style="width:900px" id="navbar_order_list_model" >
 					<form>
 						<!--begin::Header-->
 						<div
@@ -445,22 +425,14 @@ try {
 
 								</tbody>
 							</table>
-
-
-
 						</div>
 						<!--end::Scroll-->
 						<!--begin::Summary-->
 						<div class="p-8">
 							<div
 								class="d-flex align-items-center justify-content-between mb-4">
-								<!-- <span class="font-weight-bold text-muted font-size-sm mr-2">Total</span>
-								<span class="font-weight-bolder text-dark-50 text-right" id="balance_total"></span> -->
 							</div>
-
-
 						</div>
-
 						<!--end::Summary-->
 					</form>
 				</div>
@@ -496,8 +468,7 @@ try {
 				</div>
 				<!--end::Toggle-->
 				<!--begin::Dropdown-->
-				<div
-					class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-xl dropdown-menu-anim-up">
+				<div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-xl dropdown-menu-anim-up" id="navbar_customer_outstanding_modal">
 					<form>
 						<!--begin::Header-->
 						<div
@@ -529,14 +500,10 @@ try {
 										<th class="col-sm-2 text-center" data-field="Product-Name"
 											data-sortable="true">Balance</th>
 									</tr>
-
 								</thead>
 								<tbody class="navbar_customer_data text-center">
-
-
 								</tbody>
 							</table>
-
 						</div>
 						<!--end::Scroll-->
 						<!--begin::Summary-->
@@ -547,8 +514,6 @@ try {
 								<span class="font-weight-bolder text-dark-50 text-right"
 									id="balance_total1"></span>
 							</div>
-
-
 						</div>
 						<!--end::Summary-->
 					</form>
@@ -583,8 +548,7 @@ try {
 				</div>
 				<!--end::Toggle-->
 				<!--begin::Dropdown-->
-				<div
-					class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-xl dropdown-menu-anim-up">
+				<div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-xl dropdown-menu-anim-up" id="navbar_vendors_outstanding_modal">
 					<form>
 						<!--begin::Header-->
 						<div
@@ -610,22 +574,15 @@ try {
 								data-scroll="false" data-height=550 id="table-id">
 								<thead>
 									<tr>
-
 										<th class="col-sm-2 text-center" data-field="Recipe-Name"
 											data-sortable="true">Vendors Name</th>
 										<th class="col-sm-2 text-center" data-field="Product-Name"
 											data-sortable="true">Balance</th>
 									</tr>
-
 								</thead>
 								<tbody class="navbar_vendors_data text-center">
-
-
 								</tbody>
 							</table>
-
-
-
 						</div>
 						<!--end::Scroll-->
 						<!--begin::Summary-->
@@ -636,15 +593,12 @@ try {
 								<span class="font-weight-bolder text-dark-50 text-right"
 									id="balance_total"></span>
 							</div>
-
-
 						</div>
 						<!--end::Summary-->
 					</form>
 				</div>
 				<!--end::Dropdown-->
 			</div>
-
 			<!--begin::User-->
 			<div class="dropdown">
 				<!--begin::Toggle-->
@@ -724,12 +678,6 @@ try {
 					<!--end::Header-->
 					<!--begin::Separator-->
 					<div class="separator separator-dashed mt-8 mb-5"></div>
-
-
-
-
-
-
 					<a href="customer_outstanding.jsp" class="mb-5">Customer
 						OutStanding</a></br> <a href="vendors_outstanding.jsp" class="mb-5">Vendors
 						OutStanding</a>
@@ -873,11 +821,9 @@ try {
 						</div>
 						<!--end::Item-->
 					</div>
-
 					<div class="separator separator-dashed my-7"></div>
 					<div class="scroll scroll-push" data-scroll="true"
 						data-mobile-height="200">
-
 						<table data-toggle="table" class='a'
 							data-classes="table table-hover table-condensed "
 							data-striped="true" data-sort-name="Quality"
@@ -885,25 +831,16 @@ try {
 							data-scroll="false" data-height=250 id="table-id">
 							<thead>
 								<tr>
-
 									<th class="col-sm-2 text-center" data-field="Recipe-Name"
 										data-sortable="true">Product</th>
 									<th class="col-sm-2 text-center" data-field="Product-Name"
 										data-sortable="true">Balance</th>
 								</tr>
-
 							</thead>
-							<tbody class="navbar_product_stock"text-center">
-
-
+							<tbody class="navbar_product_stock text-center">
 							</tbody>
 						</table>
-
-
-
 					</div>
-
-
 					<ul class="sticky-toolbar nav flex-column pl-2 pr-2 pt-3 pb-3 mt-4">
 						<li class="nav-item mb-2" id="kt_demo_panel_toggle"
 							data-toggle="tooltip" title="Check out gmail"
@@ -932,24 +869,9 @@ try {
 						</a>
 						</li>
 					</ul>
-
-
-
 				</div>
 				<!--end::Content-->
 			</div>
-
-			<%
-			String session1 = (String) session.getAttribute("login_id");
-			if (session.getAttribute("login_id") != null) {
-				String sessionName = (String) session.getAttribute("login_id");
-			%>
-
-
-			<%
-			} else
-			response.sendRedirect("LoginForm.html");
-			%>
 			<!--end::User-->
 		</div>
 		<!--end::Topbar-->
@@ -959,21 +881,14 @@ try {
 <script>
 	var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";
 </script>
-
-
-
 <script
 	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/ref_file/plugins.bundle.js"></script>
 <script
 	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/ref_file/prismjs.bundle.js"></script>
 <script
 	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/ref_file/scripts.bundle.js"></script>
-
-
 <script
 	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/ref_file/fullcalendar.bundle.js"></script>
-
-
 <script
 	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/ref_file/widgets.js"></script>
 <!--begin::Global Config(global config for global JS scripts)-->
@@ -985,8 +900,42 @@ try {
 	var login_id;
 	var password;
 	var navbar_user_name;
+	$('#navbar_category_master').hide();	
+	$('#navbar_subcategory_master').hide();	
+	$('#navbar_unit_master').hide();		
+	$('#navbar_product_master').hide();	
+	$('#navbar_recipe_master').hide();	
+	$('#navbar_upi_master').hide();	
+	$('#navbar_bank_master').hide();	
+	$('#navbar_role_master').hide();	
+	$('#navbar_user_master').hide();	
+	
+	$('#navbar_sales_and_order').hide();	
+	$('#navbar_purchase_and_order').hide();	
+	$('#navbar_production_master').hide();	
+	$('#navbar_expiry_good_master').hide();	
+	$('#navbar_fund_transfer_master').hide();	
+	
+	$('#navbar_finish_good_report').hide();		
+	$('#navbar_customer_report').hide();	
+	$('#navbar_product_sale_report').hide();	
+	$('#navbar_product_purchase_report').hide();	
+	$('#navbar_category_sale_report').hide();	
+	$('#navbar_category_purchase_report').hide();	
+	$('#navbar_monthly_product_report').hide();	
+	$('#navbar_monthly_subcategory_report').hide();	
+	$('#navbar_in_out_ledger_report').hide();	
+	$('#navbar_pnl_day_wise_report').hide();	
+	$('#navbar_pnl_month_wise_report').hide();	
+	$('#navbar_pnl_year_wise_report').hide();	
+	
+	/* $('#navbar_vendors_outstanding_modal').hide();
+	$('#navbar_customer_outstanding_modal').hide();
+	$('#navbar_order_list_model').hide();
+	$('#navbar_search_modal').hide(); */
+	
 	$.ajax({
-			url : base + "/bakeshackAPI/api/getUsersDetails",
+			url : base + "/bakeshackAPI/api/getUser_Role_Details",
 			type : "post",
 			dataType : "json",
 			async : false,
@@ -1003,20 +952,109 @@ try {
 					$('#navbar_user_name').text(row.users_name);
 					$('#navbar_user_email').text(row.email_id);
 					
+					/* $('#navbar_vendors_outstanding_modal').show();
+					$('#navbar_customer_outstanding_modal').show();
+					$('#navbar_order_list_model').show();
+					$('#navbar_search_modal').show(); */
 					
+					var role_permission = row.role_permission;
+					const myArray = role_permission.split(",");
+					if(myArray[0] == "Y"){
+						$('#navbar_category_master').show();	
+						}
+					if(myArray[1] == "Y"){
+						$('#navbar_subcategory_master').show();
+						}
+					if(myArray[2] == "Y"){
+						$('#navbar_unit_master').show();		
+						}
+					if(myArray[3] == "Y"){
+						$('#navbar_product_master').show();
+						}
+					if(myArray[4] == "Y"){
+						$('#navbar_recipe_master').show();	
+						}
+					if(myArray[5] == "Y"){
+						$('#navbar_upi_master').show();
+						}
+					if(myArray[6] == "Y"){
+						$('#navbar_bank_master').show();	
+						}
+					if(myArray[7] == "Y"){
+						$('#navbar_role_master').show();	
+						}
+					if(myArray[8] == "Y"){
+						$('#navbar_user_master').show();	
+						}
+					
+					//Transaction Screen
+					if(myArray[9] == "Y"){
+						$('#navbar_sales_and_order').show();	
+						}
+					if(myArray[10] == "Y"){
+						$('#navbar_purchase_and_order').show();	
+						}
+					if(myArray[11] == "Y"){
+						$('#navbar_production_master').show();	
+						}
+					if(myArray[12] == "Y"){
+						$('#navbar_expiry_good_master').show();
+						}
+					if(myArray[13] == "Y"){
+						$('#navbar_fund_transfer_master').show();
+						}
+					
+					
+					//report
+					if(myArray[14] == "Y"){
+						$('#navbar_finish_good_report').show();	
+						}
+					if(myArray[15] == "Y"){
+						$('#navbar_customer_report').show();		
+						}
+					if(myArray[16] == "Y"){
+						$('#navbar_product_sale_report').show();	
+						}
+					if(myArray[17] == "Y"){
+						$('#navbar_product_purchase_report').show();	
+						}
+					if(myArray[18] == "Y"){
+						$('#navbar_category_sale_report').show();	
+						}
+					if(myArray[19] == "Y"){
+						$('#navbar_category_purchase_report').show();	
+						}
+					if(myArray[20] == "Y"){
+						$('#navbar_monthly_product_report').show();		
+						}
+					if(myArray[21] == "Y"){
+						$('#navbar_monthly_subcategory_report').show();	
+						}
+					if(myArray[22] == "Y"){
+						$('#navbar_in_out_ledger_report').show();
+						}
+					if(myArray[23] == "Y"){
+						$('#navbar_pnl_day_wise_report').show();
+						}
+					if(myArray[24] == "Y"){
+						$('#navbar_pnl_month_wise_report').show();
+						}
+					if(myArray[25] == "Y"){
+						$('#navbar_pnl_year_wise_report').show();
+						}
+						
+				
 				}
 	        } 
 		});	
 	
 	$('#dashboard').click(function(){
 		var url = "/bakeshackWeb/form/home/index.jsp"  + '?login_id=' + login_id ;  
-	
 		window.location.assign(url);
 	})
 	
 	$('#dashboard_logo').click(function(){
 		var url = "/bakeshackWeb/form/home/index.jsp"  + '?login_id=' + login_id ;  
-		
 		window.location.assign(url);
 	})
 	
@@ -1041,7 +1079,7 @@ try {
 	var url = "logout.jsp" ; 
 	  var KTIdleTimerDemo = function() {
 		    var _init = function() {
-		        var docTimeout = 1800000;
+		        var docTimeout = 1200000;
 		        $(document).on("idle.idleTimer", function(event, elem, obj) {
 		            $("#docStatus").val(function(i, v) {
 		                    return v + "Idle @ " + moment().format() + " \n";
@@ -1063,11 +1101,11 @@ try {
 					    }); 
 		            setTimeout(function(){
 		            	window.location.assign(url);
-				           },50000);
+				           },5000);
 		        });
 	        $(document).idleTimer(docTimeout);
             //For demo purposes, display the actual timeout on the page
-		        $("#docTimeout").text(docTimeout / 1000);
+		        $("#docTimeout").text(docTimeout / 50000);
 		    }
 		    return {
 		        //main function to initiate the module
@@ -1091,18 +1129,14 @@ try {
 		data : {"customer_name": customer_name1},
 		success:function(data)
 		{
-			  
-			
 			const row = data.find(d => d.product_name == product_name2);
 			data.forEach((row)=> {
-			
 				html5 +="<tr id= tr-id-2 class= tr-class-2>"
 				html5 += "<td class='text-center'>"+row.product_name+"</td>"; 
 				html5 += "<td class='text-center'>"+row.balance_quantity+"</td>";
 				html5 +="</tr>"
 			});
 			 $(".navbar_product_stock").html(html5);
-			
 		}
 	});	
 	
@@ -1118,12 +1152,8 @@ try {
 		success : function(data) {
 			if (data != null) {
 				data.forEach(function(e) {
-					
 					$("#todays_sale_amount").text("₹" + e.todays_collection);
 					$("#todays_total_outstanding").text( "₹" + e.todays_outstanding);
-
-					//dashboard_week_sale.push(e.days);
-
 				})
 			}
 		}
@@ -1140,9 +1170,7 @@ try {
 		success : function(data) {
 			if (data != null) {
 				data.forEach(function(e) {
-					
 					$("#cash_in_hand").text("₹" + e.cash_in_hand);
-					//dashboard_week_sale.push(e.days);
 				})
 			}
 		}
@@ -1159,9 +1187,7 @@ try {
 		success : function(data) {
 			if (data != null) {
 				data.forEach(function(e) {
-					
 					$("#total_todays_purchase").text("₹" + -e.todays_collection);
-					//dashboard_week_sale.push(e.days);
 				})
 			}
 		}
@@ -1225,10 +1251,7 @@ try {
 		"font-family" : "Poppins"
 	};
 	
-	
-	
 	 var cName = [];
-		
 		$.ajax({
 		url : base + "/bakeshackAPI/api/getCustomerDetails",
 		type : "post",
@@ -1260,10 +1283,8 @@ try {
        name: 'cName',
        source: bloodhound
    });
-   
 	
    var vName = [];
-	
 	$.ajax({
 	url : base + "/bakeshackAPI/api/getVendorsDetails",
 	type : "post",
@@ -1297,7 +1318,6 @@ try {
  });
 	
  var pName = [];
-	
 	$.ajax({
 	url : base + "/bakeshackAPI/api/getProductDetails",
 	type : "post",
@@ -1343,20 +1363,14 @@ $('#global_search').typeahead({
 		data : {"customer_name": customer_name1},
 		success:function(data)
 		{
-			  
-			
 			const row = data.find(d => d.customer_name == customer_name1);
 			data.forEach((row)=> {
 				customer_count++;
 				html3 +="<tr id= tr-id-2 class= tr-class-2>"
 				html3 += "<td class='customer_name01'>"+row.customer_name+"</td>"; 
 				html3 += "<td>"+row.balance_amount+"</td>";
-			//	html3 += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="ki ki-info text-info"></i></a></td>';
 				html3 +="</tr>"
-				
 				outstanding_total += parseInt(row.balance_amount);
-					
-					
 			});
 			 $(".navbar_customer_data").html(html3);
 			 $("#balance_total1").text(outstanding_total);
@@ -1365,12 +1379,8 @@ $('#global_search').typeahead({
 	});	
 
 	 $('.navbar_customer_data').on('click','.customer_name01',function(){
-		
-			
 			  var currentRow = $(this).closest("tr");
 			  var query = currentRow.find(".customer_name01").html();
-			 //alert("query-"+query);
-			 
 			 var ccode;
 			 $.ajax({
 					url : base + "/bakeshackAPI/api/getCustomerDetails",
@@ -1380,23 +1390,12 @@ $('#global_search').typeahead({
 					data : {"flag":1,},
 					success:function(data)
 			        {
-						
 						const row = data.find(d => d.customer_name == query );
-			
 						ccode = row.customer_code;
-						
 						var url = 'customer_outstanding_details.jsp' + '?ccode=' + ccode + '&query=' + query;
-						
 						window.location.assign(url);
-
 			        }
 				});	
-			 
-			 
-			 
-			 
-			 
-			 
 			});
 	
 	var vendors_count = 0
@@ -1410,8 +1409,6 @@ $('#global_search').typeahead({
 		data : {"vendors_name": vendors_name1},
 		success:function(data)
 		{
-			  
-			
 			const row = data.find(d => d.vendors_name == vendors_name1);
 			data.forEach((row)=> {
 				vendors_count++;
@@ -1420,9 +1417,6 @@ $('#global_search').typeahead({
 				 html2 += "<td>"+row.balance_amount+"</td>";
 				 html2 +="</tr>"
 			 balance_total += parseInt(row.balance_amount);
-				 
-				 
-				
 			});
 			 $(".navbar_vendors_data").html(html2);
 			 $("#balance_total").text(balance_total);
@@ -1430,15 +1424,9 @@ $('#global_search').typeahead({
 		}
 	});	
 
-	
-	
 	 $('.navbar_vendors_data').on('click','.vendors_name01',function(){
-			
-			
 		  var currentRow = $(this).closest("tr");
 		  var query = currentRow.find(".vendors_name01").html();
-		// alert("query-"+query);
-		 
 		 var vcode;
 		 $.ajax({
 				url : base + "/bakeshackAPI/api/getVendorsDetails",
@@ -1448,23 +1436,13 @@ $('#global_search').typeahead({
 				data : {"flag":1,},
 				success:function(data)
 		        {
-					
 					const row = data.find(d => d.vendors_name == query );
-		
 					vcode = row.vendors_code;
-					
 					var url = 'vendors_outstanding_details.jsp' + '?vcode=' + vcode + '&query=' + query;
-					
 					window.location.assign(url);
-
 		        }
 			});	
-				 
 		});
-	 
-	 
-	 
-	
 	var html1 = "";
 	var product_list;
 	var product_order_count =0;
@@ -1487,18 +1465,6 @@ $('#global_search').typeahead({
 				    html1 += parsedData[index]['product']+ "-"+parsedData[index]['quantity']+"</br>"; 
 				 });
 				  html1 +="</td><td type='hidden'><span id='product_order_code-1'>"+row.comment+"</span></td></tr>";
-				 
-				/*  html1 += '<tr>'
-				    //  html1 +=  '<td><a type="button"   onClick="popup_for_comment(' + product_order_count + ')";  id="popup_for_comment-' + product_order_count +'" class="btn_edit btn font-weight-bold btn-primary btn-icon btn-primary text-left"  style="border:0px; text-align:center; " ><i class="la la-edit"></i></a></td>';
-			 	      html1 += '<td><input type="text"  id="navbar_order_customer_name-' + product_order_count +'" name="navbar_order_customer_name" style="background-color:#FFFFFF; border:0px; " disabled>'+ row.customer_name +'</td>';
-			 		  html1 += '<td><input type="text"  id="navbar_order_delivery_date-' + product_order_count +'" name="navbar_order_delivery_date" style="background-color:#FFFFFF; border:0px; " disabled>'+row.delivery_date+'</td>';
-			 		  html1 += '<td><input type="text"  id="navbar_order_product_list-' +product_order_count +'" name="navbar_order_product_list" style="background-color:#FFFFFF; border:0px;  " disabled>';
-			 		 $(parsedData).each(function(index) {
-						    html1 += parsedData[index]['product']+ "-"+parsedData[index]['quantity']+"</br>"; 
-						 });
-			 		html1 +=  '</td><td><input type="text"  id="navbar_order_product_list-' +product_order_count +'" name="navbar_order_product_list" style="background-color:#FFFFFF; border:0px;  " disabled>'+row.comment+'</td>';
-			 		 //  html1 += '</td><td><a type="button"   onClick="popup_for_comment(' + product_order_count + ')";  id="popup_for_comment-' + product_order_count +'" class="btn_edit btn font-weight-bold btn-primary btn-icon btn-primary text-left"  style="border:0px; text-align:left; " ><i class="la la-edit"></i></a></td>';
-				 	 html1 += '</tr>'; */
 			});
 			 $(".navbar_order_data").html(html1);
 			 $("#order_count").text(product_order_count);
@@ -1506,26 +1472,16 @@ $('#global_search').typeahead({
 	});	
 
  function popup_for_comment(poc1){
-	//var v1 = $('#navbar_order_product_list-'+poc1).val();	
 	alert(poc1);
 	var v1 =  $('#navbar_order_product_list-1').val();
 	alert(v1); 
 }	
 
-
-/* $('.navbar_class').click(function(){
-	var v1 = $(this).closest('tr').val();	
-	alert(v1);
-}) */
-
 $('#global_search').on("change select",function(){
-		
 		var query = $(this).val();
-		//alert(query);
 		var ccode;
 		var vcode;
 		var pcode;
-		
 		$.ajax({
 			url : base + "/bakeshackAPI/api/getCustomerDetails",
 			type : "post",
@@ -1534,15 +1490,10 @@ $('#global_search').on("change select",function(){
 			data : {"flag":1,},
 			success:function(data)
 	        {
-				
 				const row = data.find(d => d.customer_name == query );
-	
 				ccode = row.customer_code;
-				
 				var url = 'customer_transaction_details.jsp' + '?ccode=' + ccode + '&query=' + query;
-				
 				window.location.assign(url);
-
 	        }
 		});	
 		
@@ -1554,15 +1505,10 @@ $('#global_search').on("change select",function(){
 			data : {"flag":1,},
 			success:function(data)
 	        {
-				
 				const row = data.find(d => d.vendors_name == query );
-	
 				vcode = row.vendors_code;
-				
 				var url = 'vendors_transaction_details.jsp' + '?vcode=' + vcode + '&query=' + query;
-				
 				window.location.assign(url);
-
 	        }
 		});	
 		
@@ -1575,28 +1521,14 @@ $('#global_search').on("change select",function(){
 			data : {"flag":1,},
 			success:function(data)
 	        {
-				
 				const row = data.find(d => d.product_name == query );
-	
 				pcode = row.product_code;
-				
 				var url = 'product_transaction_details.jsp' + '?pcode=' + pcode+ '&query=' + query;
-				
 				window.location.assign(url);
-
 	        }
 		});	
-		
-		
-		
 	})	
-	
-	
-	
-	
 </script>
-
-
 <%
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);

@@ -2,20 +2,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()	+ path + "/";
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "IPD-OPD";
 	try {
 %>
-
-
 <div id="kt_header_mobile" class="header-mobile header-mobile-fixed">
 		<!--begin::Logo-->
-		<a href="index.html"> <img alt="Logo"
+		<a id="dashboard_logo"> <img alt="Logo"
 			src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/gif/logo.png"
 			class="logo-sticky max-h-65px" />
 		</a>
@@ -60,7 +56,7 @@
 						<!--begin::Menu Nav-->
 						<ul class="menu-nav">
 							<li class="menu-item menu-item-active" aria-haspopup="true">
-								<a href="./index.jsp" class="menu-link"> <span
+								<a id="dashboard" class="menu-link"> <span
 									class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg"
 											xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -104,155 +100,85 @@
 								<div class="menu-submenu">
 									<i class="menu-arrow"></i>
 									<ul class="menu-subnav">
-										<li class="menu-item menu-item-parent" aria-haspopup="true">
+										<li class="menu-item menu-item-parent" aria-haspopup="true" >
 											<span class="menu-link"> <span class="menu-text">Applications</span>
 										</span>
 										</li>
 										
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="medicine_type_master"><a
 											href="./medicine-type-master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">Medicine Type Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="medicine_category_master"><a
 											href="./medicine-category-master.jsp" class="menu-link">
 												<i class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">Medicine Category Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="medicine_master"><a
 											href="./medicine-master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">Medicine Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="medicine_template_master"><a
 											href="./template-master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">Medicine Template Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="complaint_master"><a
 											href="./complaint-master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">Complaint Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="diagnosis_master"><a
 											href="./diagnosis-master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">Diagnosis Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="remark_master"><a
 											href="./remark-master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">Remark Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="advice_master"><a
 											href="./advice-master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">Advice Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="qualification_master"><a
 											href="./qualification-master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">Qualification Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="city_master"><a
 											href="./city-master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">City Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="district_master"><a
 											href="./district-master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">District Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="upi_master"><a
 											href="./upi-master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">UPI Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
+										<li class="menu-item" aria-haspopup="true" id="company_master"><a
 											href="./company_master.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
 											</i> <span class="menu-text">Company Master</span>
 										</a></li>
-									</ul>
-								</div></li>
-
-						
-							<li class="menu-item" aria-haspopup="true"><a
-								href="./prescriptionPrint.jsp" class="menu-link"> <i
-									class="menu-bullet menu-bullet-line"> <span></span>
-								</i> <span class="menu-text">Prescription Print</span>
-							</a></li>
-
-
-							<!-- <li class="menu-item" aria-haspopup="true"><a
-								href="./patientDetailsUpdate.jsp" class="menu-link"> <i
-									class="menu-bullet menu-bullet-line"> <span></span>
-								</i> <span class="menu-text">Patient Entry</span>
-							</a></li> -->
-							<li class="menu-item menu-item-submenu" aria-haspopup="true"
-								data-menu-toggle="hover"><a href="javascript:;"
-								class="menu-link menu-toggle"> <span
-									class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
-										<svg xmlns="http://www.w3.org/2000/svg"
-											xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-											height="24px" viewBox="0 0 24 24" version="1.1">
-												<g stroke="none" stroke-width="1" fill="none"
-												fill-rule="evenodd">
-													<rect x="0" y="0" width="24" height="24" />
-													<rect fill="#000000" x="4" y="4" width="7" height="7"
-												rx="1.5" />
-													<path
-												d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z"
-												fill="#000000" opacity="0.3" />
-												</g>
-											</svg> <!--end::Svg Icon-->
-								</span> <span class="menu-text">Reports</span> <i class="menu-arrow"></i>
-							</a>
-								<div class="menu-submenu">
-									<i class="menu-arrow"></i>
-									<ul class="menu-subnav">
-										<li class="menu-item menu-item-parent" aria-haspopup="true">
-											<span class="menu-link"> <span class="menu-text">Applications</span>
-										</span>
-										</li>
-
-										<li class="menu-item" aria-haspopup="true"><a
-											href="./patientWiseReport.jsp" class="menu-link"> <i
+										<li class="menu-item" aria-haspopup="true" id="role_master"><a
+											href="./roleMaster.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
-											</i> <span class="menu-text">Patient Report</span>
+											</i> <span class="menu-text">Role Master</span>
 										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
-											href="./CityWiseReport.jsp" class="menu-link"> <i
+										<li class="menu-item" aria-haspopup="true" id="user_master"><a
+											href="./userMaster.jsp" class="menu-link"> <i
 												class="menu-bullet menu-bullet-line"> <span></span>
-											</i> <span class="menu-text">City Report</span>
-										</a></li>
-
-										<li class="menu-item" aria-haspopup="true"><a
-											href="./DiagnosisWiseReport.jsp" class="menu-link"> <i
-												class="menu-bullet menu-bullet-line"> <span></span>
-											</i> <span class="menu-text">Diagnosis Report</span>
-										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
-											href="./CityWisePatientCountjsp.jsp" class="menu-link"> <i
-												class="menu-bullet menu-bullet-line"> <span></span>
-											</i> <span class="menu-text">City Wise Patient Count</span>
-										</a></li>
-
-										<li class="menu-item" aria-haspopup="true"><a
-											href="./FeesCollection.jsp" class="menu-link"> <i
-												class="menu-bullet menu-bullet-line"> <span></span>
-											</i> <span class="menu-text">Fees Collection </span>
-										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
-											href="./mr_visit_report.jsp" class="menu-link"> <i
-												class="menu-bullet menu-bullet-line"> <span></span>
-											</i> <span class="menu-text">Medical Representative </span>
-										</a></li>
-										<li class="menu-item" aria-haspopup="true"><a
-											href="./income_n_expenses_search.jsp" class="menu-link">
-												<i class="menu-bullet menu-bullet-line"> <span></span>
-											</i> <span class="menu-text">Income & Expenses </span>
+											</i> <span class="menu-text">User Master</span>
 										</a></li>
 									</ul>
 								</div></li>
@@ -288,9 +214,8 @@
 				</div>
 				<div class="d-flex flex-column">
 					<a href="#"
-						class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">James
-						Jones</a>
-					<div class="text-muted mt-1">Application Developer</div>
+						class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary" id="navbar_user_name">  </a>
+					<div class="text-muted mt-1" id="navbar_user_login">  </div>
 					<div class="navi mt-2">
 						<a href="#" class="navi-item"> <span
 							class="navi-link p-0 pb-2"> <span class="navi-icon mr-1">
@@ -309,9 +234,9 @@
 												</g>
 											</svg> <!--end::Svg Icon-->
 								</span>
-							</span> <span class="navi-text text-muted text-hover-primary">jm@softplus.com</span>
+							</span> <span class="navi-text text-muted text-hover-primary" id="navbar_user_email"></span>
 						</span>
-						</a> <a href="#"
+						</a> <a id="sign_out"
 							class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign
 							Out</a>
 					</div>
@@ -326,8 +251,8 @@
 					<!--begin::Section-->
 					
 					
-					<div class="mb-5">
-						<h5 class="font-weight-bold mb-5">Calcutation</h5>
+					<div class="mb-5" id="navbar_calculation_details">
+						<h5 class="font-weight-bold mb-5">Calculation</h5>
 						<!--begin: Item-->
 						<div
 							class="d-flex align-items-center bg-light-warning rounded p-5 mb-5">
@@ -351,11 +276,11 @@
 							</span>
 							<div class="d-flex flex-column flex-grow-1 mr-2">
 								<a href="#"
-									class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Another
-									purpose persuade</a> <span class="text-muted font-size-sm">Due
-									in 2 Days</span>
+									class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Total Collection
+									</a> <span class="text-muted font-size-sm">
+									</span>
 							</div>
-							<span class="font-weight-bolder text-warning py-1 font-size-lg">+28%</span>
+							<span class="font-weight-bolder text-warning py-1 font-size-lg" id="navbar_total_collection"></span>
 						</div>
 						<!--end: Item-->
 						<!--begin: Item-->
@@ -382,11 +307,10 @@
 							</span>
 							<div class="d-flex flex-column flex-grow-1 mr-2">
 								<a href="#"
-									class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Would
-									be to people</a> <span class="text-muted font-size-sm">Due
-									in 2 Days</span>
+									class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Today's Collection
+									</a> <span class="text-muted font-size-sm"></span>
 							</div>
-							<span class="font-weight-bolder text-success py-1 font-size-lg">+50%</span>
+							<span class="font-weight-bolder text-success py-1 font-size-lg" id="navbar_todays_collection"></span>
 						</div>
 						<!--end: Item-->
 						<!--begin: Item-->
@@ -412,11 +336,10 @@
 							</span>
 							<div class="d-flex flex-column flex-grow-1 mr-2">
 								<a href="#"
-									class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">Purpose
-									would be to persuade</a> <span class="text-muted font-size-sm">Due
-									in 2 Days</span>
+									class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">Today's Expences</a> 
+									<span class="text-muted font-size-sm"></span>
 							</div>
-							<span class="font-weight-bolder text-danger py-1 font-size-lg">-27%</span>
+							<span class="font-weight-bolder text-danger py-1 font-size-lg" id="navbar_todays_expences"></span>
 						</div>
 						<!--end: Item-->
 						<!--begin: Item-->
@@ -451,13 +374,54 @@
 							</span>
 							<div class="d-flex flex-column flex-grow-1 mr-2">
 								<a href="#"
-									class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">The
-									best product</a> <span class="text-muted font-size-sm">Due
-									in 2 Days</span>
+									class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">Total Patient Count</a>
+									 <span class="text-muted font-size-sm"></span>
 							</div>
-							<span class="font-weight-bolder text-info py-1 font-size-lg">+8%</span>
+							<span class="font-weight-bolder text-info py-1 font-size-lg" id="navbar_total_patient_count"></span>
 						</div>
 						<!--end: Item-->
+						
+						
+						<!--begin: Item-->
+						<div class="d-flex align-items-center bg-light-info rounded p-5 mt-5">
+							<span class="svg-icon svg-icon-info mr-5"> <span
+								class="svg-icon svg-icon-lg"> <!--begin::Svg Icon | path:assets/media/svg/icons/General/Attachment2.svg-->
+									<svg xmlns="http://www.w3.org/2000/svg"
+										xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+										height="24px" viewBox="0 0 24 24" version="1.1">
+											<g stroke="none" stroke-width="1" fill="none"
+											fill-rule="evenodd">
+												<rect x="0" y="0" width="24" height="24" />
+												<path
+											d="M11.7573593,15.2426407 L8.75735931,15.2426407 C8.20507456,15.2426407 7.75735931,15.6903559 7.75735931,16.2426407 C7.75735931,16.7949254 8.20507456,17.2426407 8.75735931,17.2426407 L11.7573593,17.2426407 L11.7573593,18.2426407 C11.7573593,19.3472102 10.8619288,20.2426407 9.75735931,20.2426407 L5.75735931,20.2426407 C4.65278981,20.2426407 3.75735931,19.3472102 3.75735931,18.2426407 L3.75735931,14.2426407 C3.75735931,13.1380712 4.65278981,12.2426407 5.75735931,12.2426407 L9.75735931,12.2426407 C10.8619288,12.2426407 11.7573593,13.1380712 11.7573593,14.2426407 L11.7573593,15.2426407 Z"
+											fill="#000000" opacity="0.3"
+											transform="translate(7.757359, 16.242641) rotate(-45.000000) translate(-7.757359, -16.242641)" />
+												<path
+											d="M12.2426407,8.75735931 L15.2426407,8.75735931 C15.7949254,8.75735931 16.2426407,8.30964406 16.2426407,7.75735931 C16.2426407,7.20507456 15.7949254,6.75735931 15.2426407,6.75735931 L12.2426407,6.75735931 L12.2426407,5.75735931 C12.2426407,4.65278981 13.1380712,3.75735931 14.2426407,3.75735931 L18.2426407,3.75735931 C19.3472102,3.75735931 20.2426407,4.65278981 20.2426407,5.75735931 L20.2426407,9.75735931 C20.2426407,10.8619288 19.3472102,11.7573593 18.2426407,11.7573593 L14.2426407,11.7573593 C13.1380712,11.7573593 12.2426407,10.8619288 12.2426407,9.75735931 L12.2426407,8.75735931 Z"
+											fill="#000000"
+											transform="translate(16.242641, 7.757359) rotate(-45.000000) translate(-16.242641, -7.757359)" />
+												<path
+											d="M5.89339828,3.42893219 C6.44568303,3.42893219 6.89339828,3.87664744 6.89339828,4.42893219 L6.89339828,6.42893219 C6.89339828,6.98121694 6.44568303,7.42893219 5.89339828,7.42893219 C5.34111353,7.42893219 4.89339828,6.98121694 4.89339828,6.42893219 L4.89339828,4.42893219 C4.89339828,3.87664744 5.34111353,3.42893219 5.89339828,3.42893219 Z M11.4289322,5.13603897 C11.8194565,5.52656326 11.8194565,6.15972824 11.4289322,6.55025253 L10.0147186,7.96446609 C9.62419433,8.35499039 8.99102936,8.35499039 8.60050506,7.96446609 C8.20998077,7.5739418 8.20998077,6.94077682 8.60050506,6.55025253 L10.0147186,5.13603897 C10.4052429,4.74551468 11.0384079,4.74551468 11.4289322,5.13603897 Z M0.600505063,5.13603897 C0.991029355,4.74551468 1.62419433,4.74551468 2.01471863,5.13603897 L3.42893219,6.55025253 C3.81945648,6.94077682 3.81945648,7.5739418 3.42893219,7.96446609 C3.0384079,8.35499039 2.40524292,8.35499039 2.01471863,7.96446609 L0.600505063,6.55025253 C0.209980772,6.15972824 0.209980772,5.52656326 0.600505063,5.13603897 Z"
+											fill="#000000" opacity="0.3"
+											transform="translate(6.014719, 5.843146) rotate(-45.000000) translate(-6.014719, -5.843146)" />
+												<path
+											d="M17.9142136,15.4497475 C18.4664983,15.4497475 18.9142136,15.8974627 18.9142136,16.4497475 L18.9142136,18.4497475 C18.9142136,19.0020322 18.4664983,19.4497475 17.9142136,19.4497475 C17.3619288,19.4497475 16.9142136,19.0020322 16.9142136,18.4497475 L16.9142136,16.4497475 C16.9142136,15.8974627 17.3619288,15.4497475 17.9142136,15.4497475 Z M23.4497475,17.1568542 C23.8402718,17.5473785 23.8402718,18.1805435 23.4497475,18.5710678 L22.0355339,19.9852814 C21.6450096,20.3758057 21.0118446,20.3758057 20.6213203,19.9852814 C20.2307961,19.5947571 20.2307961,18.9615921 20.6213203,18.5710678 L22.0355339,17.1568542 C22.4260582,16.76633 23.0592232,16.76633 23.4497475,17.1568542 Z M12.6213203,17.1568542 C13.0118446,16.76633 13.6450096,16.76633 14.0355339,17.1568542 L15.4497475,18.5710678 C15.8402718,18.9615921 15.8402718,19.5947571 15.4497475,19.9852814 C15.0592232,20.3758057 14.4260582,20.3758057 14.0355339,19.9852814 L12.6213203,18.5710678 C12.2307961,18.1805435 12.2307961,17.5473785 12.6213203,17.1568542 Z"
+											fill="#000000" opacity="0.3"
+											transform="translate(18.035534, 17.863961) scale(1, -1) rotate(45.000000) translate(-18.035534, -17.863961)" />
+											</g>
+										</svg> <!--end::Svg Icon-->
+							</span>
+							</span>
+							<div class="d-flex flex-column flex-grow-1 mr-2">
+								<a href="#"
+									class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">Todays's Patient Count</a> 
+									<span class="text-muted font-size-sm"></span>
+							</div>
+							<span class="font-weight-bolder text-info py-1 font-size-lg" id="navbar_todays_patient_count"></span>
+						</div>
+						<!--end: Item-->
+						
+						
 					</div>
 					<!--end::Section-->
 				</div>
@@ -502,8 +466,8 @@
 					<div class="mb-5">
 						<h5 class="font-weight-bold mb-5">Charts</h5>
 						<div class="row gutter-b">
-			<div class="col-6">
-					<a href="feesReceiptPrinting.jsp"
+			<div class="col-6" id="navbar_temp_chart">
+					<a href="tempchartshow.jsp"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
 						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-attachment.svg-->
 							<svg xmlns="http://www.w3.org/2000/svg"
@@ -524,8 +488,8 @@
 					</a>
 				</div>
 				
-				<div class="col-6">
-					<a href="feesReceiptPrinting.jsp"
+				<div class="col-6" id="navbar_bp_chart">
+					<a href="bpsugarchartshow.jsp"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
 						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-attachment.svg-->
 							<svg xmlns="http://www.w3.org/2000/svg"
@@ -545,15 +509,11 @@
 					</span> <span class="d-block font-weight-bold font-size-h6 mt-2">BP  Chart</span>
 					</a>
 				</div>
-				
 				</div>
-			
-			
-			
 			<div class="row gutter-b">
 				<!--begin::Item-->
-				<div class="col-6">
-					<a href="feesReceiptPrinting.jsp"
+				<div class="col-6" id="navbar_temp_chart_pdf">
+					<a href="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/temp_chart.pdf"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
 						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-attachment.svg-->
 							<svg xmlns="http://www.w3.org/2000/svg"
@@ -575,8 +535,8 @@
 				</div>
 				<!--end::Item-->
 				<!--begin::Item-->
-				<div class="col-6">
-					<a href="feesReceiptPrinting.jsp"
+				<div class="col-6" id="navbar_bp_chart_pdf">
+					<a href="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/bp_sugar_chart.pdf"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
 						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-attachment.svg-->
 							<svg xmlns="http://www.w3.org/2000/svg"
@@ -598,7 +558,6 @@
 				</div>
 				<!--end::Item-->
 			</div>
-						
 					</div>
 					<!--end::Section-->
 				</div>
@@ -606,251 +565,17 @@
 			<div class="tab-pane fade show pt-3 pr-5 mr-n5 active"
 					id="kt_quick_panel_logs" role="tabpanel">
 					<!--begin::Section-->
-					
-					
 					<div class="mb-5">
 						<h5 class="font-weight-bold mb-5">Reports</h5>
-						
-						
-						<!-- <div class="card-body pt-0">
-												begin::Item
-												<div class="d-flex align-items-center flex-wrap mb-8">
-													begin::Symbol
-													<div class="symbol symbol-50 symbol-light mr-5">
-														<span class="symbol-label">
-															<img src="assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
-														</span>
-													</div>
-													end::Symbol
-													begin::Text
-													<div class="d-flex flex-column flex-grow-1 mr-2">
-														<a href="#" class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">Top Authors</a>
-														<span class="text-muted font-weight-bold">Mark, Rowling, Esther</span>
-													</div>
-													end::Text
-													<span class="label label-xl label-light label-inline my-lg-0 my-2 text-dark-50 font-weight-bolder">+82$</span>
-												</div>
-												end::Item
-												begin::Item
-												<div class="d-flex align-items-center flex-wrap mb-8">
-													begin::Symbol
-													<div class="symbol symbol-50 symbol-light mr-5">
-														<span class="symbol-label">
-															<img src="assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
-														</span>
-													</div>
-													end::Symbol
-													begin::Text
-													<div class="d-flex flex-column flex-grow-1 mr-2 my-2">
-														<a href="#" class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">Popular Authors</a>
-														<span class="text-muted font-weight-bold">Randy, Steve, Mike</span>
-													</div>
-													end::Text
-													<span class="label label-xl label-light label-inline my-lg-0 my-2 text-dark-50 font-weight-bolder">+280$</span>
-												</div>
-												end::Item
-												begin::Item
-												<div class="d-flex align-items-center flex-wrap mb-8">
-													begin::Symbol
-													<div class="symbol symbol-50 symbol-light mr-5">
-														<span class="symbol-label">
-															<img src="assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
-														</span>
-													</div>
-													end::Symbol
-													begin::Text
-													<div class="d-flex flex-column flex-grow-1 mr-2 my-2">
-														<a href="#" class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">New Users</a>
-														<span class="text-muted font-weight-bold">John, Pat, Jimmy</span>
-													</div>
-													end::Text
-													<span class="label label-xl label-light label-inline my-lg-0 my-2 text-dark-50 font-weight-bolder">+4500$</span>
-												</div>
-												end::Item
-												begin::Item
-												<div class="d-flex align-items-center flex-wrap mb-8">
-													begin::Symbol
-													<div class="symbol symbol-50 symbol-light mr-5">
-														<span class="symbol-label">
-															<img src="assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
-														</span>
-													</div>
-													end::Symbol
-													begin::Text
-													<div class="d-flex flex-column flex-grow-1 mr-2 my-2">
-														<a href="#" class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">Active Customers</a>
-														<span class="text-muted font-weight-bold">Sandra, Tim, Louis</span>
-													</div>
-													end::Text
-													<span class="label label-xl label-light label-inline my-lg-0 my-2 text-dark-50 font-weight-bolder">+4500$</span>
-												</div>
-												end::Item
-												begin::Item
-												<div class="d-flex align-items-center flex-wrap">
-													begin::Symbol
-													<div class="symbol symbol-50 symbol-light mr-5">
-														<span class="symbol-label">
-															<img src="assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
-														</span>
-													</div>
-													end::Symbol
-													begin::Text
-													<div class="d-flex flex-column flex-grow-1 mr-2 my-2">
-														<a href="#" class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">Bestseller Theme</a>
-														<span class="text-muted font-weight-bold">Disco, Retro, Sports</span>
-													</div>
-													end::Text
-												</div>
-												end::Item
-											</div> -->
-						
-						<div class="card card-custom card-stretch gutter-b">
-											<!--begin::Header-->
-											<div class="card-header border-0 pt-6 mb-2">
-												<h3 class="card-title align-items-start flex-column">
-													<span class="card-label font-weight-bold font-size-h4 text-dark-75 mb-3">Stock Info</span>
-													<span class="text-muted font-weight-bold font-size-sm">4 of 2,770 Total Items</span>
-												</h3>
-												<div class="card-toolbar">
-													<a href="#" class="btn btn-light-info btn-sm font-weight-bolder font-size-sm py-3 px-6">Upload</a>
-												</div>
-											</div>
-											<!--end::Header-->
-											<!--begin::Body-->
-											<div class="card-body pt-2">
-												<!--begin::Table-->
-												<div class="table-responsive">
-													<table class="table table-borderless mb-0">
-														<tbody>
-															<!--begin::Item-->
-															<tr>
-																<td class="w-40px align-middle pb-6 pl-0 pr-2">
-																	<!--begin::Symbol-->
-																	<div class="symbol symbol-40 symbol-light-success">
-																		<span class="symbol-label">
-																			<span class="svg-icon svg-icon-lg svg-icon-success">
-																				<!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Cart3.svg-->
-																				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																						<rect x="0" y="0" width="24" height="24" />
-																						<path d="M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-																						<path d="M3.5,9 L20.5,9 C21.0522847,9 21.5,9.44771525 21.5,10 C21.5,10.132026 21.4738562,10.2627452 21.4230769,10.3846154 L17.7692308,19.1538462 C17.3034221,20.271787 16.2111026,21 15,21 L9,21 C7.78889745,21 6.6965779,20.271787 6.23076923,19.1538462 L2.57692308,10.3846154 C2.36450587,9.87481408 2.60558331,9.28934029 3.11538462,9.07692308 C3.23725479,9.02614384 3.36797398,9 3.5,9 Z M12,17 C13.1045695,17 14,16.1045695 14,15 C14,13.8954305 13.1045695,13 12,13 C10.8954305,13 10,13.8954305 10,15 C10,16.1045695 10.8954305,17 12,17 Z" fill="#000000" />
-																					</g>
-																				</svg>
-																				<!--end::Svg Icon-->
-																			</span>
-																		</span>
-																	</div>
-																	<!--end::Symbol-->
-																</td>
-																<td class="font-size-lg font-weight-bolder text-dark-75 align-middle w-150px pb-6">Top Authors</td>
-																<td class="font-weight-bold text-muted text-right align-middle pb-6">4600 Users</td>
-																<td class="font-weight-bolder font-size-lg text-dark-75 text-right align-middle pb-6">5.4MB</td>
-															</tr>
-															<!--end::Item-->
-															<!--begin::Item-->
-															<tr>
-																<td class="w-40px pb-6 pl-0 pr-2">
-																	<!--begin::Symbol-->
-																	<div class="symbol symbol-40 symbol-light-danger align-middle">
-																		<span class="symbol-label">
-																			<span class="svg-icon svg-icon-lg svg-icon-danger">
-																				<!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
-																				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																						<rect x="0" y="0" width="24" height="24" />
-																						<rect fill="#000000" x="4" y="4" width="7" height="7" rx="1.5" />
-																						<path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" fill="#000000" opacity="0.3" />
-																					</g>
-																				</svg>
-																				<!--end::Svg Icon-->
-																			</span>
-																		</span>
-																	</div>
-																	<!--end::Symbol-->
-																</td>
-																<td class="font-size-lg font-weight-bolder text-dark-75 w-150px align-middle pb-6">Popular Authors</td>
-																<td class="font-weight-bold text-muted text-right align-middle pb-6">7200 Users</td>
-																<td class="font-weight-bolder font-size-lg text-dark-75 text-right align-middle pb-6">2.8MB</td>
-															</tr>
-															<!--end::Item-->
-															<!--begin::Item-->
-															<tr>
-																<td class="w-40px pb-6 pl-0 pr-2">
-																	<!--begin::Symbol-->
-																	<div class="symbol symbol-40 symbol-light-primary align-middle">
-																		<span class="symbol-label">
-																			<span class="svg-icon svg-icon-lg svg-icon-primary">
-																				<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
-																				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																						<polygon points="0 0 24 0 24 24 0 24" />
-																						<path d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-																						<path d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
-																					</g>
-																				</svg>
-																				<!--end::Svg Icon-->
-																			</span>
-																		</span>
-																	</div>
-																	<!--end::Symbol-->
-																</td>
-																<td class="font-size-lg font-weight-bolder text-dark-75 w-150px align-middle pb-6">New Users</td>
-																<td class="font-weight-bold text-muted text-right align-middle pb-6">890 Users</td>
-																<td class="font-weight-bolder font-size-lg text-dark-75 text-right align-middle pb-6">1.5MB</td>
-															</tr>
-															<!--end::Item-->
-															<!--begin::Item-->
-															<tr>
-																<td class="w-40px pl-0 pr-2">
-																	<!--begin::Symbol-->
-																	<div class="symbol symbol-40 symbol-light-warning align-middle">
-																		<span class="symbol-label">
-																			<span class="svg-icon svg-icon-lg svg-icon-warning">
-																				<!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
-																				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-																					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																						<rect x="0" y="0" width="24" height="24" />
-																						<path d="M5,3 L6,3 C6.55228475,3 7,3.44771525 7,4 L7,20 C7,20.5522847 6.55228475,21 6,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,4 C4,3.44771525 4.44771525,3 5,3 Z M10,3 L11,3 C11.5522847,3 12,3.44771525 12,4 L12,20 C12,20.5522847 11.5522847,21 11,21 L10,21 C9.44771525,21 9,20.5522847 9,20 L9,4 C9,3.44771525 9.44771525,3 10,3 Z" fill="#000000" />
-																						<rect fill="#000000" opacity="0.3" transform="translate(17.825568, 11.945519) rotate(-19.000000) translate(-17.825568, -11.945519)" x="16.3255682" y="2.94551858" width="3" height="18" rx="1" />
-																					</g>
-																				</svg>
-																				<!--end::Svg Icon-->
-																			</span>
-																		</span>
-																	</div>
-																	<!--end::Symbol-->
-																</td>
-																<td class="font-size-lg font-weight-bolder text-dark-75 w-150px align-middle">Active Customers</td>
-																<td class="font-weight-bold text-muted text-right align-middle">6370 Users</td>
-																<td class="font-weight-bolder font-size-lg text-dark-75 text-right align-middle">890KB</td>
-															</tr>
-															<!--end::Item-->
-														</tbody>
-													</table>
-												</div>
-												<!--end::Table-->
-											</div>
-											<!--end::Body-->
-										</div>
-						
-						
-						
-						
-						
-						
-						
-						
 						<!--begin: Item-->
 						<div class="menu">
 							<ul class="menu-nav">		
-							
-										<li class="menu-item menu-item-active" aria-haspopup="true">
+							<li class="menu-item menu-item-active mb-1" aria-haspopup="true" id="patient_reports">
 								<a href="./patientWiseReport.jsp" class="menu-link"> <span
 									class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg"
-											xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-											height="24px" viewBox="0 0 24 24" version="1.1">
+											xmlns:xlink="http://www.w3.org/1999/xlink" width="80px"
+											height="80px" viewBox="0 0 24 24" version="1.1">
 												<g stroke="none" stroke-width="1" fill="none"
 												fill-rule="evenodd">
 													<polygon points="0 0 24 0 24 24 0 24" />
@@ -862,10 +587,10 @@
 												fill="#000000" opacity="0.3" />
 												</g>
 											</svg> <!--end::Svg Icon-->
-								</span> <span class="menu-text">Patient Report</span>
+								</span><font size="3" class="font-weight-bold mb-10 text-black" style="font-family:verdana;">  Patient Report  </font>
 							</a>
 							</li>
-										<li class="menu-item menu-item-active" aria-haspopup="true">
+										<li class="menu-item menu-item-active mb-1" aria-haspopup="true" id="city_reports">
 								<a href="./CityWiseReport.jsp" class="menu-link"> <span
 									class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg"
@@ -882,11 +607,11 @@
 												fill="#000000" opacity="0.3" />
 												</g>
 											</svg> <!--end::Svg Icon-->
-								</span> <span class="menu-text">City Report</span>
+								</span> <font size="3" class="font-weight-bold mb-10 text-black" style="font-family:verdana;">  City Report  </font>
 							</a>
 							</li>
 							
-							<li class="menu-item menu-item-active" aria-haspopup="true">
+							<li class="menu-item menu-item-active mb-1" aria-haspopup="true" id="diagnosis_reports">
 								<a href="./DiagnosisWiseReport.jsp" class="menu-link"> <span
 									class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg"
@@ -903,10 +628,10 @@
 												fill="#000000" opacity="0.3" />
 												</g>
 											</svg> <!--end::Svg Icon-->
-								</span> <span class="menu-text">Diagnosis Report</span>
+								</span> <font size="3" class="font-weight-bold mb-10 text-black" style="font-family:verdana;">   Diagnosis Report </font>
 							</a>
 							</li>
-									<li class="menu-item menu-item-active" aria-haspopup="true">
+									<li class="menu-item menu-item-active mb-1" aria-haspopup="true" id="city_wise_patient_count_reports">
 								<a href="./CityWisePatientCountjsp.jsp" class="menu-link"> <span
 									class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg"
@@ -923,12 +648,12 @@
 												fill="#000000" opacity="0.3" />
 												</g>
 											</svg> <!--end::Svg Icon-->
-								</span> <span class="menu-text">City Wise Patient Count</span>
+								</span> <font size="3" class="font-weight-bold mb-10 text-black" style="font-family:verdana; "> City Wise Patient Count</font>
 							</a>
 							</li>	
 
 										
-										<li class="menu-item menu-item-active" aria-haspopup="true">
+										<li class="menu-item menu-item-active mb-1" aria-haspopup="true" id="fees_collection">
 								<a href="./FeesCollection.jsp" class="menu-link"> <span
 									class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg"
@@ -945,10 +670,10 @@
 												fill="#000000" opacity="0.3" />
 												</g>
 											</svg> <!--end::Svg Icon-->
-								</span> <span class="menu-text">Fees Collection </span>
+								</span> <font size="3" class="font-weight-bold mb-10 text-black" style="font-family:verdana; "> Fees Collection </font>
 							</a>
 							</li>
-<li class="menu-item menu-item-active" aria-haspopup="true">
+<li class="menu-item menu-item-active mb-1" aria-haspopup="true" id="medical_representative_reports">
 								<a href="./mr_visit_report.jsp" class="menu-link"> <span
 									class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg"
@@ -965,11 +690,11 @@
 												fill="#000000" opacity="0.3" />
 												</g>
 											</svg> <!--end::Svg Icon-->
-								</span> <span class="menu-text">Medical Representative  </span>
+								</span> <font size="3" class="font-weight-bold mb-10 text-black" style="font-family:verdana;"> Medical Representative  </font>
 							</a>
 							</li>
 										
-										<li class="menu-item menu-item-active" aria-haspopup="true">
+							<li class="menu-item menu-item-active mb-1" aria-haspopup="true" id="income_and_expenses_reports">
 								<a href="./income_n_expenses_search.jsp" class="menu-link"> <span
 									class="svg-icon menu-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
 										<svg xmlns="http://www.w3.org/2000/svg"
@@ -986,14 +711,11 @@
 												fill="#000000" opacity="0.3" />
 												</g>
 											</svg> <!--end::Svg Icon-->
-								</span> <span class="menu-text">Income & Expenses  </span>
+								</span> <font size="3" class="font-weight-bold mb-10 text-black" style="font-family:verdana; "> Income & Expenses </font>
 							</a>
 							</li>
-										
 									</ul>
 								</div>
-						
-						
 						<!--end: Item-->
 					</div>
 					<!--end::Section-->
@@ -1002,7 +724,6 @@
 		</div>
 		<!--end::Content-->
 	</div>
-	
 	
 	<div id="kt_quick_notifications" class="offcanvas offcanvas-right p-10">
 		<!--begin::Header-->
@@ -1018,221 +739,8 @@
 			</a>
 		</div>
 		<!--end::Header-->
-		<!--begin::Content-->
-		<!-- <div class="offcanvas-content pr-5 mr-n5">
-			begin::Nav
-			<div class="navi navi-icon-circle navi-spacer-x-0">
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon-bell text-success icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">5 new user
-								generated report</div>
-							<div class="text-muted">Reports based on sales</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon2-box text-danger icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">2 new items
-								submited</div>
-							<div class="text-muted">by Grog John</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon-psd text-primary icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">79 PSD files
-								generated</div>
-							<div class="text-muted">Reports based on sales</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon2-supermarket text-warning icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">$2900 worth
-								producucts sold</div>
-							<div class="text-muted">Total 234 items</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon-paper-plane-1 text-success icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">4.5h-avarage
-								response time</div>
-							<div class="text-muted">Fostest is Barry</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon-safe-shield-protection text-danger icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">3 Defence alerts</div>
-							<div class="text-muted">40% less alerts thar last week</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon-notepad text-primary icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">Avarage 4 blog
-								posts per author</div>
-							<div class="text-muted">Most posted 12 time</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon-users-1 text-warning icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">16 authors
-								joined last week</div>
-							<div class="text-muted">9 photodrapehrs, 7 designer</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon2-box text-info icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">2 new items have
-								been submited</div>
-							<div class="text-muted">by Grog John</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon2-download text-success icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">2.8 GB-total
-								downloads size</div>
-							<div class="text-muted">Mostly PSD end AL concepts</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon2-supermarket text-danger icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">$2900 worth
-								producucts sold</div>
-							<div class="text-muted">Total 234 items</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon-bell text-primary icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">7 new user
-								generated report</div>
-							<div class="text-muted">Reports based on sales</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-				begin::Item
-				<a href="#" class="navi-item">
-					<div class="navi-link rounded">
-						<div class="symbol symbol-50 symbol-circle mr-3">
-							<div class="symbol-label">
-								<i class="flaticon-paper-plane-1 text-success icon-lg"></i>
-							</div>
-						</div>
-						<div class="navi-text">
-							<div class="font-weight-bold font-size-lg">4.5h-avarage
-								response time</div>
-							<div class="text-muted">Fostest is Barry</div>
-						</div>
-					</div>
-				</a>
-				end::Item
-			</div>
-			end::Nav
-		</div> -->
-		<!--end::Content-->
+		
+		<div class="card-body pt-2" id="appointment_list"></div>
 	</div>
 	
 	<div id="kt_quick_actions" class="offcanvas offcanvas-right p-10">
@@ -1253,32 +761,23 @@
 		<div class="offcanvas-content pr-5 mr-n5">
 			
 			<div class="row gutter-b">
-			<div class="col-6">
+			<div class="col-6" id="navbar_new_patient_entry">
 					<a href="./form-wizard.jsp"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
-						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> 
-							<svg xmlns="http://www.w3.org/2000/svg"
-								xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-								height="24px" viewBox="0 0 24 24" version="1.1">
-									<g stroke="none" stroke-width="1" fill="none"
-									fill-rule="evenodd">
-										<polygon points="0 0 24 0 24 24 0 24" />
-										<path
-									d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
-									fill="#000000" fill-rule="nonzero" opacity="0.3" />
-										<path
-									d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
-									fill="#000000" fill-rule="nonzero" />
-									</g>
-								</svg> 
-					</span> <span class="d-block font-weight-bold font-size-h6 mt-2">New Patient Entry</span>
+						<span class="svg-icon svg-icon-primary svg-icon-3x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo5/dist/../src/media/svg/icons/Communication/Add-user.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon points="0 0 24 0 24 24 0 24"/>
+        <path d="M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+        <path d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero"/>
+    </g>
+</svg><!--end::Svg Icon--></span> <span class="d-block font-weight-bold font-size-h6 mt-2">New Patient Entry</span>
 					</a>
 				</div>
 				
-				<div class="col-6">
+				<div class="col-6" id="navbar_prescription_print">
 					<a href="./prescriptionPrint.jsp"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
-						<span class="svg-icon svg-icon-3x svg-icon-primary m-0">
+						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-attachment.svg-->
 							<svg xmlns="http://www.w3.org/2000/svg"
 								xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
 								height="24px" viewBox="0 0 24 24" version="1.1">
@@ -1286,13 +785,13 @@
 									fill-rule="evenodd">
 										<rect x="0" y="0" width="24" height="24" />
 										<path
-									d="M4.3618034,10.2763932 L4.8618034,9.2763932 C4.94649941,9.10700119 5.11963097,9 5.30901699,9 L15.190983,9 C15.4671254,9 15.690983,9.22385763 15.690983,9.5 C15.690983,9.57762255 15.6729105,9.65417908 15.6381966,9.7236068 L15.1381966,10.7236068 C15.0535006,10.8929988 14.880369,11 14.690983,11 L4.80901699,11 C4.53287462,11 4.30901699,10.7761424 4.30901699,10.5 C4.30901699,10.4223775 4.32708954,10.3458209 4.3618034,10.2763932 Z M14.6381966,13.7236068 L14.1381966,14.7236068 C14.0535006,14.8929988 13.880369,15 13.690983,15 L4.80901699,15 C4.53287462,15 4.30901699,14.7761424 4.30901699,14.5 C4.30901699,14.4223775 4.32708954,14.3458209 4.3618034,14.2763932 L4.8618034,13.2763932 C4.94649941,13.1070012 5.11963097,13 5.30901699,13 L14.190983,13 C14.4671254,13 14.690983,13.2238576 14.690983,13.5 C14.690983,13.5776225 14.6729105,13.6541791 14.6381966,13.7236068 Z"
+									d="M14.8571499,13 C14.9499122,12.7223297 15,12.4263059 15,12.1190476 L15,6.88095238 C15,5.28984632 13.6568542,4 12,4 L11.7272727,4 C10.2210416,4 9,5.17258756 9,6.61904762 L10.0909091,6.61904762 C10.0909091,5.75117158 10.823534,5.04761905 11.7272727,5.04761905 L12,5.04761905 C13.0543618,5.04761905 13.9090909,5.86843034 13.9090909,6.88095238 L13.9090909,12.1190476 C13.9090909,12.4383379 13.8240964,12.7385644 13.6746497,13 L10.3253503,13 C10.1759036,12.7385644 10.0909091,12.4383379 10.0909091,12.1190476 L10.0909091,9.5 C10.0909091,9.06606198 10.4572216,8.71428571 10.9090909,8.71428571 C11.3609602,8.71428571 11.7272727,9.06606198 11.7272727,9.5 L11.7272727,11.3333333 L12.8181818,11.3333333 L12.8181818,9.5 C12.8181818,8.48747796 11.9634527,7.66666667 10.9090909,7.66666667 C9.85472911,7.66666667 9,8.48747796 9,9.5 L9,12.1190476 C9,12.4263059 9.0500878,12.7223297 9.14285008,13 L6,13 C5.44771525,13 5,12.5522847 5,12 L5,3 C5,2.44771525 5.44771525,2 6,2 L18,2 C18.5522847,2 19,2.44771525 19,3 L19,12 C19,12.5522847 18.5522847,13 18,13 L14.8571499,13 Z"
 									fill="#000000" opacity="0.3" />
 										<path
-									d="M17.369,7.618 C16.976998,7.08599734 16.4660031,6.69750122 15.836,6.4525 C15.2059968,6.20749878 14.590003,6.085 13.988,6.085 C13.2179962,6.085 12.5180032,6.2249986 11.888,6.505 C11.2579969,6.7850014 10.7155023,7.16999755 10.2605,7.66 C9.80549773,8.15000245 9.45550123,8.72399671 9.2105,9.382 C8.96549878,10.0400033 8.843,10.7539961 8.843,11.524 C8.843,12.3360041 8.96199881,13.0779966 9.2,13.75 C9.43800119,14.4220034 9.7774978,14.9994976 10.2185,15.4825 C10.6595022,15.9655024 11.1879969,16.3399987 11.804,16.606 C12.4200031,16.8720013 13.1129962,17.005 13.883,17.005 C14.681004,17.005 15.3879969,16.8475016 16.004,16.5325 C16.6200031,16.2174984 17.1169981,15.8010026 17.495,15.283 L19.616,16.774 C18.9579967,17.6000041 18.1530048,18.2404977 17.201,18.6955 C16.2489952,19.1505023 15.1360064,19.378 13.862,19.378 C12.6999942,19.378 11.6325049,19.1855019 10.6595,18.8005 C9.68649514,18.4154981 8.8500035,17.8765035 8.15,17.1835 C7.4499965,16.4904965 6.90400196,15.6645048 6.512,14.7055 C6.11999804,13.7464952 5.924,12.6860058 5.924,11.524 C5.924,10.333994 6.13049794,9.25950479 6.5435,8.3005 C6.95650207,7.34149521 7.5234964,6.52600336 8.2445,5.854 C8.96550361,5.18199664 9.8159951,4.66400182 10.796,4.3 C11.7760049,3.93599818 12.8399943,3.754 13.988,3.754 C14.4640024,3.754 14.9609974,3.79949954 15.479,3.8905 C15.9970026,3.98150045 16.4939976,4.12149906 16.97,4.3105 C17.4460024,4.49950095 17.8939979,4.7339986 18.314,5.014 C18.7340021,5.2940014 19.0909985,5.62999804 19.385,6.022 L17.369,7.618 Z"
+									d="M9,10.3333333 L9,12.1190476 C9,13.7101537 10.3431458,15 12,15 C13.6568542,15 15,13.7101537 15,12.1190476 L15,10.3333333 L20.2072547,6.57253826 C20.4311176,6.4108595 20.7436609,6.46126971 20.9053396,6.68513259 C20.9668779,6.77033951 21,6.87277228 21,6.97787787 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,6.97787787 C3,6.70173549 3.22385763,6.47787787 3.5,6.47787787 C3.60510559,6.47787787 3.70753836,6.51099993 3.79274528,6.57253826 L9,10.3333333 Z M10.0909091,11.1212121 L12,12.5 L13.9090909,11.1212121 L13.9090909,12.1190476 C13.9090909,13.1315697 13.0543618,13.952381 12,13.952381 C10.9456382,13.952381 10.0909091,13.1315697 10.0909091,12.1190476 L10.0909091,11.1212121 Z"
 									fill="#000000" />
 									</g>
-								</svg>
+								</svg> <!--end::Svg Icon-->
 					</span> <span class="d-block font-weight-bold font-size-h6 mt-2">Prescription Print</span>
 					</a>
 				</div>
@@ -1303,7 +802,7 @@
 			
 			<div class="row gutter-b">
 				<!--begin::Item-->
-				<div class="col-6">
+				<div class="col-6" id="navbar_fee_collection">
 					<a href="fee_module.jsp"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
 						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Euro.svg-->
@@ -1326,7 +825,7 @@
 				</div>
 				<!--end::Item-->
 				<!--begin::Item-->
-				<div class="col-6">
+				<div class="col-6" id="navbar_fee_receipt_printing">
 					<a href="feesReceiptPrinting.jsp"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
 						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-attachment.svg-->
@@ -1351,7 +850,7 @@
 			</div>
 			<div class="row gutter-b">
 				<!--begin::Item-->
-				<div class="col-6">
+				<div class="col-6" id="navbar_mr_entry">
 					<a href="./mr_entry_screen.jsp"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
 						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> 
@@ -1374,7 +873,7 @@
 				</div>
 				<!--end::Item-->
 				<!--begin::Item-->
-				<div class="col-6">
+				<div class="col-6" id="navbar_purchase_entry">
 					<a href="./purchase_screen.jsp"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
 						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Box2.svg-->
@@ -1399,7 +898,7 @@
 			</div>
 			<div class="row gutter-b">
 				<!--begin::Item-->
-				<div class="col-6">
+				<div class="col-6" id="navbar_certificate">
 					<a href="./certificate-parameter.jsp"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
 						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Chart-bar1.svg-->
@@ -1425,7 +924,7 @@
 				</div>
 				<!--end::Item-->
 				<!--begin::Item-->
-				<div class="col-6">
+				<div class="col-6" id="navbar_notice">
 					<a href="./notice.jsp"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
 						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Color-profile.svg-->
@@ -1448,38 +947,445 @@
 			</div>
 			<div class="row gutter-b">
 				<!--begin::Item-->
-				<div class="col-6">
+				<div class="col-6" id="navbar_update_patient_details">
 					<a href="./patientDetailsUpdate.jsp"
 						class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5">
-						<span class="svg-icon svg-icon-3x svg-icon-primary m-0"> 
-							<svg xmlns="http://www.w3.org/2000/svg"
-								xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-								height="24px" viewBox="0 0 24 24" version="1.1">
-									<g stroke="none" stroke-width="1" fill="none"
-									fill-rule="evenodd">
-										<polygon points="0 0 24 0 24 24 0 24" />
-										<path
-									d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
-									fill="#000000" fill-rule="nonzero" opacity="0.3" />
-										<path
-									d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
-									fill="#000000" fill-rule="nonzero" />
-									</g>
-								</svg> 
-					</span> <span class="d-block font-weight-bold font-size-h6 mt-2">Update Patient Details</span>
+						<span class="svg-icon svg-icon-primary svg-icon-3x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo5/dist/../src/media/svg/icons/Communication/Delete-user.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon points="0 0 24 0 24 24 0 24"/>
+        <path d="M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z M21,8 L17,8 C16.4477153,8 16,7.55228475 16,7 C16,6.44771525 16.4477153,6 17,6 L21,6 C21.5522847,6 22,6.44771525 22,7 C22,7.55228475 21.5522847,8 21,8 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+        <path d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero"/>
+    </g>
+</svg><!--end::Svg Icon--></span> <span class="d-block font-weight-bold font-size-h6 mt-2">Update Patient Details</span>
 					</a>
 				</div>
 				<!--end::Item-->
-				
+				<%
+			String session1 = (String) session.getAttribute("login_id");
+			if (session.getAttribute("login_id") != null) {
+				String sessionName = (String) session.getAttribute("login_id");
+		
+			} else
+			response.sendRedirect("LoginForm.html");
+			%>
 			</div>
 		</div>
 		<!--end::Content-->
 	</div>
 	
+	<script>
+	var basePath='<%=basePath%>';    
+	var base='<%=base%>';
+	var session1='<%=session1%>';
+	
+	$('#navbar_calculation_details').hide();
+	
+	$('#role_master').hide();
+	$('#user_master').hide();	
+	$('#medicine_category_master').hide();	
+	$('#medicine_type_master').hide();	
+	$('#medicine_master').hide();	
+	$('#medicine_template_master').hide();	
+	$('#diagnosis_master').hide();	
+	$('#complaint_master').hide();	
+	$('#company_master').hide();	
+	$('#advice_master').hide();	
+	$('#district_master').hide();	
+	$('#qualification_master').hide();	
+	$('#remark_master').hide();	
+	$('#upi_master').hide();	
+	$('#city_master').hide();	
+	
+	$('#navbar_new_patient_entry').hide();
+	$('#navbar_prescription_print').hide();
+	$('#navbar_fee_collection').hide();
+	$('#navbar_fee_receipt_printing').hide();
+	$('#navbar_mr_entry').hide();
+	$('#navbar_purchase_entry').hide();
+	$('#navbar_certificate').hide();
+	$('#navbar_notice').hide();
+	$('#navbar_update_patient_details').hide();
+	
+	$('#patient_reports').hide();
+	$('#city_reports').hide();
+	$('#diagnosis_reports').hide();
+	$('#city_wise_patient_count_reports').hide();
+	$('#fees_collection').hide();
+	$('#medical_representative_reports').hide();
+	$('#income_and_expenses_reports').hide();
+	
+	$('#navbar_temp_chart').hide();
+	$('#navbar_bp_chart').hide();
+	$('#navbar_temp_chart_pdf').hide();
+	$('#navbar_bp_chart_pdf').hide();
+	
+	var login_id;
+	var password;
+	var navbar_user_name;
+	
+	$.ajax({
+		url : base + "/dssAPI/dfapi/getUser_Role_Details",
+		type : "post",
+		dataType : "json",
+		async : false,
+		data : {"flag":1,},
+		success:function(data)
+        {
+			const row = data.find(d => d.login_id == session1);
+			if(row != null){
+				navbar_user_name = row.users_name;
+				login_id = row.login_id;
+				password = row.password;
+				$('#navbar_user_login').text(row.login_id);
+				$('#navbar_user_name').text(row.users_name);
+				$('#navbar_user_email').text(row.email_id);
+				$('#navbar_calculation_details').show();
+				var role_permission = row.role_permission;
+				const myArray = role_permission.split(",");
+				if(myArray[0] == "Y"){
+					$('#role_master').show();	
+					}
+				if(myArray[1] == "Y"){
+					$('#user_master').show();	
+					}
+				if(myArray[2] == "Y"){
+					$('#medicine_category_master').show();		
+					}
+				if(myArray[3] == "Y"){
+					$('#medicine_type_master').show();	
+					}
+				if(myArray[4] == "Y"){
+					$('#medicine_master').show();	
+					}
+				if(myArray[5] == "Y"){
+					$('#medicine_template_master').show();	
+					}
+				if(myArray[6] == "Y"){
+					$('#diagnosis_master').show();	
+					}
+				if(myArray[7] == "Y"){
+					$('#complaint_master').show();	
+					}
+				if(myArray[8] == "Y"){
+					$('#company_master').show();	
+					}
+				if(myArray[9] == "Y"){
+					$('#advice_master').show();	
+					}
+				if(myArray[10] == "Y"){
+					$('#district_master').show();	
+					}
+				if(myArray[11] == "Y"){
+					$('#qualification_master').show();	
+					}
+				if(myArray[12] == "Y"){
+					$('#remark_master').show();		
+					}
+				if(myArray[13] == "Y"){
+					$('#upi_master').show();	
+					}
+				if(myArray[14] == "Y"){
+					$('#city_master').show();	
+					}
+				
+				//Transaction Screen
+				if(myArray[15] == "Y"){
+					$('#navbar_new_patient_entry').show();	
+					}
+				if(myArray[16] == "Y"){
+					$('#navbar_prescription_print').show();	
+					}
+				if(myArray[17] == "Y"){
+					$('#navbar_fee_collection').show();	
+					}
+				if(myArray[18] == "Y"){
+					$('#navbar_fee_receipt_printing').show();	
+					}
+				if(myArray[19] == "Y"){
+					$('#navbar_mr_entry').show();	
+					}
+				if(myArray[20] == "Y"){
+					$('#navbar_purchase_entry').show();	
+					}
+				if(myArray[21] == "Y"){
+					$('#navbar_certificate').show();	
+					}
+				if(myArray[22] == "Y"){
+					$('#navbar_notice').show();	
+					}
+				if(myArray[23] == "Y"){
+					$('#navbar_update_patient_details').show();	
+					}
+				if(myArray[24] == "Y"){
+					$('#navbar_purchase_entry').show();	
+					}
+				if(myArray[25] == "Y"){
+					$('#navbar_certificate').show();	
+					}
+				if(myArray[26] == "Y"){
+					$('#navbar_notice').show();	
+					}
+				if(myArray[27] == "Y"){
+					$('#navbar_update_patient_details').show();	
+					}
+				//Reports
+				if(myArray[28] == "Y"){
+					$('#patient_reports').show();	
+					}
+				if(myArray[29] == "Y"){
+					$('#city_reports').show();	
+					}
+				if(myArray[30] == "Y"){
+					$('#diagnosis_reports').show();	
+					}
+				if(myArray[31] == "Y"){
+					$('#city_wise_patient_count_reports').show();	
+					}
+				if(myArray[32] == "Y"){
+					$('#fees_collection').show();	
+					}
+				if(myArray[33] == "Y"){
+					$('#medical_representative_reports').show();	
+					}
+				if(myArray[34] == "Y"){
+					$('#income_and_expenses_reports').show();	
+					}
+				//charts
+				if(myArray[35] == "Y"){
+					$('#navbar_temp_chart').show();	
+					}
+				if(myArray[36] == "Y"){
+					$('#navbar_temp_chart_pdf').show();	
+					}
+				if(myArray[37] == "Y"){
+					$('#navbar_bp_chart').show();	
+					}
+				if(myArray[38] == "Y"){
+					$('#navbar_bp_chart_pdf').show();	
+					}
+			}
+        } 
+	});	
+	$('#dashboard').click(function(){
+		var url = "/doctorsFriend/form/home/index.jsp"  + '?login_id=' + login_id ;  
+		window.location.assign(url);
+	})
+	$('#dashboard_logo').click(function(){
+		var url = "/doctorsFriend/form/home/index.jsp"  + '?login_id=' + login_id ;  
+		window.location.assign(url);
+	})
+	$('#sign_out').click(function(){
+		var url = "logout.jsp" ;  
+		Swal.fire({
+	        title: "GOOD BYE!",
+	        text: "Have A Nice Day " + navbar_user_name,
+	        icon: "success",
+	        timer: 3000,
+	        onOpen: function() {
+	            Swal.showLoading()
+	        }
+	    }).then(function(result) {
+	        if (result.dismiss === "timer") {
+	        	window.location.assign(url);
+	        }
+	    })
+	});
+	
+	var appointment_count = 0;
+	$.ajax({
+		url : base + "/dssAPI/dfapi/getAppoinmentDetails",
+		type : "post",
+		dataType : "json",
+		async : false,
+		data : {
+			"flag" : 1
+		},
+		success : function(data) {
+			if (data != null) {
+				data.forEach(function(e) {
+					appointment_count++;
+							$('#appointment_list')
+									.append(
+											'<div class="d-flex align-items-center mb-5"><div class="d-flex flex-column font-weight-bold"><a href="javascript:updatebyNavbar('+e.appointment_no+');" class="text-dark text-hover-primary mb-1 font-size-lg">'
+													+ e.patient_name
+													+ ' </a>'
+													+ e.city
+													+ '</span></div><a href="javascript:navbardeleteById('+e.appointment_no+');" class="btn btn-xs btn-icon ml-20 btn-light btn-hover-primary"	> <i class="ki ki-close icon-xs text-muted"></i> </a><span class="text-muted"></div>')
+						});
+			}
+		}
+	});
+	
+	$.ajax({
+		url : base + "/dssAPI/dfapi/getNavbarCollection",
+		type : "post",
+		dataType : "json",
+		async : false,
+		data : {
+			"flag" : 1
+		},
+		success : function(data) {
+			var row = data[0];
+			if (row != null) {
+
+			    $('#navbar_todays_patient_count').text(row.todays_visit_count);
+				$('#navbar_total_patient_count').text(row.patient_count);
+				
+				
+				$('#navbar_todays_expences').text(parseFloat(row.todays_expences).toFixed(2)); 
+				$('#navbar_total_collection').text(parseFloat(row.total_collection).toFixed(2));
+				if (row.todays_collection != null) {
+					$('#navbar_todays_collection').text(
+							parseFloat(row.todays_collection).toFixed(2) + ' RS');
+				} else {
+					$('#navbar_todays_collection').text('0');
+				}
+				
+			}
+		}
+	});
+
 	
 	
+function updatebyNavbar(id){
+	$.ajax({
+		url : base + "/dssAPI/dfapi/getAppoinmentDetails",
+		type : "post",
+		dataType : "json",
+		async : false,
+		data : {
+			"flag" : 1
+		},
+		success : function(data) {
+			if (data != null) {
+				data.forEach(function(e) {
+					if(e.appointment_no == id)
+					{
+						var url = "form-wizard.jsp" + '?pcode=' + e.patient_code;
+						window.location.assign(url);
+					}
+				});
+			}
+		}
+	});
+}	
 	
-			<%
+function navbardeleteById(id){
+	alert(id);	
+	Swal.fire({
+		    title: "Are you sure?",
+			text: "You want to Cancle Appointment..!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "No, cancel!",
+			reverseButtons: true
+					    }).then(function(result) {
+					        if (result.value) {
+					        	$.ajax({
+									url : base + "/dssAPI/dfapi/insertUpdateAppointmentBooking",
+									type : "post",
+									dataType : "json",
+									async : false,
+									data : {
+										"appointment_id" : id,
+										"status" :0,
+										"flag" : 3
+									},
+									error : function(xhr) {
+										var msg = "(Data deletion failed. Error : "
+												+ xhr.status
+												+ " "
+												+ xhr.statusText;
+										$('#warning_msg').text(msg);
+										 $('#warning_alert').addClass("show");
+								           $('#warning_alert').removeClass("hide");
+								           $('#warning_alert').addClass("showAlert");
+								           setTimeout(function(){
+								             $('#warning_alert').removeClass("show");
+								             $('#warning_alert').addClass("hide");
+								           },2000);
+									},
+									success : function(response) {
+										if (response != null) {
+											if (response >=1) {
+												var msg = "Appointment Canceled...!";
+												$('#danger_msg').text(msg);
+												 $('#danger_alert').addClass("show");
+										           $('#danger_alert').removeClass("hide");
+										           $('#danger_alert').addClass("showAlert");
+										           setTimeout(function(){
+										             $('#danger_alert').removeClass("show");
+										             $('#danger_alert').addClass("hide");
+										           },2000);
+												location.reload(true);
+
+											} else {
+												Swal.fire({text : "deletion failed!",
+														   icon : "error",
+														   buttonsStyling : false,
+														   confirmButtonText : "Ok, got it!",
+														   customClass : {
+														   confirmButton : "btn font-weight-bold btn-light-primary"
+														  }
+													     })
+														.then(function() {KTUtil.scrollTop();});
+											}
+										}
+									}
+
+								});
+					        } else if (result.dismiss === "cancel") {
+					            window.location.reload();
+					        }
+					    });
+					}	
+					
+//idle Timer 
+
+var url = "logout.jsp" ; 
+    var KTIdleTimerDemo = function() {
+     var _init = function() {
+      var docTimeout = 1800000;
+						        $(document).on("idle.idleTimer", function(event, elem, obj) {
+						            $("#docStatus").val(function(i, v) {
+						                    return v + "Idle @ " + moment().format() + " \n";
+						                })
+						            Swal.fire({
+								        title: "You Want To Logout!?",
+								        text: "our System idle from 50 sec!",
+								        icon: "warning",
+								        showCancelButton: true,
+								        confirmButtonText: "Yes, Logout!",
+								        cancelButtonText: "No, Continue!",
+								        reverseButtons: true
+								    }).then(function(result) {
+								        if (result.value) {
+								        	window.location.assign(url);
+								        } else if (result.dismiss === "cancel") {
+									        	 window.location.reload();
+									        }
+									    }); 
+						            setTimeout(function(){
+						            	window.location.assign(url);
+								           },50000);
+						        });
+					        $(document).idleTimer(docTimeout);
+				            //For demo purposes, display the actual timeout on the page
+						        $("#docTimeout").text(docTimeout / 5000);
+						    }
+						    return {
+						        //main function to initiate the module
+						        init: function() {
+						            _init();
+						        }
+						    };
+						}();
+						jQuery(document).ready(function() {
+						    KTIdleTimerDemo.init();
+						});
+	</script>
+<%
 	} catch (Exception e) {
 		Logger.log(dbConnVar, "" + e);
 	}

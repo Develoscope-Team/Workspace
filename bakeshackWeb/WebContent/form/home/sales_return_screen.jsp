@@ -3,12 +3,16 @@
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-	String dbConnVar = "BAKESHACk";
-	try {
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+String dbConnVar = "BAKESHACk";
+try {
+	String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
@@ -17,7 +21,6 @@
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
@@ -26,7 +29,6 @@
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
@@ -42,23 +44,18 @@
 									<!--begin::Title-->
 									<h2 class="text-white font-weight-bold my-2 mr-5">Sales &
 										Returns Entry</h2>
-
 									<!--end::Title-->
-
 								</div>
 								<!--end::Heading-->
 							</div>
 							<!--end::Info-->
-
 						</div>
 					</div>
 					<!--end::Subheader-->
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
-
 						<!--begin::Container-->
 						<div class="container">
-
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -88,11 +85,6 @@
 																	</div>
 																</div>
 															</div>
-
-
-
-
-
 															<div class="modal" id="medicineModel" tabindex="-1"
 																role="dialog" aria-labelledby="staticBackdrop"
 																aria-hidden="true">
@@ -108,7 +100,6 @@
 																			</button>
 																		</div>
 																		<div class="modal-body">
-																			<!-- <h3>THIS IS A modal for MEDISION SELECTION</h3> -->
 																			<div
 																				class="quick-search quick-search-inline ml-20 w-300px "
 																				id="kt_quick_search_inline">
@@ -145,10 +136,6 @@
 																						</div>
 																					</div>
 																				</form>
-
-
-
-
 																				<div id="kt_quick_search_toggle"
 																					data-toggle="dropdown" data-offset="0px,1px"></div>
 
@@ -164,8 +151,6 @@
 																			<div
 																				class="datatable datatable-bordered datatable-head-custom"
 																				id="kt_datatable"></div>
-
-
 																		</div>
 																		<div class="modal-footer">
 																			<button type="button"
@@ -175,26 +160,22 @@
 																	</div>
 																</div>
 															</div>
-																<div class="card1 card-custom gutter-b">
-																<div class="col-xl-12"style="overflow-x:auto;">
-
+															<div class="card1 card-custom gutter-b">
+																<div class="col-xl-12" style="overflow-x: auto;">
 																	<table class="table text-center" id="Mtable">
-																	<thead>
-																	<tr>
-																		<!-- <th scope="col">No</th> -->
-																		<th scope="col">Sales & order ID</th>
-																		<th scope="col">Order Code</th>
-																		<th scope="col">Invoice date</th>
-																		<th scope="col">Action</th>
+																		<thead>
+																			<tr>
+																				<!-- <th scope="col">No</th> -->
+																				<th scope="col">Sales & order ID</th>
+																				<th scope="col">Order Code</th>
+																				<th scope="col">Invoice date</th>
+																				<th scope="col">Action</th>
 
-																	</tr>
-																</thead>
-
-																<tbody class="add_product" id="add-product"></tbody>
-
-
-															</table>
-															</div>
+																			</tr>
+																		</thead>
+																		<tbody class="add_product" id="add-product"></tbody>
+																	</table>
+																</div>
 															</div>
 													</form>
 												</div>
@@ -204,22 +185,19 @@
 									</div>
 								</div>
 							</div>
-
 							<!--end::Entry-->
 						</div>
 						<!--end::Content-->
-					
+
 					</div>
 					<!--end::Wrapper-->
 				</div>
 				<!--end::Page-->
 			</div>
-
-<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
+</div>
+				<!--end::Page-->
+</div>
+<jsp:include page="../common/footer.jsp"></jsp:include>			
 			<!--begin::Scrolltop-->
 			<div id="kt_scrolltop" class="scrolltop">
 				<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -237,24 +215,16 @@
 				</svg> <!--end::Svg Icon-->
 				</span>
 			</div>
-
 			<script type="text/javascript"
 				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
 			<script type="text/javascript"
 				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
 			<script
 				src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-
-
-
 			<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-	
-	
 	 var j=0;
-		
 	 var cName = [];
 		
 		$.ajax({
@@ -272,14 +242,12 @@
 			}  
   }
 		});
-		
 		 var bloodhound = new Bloodhound({
           datumTokenizer: Bloodhound.tokenizers.whitespace,
           queryTokenizer: Bloodhound.tokenizers.whitespace,
           // `states` is an array of state names defined in "The Basics"
           local: cName
       });
-
       $('#customer_name').typeahead({
           hint: true,
           highlight: true,
@@ -288,11 +256,8 @@
           name: 'cName',
           source: bloodhound
       });
-      
-      
       var ccode = 0;
 	 $('#customer_name').change(function(){
-	
 		 var customer_name = $(this).val();
 			$.ajax({
 				url : base + "/bakeshackAPI/api/getCustomerDetails",
@@ -305,7 +270,6 @@
 					const row = data.find(d => d.customer_name == customer_name);
 					if(row != null){
 						 ccode = row.customer_code; 
-					  
 						$('#customer_name').val(row.customer_name);
 						$('#customer_code').val(row.customer_code);
 					}else{
@@ -313,9 +277,6 @@
 					}
 		        }
 			});	
-			
-			/* alert(ccode); */
-			
 			$.ajax({
 				url : base + "/bakeshackAPI/api/getSalesAndOrderDetails",
 				type : "post",
@@ -324,37 +285,27 @@
 				data : {"customer_code": ccode},
 				success:function(data)
 		    	{
-					//alert(j);
 					const row = data.find(d => d.customer_code == ccode);
 					data.forEach((row)=> {
-						
 					if(row.customer_code == ccode )
 						{
-						
 						j++;
-						/* alert(j); */
-						
 						}
 					});
 		    	}
 			});	
-			
 			for(var i = 1; i <= j; i++){
 			 	  var html = '';
 			 	  html += '<tr>'
-				/*   html += '<td>' + i + '</td>'; */
 		 	      html += '<td><input type="text-center" class=" " id="sales_order_id-' + i +'" name="sales_order_id" style="background-color:#FFFFFF; border:0px; width: 80px; text-align:center" disabled></td>';
-			// 	  html += '<td><input type="text-center" class=" " id="invoice_code-' + i +'" name="invoice_code" style="background-color:#FFFFFF; border:0px;  text-align:center" disabled></td>';
 		 		  html += '<td><input type="text-center" class=" " id="order_code-' + i +'" name="order_code" style="background-color:#FFFFFF; border:0px;  text-align:center" disabled></td>';
 			      html += '<td><input type="text-center" class=" " id="invoice_date-' + i +'" name="invoice_date" style="background-color:#FFFFFF; border:0px;  text-align:center" disabled></td>';
 			 	  html += '<td><a type="button"   onClick="nextPage(' + i + ')";  id="nextPage-' + i +'" class="btn_edit btn font-weight-bold btn-primary btn-icon btn-primary text-center"  style="border:0px; width:50px; text-align:center; " ><i class="la la-edit"></i></a>'+
 	               '<a type="button"   onClick="viewOrder(' + i + ')";  id="nextPage4-' + i +'" class="btn_edit btn font-weight-bold btn-light-success btn-icon btn-primary text-center ml-3"  style="border:0px; width:50px;  text-align:center; " title="View Order"><i class="la flaticon-eye"></i></a></td>';
-
 			 	  html += '</tr>';
 			 	  $('.add_product').append(html);
 	}
 			var k=0;
- 			
 			$.ajax({
 				url : base + "/bakeshackAPI/api/getSalesAndOrderDetails",
 				type : "post",
@@ -363,69 +314,42 @@
 				data : {"customer_code": ccode},
 				success:function(data)
 		 	{
-					
 					const row = data.find(d => d.customer_code != '');
 					data.forEach((row)=> {
-					
 						if(row.customer_code == ccode )
 								{
 						  k++;
 						  $('#sales_order_id-' + k).val(row.sales_and_order_id);
-						//	$('#invoice_code-' + k).val(row.invoice_code);
 							$('#invoice_date-' + k).val(row.order_date);
 							$('#order_code-' + k).val(row.order_code);
-						 
 							}
 					});
 		 	}
 			});	
-			
-			
-			
 	 });
-			
-		
-		
-		
-		 
-	 
 		 function nextPage(i){
-		
 			  let customer_name = $('#customer_name').val();
 	          let customer_code =  $('#customer_code').val();
               let sales_order_id =  $('#sales_order_id-'+i).val();
 		 	  let invoice_code = $('#invoice_code-'+i).val();
 		 	  let invoice_date = $('#invoice_date-'+i).val();
 		 	  let order_code = $('#order_code-'+i).val();
-		 		/* alert(customer_name); */
 		 		var url = "sales-return-master.jsp" + '?customer_name=' + customer_name + '&customer_code=' + customer_code + '&sales_order_id=' + sales_order_id;
-		 		//var url = "sales-return-master.jsp"  ;
-
 				window.location.assign(url);
-		 
 		 }
-		 
 		 function viewOrder(i){
-				
 			  let customer_name = $('#customer_name').val();
 	          let customer_code =  $('#customer_code').val();
 		 	  let order_code = $('#order_code-'+i).val();
-		 		/* alert(customer_name); */
             var url = "sales_order_receipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&transaction_id=' + 0;
-		 		//var url = "sales-return-master.jsp"  ;
-
 				window.location.assign(url);
-		 
 		 }
-		 
-		 
-		 
 </script>
 </body>
 </html>
 
 <%
-	} catch (Exception e) {
-		Logger.log(dbConnVar, "" + e);
-	}
+} catch (Exception e) {
+Logger.log(dbConnVar, "" + e);
+}
 %>

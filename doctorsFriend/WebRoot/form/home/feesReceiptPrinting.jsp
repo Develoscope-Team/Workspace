@@ -2,7 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -10,153 +9,138 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
+<%
+String session1 = (String) session.getAttribute("login_id");
+if (session.getAttribute("login_id") != null) {
+ String sessionName = (String) session.getAttribute("login_id");
+} else
+ response.sendRedirect("../common/login.jsp");
+%>
 <html lang="en">
 <!--begin::Head-->
 <head>
-	
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
 }
 </style>
 </head>
-<!--end::Head-->
-<!--begin::Body-->
-
-<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <body id="kt_body"
-	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading" 
-	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-9.jpg)">
+	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading"
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-rk4.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    top: 0;">
 	<!--begin::Main-->
-	<!--begin::Header Mobile-->
-	
-	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Aside-->
-			
-      <jsp:include page="/form/common/navbar.jsp"></jsp:include>
-
+			<jsp:include page="/form/common/navbar.jsp"></jsp:include>
 			<!--end::Aside-->
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
 				<!--begin::Header-->
-				
-				
 				<jsp:include page="/form/common/header.jsp"></jsp:include>
 				<!--end::Header-->
-
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
+						<div class="container d-flex align-items-stretch justify-content-between">
+							<div class="col-xl-12 offset-xl-1">
+								<h2	class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3 ml-4">Fees Reciept Printing</h2>
+								<div class="col-xl-10 offset-xl-0">
+									<div class="example mb-10">
+										<div class="example-preview">
+											<!--begin::Content-->
+											<div class="card card-custom">
+												<form class="form" id="kt_form_1">
+													<div class="col-lg-10 offset-lg-1 col-md-12 col-sm-12">
+														<div class="row mt-10">
+															<div class="col-xl-6">
+																<div class="form-group">
+																	<label>Patient Name</label><span class="text-danger">*</span>
+																	<div class="typeahead">
+																		<input type="text"
+																			class="form-control form-control-solid form-control-lg"
+																			name="patientName" id="patient_name" /> <span
+																			class="msg text-danger" id="type1"> </span>
+																	</div>
+																</div>
 
-						<div
-							class="container d-flex align-items-stretch justify-content-between">
-							<div class="col-xl-12 ">
-				
-					<h2
-									class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3 ml-4"  > Fees Reciept Printing
-										</h2>
-								
-									<div class="col-xl-12 offset-xl-0">
-										<div class="example mb-10">
-											<div class="example-preview">
-				<!--begin::Content-->
-				<div class="content d-flex flex-column flex-column-fluid"
-					id="kt_content">
-					<!--begin::Entry-->
-					<div class="d-flex flex-column-fluid">
-						<!--begin::Container-->
-						<div class="container">
-
-							<form class="form" id="kt_form_1">
-								<div class=" col-lg-10 offset-lg-1 col-md-12 col-sm-12">
-									<div class="row">
-										<div class="col-xl-6">
-											<div class="form-group">
-												<label>Patient Name</label><span class="text-danger">*</span>
-												<div class="typeahead">
-													<input type="text"
-														class="form-control form-control-solid form-control-lg"
-														name="patientName" id="patient_name" /> <span
-														class="msg text-danger" id="type1"> </span>
-												</div>
+															</div>
+															<div class="col-lg-6">
+																<div class="form-group">
+																	<label>Patient Code</label> <input type="text"
+																		class="form-control form-control-solid"
+																		id="patient_code" />
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="card card-custom gutter-b" id="hidden_table">
+														<div class="col-xl-12">
+															<table class="table">
+																<thead>
+																	<tr>
+																		<th style="text-align: center" scope="col">Sr. No</th>
+																		<th style="text-align: center" scope="col">Invoice
+																			Id</th>
+																		<th style="text-align: center" scope="col">Visit
+																			Id</th>
+																		<th style="text-align: center" scope="col">Invoice
+																			Date</th>
+																		<th style="text-align: center" scope="col">Clinic
+																			Fee</th>
+																		<th style="text-align: center" scope="col">Paid</th>
+																		<th style="text-align: center" scope="col">To Be
+																			Paid</th>
+																		<th style="text-align: center" scope="col">Now
+																			Paying</th>
+																	</tr>
+																</thead>
+																<tbody class="table_body">
+																</tbody>
+															</table>
+														</div>
+													</div>
+													<div class="card-footer text-center">
+														<div class="row">
+															<div class="col-lg-3"></div>
+															<div class="col-lg-6">
+																<button type="button" id="Print_receipt"
+																	onclick="invoice_print()"
+																	class="btn font-weight-bold btn-primary text-right ml-5">Print
+																	Receipt</button>
+															</div>
+														</div>
+													</div>
+												</form>
 											</div>
-
-										</div>
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label>Patient Code</label> <input type="text"
-													class="form-control form-control-solid" id="patient_code" />
-											</div>
 										</div>
 									</div>
-
-									<div class="card card-custom gutter-b">
-										<div class="col-xl-12">
-											<table class="table">
-												<thead>
-													<tr>
-														<th style="text-align: center" scope="col">Sr. No</th>
-														<th style="text-align: center" scope="col">Invoice Id</th>
-														<th style="text-align: center" scope="col">Visit Id</th>
-														<th style="text-align: center" scope="col">Invoice
-															Date</th>
-														<th style="text-align: center" scope="col">Clinic Fee</th>
-														<th style="text-align: center" scope="col">Paid</th>
-														<th style="text-align: center" scope="col">To Be Paid</th>
-														<th style="text-align: center" scope="col">Now Paying</th>
-
-
-
-													</tr>
-												</thead>
-												<tbody class="table_body">
-												</tbody>
-											</table>
-										</div>
-									</div>
-									<div class="row">
-
-										
-
-												
-													<button type="button" id="Print_receipt" 
-														onclick="invoice_print()"
-														class="btn font-weight-bold btn-primary text-right ml-5">Print
-														Receipt</button>
-												
-
-										
-									</div>
-							</form>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-				</div>
-				</div>
-				</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-	
-	
+
 	<jsp:include page="../common/footer.jsp"></jsp:include>
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
 
@@ -171,7 +155,7 @@ table.a {
 	 $('#upi_div').hide();
 	 $('#nb_div').hide();
 	 $('#cheque_div').hide();
-	 $('.card').hide();
+	 $('#hidden_table').hide();
 	 $('#calculate_total').hide();
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
@@ -182,9 +166,7 @@ table.a {
 	var pcode1= patient_code;
 	var pcode2;
 	 var j=0;
-	 
 	 var pName = [];
-		
 		$.ajax({
 		url : base + "/dssAPI/dfapi/getPatientDetails",
 		type : "post",
@@ -200,14 +182,12 @@ table.a {
 			}  
      }
 		});
-		
 		 var bloodhound = new Bloodhound({
              datumTokenizer: Bloodhound.tokenizers.whitespace,
              queryTokenizer: Bloodhound.tokenizers.whitespace,
              // `states` is an array of state names defined in "The Basics"
              local: pName
          });
-
          $('#patient_name').typeahead({
              hint: true,
              highlight: true,
@@ -218,7 +198,6 @@ table.a {
          });
 	 
 	 $('#patient_name').change(function(){
-	
 			var patient_name = $(this).val();
 			$.ajax({
 				url : base + "/dssAPI/dfapi/getPatientDetails",
@@ -231,7 +210,6 @@ table.a {
 					const row = data.find(d => d.patient_name == patient_name);
 					if(row != null){
 						var pcode = row.patient_code; 
-					
 						$('#mobile_no').val(row.mobile_no);
 						$('#patient_code').val(row.patient_code);
 						$('#patient_code').addClass("text-muted");
@@ -244,7 +222,6 @@ table.a {
 			});	
 			var Grand_Total = 0;
 			 pcode2 = $('#patient_code').val();
-			
 				$.ajax({
 					url : base + "/dssAPI/dfapi/getInvoiceDetails",
 					type : "post",
@@ -258,16 +235,15 @@ table.a {
 							if(pcode2 == row.patient_code )
 							{
 							    j++;
-							   
 							}
 						});
 			    	}
 				});	
 				if(j > 0){
-					 $('.card').show();
+					 $('#hidden_table').show();
 					 $('#calculate_total').show();
 				}else{
-					 $('.card').hide();
+					 $('#hidden_table').hide();
 				}
 				for(var i = 0; i < j; i++){
 				 	  var html = '';
@@ -304,13 +280,11 @@ table.a {
 										$('#paid-' + k).val(row.paid_fee);
 										$('#toBePaid-' + k).val(row.balance_amt);
 										$('#visitId-' + k).val(row.visit_id);
-										
 										 k++;
 								}
 							});
 				 	}
 					});	
-					
 					 $("#patient_name").prop('disabled', true);
 					 $("#patient_code").prop('disabled', true);
 	 })
@@ -324,10 +298,7 @@ table.a {
 				 		 let paid = $('#paid-'+i).val();
 				 		 let toBePaid = $('#toBePaid-'+i).val();
  						var url = "singleInvoicesPrinting.jsp" + '?patient_name=' + patient_name + '&invoice_id=' + invoice_id + '&clinicFee=' + clinicFee + '&paid='+paid + '&toBePaid=' +toBePaid + '&invoiceDate=' +invoiceDate + '&visit_id=' +visit_id;
-/*  					var url = "demo7_invoice_receipt.jsp" + '?patient_name=' + patient_name + '&invoice_id=' + invoice_id + '&clinicFee=' + clinicFee + '&paid='+paid + '&toBePaid=' +toBePaid + '&invoiceDate=' +invoiceDate + '&visit_id=' +visit_id;
- */
 						window.location.assign(url);	
- 
 				 		  }
 					 function invoice_print(){
 						 const invoices = [];

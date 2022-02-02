@@ -40,46 +40,7 @@ public class ConnectDataBean {
 		cf = new ConnectionFactory(dbConnVar);
 	}
 
-	public int getUsersDetails(String UserName, String Password) {
-		Connection con = null;
-		CallableStatement cs = null;
-		ResultSet rs = null;
-
-		int result = 0;
-		try {
-
-			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_authenticate_user(?,?)}");
-			cs.registerOutParameter(1, Types.INTEGER);
-			cs.setString(2, UserName);
-			cs.setString(3, Password);
-			cs.execute();
-			// rs = cs.getResultSet();
-
-			result = cs.getInt(1);
-
-		} catch (Exception e) {
-			Logger.log(dbConnVar, e);
-		} finally {
-			try {
-				if (con != null) {
-					cf.freeConnection(con);
-					con.close();
-				}
-				if (cs != null) {
-					cs.close();
-				}
-				if (rs != null) {
-					rs.close();
-				}
-			} catch (Exception e1) {
-				Logger.log(dbConnVar, e1);
-			}
-		}
-
-		return result;
-	}
-
+	
 	public int insertUpdateMedicineDetails(String medicineName, String medicineType, String medicineCategory,
 			String mgfName, String mrName, String isPrintable, String isSpecial, int flag, int med_id) {
 		Connection con = null;
@@ -568,7 +529,7 @@ public class ConnectDataBean {
 	// Patient Details
 
 	public int insertUpdatePatientDetails(String patient_name, Date birth_date, String patient_code, String mobile_no,
-			String city_desc, String blood_group, String gender, Date registration_date, int patient_id, int flag) {
+			String city_desc, String blood_group, String gender, Date registration_date, String age, int patient_id, int flag) {
 		Connection con = null;
 		CallableStatement cs = null;
 		ResultSet rs = null;
@@ -579,7 +540,7 @@ public class ConnectDataBean {
 			System.out.println("In bean city : " + city_desc);
 
 			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_crud_patient_details(?,?,?,?,?,?,?,?,?,?)}");
+			cs = con.prepareCall("{?=call fun_crud_patient_details(?,?,?,?,?,?,?,?,?,?,?)}");
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.setString(2, patient_name);
 			cs.setDate(3, birth_date);
@@ -589,8 +550,9 @@ public class ConnectDataBean {
 			cs.setString(7, blood_group);
 			cs.setString(8, gender);
 			cs.setDate(9, registration_date);
-			cs.setInt(10, flag);
-			cs.setInt(11, patient_id);
+			cs.setString(10, age);
+			cs.setInt(11, flag);
+			cs.setInt(12, patient_id);
 
 			cs.execute();
 			// rs = cs.getResultSet();
@@ -2696,26 +2658,22 @@ public class ConnectDataBean {
 	
 //Role Master
 	
-	public int insertUpdateRole(String role_type, int role_id, int flag) {
+	public int insertUpdateRole(String role_type , String role_permission, int role_id, int flag) {
 		Connection con = null;
 		CallableStatement cs = null;
 		ResultSet rs = null;
-
 		int result = 0;
 		try {
-
 			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_crud_role(?,?,?)}");
+			cs = con.prepareCall("{?=call fun_crud_role(?,?,?,?)}");
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.setString(2, role_type);
-			cs.setInt(3, role_id);
-			cs.setInt(4, flag);
-
+			cs.setString(3, role_permission);
+			cs.setInt(4, role_id);
+			cs.setInt(5, flag);
 			cs.execute();
 			// rs = cs.getResultSet();
-
 			result = cs.getInt(1);
-
 		} catch (Exception e) {
 			Logger.log(dbConnVar, e);
 		} finally {
@@ -2734,7 +2692,6 @@ public class ConnectDataBean {
 				Logger.log(dbConnVar, e1);
 			}
 		}
-
 		return result;
 	}
 
@@ -2745,7 +2702,7 @@ public class ConnectDataBean {
 
 		JSONArray jarr = null;
 		JSONObject finaljson = null;
-		String role_id = "", role_type = "";
+	
 		try {
 			jarr = new JSONArray();
 
@@ -2761,11 +2718,11 @@ public class ConnectDataBean {
 			while (rs.next()) {
 				JSONObject resultjson = new JSONObject();
 
-				role_id = rs.getString(1);
-				role_type = rs.getString(2);
+				
 
-				resultjson.put("role_id", role_id);
-				resultjson.put("role_type", role_type);
+				resultjson.put("role_id", rs.getInt(1));
+				resultjson.put("role_type",  rs.getString(2));
+				resultjson.put("role_permission", rs.getString(3));
 
 				jarr.put(resultjson);
 			}
@@ -2794,6 +2751,68 @@ public class ConnectDataBean {
 
 		return jarr;
 	}
+	
+	
+	
+	public JSONArray getUser_Role_Details() {
+		Connection con = null;
+		CallableStatement cs = null;
+		ResultSet rs = null;
+		JSONArray jarr = null;
+		JSONObject finaljson = null;
+		try {
+			jarr = new JSONArray();
+			con = cf.getConnection();
+			cs = con.prepareCall("{?=call fun_retrieve_users_role_details(?)}");
+			cs.registerOutParameter(1, Types.OTHER);
+			cs.setObject(2, rs);
+			con.setAutoCommit(false); // without this the Result set is not returning
+			cs.execute();
+			rs = (ResultSet) cs.getObject(1);
+			while (rs.next()) {
+				JSONObject resultjson = new JSONObject();
+				resultjson.put("users_id", rs.getInt(1));
+				resultjson.put("login_id",  rs.getString(2));
+				resultjson.put("password", rs.getString(3));
+				resultjson.put("users_name", rs.getString(4));
+				resultjson.put("role_type", rs.getString(5));
+				resultjson.put("role_permission", rs.getString(6));
+				resultjson.put("email_id", rs.getString(7));
+				jarr.put(resultjson);
+			}
+			finaljson = new JSONObject();
+			finaljson.put("data", jarr);
+		} catch (Exception e) {
+			Logger.log(dbConnVar, e);
+		} finally {
+			try {
+				if (con != null) {
+					con.close();
+				}
+				if (cs != null) {
+					cs.close();
+				}
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (Exception e1) {
+				Logger.log(dbConnVar, e1);
+			}
+		}
+		return jarr;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -2801,115 +2820,33 @@ public class ConnectDataBean {
 	
 //Geting Users Information
 	
-	public JSONArray getUsersDetails() {
+	public int insertUpdateUsersDetails(String users_name, String login_id, String password, String birth_date,
+			String role_type, String address, String city_desc, String district_desc, String gender, String mobile_no,
+			String email_id, String gov_id,String qualification, int flag, int users_id) {
 		Connection con = null;
 		CallableStatement cs = null;
 		ResultSet rs = null;
-
-		JSONArray jarr = null;
-		JSONObject finaljson = null;
-		String users_id = "", password="" ,users_name = "", birth_date="", role_type = "", address = "", city_desc = "", district_desc="",
-				gender = "", mobile_no = "", email_id = "",gov_id="";
-		try {
-			jarr = new JSONArray();
-
-			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_retrieve_users_details(?)}");
-			cs.registerOutParameter(1, Types.OTHER);
-			cs.setObject(2, rs);
-
-			con.setAutoCommit(false); // without this the Result set is not returning
-			cs.execute();
-			rs = (ResultSet) cs.getObject(1);
-
-			while (rs.next()) {
-				JSONObject resultjson = new JSONObject();
-
-				users_id = rs.getString(1);
-				password = rs.getString(2);
-				users_name=rs.getString(3);
-				birth_date = rs.getString(4);
-				role_type = rs.getString(5);
-				address = rs.getString(6);
-				city_desc=rs.getString(7);
-				district_desc = rs.getString(8);
-				gender=rs.getString(9);
-				mobile_no=rs.getString(10);
-				email_id = rs.getString(11);
-				gov_id = rs.getString(12);
-
-				resultjson.put("users_id", users_id);
-				resultjson.put("password", password);
-				resultjson.put("users_name", users_name);
-				resultjson.put("birth_date", birth_date);
-				resultjson.put("role_type", role_type);
-				resultjson.put("address", address);
-				resultjson.put("city_desc", city_desc);
-				resultjson.put("district_desc", district_desc);
-				resultjson.put("gender", gender);
-				resultjson.put("mobile_no", mobile_no);
-				resultjson.put("email_id", email_id);
-				resultjson.put("gov_id", gov_id);
-
-
-				jarr.put(resultjson);
-			}
-
-			finaljson = new JSONObject();
-
-			finaljson.put("data", jarr);
-
-		} catch (Exception e) {
-			Logger.log(dbConnVar, e);
-		} finally {
-			try {
-				if (con != null) {
-					con.close();
-				}
-				if (cs != null) {
-					cs.close();
-				}
-				if (rs != null) {
-					rs.close();
-				}
-			} catch (Exception e1) {
-				Logger.log(dbConnVar, e1);
-			}
-		}
-
-		return jarr;
-	}
-
-//inserting Users Data
-	
-	
-	public int insertUpdateUsersDetails(String users_name, String password, String birth_date,
-			String role_type, String address, String city_desc, String district_desc,String gender, String mobile_no,String email_id,String gov_id, int flag, int users_id) {
-		Connection con = null;
-		CallableStatement cs = null;
-		ResultSet rs = null;
-
 		int result = 0;
 		try {
-
 			con = cf.getConnection();
-			cs = con.prepareCall("{?=call fun_crud_users_details(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+			cs = con.prepareCall("{?=call fun_crud_users_details(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 			cs.registerOutParameter(1, Types.INTEGER);
 			cs.setString(2, users_name);
-			cs.setString(3, password);
-			cs.setString(4, birth_date);
-			cs.setString(5, role_type);
-			cs.setString(6, address);
-			cs.setString(7, city_desc);
-			cs.setString(8, district_desc);
-			cs.setString(9, gender);
-			cs.setString(10, mobile_no);
-			cs.setString(11, email_id);
-			cs.setString(12, gov_id);
-			cs.setInt(13, flag);
-			cs.setInt(14, users_id);
-			cs.execute();
-			// rs = cs.getResultSet();
+			cs.setString(3, login_id);
+			cs.setString(4, password);
+			cs.setString(5, birth_date); 
+			cs.setString(6, role_type);
+			cs.setString(7, address);
+			cs.setString(8, city_desc);
+			cs.setString(9, district_desc);
+			cs.setString(10, gender);
+			cs.setString(11, mobile_no);
+			cs.setString(12, email_id);
+			cs.setString(13, gov_id);
+			cs.setString(14, qualification);
+			cs.setInt(15, flag);
+			cs.setInt(16, users_id);
+			cs.execute(); // rs = cs.getResultSet();
 
 			result = cs.getInt(1);
 
@@ -2935,6 +2872,75 @@ public class ConnectDataBean {
 		return result;
 	}
 
+	public JSONArray getUsersDetails() {
+		Connection con = null;
+		CallableStatement cs = null;
+		ResultSet rs = null;
+
+		JSONArray jarr = null;
+		JSONObject finaljson = null;
+		 
+		try {
+			jarr = new JSONArray();
+
+			con = cf.getConnection();
+			cs = con.prepareCall("{?=call fun_retrieve_users_details(?)}");
+			cs.registerOutParameter(1, Types.OTHER);
+			cs.setObject(2, rs);
+
+			con.setAutoCommit(false); // without this the Result set is not returning
+			cs.execute();
+			rs = (ResultSet) cs.getObject(1);
+
+			while (rs.next()) {
+				JSONObject resultjson = new JSONObject();
+
+				
+
+				
+				resultjson.put("users_id", rs.getInt(1));
+				resultjson.put("login_id", rs.getString(2));
+				resultjson.put("password", rs.getString(3));
+				resultjson.put("users_name", rs.getString(4));
+				resultjson.put("birth_date",  rs.getDate(5));
+				resultjson.put("role_type",  rs.getString(6));
+				resultjson.put("address",  rs.getString(7));
+				resultjson.put("city_desc",  rs.getString(8));
+				resultjson.put("district_desc", rs.getString(9));
+				resultjson.put("gender",  rs.getString(10));
+				resultjson.put("mobile_no",  rs.getString(11));
+				resultjson.put("email_id",  rs.getString(12));
+				resultjson.put("gov_id", rs.getString(13));
+				resultjson.put("qualification", rs.getString(14));
+				
+
+				jarr.put(resultjson);
+			}
+
+			finaljson = new JSONObject();
+
+			finaljson.put("data", jarr);
+
+		} catch (Exception e) {
+			Logger.log(dbConnVar, e);
+		} finally {
+			try {
+				if (con != null) {
+					con.close();
+				}
+				if (cs != null) {
+					cs.close();
+				}
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (Exception e1) {
+				Logger.log(dbConnVar, e1);
+			}
+		}
+
+		return jarr;
+	}
 //Getting Patient_History
 	
 
@@ -4610,9 +4616,153 @@ public class ConnectDataBean {
 			return jarr;
 		}		
 		
+//Appointment Booking		
 		
+		public int insertUpdateAppointmentBooking(String patient_name, String patient_code, String mobile_no,
+				String city, String gender,String age,String complaint, Date appointment_date,int status, int appointment_id, int flag) {
+			Connection con = null;
+			CallableStatement cs = null;
+			ResultSet rs = null;
+
+			int result = 0;
+			try {
+				System.out.println("In bean city : " + appointment_date);
+				con = cf.getConnection();
+				cs = con.prepareCall("{?=call fun_crud_appointment_details(?,?,?,?,?,?,?,?,?,?,?)}");
+				cs.registerOutParameter(1, Types.INTEGER);
+				cs.setString(2, patient_name);
+				cs.setString(3, patient_code);
+				cs.setString(4, mobile_no);
+				cs.setString(5, city);
+				cs.setString(6, gender);
+				cs.setString(7, age);
+				cs.setString(8, complaint);
+				cs.setDate(9, appointment_date);
+				cs.setInt(10, status);
+				cs.setInt(11, appointment_id);
+				cs.setInt(12, flag);
+				cs.execute();
+				// rs = cs.getResultSet();
+				result = cs.getInt(1);
+			} catch (Exception e) {
+				Logger.log(dbConnVar, e);
+			} finally {
+				try {
+					if (con != null) {
+						cf.freeConnection(con);
+						con.close();
+					}
+					if (cs != null) {
+						cs.close();
+					}
+					if (rs != null) {
+						rs.close();
+					}
+				} catch (Exception e1) {
+					Logger.log(dbConnVar, e1);
+				}
+			}
+
+			return result;
+		}
+
+		public JSONArray getAppoinmentDetails() {
+			Connection con = null;
+			CallableStatement cs = null;
+			ResultSet rs = null;
+			JSONArray jarr = null;
+			JSONObject finaljson = null;
+			try {
+				jarr = new JSONArray();
+				con = cf.getConnection();
+				cs = con.prepareCall("{?=call fun_retrieve_appointment_booking_details(?)}");
+				cs.registerOutParameter(1, Types.OTHER);
+				cs.setObject(2, rs);
+				con.setAutoCommit(false); // without this the Result set is not returning
+				cs.execute();
+				rs = (ResultSet) cs.getObject(1);
+				while (rs.next()) {
+					JSONObject resultjson = new JSONObject();
+					resultjson.put("appointment_no", rs.getInt(1));
+					resultjson.put("patient_name", rs.getString(2));
+					resultjson.put("patient_code", rs.getString(3));
+					resultjson.put("mobile_no", rs.getString(4));
+					resultjson.put("city", rs.getString(5));
+					resultjson.put("gender", rs.getString(6));
+					resultjson.put("age", rs.getString(7));
+					resultjson.put("complaints", rs.getString(8));
+					resultjson.put("appointment_date", rs.getDate(9));
+					resultjson.put("status", rs.getInt(10));
+					jarr.put(resultjson);
+				}
+				finaljson = new JSONObject();
+				finaljson.put("data", jarr);
+			} catch (Exception e) {
+				Logger.log(dbConnVar, e);
+			} finally {
+				try {
+					if (con != null) {
+						con.close();
+					}
+					if (cs != null) {
+						cs.close();
+					}
+					if (rs != null) {
+						rs.close();
+					}
+				} catch (Exception e1) {
+					Logger.log(dbConnVar, e1);
+				}
+			}
+			return jarr;
+		}
+//navbar collection
 		
-		
+		public JSONArray getNavbarCollection() {
+			Connection con = null;
+			CallableStatement cs = null;
+			ResultSet rs = null;
+			JSONArray jarr = null;
+			JSONObject finaljson = null;
+			try {
+				jarr = new JSONArray();
+				con = cf.getConnection();
+				cs = con.prepareCall("{?=call fun_retrieve_navbar_collection(?)}");
+				cs.registerOutParameter(1, Types.OTHER);
+				cs.setObject(2, rs);
+				con.setAutoCommit(false); // without this the Result set is not returning
+				cs.execute();
+				rs = (ResultSet) cs.getObject(1);
+				while (rs.next()) {
+					JSONObject resultjson = new JSONObject();
+					resultjson.put("patient_count", rs.getString(1));
+					resultjson.put("todays_visit_count", rs.getString(2));
+					resultjson.put("todays_expences", rs.getString(3));
+					resultjson.put("total_collection", rs.getString(4));
+					resultjson.put("todays_collection", rs.getString(5));
+					jarr.put(resultjson);
+				}
+				finaljson = new JSONObject();
+				finaljson.put("data", jarr);
+			} catch (Exception e) {
+				Logger.log(dbConnVar, e);
+			} finally {
+				try {
+					if (con != null) {
+						con.close();
+					}
+					if (cs != null) {
+						cs.close();
+					}
+					if (rs != null) {
+						rs.close();
+					}
+				} catch (Exception e1) {
+					Logger.log(dbConnVar, e1);
+				}
+			}
+			return jarr;
+		}
 		
 		
 }

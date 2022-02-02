@@ -2,7 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
 	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -10,39 +9,96 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
+<%
+String session1 = (String) session.getAttribute("login_id");
+if (session.getAttribute("login_id") != null) {
+ String sessionName = (String) session.getAttribute("login_id");
+} else
+ response.sendRedirect("../common/login.jsp");
+%>
 <html lang="en">
 <!--begin::Head-->
 <head>
-	
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
 }
+.alert {
+	z-index: 9999;
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+.alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+}
+.alert.show {
+	animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide { 0%{
+	transform: translateX(100%);
+}
+40
+%
+{
+transform:translateX(-10%);
+}
+80%
+{
+transform:translateX(0%);
+}
+100%{transform:translateX(-10px);
+}
+}
+@
+keyframes hide_slide { 0%{
+	transform: translateX(-10px);
+}40%
+{
+transform:translateX(0%);
+}
+80%{transform:translateX(-10%);
+}
+100%{transform:translateX(100%);
+}
+}
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
 </style>
 </head>
-<!--end::Head-->
-<!--begin::Body-->
-
-<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <body id="kt_body"
-style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-77.jpeg)"
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-rk4.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    top: 0;"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
 	<!--begin::Main-->
-	<!--begin::Header Mobile-->
-	
-	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
-		<jsp:include page="/form/common/navbar.jsp"></jsp:include>
+			<jsp:include page="/form/common/navbar.jsp"></jsp:include>
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
 				<!--begin::Header-->
@@ -54,81 +110,77 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
-						<div class="container d-flex align-items-stretch justify-content-between"">
+						<div class="container d-flex align-items-stretch justify-content-between">
 							<div class="col-xl-12 offset-xl-1">
-								<h2 class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3"  >District Master</h2>	
-									<div class="col-xl-10 offset-xl-0">
-										<div class="example mb-10">
-											<div class="example-preview">
-												<div class="card card-custom">
-													<form class="form" id="kt_form_1">
-														<div class="card-body">
+								<h2	class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">District	Master</h2>
+								<div class="col-xl-10 offset-0">
+									<div class="example mb-10">
+										<div class="example-preview">
+											<div class="card card-custom">
+												<form class="form" id="kt_form_1">
+													<div class="card-body">
 														<div class="col-xl-8 offset-xl-2">
 															<div class="form-group">
-																	<label>District Name</label><span class="text-danger"
-																		id="type">*</span> <input type="text" name="district"
-																		id="district" class="form-control form-control-solid"
-																		placeholder="Enter District" required /> <span
-																		class="msg text-danger" id="type1"> </span>
-																</div>
+																<label>District Name</label><span class="text-danger"
+																	id="type">*</span> <input type="text" name="district"
+																	id="district" class="form-control form-control-solid"
+																	placeholder="Enter District" required /> <span
+																	class="msg text-danger" id="type1"> </span>
 															</div>
 														</div>
-														<div class="text-center">
-																<button type="submit" id="addDistrict"
-																	class="btn btn-primary mr-2">Submit</button>
-																<button type="submit" id="updateDistrict"
-																	class="btn btn-primary mr-2">Update</button>
-																<button type="button" class="btn btn-secondary"
-																	id="cancel">Cancel</button>
-															</div>													
-															</form>
-								<div class="alert alert-success" role="alert"
-								id="success_alert">
-								<div class="alert-text">
-									<span id="success_msg"></span>
-								</div>
-							    </div>
-													
-													<!--end::Form-->
-												</div>
+													</div>
+													<div class="text-center">
+														<button type="submit" id="addDistrict"
+															class="btn btn-primary mr-2">Submit</button>
+														<button type="submit" id="updateDistrict"
+															class="btn btn-primary mr-2">Update</button>
+														<button type="button" class="btn btn-secondary"
+															id="cancel">Cancel</button>
+													</div>
+												</form>
 											</div>
 										</div>
 									</div>
-									<div class="col-xl-10 offset-xl-0">
-										<div class="example mb-10">
-											<div class="example-preview">
-												<div class="card card-custom ">
-														<br/>
-													<div class="input-icon ml-10" style="width: 30%;">
-														<input type="text" class="form-control form-control-solid"
-															placeholder="Search..." id="txt_searchall" /> <span>
-															<i class="flaticon2-search-1 text-muted"></i>
-														</span>
-													</div>
-
-													<br />
-										<table data-toggle="table" class='a'
-										data-classes="table table-hover table-condensed "
-										data-striped="true" data-sort-name="Quality"
-										data-sort-order="desc" data-pagination="false"
-										data-scroll="false" data-height=550 id="table-id">
-										<thead>
-											<tr>
-												<th class="col-sm-1 text-center	" data-field="NO"
-													data-sortable="true">No</th>
-												<th class="col-sm-1 text-center" data-field="district"
-													data-sortable="true">District Name</th>
-												<th class="col-sm-1 text-center" data-field="Action"
-													data-sortable="true">Action</th>
-										   </tr>
-										</thead>
-										<tbody class="data"></tbody>
-									    </table>
+								</div>
+								<div class="col-xl-10 offset-0">
+									<div class="example mb-10">
+										<div class="example-preview">
+											<div class="card card-custom ">
+												<br />
+												<div class="input-icon ml-10" style="width: 30%;">
+													<input type="text" class="form-control form-control-solid"
+														placeholder="Search..." id="txt_searchall" /> <span>
+														<i class="flaticon2-search-1 text-muted"></i>
+													</span>
 												</div>
+												<br />
+												<table data-toggle="table" class='a'
+													data-classes="table table-hover table-condensed "
+													data-striped="true" data-sort-name="Quality"
+													data-sort-order="desc" data-pagination="false"
+													data-scroll="false" data-height=550 id="table-id">
+													<thead>
+														<tr>
+															<th class="col-sm-1 text-center	" data-field="NO"
+																data-sortable="true">No</th>
+															<th class="col-sm-1 text-center" data-field="district"
+																data-sortable="true">District Name</th>
+															<th class="col-sm-1 text-center" data-field="Action"
+																data-sortable="true">Action</th>
+														</tr>
+													</thead>
+													<tbody class="data"></tbody>
+												</table>
 											</div>
 										</div>
-									</div>									
-							</div>							
+									</div>
+								</div>
+							</div>
+							<div class="alert alert-success" role="alert" id="success_alert">
+								<div class="alert-text">
+									<span id="success_msg"></span>
+								</div>
+							</div>
 							<div class="alert alert-danger " role="alert" id="danger_alert">
 								<div class="alert-text">
 									<span id="danger_msg"></span>
@@ -145,13 +197,8 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 					</div>
 				</div>
 				<!--end::Entry-->
-
-
-
-				<!--end::Content-->
 				<!--begin::Footer-->
 				<jsp:include page="../common/footer.jsp"></jsp:include>
-
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
@@ -159,7 +206,6 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 		<!--end::Page-->
 	</div>
 	<!--end::Main-->
-	
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->
@@ -177,140 +223,29 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-	<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
 	<!--end::Scrolltop-->
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
-	
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';  
-	
-	
 	$('#updateDistrict').hide();
 	$("#addDistrict").show();
-	
-	
 	$("#district").change(function(){
 		var text=	$("#district").val();
 		var letters = /^[A-Za-z() .]+$/;
 		 if(text.match(letters))
 	     {
-				
 			 $('.msg').text('');
 		      return true;
 	     }
 	   else
 	     {
-		  
 		   $('.msg').text('Please Enter Letters Only.');
 		   $("#district").val("");
-	    
 	     return false;
 	     }
 		});
-	
-		$('#addDistrict')
-				.click(
-						function() {
-
+	$('#addDistrict').click(function() {
 							var district = $('#district').val();
 							var flag = 1; // Addition
 							var letters = /^[A-Za-z() .]+$/;
@@ -324,7 +259,6 @@ translateX(
 										"district" : district,
 										"flag" : flag
 									},
-									
 									error : function(xhr) {
 										var msg = "(Data insertion failed. Error : "
 												+ xhr.status
@@ -340,9 +274,7 @@ translateX(
 								           },2000);									},
 									success : function(response) {
 										if (response != null) {
-
 											if (response == 1) {
-
 												var msg = "District Data inserted Successfully.";
 												$('#success_msg').text(msg);
 												 $('#success_alert').addClass("show");
@@ -355,18 +287,13 @@ translateX(
 											} 
 										}
 									}
-
 								});
 							}
-
 						})
-
 		"use strict";
 		//Class definition
-		
 		var district_id;
-var html = "";
-
+       var html = "";
 $.ajax({
 	url : "http://localhost:8080/dssAPI/dfapi/getDistrictDetails",
 	type : "post",
@@ -375,39 +302,28 @@ $.ajax({
 	data : {"district_id": district_id},
 	success:function(data)
 	{
-	
 		const row = data.find(d => d.district_id == district_id);
 		data.forEach((row)=> {
 			html +="<tr id= tr-id-2 class= tr-class-2>"
 			html += "<td>"+row.district_id+"</td>"; 
 			 html += "<td>"+row.district_name+"</td>";
-	           
-	          
      	       	 html += '<td><a href="javascript:update('+row.district_id+');" class="btn_advice btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="12" height="2" rx="1"/></g></svg></span>'
-         
-
      	       	+ '<a href="javascript:deleteById('+row.district_id+');" class="btn_advice btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
 	            html +="</tr>"
-		
-		
 		});
 		 $(".data").html(html);
 	}
-	
 });	
 
 $(document).ready(function (){
 	   var table = $('#table-id').DataTable();
-	   
-	  
 	});
 		// Update data by district name and id
 		function update(id){
-			
 			$('#updateDistrict').show();
 			$("#addDistrict").hide();
 			$(".btn_advice").hide();
-			
+			$(window).scrollTop(0);
 			$.ajax({
 		        type:"POST",
 		        dataType: "json",
@@ -416,30 +332,17 @@ $(document).ready(function (){
 		        url: base + "/dssAPI/dfapi/getDistrictDetails",
 		        success:function(data)
 		        {
-		        	
 		            const row = data.find(d => d.district_id ==id);
-		           
 		            $("#district").val(row.district_name);
-		        	
-		        	
 		        }
 		     });
-		
-			
-			$('#updateDistrict')
-			.click(
-					function() {
-
+	$('#updateDistrict').click(function() {
 						var district = $('#district').val();
-						
 						if(district==''){
 							return false;
 						}
-						
 						var flag = 2; // Addition
-
 						if(district != ''){
-							
 							$.ajax({
 								url : base + "/dssAPI/dfapi/insertUpdateDistrict",
 								type : "post",
@@ -450,7 +353,6 @@ $(document).ready(function (){
 									"district" : district,
 									"flag" : flag
 								},
-								
 								error : function(xhr) {
 									var msg = "(Data Updation failed. Error : "
 											+ xhr.status
@@ -466,9 +368,7 @@ $(document).ready(function (){
 							           },2000);								},
 								success : function(response) {
 									if (response != null) {
-
 										if (response >= 1) {
-
 											var msg = "District Data Updated Successfully.";
 											$('#success_msg').text(msg);
 											 $('#success_alert').addClass("show");
@@ -481,28 +381,30 @@ $(document).ready(function (){
 										} 
 									}
 								}
-
 							});
 						}
-
 					})
 
 	"use strict";
-			
 		}
-		$('#cancel')
-		.click(
-				function() {		
+$('#cancel').click(function() {		
 				window.location.reload();
 				})
-				
 		// Delete data by district_id
-		function deleteById(id){
-			
-			 if (confirm("Press OK to confirm!")) {
-			var district_id = id;
-			var flag = 3;
-			$.ajax({
+function deleteById(id){
+	var district_id = id;
+	var flag = 3;
+	Swal.fire({
+        title: "Are you sure?",
+        text: "You want to Delete Data!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+        	$.ajax({
 				url : base + "/dssAPI/dfapi/insertUpdateDistrict",
 				type : "post",
 				dataType : "json",
@@ -541,29 +443,25 @@ $(document).ready(function (){
 					             $('#danger_alert').addClass("hide");
 					           },2000);
 							location.reload(true);
-
 						}
 					}
 				}
 
 			});
-			 } else {
-				  window.location.reload();
-			  }
-		}
-		$(document).ready(function(){
-
+        } else if (result.dismiss === "cancel") {
+            window.location.reload();
+        }
+    });
+}
+$(document).ready(function(){
 			  // Search all columns
 			  $('#txt_searchall').keyup(function(){
 			    // Search Text
 			    var search = $(this).val();
-
 			    // Hide all table tbody rows
 			    $('table tbody tr').hide();
-
 			    // Count total search result
 			    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
-
 			    if(len > 0){
 			      // Searching text in columns and show match row
 			      $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
@@ -572,10 +470,7 @@ $(document).ready(function (){
 			    }else{
 			      $('.notfound').show();
 			    }
-
 			  });
-
-
 			});
 		$.expr[":"].contains = $.expr.createPseudo(function(arg) {
 			   return function( elem ) {
@@ -586,7 +481,6 @@ $(document).ready(function (){
 	</script>
 </body>
 </html>
-
 <%
 } catch (Exception e) {
 Logger.log(dbConnVar, "" + e);

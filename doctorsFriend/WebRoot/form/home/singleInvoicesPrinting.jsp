@@ -10,19 +10,23 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
+<%
+String session1 = (String) session.getAttribute("login_id");
+if (session.getAttribute("login_id") != null) {
+ String sessionName = (String) session.getAttribute("login_id");
+} else
+ response.sendRedirect("../common/login.jsp");
+%>
 <html lang="en">
 <!--begin::Head-->
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
-
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
@@ -30,26 +34,17 @@ table.a {
 </style>
 </head>
 <!--end::Head-->
-<!--begin::Body-->
-
-
 <body onafterprint="printP()" id="kt_body"
 style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-77.jpeg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
 	<!--begin::Main-->
-	<!--begin::Header Mobile-->
-	
-	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
-
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
-
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
@@ -64,64 +59,45 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 												<img id="logo" alt="Logo"
 													src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/gif/src.png"
 													class="logo-default max-h-100px" />
-
 												<div class="col-md-8 text-center">
 													<h1 class="font-weight-bolder" style="font-size: 40px;">SHREE
 														RAJENDRA CLINIC</h1>
-
 													<div class="text-right">
-
 														<h1>Dr. Rakesh F. Bafna</h1>
 														<p style="font-size: 18px">B.H.M.S(Reg No. 27450)</p>
-
 													</div>
-
 													<h3>पोयनाड : भाजी मार्केट गल्ली</h3>
 													<h3 class="ml-2 font-weight-bolder">7775999536 |
 														9822786831(Whatsapp)</h3>
 												</div>
-
 											</div>
-
 											<div class="border-bottom bg-info w-100"></div>
 											<div class="border-bottom bg-info w-100"></div>
 											<div class="border-bottom bg-info w-100"></div>
-
 										</div>
 									</div>
-
 									<div class="col-md-12 mb-10 text-center text-info">
 										<h1 class="font-weight-bolder"
 											style="font-size: 35px; face: Arial">Invoice Receipt</h1>
 									</div>
-
 									<div id="name" class="col-md-10 mb-10 offset-1 ">
 										<span
 											class="d-flex justify-content-between align-items-baseline">
-
 											<div class="d-flex justify-content-start" style="font-size: 20px;">
-												<h2
-													class="pl-0 pr-4 font-weight-bold text-info text-uppercase">Invoice
-													No:</h2>
+												<h2	class="pl-0 pr-4 font-weight-bold text-info text-uppercase">Invoice	No:</h2>
 												<h2 class="font-weight-bold" id="receipt_no"></h2>
 											</div>
-
-											<div class="d-flex justify-content-start"
-												style="font-size: 20px;">
+											<div class="d-flex justify-content-start" style="font-size: 20px;">
 												<h2
 													class="pl-0 pr-4 ml-10 font-weight-bold text-info text-uppercase">Invoice
 													Date:</h2>
 												<h2 class="font-weight-bold" id="date1">__/__/____</h2>
 											</div>
 										</span>
-
-
 									</div>
 									<div class="row py-9 px-8 id=body">
-
 										<div class="col-md-10 offset-1 ml-20 mr-20 mb-40 "
 											style="font-size: 20px;">
-
 											<p class="">
 												Received amount of <span
 													class="amount font-weight:500 font-decoration:underline mr-3">
@@ -138,7 +114,6 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 													__________________ </span> rs. & other charges___________.
 
 											</p>
-
 											<div class="col-md-11 text-right" style="font-size: 20px">
 												<label>Thanks</label>
 											</div>
@@ -170,16 +145,9 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 		</div>
 		<!--end::Page-->
 	</div>
-
-
 				<!--end::Content-->
 				<!--begin::Footer-->
 				<jsp:include page="../common/footer.jsp"></jsp:include>
-
-				<!--end::Footer-->
-			
-	<!--end::Main-->
-	
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->
@@ -197,113 +165,12 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-	<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
 	<!--end::Scrolltop-->
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
-
 	<script>
 var basePath='<%=basePath%>';    
 var base='<%=base%>';  
-
  window.print(); 
- 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const patient_name = urlParams.get('patient_name');
@@ -321,8 +188,6 @@ $('.received_by').text(patient_name);
 $('.invoice_no').text(invoice_id);
 $('.invoice_amt').text(clinicFee);
 $('.balance_amt').text(toBePaid);
-
-
  $.ajax({
 	url : base + "/dssAPI/dfapi/getPaymentDetails",
 	type : "post",
@@ -333,22 +198,15 @@ $('.balance_amt').text(toBePaid);
 		},
 	success:function(data)
     {
-		
 		 const row = data.find(d => d.visit_id == visit_id); 
 			$('.payment_mode').text(row.payment_mode);
-		
     }
-    
 });	
- 
-
 function printP()
 {
 	var url = "form-wizard.jsp";
-
 	window.location.assign(url);
 	}
-
 </script>
 
 </body>
