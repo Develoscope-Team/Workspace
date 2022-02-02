@@ -2,155 +2,33 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
 import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+<%	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()	+ path + "/";
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
+		String session1 = (String) session.getAttribute("login_id");
+		if (session.getAttribute("login_id") != null) {
+			String sessionName = (String) session.getAttribute("login_id");
+		} else
+			response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
 }
-</style>
-</head>
-<body id="kt_body"
-	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
-	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	
-	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
-	<!--end::Header Mobile-->
-	<div class="d-flex flex-column flex-root">
-		<!--begin::Page-->
-		<div class="d-flex flex-row flex-column-fluid page">
-			<!--begin::Wrapper-->
-			<div class="d-flex flex-column flex-row-fluid wrapper"
-				id="kt_wrapper">
-
-				<!--begin::Content-->
-				<div class="content d-flex flex-column flex-column-fluid"
-					id="kt_content">
-					<!--begin::Subheader-->
-					<div class="subheader py-2 py-lg-12 subheader-transparent"
-						id="kt_subheader">
-						<div
-							class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-							<!--begin::Info-->
-							<div class="d-flex align-items-center flex-wrap mr-1">
-								<!--begin::Heading-->
-								<div class="d-flex flex-column">
-									<!--begin::Title-->
-									<h2 class="text-white font-weight-bold my-2 mr-5">Finish Good Category
-										</h2>
-									<!--end::Title-->
-
-								</div>
-								<!--end::Heading-->
-							</div>
-							<!--end::Info-->
-
-						</div>
-					</div>
-					<!--end::Subheader-->
-					<!--begin::Entry-->
-					<div class="d-flex">
-						<!--begin::Container-->
-						<div class="container ">
-							
-							<div class="row">
-								<div class="col-xl-12">
-									<div class="card card-custom gutter-b">
-										<div class="card-body">
-											<div class="example mb-10">
-												<div class="example-preview">
-													<div class="card card-custom">
-														<form method="get" class="form" id="kt_form_1">
-															<div class="card-body">
-																<div class="row">
-																	<div class="col-xl-5">
-																		<div class="form-group">
-																			<label>Product Name</label><span class="text-danger">*</span>
-																			<div class="typeahead">
-																				<select class="form-control form-control-solid"
-																			name="product" id="product_name">
-																			<option value="" disabled selected hidden>Select
-																				Product</option>
-</select>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col-xl-5">
-																		<div class="form-group">
-																			<label>Product Code</label> <input type="text"
-																				class="form-control form-control-solid form-control-lg"
-																				name="product_code" id="product_code" disabled />
-																		</div>
-																	</div>
-																</div>
-																
-																<div class="row ">
-																	<div class="col-xl-5">
-																		<div class="form-group">
-																			<label>From Date</label> <input type="date"
-																				class="form-control h-40px  " name="from_date"
-																				id="from_date" />
-																		</div>
-																	</div>
-																	<div class="col-xl-5">
-																		<div class="form-group">
-																			<label>To Date</label> <input type="date"
-																				class="form-control h-40px  " name="till_date"
-																				id="till_date" />
-																		</div>
-																	</div>
-
-																</div>
-															</div>
-															<div class="card-footer text-center">
-																<div class="row">
-																	<div class="col-lg-3"></div>
-																	<div class="col-lg-6">
-																		<button type="button" id="show" onclick="printP()"
-																			class="btn font-weight-bold btn-primary mr-2 ">Show
-																			Report</button>
-
-																	</div>
-																</div>
-															</div>
-
-														</form>
-														<!--end::Form-->
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-							</div>
-<style>
 .alert {
 	padding: 20px 40px;
 	min-width: 40%;
@@ -163,91 +41,118 @@ table.a {
 	opacity: 0;
 	pointer-events: none;
 }
-
 .alert.hide {
 	animation: hide_slide 1s ease forwards;
 }
-
-.alert.showAlert {
+ .alert.showAlert {
 	opacity: 1;
 	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
+} 
 .alert-text {
 	padding: 0 20px;
 	font-size: 18px;
 }
 </style>
+</head>
+<body id="kt_body"
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
+	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
+	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+	<!--end::Header Mobile-->
+	<div class="d-flex flex-column flex-root">
+		<!--begin::Page-->
+		<div class="d-flex flex-row flex-column-fluid page">
+			<!--begin::Wrapper-->
+			<div class="d-flex flex-column flex-row-fluid wrapper"	id="kt_wrapper">
+				<!--begin::Content-->
+				<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+					<!--begin::Subheader-->
+					<div class="subheader py-2 py-lg-12 subheader-transparent"	id="kt_subheader">
+						<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+							<!--begin::Info-->
+							<div class="d-flex align-items-center flex-wrap mr-1">
+								<!--begin::Heading-->
+								<div class="d-flex flex-column">
+									<!--begin::Title-->
+									<h2 class="text-white font-weight-bold my-2 mr-5">Finish Good Category</h2>
+									<!--end::Title-->
+								</div>
+								<!--end::Heading-->
+							</div>
+							<!--end::Info-->
+						</div>
+					</div>
+					<!--end::Subheader-->
+					<!--begin::Entry-->
+					<div class="d-flex">
+						<!--begin::Container-->
+						<div class="container ">
+							<div class="row">
+								<div class="col-xl-12 offset-xl-0">
+									<div class="card card-custom gutter-b">
+										<div class="card-body">
+											<div class="example mb-2">
+												<div class="example-preview">
+													<div class="card card-custom">
+														<form method="get" class="form" id="kt_form_1">
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-xl-6">
+																		<div class="form-group">
+																			<label>Product Name</label><span class="text-danger">*</span>
+																			<div class="typeahead">
+																				<select class="form-control form-control-solid"
+																			name="product" id="product_name">
+																			<option value="" disabled selected hidden>Select
+																				Product</option>
+                                                                               </select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-xl-6">
+																		<div class="form-group">
+																			<label>Product Code</label> <input type="text"
+																				class="form-control form-control-solid form-control-lg"
+																				name="product_code" id="product_code" disabled />
+																		</div>
+																	</div>
+																</div>
+																<div class="row ">
+																	<div class="col-xl-6">
+																		<div class="form-group">
+																			<label>From Date</label> <input type="text"
+																				class="form-control form-control-solid h-40px  " name="from_date"
+																				id="from_date" />
+																		</div>
+																	</div>
+																	<div class="col-xl-6">
+																		<div class="form-group">
+																			<label>To Date</label> <input type="text"
+																				class="form-control form-control-solid h-40px  " name="till_date"
+																				id="till_date" />
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="card-footer text-center">
+																<div class="row">
+																	<div class="col-lg-3"></div>
+																	<div class="col-lg-6">
+																		<button type="button" id="show" onclick="printP()"
+																			class="btn font-weight-bold btn-primary mr-2 ">Show
+																			Report</button>
+																	</div>
+																</div>
+															</div>
+														</form>
+														<!--end::Form-->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 							<div class="alert alert-success  " role="alert"
 								id="success_alert">
 								<div class="alert-text">
@@ -264,25 +169,19 @@ translateX(
 									<span id="warning_msg"></span>
 								</div>
 							</div>
-
 						</div>
 						<!--end::Container-->
 					</div>
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
 
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -301,34 +200,31 @@ translateX(
 		</span>
 	</div>
 
-<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
-
-
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-
 	 var today = new Date();
 	 var dd=today.getDate();
-	 
 	 if(dd < 10){
 		 dd = '0' + dd;
 	 }
 	 var mm=today.getMonth()+1;
 	 if(mm < 10){
 		 mm = '0' + mm;
-		
 	 }
-	 
 	 var date = today.getFullYear()+'-'+mm+'-'+ dd;
-	
 	 $('#till_date').val(date);
 	 $('#from_date').val(date);
 	 
+	 // minimum setup
+     $('#from_date,#till_date').datepicker({
+      rtl: KTUtil.isRTL(),
+      todayHighlight: true,
+      orientation: "bottom left",
+     	format:'yyyy-mm-dd'
+     });
 	 $.ajax({
 			url : base + "/bakeshackAPI/api/getSaleableProductDetails",
 			type : "post",
@@ -338,19 +234,15 @@ translateX(
 			success:function(data)
 		    {
 				data.forEach((element)=> {
-					
 				        $('#product_name').append($(document.createElement('option')).prop({
 			                value: element.product_name,
 			                text: element.product_name
 			            }))
-					
 				});   
 		    }
 		});	
 	 var pcode=0;
-		
 	 $('#product_name').change(function(){
-			
 			var product_name = $(this).val();
 			$.ajax({
 				url : base + "/bakeshackAPI/api/getProductDetails",
@@ -363,34 +255,24 @@ translateX(
 					const row = data.find(d => d.product_name == product_name);
 					if(row != null){
 					   pcode = row.product_id; 
-					
-						
 						$('#product_code').val(row.product_id);
 						$('#product_code').addClass("text-muted");
-						
-						
 					}else{
 						$('#product_code').val("");
 					}
 		        }
 			});
 	 });
-	 
 	 function printP() {
-		
 	    	var product_name = $('#product_name').val();
 	    	var from_date = $('#from_date').val();
 	    	var till_date = $('#till_date').val();
 	    	var product_code = pcode;
 	    	  if(from_date.length > 1 && till_date.length > 1){
-	    	
-		  var url ="finish_good_report_print.jsp" + '?product_code=' + product_code  + '&product_name=' + product_name  +  '&from_date=' + from_date + '&till_date=' + till_date ;
-    
-			window.location.assign(url);  
-			
+		       var url ="finish_good_report_print.jsp" + '?product_code=' + product_code  + '&product_name=' + product_name  +  '&from_date=' + from_date + '&till_date=' + till_date ;
+			    window.location.assign(url);  
 	    	  }
 	            else{
-	            	
 	            	 $('#warning_msg').text("Please select the Date Range");
 					 $('#warning_alert').addClass("show");
 			           $('#warning_alert').removeClass("hide");
@@ -401,11 +283,9 @@ translateX(
 			           },2000);
 	            }
 		}  
-
-	</script>
+</script>
 </body>
 </html>
-
 <%
 	} catch (Exception e) {
 		Logger.log(dbConnVar, "" + e);

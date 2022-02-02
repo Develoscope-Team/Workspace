@@ -1,37 +1,31 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()	+ path + "/";
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
+		 String session1 = (String) session.getAttribute("login_id");
+		if (session.getAttribute("login_id") != null) {
+			String sessionName = (String) session.getAttribute("login_id");
+		} else
+			response.sendRedirect("../common/login.jsp"); 
 %>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
-
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
@@ -41,17 +35,16 @@ table.a {
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="col-10 mt-20 offset-1 ">
 	<div class="card card-custom gutter-b ">
 				<div class="dropdown dropdown-inline mt-5" >
-					<button type="button1" class="  btn  font-weight-bolder " style="float:right;"
+					<button type="button" class="  btn  font-weight-bolder " style="float:right;"
 						value="Create Print" id="Print" onclick="MyApp.printTable()">
 						<i class="icon-2x flaticon2-printer" style="color: #4A7DFF"></i>
 					</button>
-					<button type="button " class=" btn font-weight-bolder " style="float:right;"
+					<button type="button" class=" btn font-weight-bolder " style="float:right;"
 						value="Create PDF" id="PDF" onclick="run()">
 						<i class=" icon-2x fas fa-file-pdf " style="color:  #4A7DFF"></i>
 					</button>
@@ -60,6 +53,7 @@ table.a {
 						<i class=" icon-2x fas fa-file-excel" style="color:  #4A7DFF"></i>
 					</button>
 				</div>
+			
 		<div class="table-responsive " id="card_Report">
 			<font size="+3"><u><center>Monthly Product Report</center></u></font> <br />
 			<div class=" mr-10 " >
@@ -80,7 +74,6 @@ table.a {
 						<th style="text-align: center" scope="col">Oct.</th>
 						<th style="text-align: center" scope="col">Nov.</th>
 						<th style="text-align: center" scope="col">Dec.</th>
-						
 					</tr>
 				</thead>
 				<tbody class="table_body text-center">
@@ -89,12 +82,7 @@ table.a {
 		</div>
 	</div>
 	</div>
-
-<!--begin::Footer-->
-				<div>
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
+	<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -113,22 +101,15 @@ table.a {
 		</span>
 	</div>
 
-<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
-
-
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-
 	 var today = new Date();
 	 var date = (today.getMonth()+1)+'-'+today.getFullYear();
 	 $('#finish').text(date);
 	 $('#from_date').val(date);
-	
 	 $('#till_date').val(date);
 	var product_name = " ";
 	const queryString = window.location.search;

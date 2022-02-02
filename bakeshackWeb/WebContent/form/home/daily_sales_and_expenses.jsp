@@ -1,36 +1,30 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()	+ path + "/";
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
+		/* String session1 = (String) session.getAttribute("login_id");
+		if (session.getAttribute("login_id") != null) {
+			String sessionName = (String) session.getAttribute("login_id");
+		} else
+			response.sendRedirect("../common/login.jsp"); */
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
-
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
@@ -40,17 +34,16 @@ table.a {
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="col-10 mt-20  offset-1">
 	<div class="card card-custom gutter-b ">
 				<div class="dropdown dropdown-inline mt-5" >
-					<button type="button1" class="  btn  font-weight-bolder " style="float:right;"
+					<button type="button" class="  btn  font-weight-bolder " style="float:right;"
 						value="Create Print" id="Print" onclick="MyApp.printTable()">
 						<i class="icon-2x flaticon2-printer" style="color: #4A7DFF"></i>
 					</button>
-					<button type="button " class=" btn font-weight-bolder " style="float:right;"
+					<button type="button" class=" btn font-weight-bolder " style="float:right;"
 						value="Create PDF" id="PDF" onclick="run()">
 						<i class=" icon-2x fas fa-file-pdf " style="color: #4A7DFF"></i>
 					</button>
@@ -59,19 +52,12 @@ table.a {
 						<i class=" icon-2x fas fa-file-excel" style="color: #4A7DFF"></i>
 					</button>
 				</div>
+				
 		<div class="table-responsive" id="card_Report">
-			<font size="+3"><u><center>Monthly Profit And Loss Statement</center></u></font> <br />
+		<font size="+3"><u><center>Monthly Profit And Loss Statement</center></u></font> <br />
 			<div class="  " >
 			<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font></div><br />
-			
-			
-				
-				
-				
-						
 			<table class="table" style="border: 1px solid black; ">
-				
-
 					<thead>
 					<col>
 					<colgroup span="4"></colgroup>
@@ -93,11 +79,6 @@ table.a {
 							<th
 							style="text-align: center;border: 1px solid black"
 							scope="col">Balance Amount</th>
-						<!-- <th
-							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
-							scope="col">Payment Mode</th>
-						<th style="text-align: center; border: 1px solid black"
-							scope="col">Payment Date</th> -->
 						<th
 							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
 							scope="col">Purchase Invoice Amount</th>
@@ -107,8 +88,6 @@ table.a {
 							<th
 							style="text-align: center; border: 1px solid black"
 							scope="col">Balance Amount</th>
-					
-
 					</tr>
 					</thead>
 					<tbody class="table_body text-center" style="font-size:14px; border-bottom: 1px solid black;">
@@ -117,7 +96,6 @@ table.a {
 				<col>
 					<colgroup span="3"></colgroup>
 					<colgroup span="3"></colgroup>
-					
 					<tr>
 						<td rowspan="1" style="text-align: center; border: 1px solid black;"></td>
 						<tr >
@@ -132,8 +110,6 @@ table.a {
 							<th
 							style="text-align: center;border: 1px solid black"
 							scope="col"  id="total_balance_sales_amount">00.00</th>
-							
-							
 							<th
 							style="text-align: center; border-bottom: 1px solid black; border-top: 1px solid black;"
 							scope="col" id="total_purchase_amount">00.00</th>
@@ -145,24 +121,14 @@ table.a {
 							scope="col" id="total_balance_purchase_amount">00.00</th></tr>
 					<tr>
 						<td rowspan="1" style="text-align: center; border: 1px solid black;"></td>
-						<th colspan="8" scope="colgroup" style="text-align: center; border: 1px solid black;">Profit/Loss =<span class="ml-2" id="pnl"></</span></th>
+						<th colspan="8" scope="colgroup" style="text-align: center; border: 1px solid black;">Profit/Loss =<span class="ml-2" id="pnl"></span></th>
 					</tr>
 					</tfoot>
-				
-				
-				
 			</table>
-			
-		
 		</div>
 	</div>
 	</div>
-<!--begin::Footer-->
-				<div >
 				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
-
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -180,35 +146,22 @@ table.a {
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
-<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
-
-
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-
 	 var today = new Date();
 	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-	 
-	// $('#till_date').val(date);
-	
 	 var category_name = " ";
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
-		
         const  from_date = urlParams.get('from_date');
 		const till_date = urlParams.get('till_date');
 		 var today = new Date(from_date);
-			
 			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
 		 $('#finish').text(date);
 		 var today = new Date(till_date);
-			
 			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
 			var no_of_days = today.getDate();
 		 $('#finish1').text(date);
@@ -216,18 +169,12 @@ table.a {
 	var sale_current_amount = 00;	 
 	var expn_amount = 00;	
 	var expn_current_amount = 00;	 
-
-	
-	
-	
-	
 	 var html = '';
 	for(var i = 1; i <= no_of_days; i++){
-	 	 
 	 	         html += "<tr id= tr-id-2 class= tr-class-2>"
 	 	       	 html += '<td id="date-' + i +'" style="border-right:1px solid black; border-left:1px solid black; height:24px"> -- </td>';
 		 	     html += '<td id="sale_amount-' + i +'"> - </td>';
-		 	    html += '<td id="sale_current_amt-' + i +'"> - </td>';
+		 	     html += '<td id="sale_current_amt-' + i +'"> - </td>';
 			 	 html += '<td id="sale_balance_amt-' + i +'" style="border-right:1px solid black"> - </td>';
                  html += '<td  id="purchase_amount-' + i +'"> - </td>';
                  html += '<td  id="purchase_current_amt-' + i +'"> - </td>';
@@ -235,8 +182,6 @@ table.a {
                  html += '</tr>';
 		        $(".table_body").html(html);
 }
-	
-	
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getDailySaleOfMonthDetails",
 		type : "post",
@@ -250,25 +195,20 @@ table.a {
 	    {
 			const row = data.find(d => d.paid_date != " ");
 			data.forEach((row)=> {
-				
-				 var today = new Date(row.paid_date);
-					
-					var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();		
+				var today = new Date(row.paid_date);
+				var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();		
 				$('#date-'+today.getDate()).text(date);
 				$('#sale_amount-'+today.getDate()).text(row.invoice_amonut);
 				$('#sale_current_amt-'+today.getDate()).text(row.current_paid_amount);
 				$('#sale_balance_amt-'+today.getDate()).text((parseInt(row.invoice_amonut) - parseInt(row.current_paid_amount) ).toFixed(2));
 				sale_amount += parseInt(row.invoice_amonut);
 				sale_current_amount += parseInt(row.current_paid_amount);
-				
 			});
-			 
 		}
 	});	 
 	$('#total_sales_amount').text(sale_amount.toFixed(2));
 	$('#total_current_sales_amount').text(sale_current_amount.toFixed(2));
 	$('#total_balance_sales_amount').text((sale_amount - sale_current_amount).toFixed(2));
-	
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getDailyPurchaseOfMonthDetails",
 		type : "post",
@@ -282,40 +222,30 @@ table.a {
 	    {
 			const row = data.find(d => d.paid_date != " ");
 			data.forEach((row)=> {
-				
 				 var today = new Date(row.paid_date);
-					
-					var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();		
+				var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();		
 				$('#date-'+today.getDate()).text(date);
 				$('#purchase_amount-'+today.getDate()).text(row.invoice_amonut);
 				$('#purchase_current_amt-'+today.getDate()).text(row.current_paid_amount);
 				$('#purchase_balance_amt-'+today.getDate()).text((parseInt(row.invoice_amonut) - parseInt(row.current_paid_amount)).toFixed(2));
-	     	
 				expn_amount += parseInt(row.invoice_amonut);	
 				 expn_current_amount += parseInt(row.current_paid_amount); ;	 
-
-			
 			});
-			 
 		}
 	});	
 	$('#total_purchase_amount').text(expn_amount.toFixed(2));
 	$('#total_current_purchase_amount').text(expn_current_amount.toFixed(2));
 	$('#total_balance_purchase_amount').text((expn_amount - expn_current_amount).toFixed(2));
 	$('#pnl').text((sale_amount + expn_current_amount).toFixed(2));
-	
 	$(document).ready(function(){
 		  // Search all columns
 		  $('#txt_searchall').keyup(function(){
 		    // Search Text
 		    var search = $(this).val();
-
 		    // Hide all table tbody rows
 		    $('table tbody tr').hide();
-
 		    // Count total search result
 		    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
-
 		    if(len > 0){
 		      // Searching text in columns and show match row
 		      $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
@@ -324,7 +254,6 @@ table.a {
 		    }else{
 		      $('.notfound').show();
 		    }
-
 		  });
 		});
 	$.expr[":"].contains = $.expr.createPseudo(function(arg) {
@@ -337,13 +266,11 @@ table.a {
 	     this.printTable = function () {
 	         var tab = document.getElementById('card_Report');
 	         printHeader:"<h1>Example Table Header<h1>"
-
 	         var style = "<style>";
 	             style = style + "table {width: 100%;font: 17px Calibri;}";
 	             style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
 	             style = style + "padding: 2px 3px;text-align: center;}";
 	             style = style + "</style>";
-
 	         var win = window.open('', '', 'height=700,width=700');
 	         win.document.write(style);          //  add the style.
 	         win.document.write(card_Report.outerHTML);
@@ -366,20 +293,17 @@ table.a {
 		    doc.save("Image.pdf");
 		  });
 		}
+	 
 	function dataContentExportExl(memberId, filename = ''){
 		    var fourceFileSaveDataUrl;
 		    var dataFileType = 'application/vnd.ms-excel';
 		    var tableSelect = document.getElementById(memberId);
 		    var dataContentSource = tableSelect.innerHTML.replace(/ /g, '%20');
-		    
 		    // Specify file name
 		    filename = filename?filename+'.xls':'export_excel_data.xls';
-		    
 		    // Create download link element
 		    fourceFileSaveDataUrl = document.createElement("a");
-		    
 		    document.body.appendChild(fourceFileSaveDataUrl);
-		    
 		    if(navigator.msSaveOrOpenBlob){
 		        var blob = new Blob(['\ufeff', dataContentSource], {
 		            type: dataFileType
@@ -388,19 +312,15 @@ table.a {
 		    }else{
 		        // Create a link to the file
 		        fourceFileSaveDataUrl.href = 'data:' + dataFileType + ', ' + dataContentSource;
-		    
 		        // Setting the file name
 		        fourceFileSaveDataUrl.download = filename;
-		        
 		        //triggering the function
 		        fourceFileSaveDataUrl.click();
 		    }
 		};
-
-	</script>
+</script>
 </body>
 </html>
-
 <%
 	} catch (Exception e) {
 		Logger.log(dbConnVar, "" + e);

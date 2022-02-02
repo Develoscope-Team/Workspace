@@ -1,37 +1,31 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()	+ path + "/";
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
+		 String session1 = (String) session.getAttribute("login_id");
+		if (session.getAttribute("login_id") != null) {
+			String sessionName = (String) session.getAttribute("login_id");
+		} else
+			response.sendRedirect("../common/login.jsp"); 
 %>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-
-<script type="text/javascript"
-	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
-
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/jspdf.min.js"></script>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
@@ -41,13 +35,12 @@ table.a {
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="col-10 mt-20 offset-1 ">
 	<div class="card card-custom gutter-b ">
 				<div class="dropdown dropdown-inline mt-5" >
-					<button type="button1" class="  btn  font-weight-bolder " style="float:right;"
+					<button type="button" class="  btn  font-weight-bolder " style="float:right;"
 						value="Create Print" id="Print" onclick="MyApp.printTable()">
 						<i class="icon-2x fas fa-print" style="color: #4A7DFF"></i>
 					</button>
@@ -60,8 +53,9 @@ table.a {
 						<i class=" icon-2x fas fa-file-excel" style="color:  #4A7DFF"></i>
 					</button>
 				</div>
+		
 		<div class="table-responsive" id="card_Report">
-			<font size="+3"><u><center>In-out Ledger Report</center></u></font> <br />
+		<font size="+3"><u><center>In-out Ledger Report</center></u></font> <br />
 			<div class=" mr-10 " >
 			<font size="+2"><u><center>Date Range: <span class=" " id="finish"></span> To <span class=" " id="finish1"></span></center></u></font></div><br />
 			<table class="table" style="border: 1px solid black">
@@ -82,12 +76,7 @@ table.a {
 		</div>
 	</div>
 	</div>
-<!--begin::Footer-->
-				<div>
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -105,31 +94,20 @@ table.a {
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
-<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
-
-
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-
 	 var today = new Date();
 	 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-	
 	 $('#from_date').val(date);
 	 $('#till_date').val(date);
-	
-
 	var product_name = " ";
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const product_code = urlParams.get('product_code');
 	 product_name = urlParams.get('product_name');
-   
 	const  from_date = urlParams.get('from_date');
 	 const till_date = urlParams.get('till_date');
 	 var today = new Date(from_date);
@@ -146,35 +124,26 @@ table.a {
 		dataType : "json",
 		async : false,
 		data : {
-		
 			"product_name":product_name,
 		    "from_date" : from_date,
 		    "till_date" : till_date
 			},
 		success:function(data)
 	    {
-			
 			const row = data.find(d => d.product_name == product_name);
 			data.forEach((row)=> {
 	     	html +="<tr id= tr-id-2 class= tr-class-2>"
-	     	
-	     		var today = new Date(row.entry_date);
+	     	var today = new Date(row.entry_date);
 			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-	     	
 			html += "<td>"+date+"</td>"; 
 			 html += "<td>"+row.product_name+"</td>";
 			 html += "<td>"+row.transaction_desc+"</td>";
 			 html += "<td>"+row.opening_quantity+"</td>";
-	            html += "<td>"+row.in_quantity+"</td>";
-	            html += "<td>"+row.out_quantity+"</td>";
-	           
-				 total_balance = total_balance + parseInt(row.opening_quantity) + parseInt(row.in_quantity) - parseInt(row.out_quantity);
-				 html += "<td>"+total_balance+"</td>";
-	            
-	          /*   html += "<td>"+row.payment_mode+"</td>"; */
-	           
-	            
-	 	       	 html +="</tr>"
+	         html += "<td>"+row.in_quantity+"</td>";
+	         html += "<td>"+row.out_quantity+"</td>";
+			 total_balance = total_balance + parseInt(row.opening_quantity) + parseInt(row.in_quantity) - parseInt(row.out_quantity);
+			 html += "<td>"+total_balance+"</td>";
+ 	       	 html +="</tr>"
 				});
 			 $(".table_body").html(html);
 		}
@@ -184,13 +153,10 @@ table.a {
 		  $('#txt_searchall').keyup(function(){
 		    // Search Text
 		    var search = $(this).val();
-
 		    // Hide all table tbody rows
 		    $('table tbody tr').hide();
-
 		    // Count total search result
 		    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
-
 		    if(len > 0){
 		      // Searching text in columns and show match row
 		      $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
@@ -199,7 +165,6 @@ table.a {
 		    }else{
 		      $('.notfound').show();
 		    }
-
 		  });
 		});
 	$.expr[":"].contains = $.expr.createPseudo(function(arg) {

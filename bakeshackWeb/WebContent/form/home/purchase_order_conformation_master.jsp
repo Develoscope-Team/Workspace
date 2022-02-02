@@ -1,33 +1,67 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 String dbConnVar = "BAKESHACk";
 try {
+	String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<!-- <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
-	
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<style>
+.alert {
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+.alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+}
+.alert.show {
+	animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide { 0%{	transform: translateX(100%);}
+40%{transform:translateX(-10%);}
+80%{transform:translateX(0%);}
+100%{transform:translateX(-10px);}
+}
+@keyframes hide_slide { 0%{	transform: translateX(-10px);}
+40%{transform:translateX(0%);}
+80%{transform:translateX(-10%);}
+100%{transform:translateX(100%);}
+}
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
+</style>
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
@@ -36,37 +70,28 @@ try {
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
 					<!--begin::Subheader-->
 					<div class="subheader py-2 py-lg-12 subheader-transparent"
 						id="kt_subheader">
-						<div
-							class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+						<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
 							<!--begin::Info-->
 							<div class="d-flex align-items-center flex-wrap mr-1">
 								<!--begin::Heading-->
 								<div class="d-flex flex-column">
 									<!--begin::Title-->
-									<h2 class="text-white font-weight-bold my-2 mr-5">Purchase Order 
-										 Conformation</h2>
-
+									<h2 class="text-white font-weight-bold my-2 mr-5">Purchase Order Confirmation</h2>
 									<!--end::Title-->
-
 								</div>
 								<!--end::Heading-->
 							</div>
 							<div class="d-flex align-items-center">
-
 								<a href="purchase-master.jsp"
 									class="btn btn-light-primary font-weight-boldest py-3 px-6 mr-6"><i
 									class="fa fas fa-calculator mr-2"></i>Purchase Billing</a>
-
-
 							</div>
-
 						</div>
 					</div>
 					<!--end::Subheader-->
@@ -74,9 +99,6 @@ try {
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
-
-
-
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -95,16 +117,14 @@ try {
 																				name="customerName" id="customer_name" /><span
 																				class="msg text-danger" id="type1"> </span>
 																		</div>
-
 																	</div>
-
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Order Date</label> <input type="date"
+																		<label>Order Date</label> <input type="text"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid form-control-lg"
-																			placeholder="DD/MM/YYYY" name="order_dat"
+																			placeholder="YYYY-MM-DD" name="order_dat"
 																			id="order_date" />
 																	</div>
 																</div>
@@ -119,10 +139,10 @@ try {
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Delivery Date</label> <input type="date"
+																		<label>Delivery Date</label> <input type="text"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid"
-																			id="delivery_date" />
+																			placeholder="YYYY-MM-DD"id="delivery_date" />
 																	</div>
 																</div>
 															</div>
@@ -153,7 +173,6 @@ try {
 																</div>
 																<div class="col-lg-1">
 																	<div class="form-group ">
-
 																		<button type="button" id="add_user"
 																			class="btn font-weight-bold mt-10 btn-icon ">
 																			<span class="svg-icon svg-icon-primary svg-icon-2x">
@@ -186,11 +205,7 @@ try {
 																	</div>
 																</div>
 															</div>
-
-
-
 															<div class="card-body" style="overflow-x: auto;">
-
 																<table class="table" id="Mtable">
 																	<thead>
 																		<tr>
@@ -200,27 +215,16 @@ try {
 																			<th scope="col">Quantity</th>
 																			<th scope="col">Unit Rate</th>
 																			<th scope="col">Total</th>
-
 																		</tr>
 																	</thead>
-
 																	<tbody class="add_product" id="add-product"></tbody>
-
-
 																</table>
 															</div>
 															<div class="text-right mb-5 mr-22">
 																<button type="button" id="add"
 																	class="btn font-weight-bold btn-primary ">ADD
 																</button>
-
-
-
-
-
-
 															</div>
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div">
@@ -239,8 +243,7 @@ try {
 																	</div>
 																</div>
 															</div>
-
- <div class = "row">
+                                                 <div class = "row">
 															<div class="col-lg-6">
 																<div class="form-group" id="amount_div">
 																	<label>Advance Paid</label> <input type="number"
@@ -249,7 +252,6 @@ try {
 																		placeholder="Enter Discount" disabled/>
 																</div>
 															</div>
-															
 															<div class="col-lg-6">
 																<div class="form-group" id="amount_div">
 																	<label>Delivery Charges</label> <input type="number"
@@ -258,13 +260,10 @@ try {
 																		placeholder="Enter Discount" />
 																</div>
 															</div>
-															
                                                            </div>
-                                                           
                                                            <div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group" id="credit_div">
-
 																		<label>Credit Period (in Days)</label> <input type="text"
 																			class="form-control form-control-solid"
 																			id="credit_period"> </input>
@@ -272,14 +271,12 @@ try {
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group" id="credit_div">
-
 																		<label>Credit Period End Date</label> <input
 																			type="text" class="form-control form-control-solid"
 																			id="credit_period_end_date"  disabled> </input>
 																	</div>
 																</div>
 															</div>
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
@@ -294,7 +291,6 @@ try {
 																		</select>
 																	</div>
 																</div>
-
 																<div class="col-lg-4">
 																	<div class="form-group" id="amount_div">
 																		<label>Total Amount</label> <span class="text-danger"
@@ -304,7 +300,6 @@ try {
 																			placeholder="Enter Total Amount" disabled />
 																	</div>
 																</div>
-
 																<div class="col-lg-2">
 																	<div class="form-group" id="amount_div">
 																		<label>If Paid Partial</label> <span
@@ -315,10 +310,7 @@ try {
 																		</span>
 																	</div>
 																</div>
-
 															</div>
-
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group" id="upi_div">
@@ -330,21 +322,13 @@ try {
 																		</select>
 																	</div>
 																	<div class="form-group" id="nb_div">
-
 																		<label>Received Bank</label> <select
 																			class="form-control form-control-solid"
 																			id="received_bank">
 																			<option value="">Select a bank</option>
-
 																		</select>
 																	</div>
-
 																</div>
-
-
-
-
-
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div1">
 																		<label>Partial Paid Amount</label> <span
@@ -355,9 +339,6 @@ try {
 																	</div>
 																</div>
 															</div>
-
-
-
 															<div class="row" id="bank_details1">
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div">
@@ -378,9 +359,6 @@ try {
 																	</div>
 																</div>
 															</div>
-
-
-
 															<div class="modal" id="medicineModel" tabindex="-1"
 																role="dialog" aria-labelledby="staticBackdrop"
 																aria-hidden="true">
@@ -433,13 +411,8 @@ try {
 																						</div>
 																					</div>
 																				</form>
-
-
-
-
 																				<div id="kt_quick_search_toggle"
 																					data-toggle="dropdown" data-offset="0px,1px"></div>
-
 																				<div
 																					class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
 																					<div class="quick-search-wrapper scroll"
@@ -463,12 +436,9 @@ try {
 																	</div>
 																</div>
 															</div>
-
 															<div class="card-footer">
 																<div class="row">
-
 																	<div class="col-lg-10 offset-1 text-center">
-
 																		<button type="button" id="add_sales_order"
 																			class="btn font-weight-bold btn-primary ">Submit</button>
 																		<button type="button" id="cancel"
@@ -486,104 +456,6 @@ try {
 									</div>
 								</div>
 							</div>
-	<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
 							<div class="alert alert-success  " role="alert"
 								id="success_alert">
 								<div class="alert-text">
@@ -600,25 +472,18 @@ translateX(
 									<span id="warning_msg"></span>
 								</div>
 							</div>
-
 						</div>
 						<!--end::Container-->
 					</div>
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
-
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -636,34 +501,30 @@ translateX(
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<%-- <script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
- --%>
-	<%-- <script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
- --%>
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
-
-
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-	
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const vendors_name = urlParams.get('vendors_name');
 	const vendors_code = urlParams.get('vendors_code');
 	const order_code = urlParams.get('order_code');
-	
 	$('#order_no').val(order_code);
 	$('#discount').val("00");
 	$('#delivery_charges').val("00");
-	
 	var ccode=0;
+	
+	// minimum setup
+	$('#order_date,#delivery_date').datepicker({
+	 rtl: KTUtil.isRTL(),
+	 todayHighlight: true,
+	 orientation: "bottom left",
+	 format: 'yyyy-mm-dd'
+	}); 
 	$.ajax({
 			url : base + "/bakeshackAPI/api/getVendorsDetails",
 			type : "post",
@@ -675,7 +536,6 @@ translateX(
 				const row = data.find(d => d.vendors_name == vendors_name);
 				if(row != null){
 					ccode = row.customer_code; 
-				  
 					$('#customer_name').val(row.vendors_name);
 				$('#customer_code').val(row.vendors_code);
 				$('#mobile_no').val(row.mobile_no);
@@ -686,7 +546,6 @@ translateX(
 				}
 	        }
 		});	
-	
 	 var j=0;
 	 var r=0;
 	 var invoice_code;
@@ -697,15 +556,11 @@ translateX(
 		async : false,
 		data : {"order_code": order_code},
 		success:function(data)
- 	{
-			
+ 	     {
 			const row = data.find(d => d.order_code == order_code);
 			data.forEach((row)=> {
-			
 				if(row.order_code == order_code )
 						{
-			
-					/* alert(row.odrer_date); */
 					 $('#order_date').val(row.order_date);
 					 $('#delivery_date').val(row.delivery_date);
 		         	$('#order_no').val(row.order_code);
@@ -717,9 +572,7 @@ translateX(
 				    document.getElementById('total_amount').value =row.total_amount;
 				    document.getElementById('partially_paid_amount').value = row.total_amount - row.partial_paid_amount;
 		         	invoice_code = row.invoice_code;
-		         
 		         	const parsedData = JSON.parse(product_list);
-			         
 					 $(parsedData).each(function(index) {
 						r++;
 							$('#product-' + (index + 1)).val(parsedData[index]['product']);
@@ -727,11 +580,7 @@ translateX(
 							 $('#quantity-' + (index + 1)).val(parsedData[index]['quantity']); 
 							$('#unit_rate-' + (index + 1)).val(parsedData[index]['unit_rate']);
 							$('#total-' + (index + 1)).val(parsedData[index]['total']);
-						
-							
-							//alert(r);
 						});
-					 
 					 for(var i = 1; i <=r; i++){
 						  var html = '';
 						  html += '<tr>';
@@ -742,7 +591,6 @@ translateX(
 						  html += '<td style="width: 9%;"><input type="text" class="form-control  unit_rate" name="unit_rate" id="unit_rate-' + i + '" placeholder="unit_rate"  disabled/></td>';
 						  html += '<td style="width: 12%;"><input type="text" class="form-control  total" name="total" id="unit_total-' + i + '" placeholder="total" disabled/></td>';
 						  html += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
-
 						  $('.add_product').append(html);
 				 }
 					 const parsedData1 = JSON.parse(product_list);
@@ -752,72 +600,43 @@ translateX(
 							$('#raw_qty-' + (index + 1)).val(parsedData1[index]['quantity']);
 							$('#unit_rate-' + (index + 1)).val(parsedData1[index]['unit_rate']);
 							$('#unit_total-' + (index + 1)).val(parsedData1[index]['total']);
-							
 						});	
-				 
 					}
 			});
  	}
 	});	
 					function checkedBox(i){
-				
 						 if ($("#id-"+i).prop('checked')==true){ 
 							   $("#raw_qty-"+i).prop('disabled', false);
 							 }else{
 								 $("#raw_qty-"+i).prop('disabled', true);
 									$("#raw_qty-"+i).val('');
-									
-									
 							 }
-					    
 						}; 	
 						$('#if_partial').change(function(){
-							
-							
 							 if ($("#if_partial").prop('checked')==true){ 
 								 $('#amount_div1').show();
-								
 								 }else{
-									
 									 $('#amount_div1').hide();
-										
-										
 								 }
-						    
 							}); 
-	
-						
-						
 						$('#credit_period').change(function(){
 							var credit_period = $('#credit_period').val();
-							
 							function addDays(theDate, days) {
 							    return new Date(theDate.getTime() + days*24*60*60*1000);
 							}
-
 							var newDate = addDays(new Date(), credit_period);
-							
 							 var dd=newDate.getDate();
 							 if(dd<10)
 								 {
 								 dd='0'+dd;
 								 }
-							
 							 var date = newDate.getFullYear()+'-'+(newDate.getMonth()+1)+'-'+dd;	
-							
-                        
 							$('#credit_period_end_date').val( date )
-							
-						    
 							}); 
-						
-						
 						var i = r;
 						$('#add ').click(function () {
-							
 							i++;
-							
-							  
 							  var html = ''; 
 							  html += '<tr>';
 							  html += '<td style="width: 3%;">' + i + '</td>';
@@ -827,32 +646,12 @@ translateX(
 							  html += '<td style="width: 12%;"><input type="text" class="form-control unit_rate" name="unit_rate" id="unit_rate-' + i + '" placeholder="Unit Rate"></input></td>';
 							  html += '<td style="width: 12%;"><input type="text" class="form-control total" name="unit_total" id="unit_total-' + i + '" placeholder="Unit_total"></input></td>';
 							  html += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
-
 							 $('.add_product').append(html); 
 							 matches=i;
 							 $("#medicineModel").modal();
-								 /* $('.add_product #product-'+ i).dblclick(function () {
-									   mname=(this.id);
-									   
-									  var str = mname;
-							           matches = str.match(/(\d+)/);
-							           
-									  $("#medicineModel").modal();
-									
-									}); */
-							
 								 $('#raw_qty- '+ i).change(function () {
-									 
-								
 									 var raw_qty = $(this).val();
-									
-								
-									 
 								 })
-								 
-								 
-								 
-								 
 								 $.ajax({
 										url : base + "/bakeshackAPI/api/getUnitDetails",
 										type : "post",
@@ -862,28 +661,19 @@ translateX(
 										success:function(data)
 									    {
 											data.forEach((element)=> {
-												
 											        $('#unit').append($(document.createElement('option')).prop({
 										                value: element.unit_id,
 										                text: element.unit_desc
 										            }))
-												
 											});   
 									    }
 									});	
-							//	 table_len++;
-								
-								
 								});
-								
 						 $('.add_product').on('click','.btn_delete',function(){
 								$(this).closest('tr').remove();	
-								
 								 var calculate_total =0;
 								 for(var j = 1 ;j<100 ;j++)
 								 {
-									 
-									 
 									 if($("#unit_total-"+j).val() != null){
 									 var calculate_unit_total =  $("#unit_total-"+j).val();	
 									 var advance_paid = $('#advance_paid').val();
@@ -895,20 +685,14 @@ translateX(
 									 document.getElementById('partially_paid_amount').value = parseInt(calculate_total)- parseInt(advance_paid) -parseInt(discount)+parseInt(delivery_charges);
 									 }
 								 }
-								
 								});
-						 
-						 
 						var calculate_total =0;
-						
 						function weightConverter(i,valNum) {
 							 var calculate_unit_price = $("#unit_rate-"+i).val();
 							 $("#unit_total-"+i).val(calculate_unit_price*valNum); 
 							 var calculate_total =0;
 							 for(var j = 1 ;j<100 ;j++)
 							 {
-								 
-								 
 								 if($("#unit_total-"+j).val() != null){
 								 var calculate_unit_total =  $("#unit_total-"+j).val();	
 								 var advance_paid = $('#advance_paid').val();
@@ -928,7 +712,6 @@ translateX(
 							var invoice_total = amount1-discount;
 							$('#total_amount').val(invoice_total);
 							$('#partially_paid_amount').val(invoice_total);
-							
 							});
 						
 						$("#delivery_charges").change(function(){
@@ -939,23 +722,21 @@ translateX(
 							var invoice_total = parseInt(amount1)-parseInt(discount)+ parseInt(delivery_charges);
 							$('#total_amount').val(invoice_total);
 							$('#partially_paid_amount').val(parseInt(invoice_total) - parseInt(advance));
-							
 							});
-						 	
 						 $('#upi_div').hide();
 						 $('#nb_div').hide();
 						 $('#cheque_div').hide();
 						 $('#amount_div1').hide();
 						 $('#bank_details1').hide();
 						 $('#bank_details2').hide();
-						 
 						$('#paymentMode').change(function(){
 							var payment_mode = $(this).val();
-									
 							if(payment_mode == 'upi'){
 								$('#upi_div').show();
 								$('#nb_div').hide();
 								$('#cheque_div').hide();
+								 $('#bank_details1').hide();
+								 $('#bank_details2').hide();
 							}else if(payment_mode == 'nb'){
 								$('#upi_div').hide();
 								$('#nb_div').show();
@@ -970,19 +751,18 @@ translateX(
 								$('#cheque_div').hide();
 								$('.checkbox').prop('disabled', true);
 								$('#partially_paid_amount').val("00");
-								
+								 $('#bank_details1').hide();
+								 $('#bank_details2').hide();
 							}else{
 								$('#upi_div').hide();
 								$('#nb_div').hide();
 								$('#cheque_div').hide();
+								 $('#bank_details1').hide();
+								 $('#bank_details2').hide();
 							}
-							
 						});	
-						
-						
-		var balance_amount = 0;
+var balance_amount = 0;
 $('#add_sales_order').click(function() {
-											
 									var vendors_code = $('#customer_code').val();
 									var order_date = $('#order_date').val();
 									var delivery_date = $('#delivery_date').val();
@@ -1011,15 +791,12 @@ $('#add_sales_order').click(function() {
 										       var quantity =  $(this).find('.quantity').val();
 										       var unit_rate =  $(this).find('.unit_rate').val();
 										       var total =  $(this).find('.total').val();
-										  //  alert(unit_rate);
-										      
 										    $.ajax({
 													url : base + "/bakeshackAPI/api/insertUpdateQuantityDetails",
 													type : "post",
 													dataType : "json",
 													async : false,
 													data : {
-														
 														"product_name" : product,
 														"entry_date" : delivery_date,
 														"product_batch" : 0,
@@ -1035,7 +812,6 @@ $('#add_sales_order').click(function() {
 														"produced_quantity": 0,
 														"transaction_field" : "Purchase Product",
 														"flag" :flag
-														
 													},
 													error : function(xhr) {
 														var msg = "(insertUpdateProduct)Sorry but there was an error : "
@@ -1065,11 +841,9 @@ $('#add_sales_order').click(function() {
 														             $('#success_alert').removeClass("show");
 														             $('#success_alert').addClass("hide");
 														           },2000);
-
 															} 
 														}
 													}
-
 												});
 										 	}
 										 });
@@ -1077,9 +851,6 @@ $('#add_sales_order').click(function() {
 									 var productList = [];
 									 $("table tbody tr").each(function(index) {
 									 	if($(this).find('.product').val() != null){
-									 		
-									       
-									         
 									 		 productList.push({ 
 									 			  "product": $(this).find('.product').val(),
 											         "unit": $(this).find('.unit').val(),
@@ -1091,7 +862,6 @@ $('#add_sales_order').click(function() {
 									 });
 									
 								var jsonString = JSON.stringify(productList);	
-							
 								 $.ajax({
 										url : base + "/bakeshackAPI/api/insertUpdatePurchaseDetails",
 										type : "post",
@@ -1153,7 +923,6 @@ $('#add_sales_order').click(function() {
 									});
 									
 									  var transaction_id;
-								
 									 $.ajax({
 											url : base + "/bakeshackAPI/api/getLatestPurchaseInvoice",
 											type : "post",
@@ -1171,9 +940,6 @@ $('#add_sales_order').click(function() {
 												});
 									    	}
 										});	
-									
-									
-								 
 									  
 									 var field = "purchase";
 									
@@ -1196,10 +962,6 @@ $('#add_sales_order').click(function() {
 												"field"               : "Purchase Product",
 												"transaction_code"    : transaction_id,
 												"flag"                : flag
-												
-												
-												
-												
 											},
 											error : function(xhr) {
 												var msg = "Data insertion/updation failed. Error : "
@@ -1229,8 +991,6 @@ $('#add_sales_order').click(function() {
 												             $('#success_alert').removeClass("show");
 												             $('#success_alert').addClass("hide");
 												           },2000);
-														
-														
 
 													}
 												}
@@ -1308,11 +1068,8 @@ $('#add_sales_order').click(function() {
 									        reverseButtons: true
 									    }).then(function(result) {
 									        if (result.value) {
-										  
 									 		var url = "purchase_receipt.jsp" + '?vendors_code=' + vendors_code + '&order_code=' + order_code ;
-
 										  window.location.assign(url);
-										 
 									        } else if (result.dismiss === "cancel") {
 									        	 window.location.assign("index.jsp");
 									        }
@@ -1439,12 +1196,12 @@ success:function(data)
 });
 $("#medicineModel").modal('hide');
 } 
-
-
-
-
- 														
-	
+document.addEventListener('keypress', function (e) {
+    if (e.keyCode === 13 || e.which === 13) {
+        e.preventDefault();
+        return false;
+    }
+}); 	
 </script>
 </body>
 </html>

@@ -9,6 +9,11 @@
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
+		/* String session1 = (String) session.getAttribute("login_id");
+		if (session.getAttribute("login_id") != null) {
+			String sessionName = (String) session.getAttribute("login_id");
+		} else
+			response.sendRedirect("../common/login.jsp"); */
 %>
 <head>
 <link rel="stylesheet"

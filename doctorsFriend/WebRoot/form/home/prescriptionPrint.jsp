@@ -10,300 +10,270 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
+<%
+String session1 = (String) session.getAttribute("login_id");
+if (session.getAttribute("login_id") != null) {
+ String sessionName = (String) session.getAttribute("login_id");
+} else
+ response.sendRedirect("../common/login.jsp");
+%>
 <html lang="en">
 <!--begin::Head-->
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
-
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
+
 table.a {
 	table-layout: auto;
 	width: 100%;
 }
 </style>
 </head>
-<!--end::Head-->
-<!--begin::Body-->
-
-
 <body id="kt_body"
-style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-77.jpeg)"
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-rk4.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    top: 0;"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
 	<!--begin::Main-->
 	<!--begin::Header Mobile-->
-	
+
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Aside-->
-			
-      <jsp:include page="/form/common/navbar.jsp"></jsp:include>
-
+			<jsp:include page="/form/common/navbar.jsp"></jsp:include>
 			<!--end::Aside-->
 			<!--begin::Wrapper-->
-			<div class="d-flex flex-column flex-row-fluid wrapper"
-				id="kt_wrapper">
+			<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 				<!--begin::Header-->
-				
-				
 				<jsp:include page="/form/common/header.jsp"></jsp:include>
 				<!--end::Header-->
-
-
 				<!--begin::Content-->
-				<div class="content d-flex flex-column flex-column-fluid"
-					id="kt_content">
+				<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
-<div
-							class="container d-flex align-items-stretch justify-content-between"">
-							<div class="col-xl-12 offset-xl-0 ">
-									<div class="col-xl-12 offset-xl-0 ">
+						<div class="container d-flex align-items-stretch justify-content-between">
+							<div class="col-xl-12 offset-xl-1">
+								<h2	class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3" >Prescription Print</h2>
+									<div class="col-xl-10 offset-xl-0">
 										<div class="example mb-10">
 											<div class="example-preview">
-											
-				
-						<div class="container">
-
-							<form class="form" id="kt_form_1">
-								<div class=" col-lg-10 offset-lg-1 col-md-12 col-sm-12">
-									<div class="row">
-										<div class="col-xl-6">
-											<div class="form-group">
-												<label>Patient Name</label><span class="text-danger">*</span>
-												<div class="typeahead">
-													<input type="text"
-														class="form-control form-control-solid form-control-lg"
-														name="patientName" id="patient_name" /> <span
-														class="msg text-danger" id="type1"> </span>
-												</div>
-											</div>
-
-										</div>
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label>Patient Code</label> <input type="text"
-													class="form-control form-control-solid" id="patient_code" />
-											</div>
-										</div>
-									</div>
-									<div class="row visit_details">
-										<div class="col-xl-6">
-											<div class="form-group">
-												<label>Visit Id</label><span class="text-danger">*</span>
-												<div class="typeahead">
-													<input type="text"
-														class="form-control form-control-solid form-control-lg"
-														name="patientName" id="visit_id" /> 
-												</div>
-											</div>
-
-										</div>
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label>Prescription Code</label> <input type="text"
-													class="form-control form-control-solid" id="prescription_code" />
-											</div>
-										</div>
-										
-										<div class="col-lg-6">
-											<div class="form-group">
-												 <input type="hidden"
-													class="form-control form-control-solid" id="re_visit_days" />
-											</div>
-										</div>
-									</div>
-									<div class="card-body ">
-										<span class="text-danger">double click on Medicine
-											Field to search new medicine</span>
-										<table class="table" id="Mtable">
-											<thead>
-												<tr>
-													<th style="text-align: center" scope="col">#</th>
-													<th style="text-align: center" scope="col">Med. Name</th>
-													<th style="text-align: center" scope="col">Type</th>
-													<th style="text-align: center" scope="col">Dose</th>
-													<th style="text-align: center" scope="col">Time</th>
-													<th style="text-align: center" scope="col">Qty</th>
-													<th style="text-align: center" scope="col">Spl</th>
-													<th style="text-align: center" scope="col">Prt</th>
-													<th style="text-align: center" scope="col">Remark</th>
-													<th style="text-align: center" scope="col">Action</th>
-													<th style="text-align: center" scope="col" hidden>Category</th>
-													<!-- <th style="text-align:center" scope="col" hidden>Is_Printable</th> -->
-												</tr>
-											</thead>
-
-											<tbody class="add_medicine" id="add-medicine"></tbody>
-
-
-										</table>
-									</div>
-
-
-
-
-
-
-
-<div class="row">
-									<div class="col-9 text-right mb-5">
-										<button type="button" id="add"
-											class="btn font-weight-bold  btn-icon btn-light-success">
-											<i class="la la-plus"></i>
-										</button>
-									</div>
-                                   
-                                   <div class="col-3 text-left mb-5 ">
-										<button type="button" id="save_print"
-											class="btn font-weight-bold   btn-light-danger "> Save & Print	
-										</button>
-									</div>
-
-</div>
-									<div class="modal" id="medicineModel" tabindex="-1"
-										role="dialog" aria-labelledby="staticBackdrop"
-										aria-hidden="true">
-										<div class="modal-dialog  modal-xl modal-dialog-scrollable"
-											role="document">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="history_patient_name"></h5>
-													<button type="button" class="close" data-dismiss="modal"
-														aria-label="Close">
-														<i aria-hidden="true" class="ki ki-close"></i>
-													</button>
-												</div>
-												<div class="modal-body">
-													<!-- <h3>THIS IS A modal for MEDISION SELECTION</h3> -->
-													<div
-														class="quick-search quick-search-inline ml-20 w-300px "
-														id="kt_quick_search_inline">
-														<form method="get" class="quick-search-form">
-															<div class="input-group rounded bg-light">
-																<div class="input-group-prepend">
-																	<span class="input-group-text"> <span
-																		class="svg-icon svg-icon-lg"> <svg
-																				xmlns="http://www.w3.org/2000/svg"
-																				xmlns:xlink="http://www.w3.org/1999/xlink"
-																				width="24px" height="24px" viewBox="0 0 24 24"
-																				version="1.1">
-															<g stroke="none" stroke-width="1" fill="none"
-																					fill-rule="evenodd">
-																<rect x="0" y="0" width="24" height="24" />
-																<path
-																					d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
-																					fill="#000000" fill-rule="nonzero" opacity="0.3" />
-																<path
-																					d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
-																					fill="#000000" fill-rule="nonzero" />
-															</g>
-														</svg>
-																	</span>
-																	</span>
-																</div>
-																<input type="text" class="form-control h-45px "
-																	id="txt_searchall" placeholder="Search..." />
-																<div class="input-group-append">
-																	<span class="input-group-text"> <i
-																		class="quick-search-close ki ki-close icon-sm text-muted"></i>
-																	</span>
+												<div class="card card-custom">
+													<form class="form" id="kt_form_1">
+												<div class=" col-lg-10 offset-lg-1 col-md-12 col-sm-12">
+													<div class="row mt-10">
+														<div class="col-xl-6">
+															<div class="form-group">
+																<label>Patient Name</label><span class="text-danger">*</span>
+																<div class="typeahead">
+																	<input type="text"
+																		class="form-control form-control-solid form-control-lg"
+																		name="patientName" id="patient_name" /> <span
+																		class="msg text-danger" id="type1"> </span>
 																</div>
 															</div>
-														</form>
 
-
-
-
-														<div id="kt_quick_search_toggle" data-toggle="dropdown"
-															data-offset="0px,1px"></div>
-
-														<div
-															class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
-															<div class="quick-search-wrapper scroll"
-																data-scroll="true" data-height="350"
-																data-mobile-height="200"></div>
+														</div>
+														<div class="col-lg-6">
+															<div class="form-group">
+																<label>Patient Code</label> <input type="text"
+																	class="form-control form-control-solid"
+																	id="patient_code" />
+															</div>
+														</div>
+													</div>
+												
+												<div class="row visit_details">
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label>Visit Id</label><span class="text-danger">*</span>
+															<div class="typeahead">
+																<input type="text"
+																	class="form-control form-control-solid form-control-lg"
+																	name="patientName" id="visit_id" />
+															</div>
 														</div>
 
 													</div>
-													<br />
-													<div
-														class="datatable datatable-bordered datatable-head-custom"
-														id="kt_datatable"></div>
+													<div class="col-lg-6">
+														<div class="form-group">
+															<label>Prescription Code</label> <input type="text"
+																class="form-control form-control-solid"
+																id="prescription_code" />
+														</div>
+													</div>
 
+													<div class="col-lg-6">
+														<div class="form-group">
+															<input type="hidden"
+																class="form-control form-control-solid"
+																id="re_visit_days" />
+														</div>
+													</div>
+												</div>
+												</div>
+												<div class="card-body table-responsive">
+
+													<table class="table" id="Mtable">
+														<thead>
+															<tr>
+																<th style="text-align: center" scope="col">#</th>
+																<th style="text-align: center" scope="col">Med.
+																	Name</th>
+																<th style="text-align: center" scope="col">Type</th>
+																<th style="text-align: center" scope="col">Dose</th>
+																<th style="text-align: center" scope="col">Time</th>
+																<th style="text-align: center" scope="col">Qty</th>
+																<th style="text-align: center" scope="col">Spl</th>
+																<th style="text-align: center" scope="col">Prt</th>
+																<th style="text-align: center" scope="col">Remark</th>
+																<th style="text-align: center" scope="col">Action</th>
+																<th style="text-align: center" scope="col" hidden>Category</th>
+																<!-- <th style="text-align:center" scope="col" hidden>Is_Printable</th> -->
+															</tr>
+														</thead>
+														<tbody class="add_medicine" id="add-medicine"></tbody>
+													</table>
+												</div>
+												<div class="row">
+													<div class="col-9 text-right mb-5">
+														<button type="button" id="add"
+															class="btn font-weight-bold  btn-icon btn-light-success">
+															<i class="la la-plus"></i>
+														</button>
+													</div>
+
+													<div class="col-3 text-left mb-5 ">
+														<button type="button" id="save_print"
+															class="btn font-weight-bold   btn-light-danger ">
+															Save & Print</button>
+													</div>
 
 												</div>
-												<div class="modal-footer">
-													<button type="button"
-														class="btn btn-light-primary font-weight-bold"
-														data-dismiss="modal">Close</button>
+												<div class="modal table-responsive" id="medicineModel" tabindex="-1"
+													role="dialog" aria-labelledby="staticBackdrop"
+													aria-hidden="true">
+													<div class="modal-dialog  modal-xl modal-dialog-scrollable"
+														role="document">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="history_patient_name"></h5>
+																<button type="button" class="close" data-dismiss="modal"
+																	aria-label="Close">
+																	<i aria-hidden="true" class="ki ki-close"></i>
+																</button>
+															</div>
+															<div class="modal-body">
+																<!-- <h3>THIS IS A modal for MEDISION SELECTION</h3> -->
+																<div
+																	class="quick-search quick-search-inline ml-20 w-300px "
+																	id="kt_quick_search_inline">
+																	<form method="get" class="quick-search-form">
+																		<div class="input-group rounded bg-light">
+																			<div class="input-group-prepend">
+																				<span class="input-group-text"> <span
+																					class="svg-icon svg-icon-lg"> <svg
+																							xmlns="http://www.w3.org/2000/svg"
+																							xmlns:xlink="http://www.w3.org/1999/xlink"
+																							width="24px" height="24px" viewBox="0 0 24 24"
+																							version="1.1">
+															<g stroke="none" stroke-width="1" fill="none"
+																								fill-rule="evenodd">
+																<rect x="0" y="0" width="24" height="24" />
+																<path
+																								d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+																								fill="#000000" fill-rule="nonzero" opacity="0.3" />
+																<path
+																								d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+																								fill="#000000" fill-rule="nonzero" />
+															</g>
+														</svg>
+																				</span>
+																				</span>
+																			</div>
+																			<input type="text" class="form-control h-45px "
+																				id="txt_searchall" placeholder="Search..." />
+																			<div class="input-group-append">
+																				<span class="input-group-text"> <i
+																					class="quick-search-close ki ki-close icon-sm text-muted"></i>
+																				</span>
+																			</div>
+																		</div>
+																	</form>
+																	<div id="kt_quick_search_toggle" data-toggle="dropdown"
+																		data-offset="0px,1px"></div>
+																	<div
+																		class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
+																		<div class="quick-search-wrapper scroll"
+																			data-scroll="true" data-height="350"
+																			data-mobile-height="200"></div>
+																	</div>
+																</div>
+																<br />
+																<div
+																	class="datatable datatable-bordered datatable-head-custom"
+																	id="kt_datatable"></div>
+															</div>
+															<div class="modal-footer">
+																<button type="button"
+																	class="btn btn-light-primary font-weight-bold"
+																	data-dismiss="modal">Close</button>
+															</div>
+														</div>
+													</div>
 												</div>
-											</div>
+												<div class="card card-custom gutter-b table-responsive" id="hidden_table">
+													<div class="col-10 offset-1 ">
+														<table class="table ">
+															<thead>
+																<tr>
+																	<th scope="col">Prescription Id</th>
+																	<th scope="col">Visit Id</th>
+																	<th scope="col">patient_code</th>
+																	<th scope="col">Action</th>
+																	<th scope="col" hidden>Re-Visit Days</th>
+																</tr>
+															</thead>
+															<tbody class="table_body">
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</form>
 										</div>
 									</div>
-
-								
-
-									<div class="card card-custom gutter-b">
-										<div class="col-xl-12">
-											<table class="table">
-												<thead>
-													<tr>
-														<th scope="col">Prescription Id</th>
-														<th scope="col">Visit Id</th>
-
-														<th scope="col">patient_code</th>
-
-														<th scope="col">Action</th>
-														<th scope="col" hidden>Re-Visit Days</th>
-
-
-
-													</tr>
-												</thead>
-												<tbody class="table_body">
-												</tbody>
-											</table>
-										</div>
-									</div>
-
-
-								
-							</form>
-						</div>
 								</div>
-							</div>			
+							</div>
+							<!--end::Container-->
 						</div>
-
-						<!--end::Container-->
 					</div>
+					<!--end::Entry-->
 				</div>
-				<!--end::Entry-->
-</div>
-			<!--end::Wrapper-->
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Page-->
 		</div>
-		<!--end::Page-->
 	</div>
-</div>
-</div>
-</div>
-</div>
-				<!--end::Content-->
-				<!--begin::Footer-->
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-<!--end::Footer-->
-			
+	</div>
+	</div>
+	</div>
+	<!--end::Content-->
+	<!--begin::Footer-->
+	<jsp:include page="../common/footer.jsp"></jsp:include>
+	<!--end::Footer-->
+
 	<!--end::Main-->
-	
+
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->
@@ -354,31 +324,75 @@ keyframes show_slide { 0%{
 }
 
 40
+
+
 %
 {
 transform
+
+
 :
-translateX(
--10%
-);
+
+
+translateX
+(
+
+
+-10
+%
+
+
+)
+;
+
+
 }
 80
+
+
 %
 {
 transform
+
+
 :
-translateX(
-0%
-);
+
+
+translateX
+(
+
+
+0
+%
+
+
+)
+;
+
+
 }
 100
+
+
 %
 {
 transform
+
+
 :
-translateX(
+
+
+translateX
+(
+
+
 -10px
-);
+
+
+)
+;
+
+
 }
 }
 @
@@ -387,31 +401,76 @@ keyframes hide_slide { 0%{
 }
 
 40
+
+
 %
 {
 transform
+
+
 :
-translateX(
-0%
-);
+
+
+translateX
+(
+
+
+0
+%
+
+
+)
+;
+
+
 }
 80
+
+
 %
 {
 transform
+
+
 :
-translateX(
--10%
-);
+
+
+translateX
+(
+
+
+-10
+%
+
+
+)
+;
+
+
 }
 100
+
+
 %
 {
 transform
+
+
 :
-translateX(
-100%
-);
+
+
+translateX
+(
+
+
+100
+%
+
+
+)
+;
+
+
 }
 }
 .alert-text {
@@ -421,7 +480,7 @@ translateX(
 </style>
 	<!--end::Scrolltop-->
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
-	
+
 	<script type="text/javascript">
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>'; 
@@ -433,7 +492,7 @@ translateX(
 	 $('#upi_div').hide();
 	 $('#nb_div').hide();
 	 $('#cheque_div').hide();
-	 $('.card').hide();
+	 $('#hidden_table').hide();
 	 $('#calculate_total').hide();
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
@@ -536,10 +595,10 @@ translateX(
 			    	}
 				});	
 				if(j > 0){
-					 $('.card').show();
+					 $('#hidden_table').show();
 					 $('#calculate_total').show();
 				}else{
-					 $('.card').hide();
+					 $('#hidden_table').hide();
 				}
 				for(var i = 0; i < j; i++){
 				 	  var html = '';
@@ -740,7 +799,9 @@ translateX(
 		 	  html += '<td style="width: 0%;"><input type="text" class="form-control category" name="category" id="category-' + i + '" placeholder="Category" hidden></input></td></tr>';
 		 	 
 		 	 $('.add_medicine').append(html); 
-		 		 $('.add_medicine #medicineName-'+ i).dblclick(function () {
+		 	 matches=i;
+		 	$("#medicineModel").modal();
+		 		 /* $('.add_medicine #medicineName-'+ i).dblclick(function () {
 		 			   mname=(this.id);
 		 			 //  alert("say hi");
 		 			  var str = mname;
@@ -749,7 +810,7 @@ translateX(
 		 			
 		 			  $("#medicineModel").modal();
 		 			 
-		 			});
+		 			}); */
 		 		 $.ajax({
 		 				url : base + "/dssAPI/dfapi/getRemark",
 		 				type : "post",

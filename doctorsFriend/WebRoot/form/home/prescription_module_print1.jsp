@@ -17,6 +17,7 @@ table.a {
 }
 </style>
 
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 
 <jsp:include page="../common/header.jsp"></jsp:include>
 <body onafterprint="printP()" id="kt_body"

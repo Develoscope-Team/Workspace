@@ -1,34 +1,68 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-	String dbConnVar = "BAKESHACk";
-	try {
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+String dbConnVar = "BAKESHACk";
+try {
+	String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<!-- <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<style>
+.alert {
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+.alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+}
+.alert.show {
+	animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide { 0%{	transform: translateX(100%);}
+40%{transform:translateX(-10%);}
+80%{transform:translateX(0%);}
+100%{transform:translateX(-10px);}
+}
+@keyframes hide_slide { 0%{	transform: translateX(-10px);}
+40%{transform:translateX(0%);}
+80%{transform:translateX(-10%);}
+100%{transform:translateX(100%);}
+}
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
+</style>
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
-		<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
@@ -36,30 +70,24 @@
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
 					<!--begin::Subheader-->
 					<div class="subheader py-2 py-lg-12 subheader-transparent"
 						id="kt_subheader">
-						<div
-							class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+						<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
 							<!--begin::Info-->
 							<div class="d-flex align-items-center flex-wrap mr-1">
 								<!--begin::Heading-->
 								<div class="d-flex flex-column">
 									<!--begin::Title-->
-									<h2 class="text-white font-weight-bold my-2 mr-5">Daily
-										Sale</h2>
-
+									<h2 class="text-white font-weight-bold my-2 mr-5">Daily	Sale</h2>
 									<!--end::Title-->
-
 								</div>
 								<!--end::Heading-->
 							</div>
 							<!--end::Info-->
-
 						</div>
 					</div>
 					<!--end::Subheader-->
@@ -67,10 +95,6 @@
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
-
-						
-
-
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -89,16 +113,14 @@
 																				name="customerName" id="customer_name" /><span
 																				class="msg text-danger" id="type1"> </span>
 																		</div>
-
 																	</div>
-
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Order Date</label> <input type="date"
+																		<label>Order Date</label> <input type="text"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid form-control-lg"
-																			placeholder="DD/MM/YYYY" name="order_dat"
+																			placeholder="YYYY-MM-DD" name="order_dat"
 																			id="order_date" />
 																	</div>
 																</div>
@@ -113,10 +135,10 @@
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<label>Delivery Date</label> <input type="date"
+																		<label>Delivery Date</label> <input type="text"
 																			data-date-inline-picker="true"
 																			class="form-control form-control-solid"
-																			id="delivery_date" />
+																			placeholder="YYYY-MM-DD" id="delivery_date" />
 																	</div>
 																</div>
 															</div>
@@ -132,7 +154,8 @@
 																<div class="col-lg-6">
 																	<div class="form-group">
 																		<label>Order No :</label> <input type="text"
-																			class="form-control form-control-solid" id="order_no" disabled/>
+																			class="form-control form-control-solid" id="order_no"
+																			disabled />
 																	</div>
 																</div>
 															</div>
@@ -147,7 +170,6 @@
 																</div>
 																<div class="col-lg-1">
 																	<div class="form-group ">
-
 																		<button type="button" id="add_user"
 																			class="btn font-weight-bold mt-10 btn-icon ">
 																			<span class="svg-icon svg-icon-primary svg-icon-2x">
@@ -179,11 +201,7 @@
 																	</div>
 																</div>
 															</div>
-
-
-
 															<div class="card-body" style="overflow-x: auto;">
-
 																<table class="table" id="Mtable">
 																	<thead>
 																		<tr>
@@ -194,32 +212,23 @@
 																			<th scope="col">Unit Rate</th>
 																			<th scope="col">Total</th>
 																			<th scope="col">Action</th>
-
 																		</tr>
 																	</thead>
-
 																	<tbody class="add_product" id="add-product"></tbody>
-
-
 																</table>
 															</div>
 															<div class="text-right mb-5 mr-22">
 																<button type="button" id="add"
 																	class="btn font-weight-bold btn-primary ">ADD
 																</button>
-
-
-
-
 															</div>
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div">
 																		<label>Amount</label> <span class="text-danger"
 																			id="type">*</span><input type="number"
 																			class="form-control form-control-solid" name="amount"
-																			id="amount" placeholder="Enter Amount" disabled/>
+																			id="amount" placeholder="Enter Amount" disabled />
 																	</div>
 																</div>
 																<div class="col-lg-6">
@@ -231,7 +240,6 @@
 																	</div>
 																</div>
 															</div>
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group">
@@ -246,7 +254,6 @@
 																		</select>
 																	</div>
 																</div>
-
 																<div class="col-lg-4">
 																	<div class="form-group" id="amount_div">
 																		<label>Total Amount</label> <span class="text-danger"
@@ -256,7 +263,6 @@
 																			placeholder="Enter Total Amount" disabled />
 																	</div>
 																</div>
-
 																<div class="col-lg-2">
 																	<div class="form-group" id="amount_div">
 																		<label>If Paid Partial</label> <span
@@ -267,10 +273,7 @@
 																		</span>
 																	</div>
 																</div>
-
 															</div>
-
-
 															<div class="row">
 																<div class="col-lg-6">
 																	<div class="form-group" id="upi_div">
@@ -282,29 +285,18 @@
 																		</select>
 																	</div>
 																	<div class="form-group" id="nb_div">
-
 																		<label>Received Bank</label> <select
 																			class="form-control form-control-solid"
 																			id="received_bank">
 																			<option value="">Select a bank</option>
-
 																		</select>
 																	</div>
-
- <div class="form-group" id="credit_div">
-									
-										<label>Credit Period</label> <input type="text"
-													class="form-control form-control-solid" id="credit_period">
-													
-													 
-													 </input> 
-									</div>
+																	<div class="form-group" id="credit_div">
+																		<label>Credit Period</label> <input type="text"
+																			class="form-control form-control-solid"
+																			id="credit_period"> </input>
+																	</div>
 																</div>
-
-
-
-
-
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div1">
 																		<label>Partial Paid Amount</label> <span
@@ -315,7 +307,6 @@
 																	</div>
 																</div>
 															</div>
-
 															<div class="card_table card-custom gutter-b">
 																<div class="col-xl-12" style="overflow-x: auto;">
 																	<table class="table">
@@ -338,8 +329,6 @@
 																					Code</th>
 																				<th style="text-align: center" scope="col" hidden>Payment
 																					Id</th>
-
-
 																			</tr>
 																		</thead>
 																		<tbody class="table_body">
@@ -347,18 +336,6 @@
 																	</table>
 																</div>
 															</div>
-															<!-- <div class="row">
-
-																<div class="col-lg-12 text-right">
-
-																	<button type="button" id="calculate_total"
-																		class="btn font-weight-bold btn-primary ">Calculate</button>
-
-																</div>
-															</div> -->
-
-
-
 															<div class="row" id="grand_total_field">
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div">
@@ -366,7 +343,7 @@
 																			id="type">*</span><input type="number"
 																			class="form-control form-control-solid"
 																			name="grand_total" id="grand_total"
-																			placeholder="Enter Grand Total"  disabled/>
+																			placeholder="Enter Grand Total" disabled />
 																	</div>
 																</div>
 																<div class="col-lg-6">
@@ -375,7 +352,7 @@
 																			class="text-danger" id="type">*</span><input
 																			type="number" class="form-control form-control-solid"
 																			name="paid_amount" id="paid_amount"
-																			placeholder="Enter Paid Amount" disabled/>
+																			placeholder="Enter Paid Amount" disabled />
 																	</div>
 																</div>
 															</div>
@@ -391,16 +368,9 @@
 																</div>
 																<div class="col-lg-6">
 																	<div class="form-group">
-																		<!-- <label>Received Bank</label> <select
-													class="form-control form-control-solid" id="received_bank">
-													 <option value="">Select a bank</option>
-													 
-													 </select>  -->
 																	</div>
 																</div>
-
 															</div>
-
 															<div class="row" id="bank_details1">
 																<div class="col-lg-6">
 																	<div class="form-group" id="amount_div">
@@ -421,9 +391,6 @@
 																	</div>
 																</div>
 															</div>
-
-
-
 															<div class="modal" id="medicineModel" tabindex="-1"
 																role="dialog" aria-labelledby="staticBackdrop"
 																aria-hidden="true">
@@ -439,7 +406,6 @@
 																			</button>
 																		</div>
 																		<div class="modal-body">
-																			<!-- <h3>THIS IS A modal for MEDISION SELECTION</h3> -->
 																			<div
 																				class="quick-search quick-search-inline ml-20 w-300px "
 																				id="kt_quick_search_inline">
@@ -476,27 +442,19 @@
 																						</div>
 																					</div>
 																				</form>
-
-
-
-
 																				<div id="kt_quick_search_toggle"
 																					data-toggle="dropdown" data-offset="0px,1px"></div>
-
 																				<div
 																					class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
 																					<div class="quick-search-wrapper scroll"
 																						data-scroll="true" data-height="350"
 																						data-mobile-height="200"></div>
 																				</div>
-
 																			</div>
 																			<br />
 																			<div
 																				class="datatable datatable-bordered datatable-head-custom"
 																				id="kt_datatable"></div>
-
-
 																		</div>
 																		<div class="modal-footer">
 																			<button type="button"
@@ -506,18 +464,14 @@
 																	</div>
 																</div>
 															</div>
-
 															<div class="card-footer">
 																<div class="row">
-
 																	<div class="col-lg-10 offset-1 text-center">
-
 																		<button type="button" id="add_sales_order"
 																			class="btn font-weight-bold btn-primary ">Submit</button>
 																		<button type="button" id="cancel"
 																			class="btn font-weight-bold btn-secondary">Cancel</button>
 																	</div>
-
 																</div>
 															</div>
 														</div>
@@ -529,106 +483,6 @@
 									</div>
 								</div>
 							</div>
-
-		
-					<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
 							<div class="alert alert-success  " role="alert"
 								id="success_alert">
 								<div class="alert-text">
@@ -651,18 +505,12 @@ translateX(
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-			<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
-
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -680,74 +528,53 @@ translateX(
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<%-- <script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
- --%>
-	<%-- <script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
- --%>
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/main.js"></script>
-
-
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-	
 	$(".card_table").hide();
 	$("#calculate_total").hide();
 	$("#grand_total_field").hide();
 	 $('#credit_div').hide();
-	
-	
 	$("#customer_name").change(function(){
 		var text=	$("#customer_name").val();
 		var letters = /^[A-Za-z(). ]+$/;
 		 if(text.match(letters))
 	     {
-				
 			 $('#type1').text('');
 		      return true;
 	     }
 	   else
 	     {
-		  
 		   $('#type1').text('Please Enter Letters Only.');
 	    $("#customer_name").val('');
 	     return false;
 	     }
 		});
-	
 	$("#mobile_no").change(function(){
 		var text=	$("#mobile_no").val();
 		 var phoneno = /^\d{10}$/;
 		 if(text.match(phoneno))
 	     {
-				
 			 $('#type2').text('');
 		      return true;
 	     }
 	   else
 	     {
-		  
 		   $('#type2').text('Please Enter 10 Digits Only.');
 	    $("#mobile_no").val('');
 	     return false;
 	     }
 		});
-	
-	
-	
 	 $('#upi_div').hide();
 	 $('#nb_div').hide();
 	 $('#cheque_div').hide();
 	 $('#amount_div1').hide();
 	 $('#bank_details1').hide();
 	 $('#bank_details2').hide();
-	 
 	 var j=0;
 	 var today = new Date();
 	 var dd = today.getDate();
@@ -758,13 +585,10 @@ translateX(
 	 var mm=today.getMonth()+1;
 	 if(mm < 10){
 		 mm = '0' + mm;
-		
 	 }
 	 var date = today.getFullYear()+'-'+mm+'-'+ dd;
-	 
 	 $('#order_date').val(date);
 	 $('#delivery_date').val(date);
-	 
 	 var order_code;
 	 $.ajax({
 			url : base +"/bakeshackAPI/api/getLatestOrder",
@@ -773,18 +597,21 @@ translateX(
 			async : false,
 			success:function(data)
 	    	{
-				//data.forEach((element)=> {
 				const row = data.find(d => d.order_code != 0);
 				data.forEach((row)=> {
-				//alert(row.order_code);
 				$('#order_no').val(row.order_code);
-				   
 				});
 	    	}
 		});	
 	 
+	// minimum setup
+	 $('#order_date,#delivery_date').datepicker({
+	  rtl: KTUtil.isRTL(),
+	  todayHighlight: true,
+	  orientation: "bottom left",
+	  format: 'yyyy-mm-dd'
+	 });
 		 var cName = [];
-			
 			$.ajax({
 			url : base + "/bakeshackAPI/api/getCustomerDetails",
 			type : "post",
@@ -792,22 +619,20 @@ translateX(
 			async : false,
 			data : {"flag":1},
 			success:function(data)
-	     {
-				if(data != null){
+	        {
+		  		if(data != null){
 					data.forEach(function(e){
 						cName.push(e.customer_name);
 					})
 				}  
-	     }
+	       }
 			});
-			
 			 var bloodhound = new Bloodhound({
 	             datumTokenizer: Bloodhound.tokenizers.whitespace,
 	             queryTokenizer: Bloodhound.tokenizers.whitespace,
 	             // `states` is an array of state names defined in "The Basics"
 	             local: cName
 	         });
-
 	         $('#customer_name').typeahead({
 	             hint: true,
 	             highlight: true,
@@ -820,7 +645,6 @@ translateX(
 	     	var ccode = 0;
 	     	var l=0;
 	         $('#customer_name').change(function(){
-	        		
 	 			var customer_name = $(this).val();
 	 			$.ajax({
 	 				url : base + "/bakeshackAPI/api/getCustomerDetails",
@@ -833,7 +657,6 @@ translateX(
 	 					const row = data.find(d => d.customer_name == customer_name);
 	 					if(row != null){
 	 						 ccode = row.customer_code; 
-	 					  
 	 						$('#customer_name').val(row.customer_name);
 							$('#customer_code').val(row.customer_code);
 							$('#mobile_no').val(row.mobile_no);
@@ -844,10 +667,6 @@ translateX(
 	 					}
 	 		        }
 	 			});	
-		
-	 			
-	 			
-	 			
 				$.ajax({
 					url : base + "/bakeshackAPI/api/getSalesAndOrderDetails",
 					type : "post",
@@ -859,25 +678,18 @@ translateX(
 						
 						const row = data.find(d => d.customer_code == ccode);
 						data.forEach((row)=> {
-							
 						if(row.customer_code == ccode && row.balance_amount > 0)
 							{
-							
 							j++;
-						
-							
 							}
 						});
 			    	}
 				});	
-	 		
 	 			if(j > 0){
 	 				$(".card_table").show();
 	 				$("#calculate_total").show();
 	 				$("#grand_total_field").show();
 				}else{
-					
-				
 				}
 	 			for(var i = 1; i <= j; i++){
 				 	  var html = '';
@@ -891,12 +703,10 @@ translateX(
 				 	 html += ' <td><input type="text" class="form-control Paid d-flex flex-column-fluid" id="nowPaying-'+i+'"  oninput="calculator(' + i + ',this.value)"disabled></td>';
 				 	 html += ' <td><input type="hidden" class="form-control Visit Id d-flex flex-column-fluid" id="visitId-' + i +'" name="visitId" hidden></td>';
 				 	 html += ' <td><input type="hidden" class="form-control Payment Id d-flex flex-column-fluid" id="paymentId-' + i +'" name="paymentId" hidden></td>';
-
 				 	 html += '</tr>';
 				 	  $('.table_body').append(html);
 		} 
 	 			var k=0;
-	 			
 				$.ajax({
 					url : base + "/bakeshackAPI/api/getSalesAndOrderDetails",
 					type : "post",
@@ -904,18 +714,13 @@ translateX(
 					async : false,
 					data : {"customer_code": ccode},
 					success:function(data)
-			 	{
-						
+			 	      {
 						const row = data.find(d => d.customer_code != '');
 						data.forEach((row)=> {
-						
 							if(row.customer_code == ccode && row.balance_amount > 0)
 									{
 							  k++;
-							  
-							 
 							  Grand_Total = parseInt(Grand_Total) + parseInt(row.balance_amount);
-							/*  alert(Grand_Total); */
 								   $('#invoiceId-' + k).val(row.order_code);
 									$('#invoiceDate-' + k).val(row.order_date);
 									$('#clinicFee-' + k).val(row.amount);
@@ -930,15 +735,10 @@ translateX(
 				});	
 				 $('#grand_total').val(Grand_Total); 
 	 			l=k;
-	 			
 	         })
-	         
 	        var amount =  $("#amount").val();	   
 	      $('#grand_total').val(Grand_Total + amount);     
-	      
-	      
 	         function calculator(i,valNum) {
-			
 	        	   var amount =  $("#total_amount").val();	   
 	     	      $('#grand_total').val(Grand_Total + parseInt(amount));     
 				 var calculate_price_total = parseInt($("#partially_paid_amount").val());
@@ -952,37 +752,22 @@ translateX(
 				 document.getElementById('balance_amount').value = parseInt(total)-parseInt(total1); 
 		      }
 				}
-		
 				 	function checkedBox(i){
-							
-							
 						 if ($("#id-"+i).prop('checked')==true){ 
 							   $("#nowPaying-"+i).prop('disabled', false);
-							
 							 }else{
-								
 								 $("#nowPaying-"+i).prop('disabled', true);
-								
 									$("#nowPaying-"+i).val('');
-									
-									
 							 }
-					    
 						}; 	
-
 	 var medData;
 		var r=0;
 		var table_len=(Mtable.rows.length);
 		$('#add_user ').click(function () {
-		
-			
-				
 				var customer_name = $('#customer_name').val();
 				var mobile_no = $('#mobile_no').val();
 				var address = $('#billing_address').val();
 				var flag 		  = 1; 
-											
-				
 				if(customer_name != '' ){
 					$.ajax({
 						url : base + "/bakeshackAPI/api/insertUpdateCustomer",
@@ -990,7 +775,6 @@ translateX(
 						dataType : "json",
 						async : false,
 						data : {
-							
 							"customer_name" : customer_name,
 							"mobile_no" : mobile_no,
 							"address" : address,
@@ -1012,9 +796,7 @@ translateX(
 						},
 						success : function(response) {
 							if (response != null) {
-
 								if (response >= 1) {
-
 									var msg = "Customer Data inserted/Updated Successfully.";
 									 $('#success_msg').text(msg);
 									 $('#success_alert').addClass("show");
@@ -1026,7 +808,6 @@ translateX(
 							           },2000);
 								} 										}
 						}
-
 					});
 				}
 				$.ajax({
@@ -1036,28 +817,19 @@ translateX(
 					async : false,
 					success:function(data)
 			    	{
-						//data.forEach((element)=> {
 						const row = data.find(d => d.customer_name == customer_name);
 						data.forEach((row)=> {
-				       
 						$('#customer_name').val(row.customer_name);
 						$('#customer_code').val(row.customer_code);
 						$('#mobile_no').val(row.mobile_no);
 						$('#billing_address').val(row.address);
 						$('#delivery_address').val(row.address);
-						   
 						});
 			    	}
 				});	
-			
 		})
-		
-
 		$('#add ').click(function () {
-			
 			var i =table_len;
-			
-			  
 			  var html = ''; 
 			  html += '<tr>';
 			  html += '<td style="width: 3%;">' + i + '</td>';
@@ -1068,9 +840,7 @@ translateX(
 			  html += '<td style="width: 12%;"><input type="text" class="form-control Unit_Total" name="unit_total" id="unit_total-' + i + '" placeholder="Unit_total"></input></td>';
 			  html += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
 			  html += '<td style="width: 1%;"><input type="text" class="form-control Product_Batch" name="product_batch" id="product_batch-' + i + '" placeholder="product_batch" hidden></input></td>';
-
 			 $('.add_product').append(html); 
-			  
 				 /* $('.add_product #product-'+ i).dblclick(function () {
 					   mname=(this.id);
 					  var str = mname;
@@ -1092,12 +862,10 @@ translateX(
 						success:function(data)
 					    {
 							data.forEach((element)=> {
-								
 							        $('#unit').append($(document.createElement('option')).prop({
 						                value: element.unit_id,
 						                text: element.unit_desc
 						            }))
-								
 							});   
 					    }
 					});	
@@ -1244,25 +1012,14 @@ translateX(
 				$('#cheque_div').hide();
 				 $('#credit_div').hide();
 			}
-			
 		});
-		
-		
 		$('#if_partial').change(function(){
-			
-			
 			 if ($("#if_partial").prop('checked')==true){ 
 				 $('#amount_div1').show();
-				
 				 }else{
-					
 					 $('#amount_div1').hide();
-						
-						
 				 }
-		    
 			}); 
-		
 		var KTBootstrapDaterangepicker = function() {
 			// Private functions
 			var demo2 = function() {
@@ -1369,7 +1126,6 @@ jQuery(document).ready(function() {
 	
 
 function update(id){
-	
 	$.ajax({
         type:"POST",
         dataType: "json",
@@ -1408,7 +1164,6 @@ $('#calculate_total').click(function() {
 
 var balance_amount = 0;
 $('#add_sales_order').click(function() {
-					
 			var customer_code = $('#customer_code').val();
 			var order_date = $('#order_date').val();
 			var delivery_date = $('#delivery_date').val();
@@ -1426,18 +1181,14 @@ $('#add_sales_order').click(function() {
 			var branch_name = $('#branch_name').val();
 			var account_no = $('#account_no').val();
 			var flag 		  = 1; // Addition
-			
-		
 			 $("table tbody tr").each(function(index) {
 				 	if($(this).find('.product').val() != null){
-				 		
 				       var product = $(this).find('.Product').val();
 				       var unit =  $(this).find('.Unit').val();
 				       var quantity =  $(this).find('.Quantity').val();
 				       var unit_rate =  $(this).find('.Price').val();
 				       var total =  $(this).find('.Unit_Total').val();
 				       var product_batch =  $(this).find('.Product_Batch').val();
-				      
 				    $.ajax({
 							url : base + "/bakeshackAPI/api/insertUpdateQuantityDetails",
 							type : "post",
@@ -1460,9 +1211,7 @@ $('#add_sales_order').click(function() {
 								"out_quantity": 0,
 								"produced_quantity": 0,
 								"transaction_field" : "Sale Product",
-								
 								"flag" :flag
-								
 							},
 							error : function(xhr) {
 								var msg = "(insertUpdateProduct)Sorry but there was an error : "
@@ -1492,16 +1241,12 @@ $('#add_sales_order').click(function() {
 								             $('#success_alert').removeClass("show");
 								             $('#success_alert').addClass("hide");
 								           },2000);
-
 									} 
 								}
 							}
-
 						});
 				 	}
 				 });
-			
-			
 			 var productList = [];
 			 $("table tbody tr").each(function(index) {
 			 	if($(this).find('.product').val() != null){
@@ -1514,7 +1259,6 @@ $('#add_sales_order').click(function() {
 			     	}); 
 			 	}
 			 });
-			
 		var jsonString = JSON.stringify(productList);
 									  $.ajax({
 										url : base + "/bakeshackAPI/api/insertUpdateSalesAndOrderDetails",
@@ -1568,14 +1312,11 @@ $('#add_sales_order').click(function() {
 											             $('#success_alert').removeClass("show");
 											             $('#success_alert').addClass("hide");
 											           },2000);
-
 												} 
 											}
 										}
-
 									}); 
 									var transaction_id;
-									
 									  $.ajax({
 											url : base + "/bakeshackAPI/api/getLatestInvoice",
 											type : "post",
@@ -1584,13 +1325,9 @@ $('#add_sales_order').click(function() {
 											data : {"transaction_id": transaction_id},
 											success:function(data)
 									    	{
-												//data.forEach((element)=> {
 												const row = data.find(d => d.transaction_id == transaction_id);
 												data.forEach((row)=> {
-												
-												
 												 transaction_id = row.transaction_code;
-												   
 												});
 									    	}
 										});	 
@@ -1600,7 +1337,6 @@ $('#add_sales_order').click(function() {
 											dataType : "json",
 											async : false,
 											data : {
-												
 												"customer_code"       : customer_code,
 												"order_code" 	      : order_code,
 												"invoice_date"        : order_date,
@@ -1614,7 +1350,6 @@ $('#add_sales_order').click(function() {
 												"balance_amt"      : balance_amount,
 												"transaction_code" : transaction_id,
 												"flag"             : flag
-												
 											},
 											error : function(xhr) {
 												var msg = "Data insertion/updation failed. Error : "
@@ -1647,7 +1382,6 @@ $('#add_sales_order').click(function() {
 													}
 												}
 											}
-
 										}); 
 										 for(i=1; i <= j ; i++)
 										{
@@ -1682,7 +1416,6 @@ $('#add_sales_order').click(function() {
 													"field"            : "Outstanding_Sales_Order",
 													"transaction_code" : transaction_id,
 													"flag"             : flag
-												
 												},
 												error : function(xhr) {
 													var msg = "OutStanding Invoice   insertion/updation failed. Error : "
@@ -1715,7 +1448,6 @@ $('#add_sales_order').click(function() {
 														}
 													}
 												}
-
 											});   
 										  $.ajax({
 												url : base + "/bakeshackAPI/api/updateSalesAndOrderDetails",
@@ -1776,23 +1508,22 @@ $('#add_sales_order').click(function() {
 										        if (result.value) {
 										 		var url = "sales_order_receipt.jsp" + '?customer_code=' + customer_code + '&order_code=' + order_code + '&transaction_id=' + transaction_id;
 											  window.location.assign(url);
-											 
-										         
 										        } else if (result.dismiss === "cancel") {
 										           window.location.reload();
 										        }
 										    });
-										
-										
-									 
-		})		
-					
+		})
+document.addEventListener('keypress', function (e) {
+    if (e.keyCode === 13 || e.which === 13) {
+        e.preventDefault();
+        return false;
+    }
+}); 		
 </script>
 </body>
 </html>
-
 <%
-	} catch (Exception e) {
-		Logger.log(dbConnVar, "" + e);
-	}
+} catch (Exception e) {
+Logger.log(dbConnVar, "" + e);
+}
 %>

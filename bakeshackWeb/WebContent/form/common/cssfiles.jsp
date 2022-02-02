@@ -38,7 +38,7 @@ try
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="assets/BakeShack_IM/media/logos/favicon.ico" />
+		<%-- <link rel="shortcut icon" href="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/media/logos/Bake-Shack-Logo.png" /> --%>
 
 <%
 	}catch(Exception e){

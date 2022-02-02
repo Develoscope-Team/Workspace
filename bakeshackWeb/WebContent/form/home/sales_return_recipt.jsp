@@ -1,34 +1,32 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java"
-import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-	String dbConnVar = "BAKESHACk";
-	try {
+String path = request.getContextPath();
+String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+String dbConnVar = "BAKESHACk";
+try {
+	  String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp");  
 %>
 <head>
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script src="//code.jquery.com/jquery.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 </head>
-<body id="kt_body"
+<body id="kt_body"  onafterprint="printP()"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-	
-	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
+
+	 <jsp:include page="/form/common/mobile-header.jsp"></jsp:include> 
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
@@ -40,31 +38,34 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
-					
+
 					<!--begin::Entry-->
 					<div class="d-flex flex-column">
 						<!--begin::Container-->
 						<!--begin::Container-->
-							<div class="container mt-10" style="font-size: 16px;">
-								<!-- begin::Card-->
-								<div class="card card-custom overflow-hidden">
-									<div class="card-body p-0">
-										<!-- begin: Invoice-->
-										<!-- begin: Invoice header-->
-										<div
+						<div class="container mt-10" style="font-size: 16px;">
+							<!-- begin::Card-->
+							<div class="card card-custom overflow-hidden">
+								<div class="card-body p-0">
+									<!-- begin: Invoice-->
+									<!-- begin: Invoice header-->
+									<div
 										class="row justify-content-center bgi-size-cover bgi-no-repeat">
 										<div class="  col-md-10 ">
 											<img alt="Logo"
 												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Footer1.png"
 												class="logo-default " id="pri1"
 												style="position: fixed; top: 0;" />
-												
-										
-													<h1 class=" text-black font-weight-boldest mt-35  mb-20  text-center ml-25 "><u>SALES RETURN INVOICE</u></h1>
-													
-												
-												
-								<div id="name" class="col-md-12">
+
+
+											<h1
+												class=" text-black font-weight-boldest mt-40  mb-20  text-center ml-25 ">
+												<u>SALES RETURN INVOICE</u>
+											</h1>
+
+
+
+											<div id="name" class="col-md-12">
 												<span
 													class="d-flex justify-content-between align-items-baseline">
 
@@ -95,42 +96,36 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 												</div>
 
 											</div>
-											</div>
+										</div>
 									</div>
 									<!-- end: Invoice header-->
 									<!-- begin: Invoice body-->
 									<div class="row justify-content-center  ml-3">
 										<div class="col-md-10">
 											<div class="table-responsive">
-												<table class="table" style="border:none; border-bottom-style: none;"
-													>
+												<table class="table"
+													style="border: none; border-bottom-style: none;">
 													<thead>
-													
+
 														<tr>
 															<th class="pl-0 font-weight-bold text-muted "
-																style="font-size: 16px;" id="no"
-																
-																cellspacing="0" cellpadding="0">Sr.No</th>
+																style="font-size: 16px;" id="no" cellspacing="0"
+																cellpadding="0">Sr.No</th>
 															<th class="text-center font-weight-bold text-muted "
 																style="font-size: 16px;" id="product_name"
-																
 																cellspacing="0" cellpadding="0">Product Details</th>
 															<th class="text-center font-weight-bold text-muted "
-																style="font-size: 16px;" id="quantity"
-																
-																cellspacing="0" cellpadding="0">Quantity</th>
+																style="font-size: 16px;" id="quantity" cellspacing="0"
+																cellpadding="0">Quantity</th>
 															<th class="text-center font-weight-bold text-muted "
-																style="font-size: 16px; " id="selling_price"
-																
+																style="font-size: 16px;" id="selling_price"
 																cellspacing="0" cellpadding="0">Unit Price</th>
 															<th class="text-center pr-0 font-weight-bold text-muted "
-																style="font-size: 16px; " id="amount"
-																
-																cellspacing="0" cellpadding="0">Amount (₹)</th>
+																style="font-size: 16px;" id="amount" cellspacing="0"
+																cellpadding="0">Amount (₹)</th>
 														</tr>
 													</thead>
-													<tbody class="t_body text-center"
-														>
+													<tbody class="t_body text-center">
 
 													</tbody>
 												</table>
@@ -141,8 +136,8 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 									<div class="row col-md-10 justify-content offset-1 ">
 
 										<div class="col-7 ">
-											<label>  </label> <span
-												class="font-weight-bold " id="amount_in_word0"><lable></lable></span>
+											<label> </label> <span class="font-weight-bold "
+												id="amount_in_word0"><lable></lable></span>
 										</div>
 										<div class="col-3 text-right">
 											<label class="">Discount :</label>
@@ -152,8 +147,8 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 										</div>
 
 									</div>
-										
-										<div class="row col-md-10 justify-content offset-1 ">
+
+									<div class="row col-md-10 justify-content offset-1 ">
 
 										<div class="col-7 ">
 											<label> Amount In Word :</label> <span
@@ -202,69 +197,86 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 									</div>
 
 
-									
+
 									<!-- end: Invoice body-->
-									<div class="row col-md-10 justify-content mt-15 ml-6" >
-									<div class="col-md-10" style="position: relative;  ">
-  											<img src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/stampsign.png" class="offset-1" id="sign" >
-   											<div class="font-weight-bold " style=" position: absolute; top: 50%; left: 22%; transform: translate(-50%, -50%);">
-   												<span>Authorized Signatory</span></br> </br> </br> 
-   												<span>For, BakeShack</span> </br> <span>by Bakeology</span>
-   											</div>
-									</div>
+									<div class="row col-md-10 justify-content mt-15 ml-6">
+										<div class="col-md-10" style="position: relative;">
+											<img
+												src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/stampsign.png"
+												class="offset-1" id="sign">
+											<div class="font-weight-bold "
+												style="position: absolute; top: 50%; left: 22%; transform: translate(-50%, -50%);">
+												<span>Authorized Signatory</span></br> </br> </br> <span>For,
+													BakeShack</span> </br> <span>by Bakeology</span>
+											</div>
+										</div>
 									</div>
 									<!-- begin: Invoice footer-->
-									
+
 									<div
 										class="row col-md-10 justify-content-center mt-20 offset-1"
 										style="font-size: 16px;">
 										<div class="col-md-12">
-										<h2
-												class=" text-black font-weight-bolder  text-center " style="font-size: 18px;"><u> Bank Details</u></h2>
-										
+											<h2 class=" text-black font-weight-bolder  text-center "
+												style="font-size: 18px;">
+												<u> Bank Details</u>
+											</h2>
+
 											<div
 												class="d-flex justify-content-between flex-column flex-md-row font-size-16">
-												<table id="bank_details_table" style="width: 100%; font-size: 16px; border: 1px solid black;">
+												<table id="bank_details_table"
+													style="width: 100%; font-size: 16px; border: 1px solid black;">
 
-													
-														
-													
+
+
+
 													<tr style="border: 1px solid black;">
-														<td class ="  font-weight-bolder" style="border: 1px solid black; ">&#160;&#160;  Bank Name</td>
-														<td class="  font-weight-bolder " style="font-size: 16px; " style="margin-left: 2px"
-															><span class="ml-2" id="bank_name"></span></td>
+														<td class="  font-weight-bolder"
+															style="border: 1px solid black;">&#160;&#160; Bank
+															Name</td>
+														<td class="  font-weight-bolder " style="font-size: 16px;"
+															style="margin-left: 2px"><span
+															class="ml-2" id="bank_name"></span></td>
 
 													</tr>
 													<tr style="border: 1px solid black; margin-left: 2px">
-														<td class ="  font-weight-bolder" style="border: 1px solid black;">&#160;&#160;  Account Holder Name</td>
-														<th class="  font-weight-bolder   " style="font-size: 16px; border-text-spacing"
-															><span class="ml-2" id="account_holder_name"></span></th>
+														<td class="  font-weight-bolder"
+															style="border: 1px solid black;">&#160;&#160;
+															Account Holder Name</td>
+														<th class="  font-weight-bolder   "
+															style="font-size: 16px;"><span
+															class="ml-2" id="account_holder_name"></span></th>
 
 													</tr>
 													<tr style="border: 1px solid black;">
-														<td class =" font-weight-bolder" style="border: 1px solid black;">&#160;&#160;  Account Number</td>
-														<th class="  font-weight-bolder     " style="font-size: 16px;"
-															> <span class="ml-2" id="account_no"></span> </th>
+														<td class=" font-weight-bolder"
+															style="border: 1px solid black;">&#160;&#160;
+															Account Number</td>
+														<th class="  font-weight-bolder     "
+															style="font-size: 16px;"><span
+															class="ml-2" id="account_no"></span></th>
 
 													</tr>
 													<tr style="border: 1px solid black;">
-														<td class =" font-weight-bolder" style="border: 1px solid black;">&#160;&#160;  IFSC Code</td>
-														<th class="  font-weight-bolder   " style="font-size: 16px;"  
-															> <span class="ml-2" id="IFSC_code"></span>  </th>
+														<td class=" font-weight-bolder"
+															style="border: 1px solid black;">&#160;&#160; IFSC
+															Code</td>
+														<th class="  font-weight-bolder   "
+															style="font-size: 16px;"><span
+															class="ml-2" id="IFSC_code"></span></th>
 
 													</tr>
 												</table>
-												
+
 
 											</div>
 										</div>
 									</div>
-										<!-- end: Invoice footer-->
-										<!-- begin: Invoice action-->
-										
-									<div class="modal" id="bankModel" tabindex="-1"
-										role="dialog" aria-labelledby="staticBackdrop"
-										aria-hidden="true">
+									<!-- end: Invoice footer-->
+									<!-- begin: Invoice action-->
+
+									<div class="modal" id="bankModel" tabindex="-1" role="dialog"
+										aria-labelledby="staticBackdrop" aria-hidden="true">
 										<div class="modal-dialog  modal-dialog-scrollable"
 											role="document">
 											<div class="modal-content">
@@ -277,15 +289,16 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 												</div>
 												<div class="modal-body">
 													<div class="form-group" id="nb_div">
-									
-										<label>Received Bank</label> <select
-													class="form-control form-control-solid" id="received_bank">
-													 <option value="">Select a bank</option>
-													 
-													 </select> 
-									</div>
-												
-													
+
+														<label>Received Bank</label> <select
+															class="form-control form-control-solid"
+															id="received_bank">
+															<option value="">Select a bank</option>
+
+														</select>
+													</div>
+
+
 
 												</div>
 												<div class="modal-footer">
@@ -296,47 +309,37 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 											</div>
 										</div>
 									</div>
-										<div class="row col-12  ">
-										<div class=" text-center col-md-12 mb-5 mt-5" id="print_button">
-											<button id="sudo" class="btn-print btn-primary font-weight-bold">
-											 PDF Invoice
-											</button>
-											
-											<button id="sudo1" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" >
+									<div class="row col-12 text-center mt-15 mb-10">
+										<div class=" text-center col-md-12" id="print_button">
+											<button id="sudo" class="btn-print btn-primary font-weight-bold" >PDF Invoice</button>
+												<button id="sudo1" class="btn-print btn-primary font-weight-bold" onclick="document.title = '#invoice_no';" >
 											Print Invoice
 											</button>
-											
-											</div>
-										
+										</div>
 									</div>
-										<!-- end: Invoice action-->
-										<!-- end: Invoice-->
-									</div>
+									<!-- end: Invoice action-->
+									<!-- end: Invoice-->
 								</div>
-								<!-- end::Card-->
 							</div>
-							<!--end::Container-->
+							<!-- end::Card-->
+						</div>
+						<!--end::Container-->
 					</div>
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
 				<img alt="Logo"
-						src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Footer.png"
-						class="  logo-default   " id="pri"
-						style="position: fixed; bottom: 0;" />
+					src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/Footer.png"
+					class="  logo-default   " id="pri"
+					style="position: fixed; bottom: 0; width:100%" />
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
-<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
@@ -355,12 +358,13 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 		</span>
 	</div>
 
-<script type="text/javascript"
+	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
-	<script src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-	
+	<script
+		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
+
 
 
 	<script type="text/javascript">
@@ -643,7 +647,7 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 				 $("#pri").show();
 				 $("#pri1").show();
 				 $("#sign").show();
-				 
+				 $("#kt_header_mobile").hide();
 				  window.print();
 				    return false;
 				    window.location.reload();
@@ -658,19 +662,23 @@ import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.cust
 				 $("#pri").hide();
 				 $("#pri1").hide();
 				 $("#sign").hide();
+				 $("#kt_header_mobile").hide();
 				  window.print();
 				    return false;
 				    window.location.reload();
 				
 				
-			}
-					)
+			})
+function printP()
+{
+		window.location.reload();
+	}			
 	</script>
 </body>
 </html>
 
 <%
-	} catch (Exception e) {
-		Logger.log(dbConnVar, "" + e);
-	}
+} catch (Exception e) {
+Logger.log(dbConnVar, "" + e);
+}
 %>

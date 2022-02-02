@@ -8,20 +8,19 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 String dbConnVar = "BAKESHACk";
 try {
+    String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp"); 
 %>
 <head>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<!-- <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
@@ -73,12 +72,6 @@ try {
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
-
-							<!-- <h2
-								class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Category
-								Master</h2> -->
-
-
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -592,16 +585,13 @@ translateX(
 				</div>
 				<!--end::Content-->
 				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
 				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
@@ -912,6 +902,8 @@ translateX(
 								$('#upi_div').show();
 								$('#nb_div').hide();
 								$('#cheque_div').hide();
+								 $('#bank_details1').hide();
+								 $('#bank_details2').hide();
 							}else if(payment_mode == 'nb'){
 								$('#upi_div').hide();
 								$('#nb_div').show();
@@ -926,11 +918,15 @@ translateX(
 								$('#cheque_div').hide();
 								$('.checkbox').prop('disabled', true);
 								$('#partially_paid_amount').val("00");
+								 $('#bank_details1').hide();
+								 $('#bank_details2').hide();
 								
 							}else{
 								$('#upi_div').hide();
 								$('#nb_div').hide();
 								$('#cheque_div').hide();
+								 $('#bank_details1').hide();
+								 $('#bank_details2').hide();
 							}
 							
 						});	

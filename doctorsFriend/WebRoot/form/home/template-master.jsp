@@ -10,194 +10,220 @@ String base = request.getScheme() + "://" + request.getServerName() + ":" + requ
 String dbConnVar = "BAFNA";
 try {
 %>
+<%
+String session1 = (String) session.getAttribute("login_id");
+if (session.getAttribute("login_id") != null) {
+ String sessionName = (String) session.getAttribute("login_id");
+} else
+ response.sendRedirect("../common/login.jsp");
+%>	
 <html lang="en">
 <!--begin::Head-->
 <head>
-	
+<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
 }
+.alert {
+	z-index: 9999;
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+.alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+}
+.alert.show {
+	animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide { 0%{
+	transform: translateX(100%);
+}
+40
+%
+{
+transform:translateX(-10%);
+}
+80%
+{
+transform:translateX(0%);
+}
+100%{transform:translateX(-10px);
+}
+}
+@
+keyframes hide_slide { 0%{
+	transform: translateX(-10px);
+}40%
+{
+transform:translateX(0%);
+}
+80%{transform:translateX(-10%);
+}
+100%{transform:translateX(100%);
+}
+}
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
 </style>
 </head>
-<!--end::Head-->
-<!--begin::Body-->
-
-<jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <body id="kt_body"
-style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-77.jpeg)"
-	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading" 
-	><!--begin::Main-->
-	<!--begin::Header Mobile-->
-	
-	<!--end::Header Mobile-->
+	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/OPD/media/bg/bg-rk4.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    top: 0;"
+	class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
+	<!--begin::Main-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Page-->
 		<div class="d-flex flex-row flex-column-fluid page">
 			<!--begin::Aside-->
-			
-      <jsp:include page="/form/common/navbar.jsp"></jsp:include>
-
+			<jsp:include page="/form/common/navbar.jsp"></jsp:include>
 			<!--end::Aside-->
 			<!--begin::Wrapper-->
-			<div class="d-flex flex-column flex-row-fluid wrapper"
-				id="kt_wrapper">
+			<div class="d-flex flex-column flex-row-fluid wrapper"	id="kt_wrapper">
 				<!--begin::Header-->
-				
-				
 				<jsp:include page="/form/common/header.jsp"></jsp:include>
 				<!--end::Header-->
-
-
 				<!--begin::Content-->
-				<div class="content d-flex flex-column flex-column-fluid"
-					id="kt_content">
+				<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 					<!--begin::Entry-->
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
-
-						<div
-							class="container d-flex align-items-stretch justify-content-between"">
+						<div class="container d-flex align-items-stretch justify-content-between">
 							<div class="col-xl-12 offset-xl-1">
-
-								<h2
-									class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3 m-4"  >Template
-									Master</h2>
-								
-									<div class="col-xl-10 offset-xl-0">
-										<div class="example mb-10">
-											<div class="example-preview">
-												<div class="card card-custom">
-													<form class="form" id="kt_form_1">
-														<div class="card-body">
-														
+								<h2	class="d-flex align-items-center text-dark font-weight-bold my-1 mr-3">Template	Master</h2>
+								<div class="col-xl-10 offset-xl-0">
+									<div class="example mb-10">
+										<div class="example-preview">
+											<div class="card card-custom">
+												<form class="form" id="kt_form_1">
+													<div class="card-body">
 														<div class="col-xl-8 offset-xl-2">
 															<div class="form-group">
-											<label>Template Name</label><span class="text-danger">*</span>
-											<input type="text" class="form-control form-control-solid"
-												name="templateName" id="template_name"
-												placeholder="Enter Template name" />
-										</div>
-										<div class="form-group">
-											<label>Template Desc</label><span class="text-danger">*</span>
-												
-											<input type="text" class="form-control form-control-solid"
-												name="templateCode" id="template_code"
-												placeholder="Enter Template Code" />
-										</div>
+																<label>Template Name</label><span class="text-danger">*</span>
+																<input type="text"
+																	class="form-control form-control-solid"
+																	name="templateName" id="template_name"
+																	placeholder="Enter Template name" />
 															</div>
-														
+															<div class="form-group">
+																<label>Template Desc</label><span class="text-danger">*</span>
+																<input type="text"
+																	class="form-control form-control-solid"
+																	name="templateCode" id="template_code"
+																	placeholder="Enter Template Code" />
+															</div>
 														</div>
-									
-									<!-- <span class="text-danger">Double Click on Medicine Field
-										to search new medicine</span> -->
-									<div class="card-body">
-														
+													</div>
+													<div class="card-body table-responsive">
 														<table class="table" id="Mtable">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">Name</th>
-													<th scope="col">Category</th>
-													<th scope="col">Type</th>
-													<th scope="col">Dose</th>
-													<th scope="col">Time</th>
-													<th scope="col">Qty</th>
-													<th scope="col">isSpecial</th>
-													<th scope="col">Is_Printable</th>
-													<th scope="col">Remark</th>
-													<th scope="col">Action</th>
-
-												</tr>
-											</thead>
-
-											<tbody class="add_medicine" id="add-medicine"></tbody>
-
-
-										</table>
+															<thead>
+																<tr>
+																	<th scope="col">#</th>
+																	<th scope="col">Name</th>
+																	<th scope="col">Category</th>
+																	<th scope="col">Type</th>
+																	<th scope="col">Dose</th>
+																	<th scope="col">Time</th>
+																	<th scope="col">Qty</th>
+																	<th scope="col">isSpecial</th>
+																	<th scope="col">Is_Printable</th>
+																	<th scope="col">Remark</th>
+																	<th scope="col">Action</th>
+																</tr>
+															</thead>
+															<tbody class="add_medicine" id="add-medicine"></tbody>
+														</table>
+													</div>
+													<div class="text-right mb-5 mr-22">
+														<button type="button" id="add"
+															class="btn font-weight-bold  btn-icon btn-light-success">
+															<i class="la la-plus"></i>
+														</button>
+													</div>
+													<div class="text-center">
+														<button type="submit" id="addMedicineMaster"
+															class="btn font-weight-bold btn-primary mr-2">Submit</button>
+														<button type="submit" id="updateMedicineMaster"
+															class="btn font-weight-bold btn-primary mr-2">Update</button>
+														<button type="button"
+															class="btn font-weight-bold btn-secondary" id="cancel">Cancel</button>
+													</div>
+												</form>
+												<!--end::Form-->
+											</div>
 										</div>
-										<div class="text-right mb-5 mr-22">
-										<button type="button" id="add"
-											class="btn font-weight-bold  btn-icon btn-light-success">
-											<i class="la la-plus"></i>
-										</button>
 									</div>
-														<div class="text-center">
-															<button type="submit" id="addMedicineMaster"
-													class="btn font-weight-bold btn-primary mr-2">Submit</button>
-												<button type="submit" id="updateMedicineMaster"
-													class="btn font-weight-bold btn-primary mr-2">Update</button>
-												<button type="button"
-													class="btn font-weight-bold btn-secondary" id="cancel">Cancel</button>														</div>
-													</form>
-													<div class="alert alert-success  " role="alert"
-								id="success_alert">
-								<div class="alert-text">
-									<span id="success_msg"></span>
+								</div>
+								<div class="col-xl-10 offset-xl-0">
+									<div class="example mb-10">
+										<div class="example-preview">
+											<div class="card card-custom ">
+												<br />
+												<div class="input-icon ml-10" style="width: 30%;">
+													<input type="text" class="form-control form-control-solid"
+														placeholder="Search..." id="txt_searchall1" /> <span>
+														<i class="flaticon2-search-1 text-muted"></i>
+													</span>
+												</div>
+
+												<br />
+												<table data-toggle="table" class='a'
+													data-classes="table table-hover table-condensed "
+													data-striped="true" data-sort-name="Quality"
+													data-sort-order="desc" data-pagination="false"
+													data-scroll="false" data-height=550 id="table-id">
+													<thead>
+														<tr>
+															<th class="col-sm-1 text-center" data-field="NO"
+																data-sortable="true">No</th>
+															<th class="col-sm-2 text-center"
+																data-field="template_name" data-sortable="true">Template
+																Name</th>
+															<th class="col-sm-3 text-center"
+																data-field="template_code" data-sortable="true">Template
+																Desc</th>
+															<th class="col-sm-2 text-center" data-field="Action"
+																data-sortable="true">Action</th>
+														</tr>
+													</thead>
+													<tbody class="data">
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-													
-													<!--end::Form-->
-												</div>
-											</div>
-										</div>
-									</div>
-
-
-
-									<div class="col-xl-10 offset-xl-0">
-										<div class="example mb-10">
-											<div class="example-preview">
-												<div class="card card-custom ">
-														<br/>
-													<div class="input-icon ml-10" style="width: 30%;">
-														<input type="text" class="form-control form-control-solid"
-															placeholder="Search..." id="txt_searchall1" /> <span>
-															<i class="flaticon2-search-1 text-muted"></i>
-														</span>
+                            <div class="alert alert-success  " role="alert"
+													id="success_alert">
+													<div class="alert-text">
+														<span id="success_msg"></span>
 													</div>
-
-													<br />
-<table data-toggle="table" class='a'
-											data-classes="table table-hover table-condensed "
-											data-striped="true" data-sort-name="Quality"
-											data-sort-order="desc" data-pagination="false"
-											data-scroll="false" data-height=550 id="table-id">
-											<thead>
-												<tr>
-													<th class="col-sm-1 text-center" data-field="NO"
-														data-sortable="true">No</th>
-													<th class="col-sm-2 text-center" data-field="template_name"
-														data-sortable="true">Template Name</th>
-													<th class="col-sm-3 text-center" data-field="template_code"
-														data-sortable="true">Template Desc</th>
-													<th class="col-sm-2 text-center" data-field="Action"
-														data-sortable="true">Action</th>
-
-												</tr>
-
-											</thead>
-											<tbody class="data">
-
-
-											</tbody>
-										</table>
 												</div>
-											</div>
-
-										</div>
-									</div>
-									
-							</div>
-							
 							<div class="alert alert-danger " role="alert" id="danger_alert">
 								<div class="alert-text">
 									<span id="danger_msg"></span>
@@ -208,8 +234,6 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 									<span id="warning_msg"></span>
 								</div>
 							</div>
-							
-							
 							<div class="modal fade" id="medicineModel" tabindex="-1"
 								role="dialog" aria-labelledby="staticBackdrop"
 								aria-hidden="true">
@@ -224,7 +248,6 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 											</button>
 										</div>
 										<div class="modal-body">
-
 											<div class="quick-search quick-search-inline ml-20 w-300px "
 												id="kt_quick_search_inline">
 												<!--begin::Form-->
@@ -275,7 +298,6 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 											</div>
 											<br />
 											<div class="col-xl-12">
-
 												<div class="card card-custom gutter-b">
 													<div class="card-body">
 														<!--begin: Datatable-->
@@ -296,28 +318,18 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 									</div>
 								</div>
 							</div>
-							
 						</div>
-
 						<!--end::Container-->
 					</div>
 				</div>
 				<!--end::Entry-->
-
-
-
-				<!--end::Content-->
-				<!--begin::Footer-->
-				
-				<!--end::Footer-->
-			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
 	<!--end::Main-->
+	</div>	
 	<jsp:include page="../common/footer.jsp"></jsp:include>
-	
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->
@@ -335,141 +347,29 @@ style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundl
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-	<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
 	<!--end::Scrolltop-->
 	<jsp:include page="../common/jsfiles.jsp"></jsp:include>
-	
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/js/pages/features/custom/spinners.js"></script>
 	<script type="text/javascript"
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
 	<script
 		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/Bafana_OPD/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-
-
-<script type="text/javascript">
-
-
+	<script type="text/javascript">
 $('#addMedicineMaster').show();
 $('#updateMedicineMaster').hide();
-
-
 var basePath='<%=basePath%>';    
 var base='<%=base%>';  
-
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear();
-
 today = dd + '/' + mm + '/' + yyyy;
-
 var medData;
 var r=0;
 var table_len=(Mtable.rows.length);
-
-
 $('#add ').click(function () {
-	
 	var i =table_len;
-	  
 	  var html = ''; 
 	  html += '<tr>';
 	  html += '<td style="width: 3%;">' + i + '</td>';
@@ -483,21 +383,9 @@ $('#add ').click(function () {
 	  html += '<td style="width: 5%;"><div class="checkbox-inline justify-content-center  ml-5"><label class="checkbox checkbox-success"> <input type="checkbox" class="Is_Printable" name="Is_Printable" id="Is_Printable-'+ i +'"/> <span></span></label></div></td>';
 	  html += '<td style="width: 25%;"><select class="form-control remark" name="remark" id="remark-' + i + '"><option value="" disabled selected hidden>Select</option></select></td>';
 	 html += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
-
 	 $('.add_medicine').append(html); 
 	  matches = i;
       $("#medicineModel").modal();
-	 
-		/*  $('.add_medicine #medicineName-'+ i).dblclick(function () {
-			   mname=(this.id);
-			   
-			  var str = mname;
-	           matches = str.match(/(\d+)/);
-	           
-			  $("#medicineModel").modal();
-			
-			});
-	 */
 		 $.ajax({
 				url : base + "/dssAPI/dfapi/getRemark",
 				type : "post",
@@ -507,25 +395,19 @@ $('#add ').click(function () {
 				success:function(data)
 			    {
 					data.forEach((element)=> {
-						
 					        $('#remark-' + i).append($(document.createElement('option')).prop({
 				                value: element.remark_desc,
 				                text: element.remark_name
 				            }))
-						
 					});   
 			    }
 			});	
 		 table_len++;
-		
 		 $('.add_medicine').on('click','.btn_delete',function(){
 		$(this).closest('tr').remove();	
 		});
-		
 		});
 function update(id){
-	
-	
 	$.ajax({
         type:"POST",
         dataType: "json",
@@ -535,7 +417,6 @@ function update(id){
         success:function(data)
         {
             const row = data.find(d => d.medicine_id ==id);
-         
         	 $('#medicineName-'+ matches).val(row.medicine_name);
         	$("#type-"+ matches).val(row.medicine_type);
         	$("#category-"+ matches).val(row.medicine_category);
@@ -545,26 +426,20 @@ function update(id){
         	if(row.is_printable == 'Y'){
         		$('#Is_Printable-' + matches).prop("checked", true)
         	}
-        	
         }
      });
 	 
 	 $("#medicineModel").modal('hide');
-	  
 } 
 $(document).ready(function(){
-
 	  // Search all columns
 	  $('#txt_searchall').keyup(function(){
 	    // Search Text
 	    var search = $(this).val();
-
 	    // Hide all table tbody rows
 	    $('#popup_table tbody tr').hide();
-
 	    // Count total search result
 	    var len = $('#popup_table tbody tr:not(.notfound) td:contains("'+search+'")').length;
-
 	    if(len > 0){
 	      // Searching text in columns and show match row
 	      $('#popup_table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
@@ -573,7 +448,6 @@ $(document).ready(function(){
 	    }else{
 	      $('.notfound').show();
 	    }
-
 	  });
 
 	});
@@ -583,13 +457,9 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 	   };
 	});
  $('#addMedicineMaster').click(function() {
-		
 	 var med = [];
-
 	 $("table tbody tr").each(function(index) {
-	 	
 	 	if($(this).find('.medicineName').val() != null){
-	 		
 	 		var isSpecialValue =  $(this).find('.isSpecial').is(":checked");
 	 		var isSpecial;
 	 		if(isSpecialValue == true){
@@ -597,7 +467,6 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 	 		}else{
 	 			isSpecial = "N";
 	 		}
-	 		
 	 		var isPrintableValue =  $(this).find('.Is_Printable').is(":checked");
 	 		var isPrintable;
 	 		if(isPrintableValue == true){
@@ -605,7 +474,6 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 	 		}else{
 	 			isPrintable = "N";
 	 		}
-	 	
 	     med.push({ 
 	         "medicineName": $(this).find('.medicineName').val(),
 	         "type": $(this).find('.type').val(),
@@ -617,28 +485,19 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 	         "is_special": isSpecial,
 	         "isPrintable":isPrintable
 	     	});
-	 	
-	    
 	 	}
 	 });
-
 	 var jsonString = JSON.stringify(med);
-
-
 	 var template_name = $('#template_name').val();
 	 var template_code = $('#template_code').val();
 	 var flag = 1;
-
 	 if(template_name != '' && template_code != ''){
-	 	
-	 	
 	 	$.ajax({
 	 		url : base + "/dssAPI/dfapi/insertUpdateMedicineTemplate",
 	 		type : "post",
 	 		dataType : "json",
 	 		async : false,
 	 		data : {
-	 			
 	 			"template_name" : template_name,
 	 			"template_code" : template_code,
 	 			"template_desc" : jsonString,
@@ -653,22 +512,31 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 	 					+ xhr.status
 	 					+ " "
 	 					+ xhr.statusText;
-	 			alert(msg);
+	 			$('#warning_msg').text(msg);
+				 $('#warning_alert').addClass("show");
+		           $('#warning_alert').removeClass("hide");
+		           $('#warning_alert').addClass("showAlert");
+		           setTimeout(function(){
+		             $('#warning_alert').removeClass("show");
+		             $('#warning_alert').addClass("hide");
+		           },2000);
 	 		},
 	 		success : function(response) {
 	 			if (response != null) {
-
 	 				if (response >= 1) {
-
 	 					var msg = "Template Data inserted/Updated Successfully.";
-	 					alert(msg);
-
+	 					$('#success_msg').text(msg);
+						 $('#success_alert').addClass("show");
+				           $('#success_alert').removeClass("hide");
+				           $('#success_alert').addClass("showAlert");
+				           setTimeout(function(){
+				             $('#success_alert').removeClass("show");
+				             $('#success_alert').addClass("hide");
+				           },2000);
 	 				} 
 	 			}
 	 		}
-
 	 	});
-	 	
 	 }
 	 })
 	 "use strict";
@@ -697,7 +565,6 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 	                 serverPaging: true,
 	                 serverFiltering: true,
 	                 serverSorting: true,
-	                
 	             },
 	             layout: {
 						scroll: true, // enable/disable datatable scroll both horizontal and vertical when needed.
@@ -749,13 +616,10 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 	                        ';
 	                 },
 	             }],
-
 	         });
 	     };
-	     
 	 	var template_id;
 	 	var html = "";
-
 	 	$.ajax({
 	 		url : "http://localhost:8080/dssAPI/dfapi/getMedicineTemplateMaster",
 	 		type : "post",
@@ -764,52 +628,40 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 	 		data : {"template_id": template_id},
 	 		success:function(data)
 	 		{
-	 			
 	 			const row = data.find(d => d.template_id == template_id);
 	 			data.forEach((row)=> {
 	 				html +="<tr id= tr-id-2 class= tr-class-2>"
 	 				html += "<td>"+row.template_id+"</td>"; 
 	 				 html += "<td>"+row.template_name+"</td>";
 	 		            html += "<td>"+row.template_code+"</td>";
-	 		          
 	 	     	       	 html += '<td><a href="javascript:updateById('+row.template_id+');" class="btn_advice btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="12" height="2" rx="1"/></g></svg></span>'
-	 	         
-
 	 	     	       	+ '<a href="javascript:deleteById('+row.template_id+');" class="btn_advice btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
 	 		            html +="</tr>"
-	 			
 	 			});
 	 			 $(".data").html(html);
 	 		}
-	 		
 	 	});	
-
 	 	$(document).ready(function (){
 	 		   var table = $('#table-id').DataTable();
-	 		  
 	 		});
-
 	 return {
 	 	// public functions
 	 	init : function() {
 	 		demo2();
-	 		
 	 	},
 	 };
 	 }();
  jQuery(document).ready(function() {
 		 KTDatatableRemoteAjaxDemo.init();
 		 });
-$('#cancel')
-.click(
-function() {		
+$('#cancel').click(function() {		
 	window.location.reload();
 })	 
-
 function updateById(id){
 $('.btn_advice').hide();
 $('#addMedicineMaster').hide();
 $('#updateMedicineMaster').show();
+$(window).scrollTop(0);
 var template_id = id;
 $.ajax({
 			url : base + "/dssAPI/dfapi/getMedicineTemplateMaster",
@@ -854,7 +706,6 @@ $.ajax({
 						  html += '<td style="width: 5%;"><div class="checkbox-inline justify-content-center  ml-5"><label class="checkbox checkbox-success"> <input type="checkbox" class="Is_Printable" name="Is_Printable" id="Is_Printable-'+ i +'"/> <span></span></label></div></td>';
 						  html += '<td style="width: 25%;"><input type="text" class="form-control remark" name="remark" id="remark-' + i + '"><option value="" disabled selected hidden>Select</option></select></td>';
 							 html += '<td style="width: 5%;"><a type="button" data-repeater-delete="";  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
-
 						  $('.add_medicine').append(html);
 				 }
 					 const parsedData1 = JSON.parse(row["template_desc"]);
@@ -879,7 +730,6 @@ table_len=(Mtable.rows.length);
 $('.add_medicine').on('click','.btn_delete',function(){
 	$(this).closest('tr').remove();	
 	});
-		
 $('#updateMedicineMaster').click(function() {
 	var mList = [];
 	$("table tbody tr").each(function(index) {
@@ -891,7 +741,6 @@ $('#updateMedicineMaster').click(function() {
 				}else{
 					isSpecial = "N";
 				}
-				
 				var isPrintableValue =  $(this).find('.Is_Printable').is(":checked");
 		 		var isPrintable;
 		 		if(isPrintableValue == true){
@@ -912,8 +761,6 @@ $('#updateMedicineMaster').click(function() {
 			    });		
 			}
 		});
-	
-	 
 		var jsonString = JSON.stringify(mList);
 						var template_name = $('#template_name').val();
 						var template_code = $('#template_code').val();
@@ -941,86 +788,103 @@ $('#updateMedicineMaster').click(function() {
 											+ xhr.status
 											+ " "
 											+ xhr.statusText;
-									alert(msg);
+									$('#warning_msg').text(msg);
+									 $('#warning_alert').addClass("show");
+							           $('#warning_alert').removeClass("hide");
+							           $('#warning_alert').addClass("showAlert");
+							           setTimeout(function(){
+							             $('#warning_alert').removeClass("show");
+							             $('#warning_alert').addClass("hide");
+							           },2000);
 								},
 								success : function(response) {
 									if (response != null) {
-
 										if (response >= 1) {
-
 											var msg = "Template Data inserted/Updated Successfully.";
-											alert(msg);
-
+											$('#success_msg').text(msg);
+											 $('#success_alert').addClass("show");
+									           $('#success_alert').removeClass("hide");
+									           $('#success_alert').addClass("showAlert");
+									           setTimeout(function(){
+									             $('#success_alert').removeClass("show");
+									             $('#success_alert').addClass("hide");
+									           },2000);
 										} 
 									}
 								}
-
 							});
 						}
-
 					})
 	"use strict";
 } 
-
-
 function deleteById(id){
-	if (confirm("Press OK to confirm!")) {
-		
-var template_id = id;
-var flag = 3;
-$.ajax({
-	
-	url : base + "/dssAPI/dfapi/insertUpdateMedicineTemplate",
-	type : "post",
-	dataType : "json",
-	async : false,
-	data : {
-		"template_id" : template_id,
-		"template_name":"0",
-		"template_code":"0",
-		"template_desc":"0",
-		"flag" : flag
-	},
-	
-	error : function(xhr) {
-		var msg = "(Data deletion failed. Error : "
-				+ xhr.status
-				+ " "
-				+ xhr.statusText;
-		alert(msg);
-	},
-	success : function(response) {
-		if (response != null) {
-
-			if (response >=1) {
-
-				var msg = "Template Data deleted Successfully.";
-				alert(msg);
-				location.reload(true);
-
-			}
-		}
-	}
-
-});
-	} else {
-	    window.location.reload();
-	  }
+	Swal.fire({
+        title: "Are you sure?",
+        text: "You want to Delete Data!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+        	$.ajax({
+        		url : base + "/dssAPI/dfapi/insertUpdateMedicineTemplate",
+        		type : "post",
+        		dataType : "json",
+        		async : false,
+        		data : {
+        			"template_id" : id,
+        			"template_name":"0",
+        			"template_code":"0",
+        			"template_desc":"0",
+        			"flag" : 3
+        		},
+        		error : function(xhr) {
+        			var msg = "(Data deletion failed. Error : "
+        					+ xhr.status
+        					+ " "
+        					+ xhr.statusText;
+        			$('#warning_msg').text(msg);
+        			 $('#warning_alert').addClass("show");
+        	          $('#warning_alert').removeClass("hide");
+        	          $('#warning_alert').addClass("showAlert");
+        	          setTimeout(function(){
+        	            $('#warning_alert').removeClass("show");
+        	            $('#warning_alert').addClass("hide");
+        	          },2000);
+        		},
+        		success : function(response) {
+        			if (response != null) {
+        				if (response >=1) {
+        					var msg = "Template Data deleted Successfully.";
+        					$('#danger_msg').text(msg);
+        					 $('#danger_alert').addClass("show");
+        			           $('#danger_alert').removeClass("hide");
+        			           $('#danger_alert').addClass("showAlert");
+        			           setTimeout(function(){
+        			             $('#danger_alert').removeClass("show");
+        			             $('#danger_alert').addClass("hide");
+        			           },2000);
+        					location.reload(true);
+        				}
+        			}
+        		}
+        	});
+        } else if (result.dismiss === "cancel") {
+            window.location.reload();
+        }
+    });
 }
-
 $(document).ready(function(){
-
 	  // Search all columns
 	  $('#txt_searchall1').keyup(function(){
 	    // Search Text
 	    var search = $(this).val();
-
 	    // Hide all table tbody rows
 	    $('table tbody tr').hide();
-
 	    // Count total search result
 	    var len = $('table tbody tr:not(.notfound) td:contains("'+search+'")').length;
-
 	    if(len > 0){
 	      // Searching text in columns and show match row
 	      $('table tbody tr:not(.notfound) td:contains("'+search+'")').each(function(){
@@ -1029,16 +893,13 @@ $(document).ready(function(){
 	    }else{
 	      $('.notfound').show();
 	    }
-
 	  });
-
 	});
 $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 	   return function( elem ) {
 	     return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
 	   };
 	});
-
 	</script>
 </body>
 </html>

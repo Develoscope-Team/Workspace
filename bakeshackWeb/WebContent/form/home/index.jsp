@@ -1,28 +1,26 @@
 <%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
-
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 String login_id = request.getParameter("login_id");
 session.setAttribute("login_id", login_id);
-
-
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 String dbConnVar = "BAKESHACk";
 try {
+	 String session1 = (String) session.getAttribute("login_id");
+	if (session.getAttribute("login_id") != null) {
+		String sessionName = (String) session.getAttribute("login_id");
+	} else
+		response.sendRedirect("../common/login.jsp"); 
 %>
-
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
@@ -30,26 +28,17 @@ table.a {
 </style>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-<link href="//www.amcharts.com/lib/3/plugins/export/export.css"
-	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<link href="//www.amcharts.com/lib/3/plugins/export/export.css"	rel="stylesheet" type="text/css" />
 </head>
-
-
-
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 	<!--begin::Main-->
-
 	<!--begin::Header Mobile-->
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
@@ -59,15 +48,13 @@ table.a {
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
 					<!--begin::Subheader-->
 					<div class="subheader py-2 py-lg-12 subheader-transparent"
 						id="kt_subheader">
-						<div
-							class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+						<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
 							<!--begin::Info-->
 							<div class="d-flex align-items-center flex-wrap mr-1">
 								<!--begin::Heading-->
@@ -75,12 +62,10 @@ table.a {
 									<!--begin::Title-->
 									<h2 class="text-white font-weight-bold my-2 mr-5">Dashboard</h2>
 									<!--end::Title-->
-
 								</div>
 								<!--end::Heading-->
 							</div>
 							<!--end::Info-->
-
 						</div>
 					</div>
 					<!--end::Subheader-->
@@ -103,86 +88,59 @@ table.a {
 														</div>
 												</div>
 											</div>
-
 										</div>
 										<!--end::Header-->
 										<!--begin::Body-->
 										<div class="card-body d-flex flex-column px-0">
 											<!--begin::Chart-->
-											<!-- <div id="kt_tiles_widget_1_chart" data-color="danger" style="height: 125px"></div> -->
-										 <div id="chart_12" data-color="danger" style="height: 300px;">
-												 </div> 
-												<!-- <div id="chart_12"></div> -->
+										 <div id="chart_12" data-color="danger" style="height: 300px;"></div> 
 											<!--end::Chart-->
 											<!--begin::Items-->
 											<div class="flex-grow-1 card-spacer-x">
 												<!--begin::Item-->
-												<div
-													class="d-flex align-items-center justify-content-between mb-10">
+												<div class="d-flex align-items-center justify-content-between mb-10">
 													<div class="d-flex align-items-center mr-2">
-														<div
-															class="symbol symbol-50 symbol-light mr-3 flex-shrink-0">
-															
+														<div class="symbol symbol-50 symbol-light mr-3 flex-shrink-0">
 														</div>
 														<div>
-															<a href="#"
-																class="font-size-h6 text-dark-75 text-hover-primary font-weight-bolder ml-8 mt-2">Top
-																 category</a>
-															<div
-																class=" font-size-sm text-muted font-weight-bold ml-8 mt-1" id="top_Subcategory">Cakes</div>
+															<a href="#"	class="font-size-h6 text-dark-75 text-hover-primary font-weight-bolder ml-8 mt-2">Top category</a>
+															<div class=" font-size-sm text-muted font-weight-bold ml-8 mt-1" id="top_Subcategory">Cakes</div>
 														</div>
 													</div>
 													<div class="col-2 label label-light label-inline font-weight-bold text-dark-50  font-size-xl mr-5" id="top_subcategory_count"># 100</div>
 												</div>
 												<!--end::Item-->
-												
 												<div class="font-size-h5 font-weight-bolder mt-1 ml-10">Top 5 Product</div>
 												<div class="row">
-													<div class="col-5  text-muted font-size-lm font-weight-bolder mt-3 ml-10"
-														id="top_product_1">-</div>
-
-													<div
-														class="col-2 label label-light label-inline font-weight-bold text-dark-50 font-size-xl mt-3 ml-35"
+													<div class="col-5  text-muted font-size-lm font-weight-bolder mt-3 ml-10" id="top_product_1">-</div>
+													<div class="col-2 label label-light label-inline font-weight-bold text-dark-50 font-size-xl mt-3 ml-35"
 														id="top_product_qty_1">-</div>
-
 												</div>
 												<div class="row">
-													<div class="col-5 text-muted font-size-lm font-weight-bolder mt-3 ml-10"
-														id="top_product_2">-</div>
-
+													<div class="col-5 text-muted font-size-lm font-weight-bolder mt-3 ml-10" id="top_product_2">-</div>
 													<div
-														class="col-2  label label-light label-inline font-weight-bold text-dark-50 font-size-xl mt-3 ml-35"
-														id="top_product_qty_2">-</div>
-
+														class="col-2  label label-light label-inline font-weight-bold text-dark-50 font-size-xl mt-3 ml-35"	id="top_product_qty_2">-</div>
 												</div>
 												<div class="row">
-													<div class="col-5 text-muted font-size-lm font-weight-bolder mt-3 ml-10"
-														id="top_product_3">-</div>
-
+													<div class="col-5 text-muted font-size-lm font-weight-bolder mt-3 ml-10" id="top_product_3">-</div>
 													<div
 														class="col-2 label label-light label-inline font-weight-bold text-dark-50 font-size-xl mt-3 ml-35"
 														id="top_product_qty_3">-</div>
-
 												</div>
 												<div class="row">
 													<div class="col-5 text-muted font-size-lm font-weight-bolder mt-3 ml-10"
 														id="top_product_4">-</div>
-
 													<div
 														class="col-2 label label-light label-inline font-weight-bold text-dark-50 font-size-xl mt-3 ml-35"
 														id="top_product_qty_4">-</div>
-
 												</div>
 												<div class="row">
 													<div class="col-5 text-muted font-size-lm font-weight-bolder mt-3 ml-10"
 														id="top_product_5">-</div>
-
 													<div
 														class="col-2 label label-light label-inline font-weight-bold text-dark-50 font-size-xl mt-3 ml-35"
 														id="top_product_qty_5">-</div>
-
 												</div>
-
 											</div>
 											<!--end::Items-->
 										</div>
@@ -506,7 +464,7 @@ function showSlides() {
 												<div class="row m-0">
 													<div class="col px-8 py-6 mr-8">
 														<div class="font-size-sm text-muted font-weight-bold">Average
-															Expances</div>
+															Expenses</div>
 														<div class="font-size-h4 font-weight-bolder"
 															id="average_expances">Rs.65,000</div>
 													</div>
@@ -522,15 +480,15 @@ function showSlides() {
 												<div class="row m-0">
 													<div class="col px-8 py-6 mr-8">
 														<div class="font-size-sm text-muted font-weight-bold">Annual
-															Expances</div>
+															Expenses</div>
 														<div class="font-size-h4 font-weight-bolder"
-															id="annual_expances">Rs.7,80,000</div>
+															id="annual_expances"></div>
 													</div>
 													<div class="col px-8 py-6">
 														<div class="font-size-sm text-muted font-weight-bold">Annual
 															Income</div>
 														<div class="font-size-h4 font-weight-bolder"
-															id="annual_income">Rs.16,03,200</div>
+															id="annual_income"></div>
 													</div>
 												</div>
 												<!--end::Row-->
@@ -559,29 +517,25 @@ function showSlides() {
 														<div class="font-size-sm text-muted font-weight-bold">Day's Average
 															Expances</div>
 														<div class="font-size-h4 font-weight-bolder"
-															id="days_average_expances">Rs.65,000</div>
+															id="days_average_expances"></div>
 													</div>
 													<div class="col px-8 py-6">
 														<div class="font-size-sm text-muted font-weight-bold">Day's Average
 															Sale</div>
 														<div class="font-size-h4 font-weight-bolder"
-															id="days_average_sale">Rs.1,33,600</div>
+															id="days_average_sale"></div>
 													</div>
 												</div>
 												<!--end::Row-->
 												<!--begin::Row-->
 												<div class="row m-0">
 													<div class="col px-8 py-6 mr-8">
-														<div class="font-size-sm text-muted font-weight-bold">Weekly
-															Expances</div>
-														<div class="font-size-h4 font-weight-bolder"
-															id="weekly_expances">Rs.7,80,000</div>
+														<div class="font-size-sm text-muted font-weight-bold">Weekly Expances</div>
+														<div class="font-size-h4 font-weight-bolder" id="weekly_expances"></div>
 													</div>
 													<div class="col px-8 py-6">
-														<div class="font-size-sm text-muted font-weight-bold">Weekly
-															Income</div>
-														<div class="font-size-h4 font-weight-bolder"
-															id="weekly_income">Rs.16,03,200</div>
+														<div class="font-size-sm text-muted font-weight-bold">Weekly Income</div>
+														<div class="font-size-h4 font-weight-bolder" id="weekly_income"></div>
 													</div>
 												</div>
 												<!--end::Row-->
@@ -591,7 +545,6 @@ function showSlides() {
 								</div>
 							</div>
 							<!--end::Row-->
-
 							<!--end::Dashboard-->
 						</div>
 						<!--end::Container-->
@@ -599,19 +552,12 @@ function showSlides() {
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
-	
-	
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
 			<svg xmlns="http://www.w3.org/2000/svg"
@@ -628,27 +574,16 @@ function showSlides() {
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
-	
-	
-		
 	<script src="//www.amcharts.com/lib/3/amcharts.js"></script>
 	<script src="//www.amcharts.com/lib/3/serial.js"></script>
 	<script src="//www.amcharts.com/lib/3/radar.js"></script>
 	<script src="//www.amcharts.com/lib/3/pie.js"></script>
-	<script
-		src="//www.amcharts.com/lib/3/plugins/tools/polarScatter/polarScatter.min.js"></script>
+	<script	src="//www.amcharts.com/lib/3/plugins/tools/polarScatter/polarScatter.min.js"></script>
 	<script src="//www.amcharts.com/lib/3/plugins/animate/animate.min.js"></script>
 	<script src="//www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
 	<script src="//www.amcharts.com/lib/3/themes/light.js"></script>
-	<script
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/charts/amcharts/charts.js"></script>
-
-
+	<script	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/charts/amcharts/charts.js"></script>
 	<script>
-	<%-- var session1='<%=session1%>'; --%>
-	
-	
 	var k = 0;
 		$.ajax({
 			url : base + "/bakeshackAPI/api/getTop5ProductDetails",
@@ -663,11 +598,7 @@ function showSlides() {
 					data.forEach(function(e) {
 						k++;
 						$("#top_product_" + k).text(e.product_name);
-						$("#top_product_qty_" + k).text(
-								"#" + parseInt(e.product_total));
-
-						//dashboard_week_sale.push(e.days);
-
+						$("#top_product_qty_" + k).text("#" + parseInt(e.product_total));
 					})
 				}
 			}
@@ -684,11 +615,7 @@ function showSlides() {
 			success : function(data) {
 				if (data != null) {
 					data.forEach(function(e) {
-
 						$("#total_customer_count").text(e.customer_count);
-
-						//dashboard_week_sale.push(e.days);
-
 					})
 				}
 			}
@@ -705,11 +632,7 @@ function showSlides() {
 			success : function(data) {
 				if (data != null) {
 					data.forEach(function(e) {
-
 						$("#footfall_count").text(e.todays_footfall);
-
-						//dashboard_week_sale.push(e.days);
-
 					})
 				}
 			}
@@ -717,7 +640,6 @@ function showSlides() {
 
 		var subcategory_count = [];
 		var subcategory = [];
-
 		$.ajax({
 			url : base + "/bakeshackAPI/api/getSubcategoryCountDetails",
 			type : "post",
@@ -738,8 +660,6 @@ function showSlides() {
 		});
 		var top_subcategory_name="";
 		var top_subcategory_count = Math.max(...subcategory_count);
-		//alert(top_subcategory_count);
-
 		$.ajax({
 			url : base + "/bakeshackAPI/api/getSubcategoryCountDetails",
 			type : "post",
@@ -751,21 +671,14 @@ function showSlides() {
 			success : function(data) {
 				if (data != null) {
 					data.forEach(function(e) {
-						
 						if(e.monthly_sum == top_subcategory_count)
 							{
 							top_subcategory_name = e.subcategory_name;
-						/* subcategory.push(e.subcategory_name);
-						subcategory_count.push(e.monthly_sum); */
 							}
-
 					})
 				}
 			}
 		});
-		
-	
-		
 		$("#top_Subcategory").text(top_subcategory_name);
 		$("#top_subcategory_count").text("#"+top_subcategory_count);
 		var dashboard_month = [];
@@ -789,9 +702,7 @@ function showSlides() {
 					data.forEach(function(e) {
 						month_count++;
 						month_sale_sum += parseInt(e.monthly_sum);
-						//dashboard_month.push(e.production_to_month);
 						dashboard_months_sale[e.production_to_month -1] = e.monthly_sum;
-
 					})
 				}
 			}
@@ -841,9 +752,7 @@ function showSlides() {
 			success : function(data) {
 				if (data != null) {
 					data.forEach(function(e) {
-						
 							week_sale_for_graph[e.days -1] = e.day_wise_sum;
-							
 							weekly_sale_sum += parseInt(e.day_wise_sum);
 							i++;
 					})
@@ -1055,79 +964,6 @@ function showSlides() {
 		});
 
 		"use strict";
-
-		/* var KTamChartsChartsDemo = function() {
-
-			var demo4 = function() {
-				var chart = AmCharts
-						.makeChart(
-								"kt_amcharts_4",
-								{
-									"theme" : "light",
-									"type" : "serial",
-									"dataProvider" : [ {
-										"country" : dashboard_week_sale,
-										"year2004" : week_sale_for_graph,
-										"year2005" : week_purchase_for_graph
-									} ],
-									"valueAxes" : [ {
-										"stackType" : "3d",
-										"unit" : "%",
-										"position" : "left",
-										"title" : "GDP growth rate",
-									} ],
-									"startDuration" : 1,
-									"graphs" : [
-											{
-												"balloonText" : "GDP grow in [[category]] (2004): <b>[[value]]</b>",
-												"fillAlphas" : 0.9,
-												"lineAlpha" : 0.2,
-												"title" : "2004",
-												"type" : "column",
-												"valueField" : "year2004"
-											},
-											{
-												"balloonText" : "GDP grow in [[category]] (2005): <b>[[value]]</b>",
-												"fillAlphas" : 0.9,
-												"lineAlpha" : 0.2,
-												"title" : "2005",
-												"type" : "column",
-												"valueField" : "year2005"
-											} ],
-									"plotAreaFillAlphas" : 0.1,
-									"depth3D" : 40,
-									"angle" : 20,
-									"categoryField" : "country",
-									"categoryAxis" : {
-										"gridPosition" : "start"
-									},
-									"export" : {
-										"enabled" : true
-									}
-								});
-			}
-			return {
-				// public functions
-				init : function() {
-
-					demo4();
-
-				}
-			};
-		}(); */
-
-		/* jQuery(document).ready(function() {
-			KTamChartsChartsDemo.init();
-		});
-
-		$('#updateRecipe').click(function() {
-
-		}) */
-		
-		
-		
-		
-		
 	</script>
 </body>
 </html>

@@ -1,47 +1,76 @@
 	<%@page import="com.config.FaceConfig"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page language="java"
-	import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
+<%@ page language="java" import="java.util.*,com.config.ConnectionFactory,com.config.I18nUtility,com.customLog.Logger,com.faces.VO_Face"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()	+ path + "/";
 	String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
 	String dbConnVar = "BAKESHACk";
 	try {
+		String session1 = (String) session.getAttribute("login_id");
+		if (session.getAttribute("login_id") != null) {
+			String sessionName = (String) session.getAttribute("login_id");
+		} else
+			response.sendRedirect("../common/login.jsp");
 %>
 <head>
 <jsp:include page="../common/cssfiles.jsp"></jsp:include>
 <jsp:include page="../common/navbar.jsp"></jsp:include>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-	<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<link rel="stylesheet"	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid white;
 	border-collapse: collapse;
 	background-color: #ffffff;
 }
-</style>
-<style>
 table.a {
 	table-layout: auto;
 	width: 100%;
 }
+.alert {
+	padding: 20px 40px;
+	min-width: 40%;
+	position: fixed;
+	right: 0;
+	top: 10px;
+	border-radius: 4px;
+	border-left: 8px solid #ffa502;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+.alert.hide {
+	animation: hide_slide 1s ease forwards;
+}
+.alert.showAlert {
+	opacity: 1;
+	pointer-events: auto;
+}
+.alert.show {
+	animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide { 0%{	transform: translateX(100%);}
+40%{transform:translateX(-10%);}
+80%{transform:translateX(0%);}
+100%{transform:translateX(-10px);}
+}
+@keyframes hide_slide { 0%{	transform: translateX(-10px);}
+40%{transform:translateX(0%);}
+80%{transform:translateX(-10%);}
+100%{transform:translateX(100%);}
+}
+.alert-text {
+	padding: 0 20px;
+	font-size: 18px;
+}
 </style>
 <link rel="shortcut icon" href="assets/BakeShack_IM/media/logos/favicon.ico" />
-
 </head>
 <body id="kt_body"
 	style="background-image: url(<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/gif/BakeShack003.jpg)"
 	class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
-
 	<jsp:include page="/form/common/mobile-header.jsp"></jsp:include>
 	<!--end::Header Mobile-->
 	<div class="d-flex flex-column flex-root">
@@ -50,7 +79,6 @@ table.a {
 			<!--begin::Wrapper-->
 			<div class="d-flex flex-column flex-row-fluid wrapper"
 				id="kt_wrapper">
-
 				<!--begin::Content-->
 				<div class="content d-flex flex-column flex-column-fluid"
 					id="kt_content">
@@ -58,10 +86,7 @@ table.a {
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
 						<div class="container">
-
-							 <h2
-								class="text-white font-weight-bold my-2 mr-5 mb-10">Production
-								Master</h2> 
+							 <h2 class="text-white font-weight-bold my-2 mr-5 mt-14 mb-13">Production	Master</h2> 
 							<div class="col-xl-12 offset-xl-0">
 								<div class="card card-custom gutter-b">
 									<div class="card-body">
@@ -75,12 +100,10 @@ table.a {
 																	<div class="form-group">
 																<label>Product</label> <select
 																	class="form-control form-control-solid" id="product_name" name="product_name">
-																	<option value="" disabled selected hidden>Select
-																		Product</option>
+																	<option value="" disabled selected hidden>Select Product</option>
 																</select>
 															</div>
 														</div>
-
 																<div class="form-group col-md-6">
 																	<label>Product Qty</label> <input type="text"
 																		id="product_qty"
@@ -90,18 +113,16 @@ table.a {
 															</div>
 															<div class="row">
 																<div class="form-group col-md-6">
-																	<label>Product Date</label> <input type="date"
+																	<label>Product Date</label> <input type="text"
 																		id="product_date"
 																		class="form-control form-control-solid" />
 																</div>
 																<div class="form-group col-md-6">
-																	<label>Expiry Date</label> <input type="date"
+																	<label>Expiry Date</label> <input type="text"
 																		id="expiry_date"
 																		class="form-control form-control-solid" />
 																</div>
 															</div>
-															
-															
 															<div class="modal" id="medicineModel" tabindex="-1"
 										role="dialog" aria-labelledby="staticBackdrop"
 										aria-hidden="true">
@@ -116,7 +137,6 @@ table.a {
 													</button>
 												</div>
 												<div class="modal-body">
-													<!-- <h3>THIS IS A modal for MEDISION SELECTION</h3> -->
 													<div
 														class="quick-search quick-search-inline ml-20 w-300px "
 														id="kt_quick_search_inline">
@@ -152,27 +172,16 @@ table.a {
 																</div>
 															</div>
 														</form>
-
-
-
-
-														<div id="kt_quick_search_toggle" data-toggle="dropdown"
-															data-offset="0px,1px"></div>
-
-														<div
-															class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
+														<div id="kt_quick_search_toggle" data-toggle="dropdown"	data-offset="0px,1px"></div>
+														<div class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
 															<div class="quick-search-wrapper scroll"
 																data-scroll="true" data-height="350"
 																data-mobile-height="200"></div>
 														</div>
-
 													</div>
 													<br />
-													<div
-														class="datatable datatable-bordered datatable-head-custom"
+													<div class="datatable datatable-bordered datatable-head-custom"
 														id="kt_datatable"></div>
-
-
 												</div>
 												<div class="modal-footer">
 													<button type="button"
@@ -182,10 +191,6 @@ table.a {
 											</div>
 										</div>
 									</div>
-														
-										
-														
-															
 													<div  style="overflow-x:auto;">
 															<table class="table" id="Mtable">
 																<thead>
@@ -197,19 +202,12 @@ table.a {
 																		<th scope="col">Raw qty(sub)</th>
 																		<th scope="col">Req qty</th>
 																		<th scope="col">Actual qty</th>
-																		
 																		<th scope="col">Action</th>
-
 																	</tr>
 																</thead>
-
 																<tbody class="add_product" id="add-product"></tbody>
-
-
 															</table>
 															</div>
-										
-														
 														<div class="text-center">
 															<button type="button" id="addProduction"
 																class="btn btn-primary mr-2">Submit</button>
@@ -225,106 +223,6 @@ table.a {
 									</div>
 								</div>
 							</div>
-							
-								
-					<style>
-.alert {
-	padding: 20px 40px;
-	min-width: 40%;
-	position: fixed;
-	right: 0;
-	top: 10px;
-	border-radius: 4px;
-	border-left: 8px solid #ffa502;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-.alert.showAlert {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.alert.show {
-	animation: show_slide 1s ease forwards;
-}
-
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
-}
-
-40
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
--10px
-);
-}
-}
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-%
-{
-transform
-:
-translateX(
-0%
-);
-}
-80
-%
-{
-transform
-:
-translateX(
--10%
-);
-}
-100
-%
-{
-transform
-:
-translateX(
-100%
-);
-}
-}
-.alert-text {
-	padding: 0 20px;
-	font-size: 18px;
-}
-</style>
 							<div class="alert alert-success  " role="alert"
 								id="success_alert">
 								<div class="alert-text">
@@ -341,58 +239,36 @@ translateX(
 									<span id="warning_msg"></span>
 								</div>
 							</div>	
-							
-
 						</div>
 						<!--end::Container-->
 					</div>
 					<!--end::Entry-->
 				</div>
 				<!--end::Content-->
-				<!--begin::Footer-->
-				<div style=" position:fixed; bottom:0;   width:100%;" class="fixed">
-				<jsp:include page="../common/footer.jsp"></jsp:include>
-				</div>
-				<!--end::Footer-->
 			</div>
 			<!--end::Wrapper-->
 		</div>
 		<!--end::Page-->
 	</div>
-
-
+<jsp:include page="../common/footer.jsp"></jsp:include>
 	<!--begin::Scrolltop-->
 	<div id="kt_scrolltop" class="scrolltop">
 		<span class="svg-icon"> <!--begin::Svg Icon | path:assets/BakeShack_IM/media/svg/icons/Navigation/Up-2.svg-->
-			<svg xmlns="http://www.w3.org/2000/svg"
-				xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-				height="24px" viewBox="0 0 24 24" version="1.1">
+			<svg xmlns="http://www.w3.org/2000/svg"	xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"	height="24px" viewBox="0 0 24 24" version="1.1">
 					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-						<polygon points="0 0 24 0 24 24 0 24" />
-						<rect fill="#000000" opacity="0.3" x="11" y="10" width="2"
-					height="10" rx="1" />
-						<path
-					d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+						<polygon points="0 0 24 0 24 24 0 24" /><rect fill="#000000" opacity="0.3" x="11" y="10" width="2" height="10" rx="1" />
+						<path d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
 					fill="#000000" fill-rule="nonzero" />
 					</g>
 				</svg> <!--end::Svg Icon-->
 		</span>
 	</div>
-
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
-	<script type="text/javascript"
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
-	<script
-		src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
-
-
-
+	<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/features/custom/spinners.js"></script>
+	<script type="text/javascript"	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/form-repeater.js?v=7.2.7"></script>
+	<script	src="<%=VO_Face.getContainerDeployPath()%>/ResourceBundles/Resources/assets/BakeShack_IM/js/pages/crud/forms/widgets/select2.js?v=7.2.8"></script>
 	<script type="text/javascript">
-	
 	var basePath='<%=basePath%>';    
 	var base='<%=base%>';
-	
 	 var today = new Date();
 	 var dd=today.getDate();
 	 if(dd < 10){
@@ -401,17 +277,12 @@ translateX(
 	 var mm=today.getMonth()+1;
 	 if(mm < 10){
 		 mm = '0' + mm;
-		
 	 }
 	 var date = today.getFullYear()+'-'+mm+'-'+ dd;
 	 $('#product_date').val(date);
 	 $('#expiry_date').val(date);
-
 		$('#updateProduction').hide();
 		$("#addProduction").show();
-		
-		
-
 		$.ajax({
 			url : base + "/bakeshackAPI/api/getRecipeDetails",
 			type : "post",
@@ -421,26 +292,28 @@ translateX(
 			success:function(data)
 	        {
 				data.forEach((element)=> {
-					
 				        $('#product_name').append($(document.createElement('option')).prop({
 			                value: element.recipe_id,
 			                text: element.product
 			            }))
-					
 				});   
 	        }
 		});	
 		
+		
+		// minimum setup
+		$('#expiry_date,#product_date').datepicker({
+		 rtl: KTUtil.isRTL(),
+		 todayHighlight: true,
+		 orientation: "bottom left",
+		 format: 'yyyy-mm-dd'
+		});
 		var j=0;
 		var r=0;
 		   var rcode = 0;
 		  var unit=0;
 			 $('#product_name').change(function(){
-			
 				 var recipe_id = $(this).val();
-				 
-				
-
 					$.ajax({
 						url : base + "/bakeshackAPI/api/getRecipeDetails",
 						type : "post",
@@ -451,9 +324,7 @@ translateX(
 				        {
 							const row = data.find(d => d.recipe_id == recipe_id);
 							if(row != null){
-                             
 								var product_name = row.product;
-								/* alert(product_name); */
 								 $.ajax({
 					     				url : base + "/bakeshackAPI/api/getProductDetails",
 					     				type : "post",
@@ -463,24 +334,16 @@ translateX(
 					     				success:function(data)
 					     			    {
 					     					const row = data.find(d => d.product_name == product_name);
-					     						
 					     					unit = row.unit;
-					     					 
 					     			    }
 					     			});	
-								
-								
-								
 								var product_req = row.product_req;
 								const parsedData = JSON.parse(product_req);
-						         
 								 $(parsedData).each(function(index) {
 									r++;
 										$('#product_name-' + (index + 1)).val(parsedData[index]['product']);
 										$('#unit-' + (index + 1)).val(parsedData[index]['Unit']);
 										 $('#row_qty-' + (index + 1)).val(parsedData[index]['Raw_qty']); 
-										
-								
 									});
 								 for(var i = 1; i <= r; i++){
 								 	  var html = '';
@@ -494,12 +357,8 @@ translateX(
 									  html += '<td style="width: 9%;"><input type="text" class="form-control  Req_qty" name="req_qty" id="req_qty-' + i + '" placeholder="req_qty"disabled /></td>';
 									  html += '<td style="width: 12%;"><input type="text" class="form-control  actual_qty" name="actual_qty" id="actual_qty-' + i + '" placeholder="actual_qty" /></td>';
 									   html += '<td style="width: 5%;"><a type="button" data-repeater-delete="";  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
-
 								 	  $('.add_product').append(html);
 						}
-								 
-								 
-								 
 								 const parsedData1 = JSON.parse(product_req);
 								 $(parsedData1).each(function(index) {
 										$('#product_name-' + (index + 1)).val(parsedData1[index]['product']);
@@ -510,37 +369,22 @@ translateX(
 							}
 				        }
 					});	
-					 
-		
-		
 			 })
-		
 		 $('#product_qty').change(function(){
-		  
 		    var Productqty = $("#product_qty").val();
 		   for(var i=1 ; i<=r ; i++){
 			   var raw_qty = $('#row_qty-'+ i).val()
 			   var total = parseInt(Productqty) * raw_qty;
-			  // let n = num.toFixed(2);
-
 			   $('#req_qty-'+i).val(total.toFixed(2));
 			   $('#actual_qty-'+i).val(total.toFixed(2));
 		   }
-		   
-		    
 		   })
-			 
 		var medData;
 		var r=0;
 		var table_len=(Mtable.rows.length);
-  
-
 		$('#add ').click(function () {
 			var table_len=(Mtable.rows.length);
 			var i =table_len;
-			
-			
-			  
 			  var html = ''; 
 			  html += '<tr>';
 			  html += '<td style="width: 3%;">' + i + '</td>';
@@ -549,33 +393,20 @@ translateX(
 			  html += '<td style="width: 12%;"><input type="text" class="form-control raw_qty" name="raw_qty" id="raw_qty-' + i + '" placeholder="Raw Qty"></input></td>';
 			  html += '<td style="width: 12%;"><input type="text" class="form-control product_qty" name="product_qty" id="product_qty-' + i + '" placeholder="Req Qty"></input></td>';
 			  html += '<td style="width: 12%;"><input type="text" class="form-control actual_qty" name="actual_qty" id="actual_qty-' + i + '" placeholder="Actual Qty"></input></td>';
-
-
 			 html += '<td style="width: 5%;"><a type="button" data-repeater-delete="" ;  class="btn_delete btn-sm btn-clean btn-icon"><i class="la la-trash-o"></i></a></td>';
-
 			 $('.add_product').append(html); 
-			  
 				 $('.add_product #product-'+ i).dblclick(function () {
 					   mname=(this.id);
-					   
 					  var str = mname;
 			           matches = str.match(/(\d+)/);
-			           
 					  $("#medicineModel").modal();
-					
 					});
-				 
 				 table_len++;
-				
 				 $('.add_product').on('click','.btn_delete',function(){
 				$(this).closest('tr').remove();	
 				});
-				
 				});
-		
-		function update(id){
-			
-			
+function update(id){
 			$.ajax({
 		        type:"POST",
 		        dataType: "json",
@@ -585,26 +416,15 @@ translateX(
 		        success:function(data)
 		        {
 		            const row = data.find(d => d.recipe_id ==id);
-		         
 		        	 $('#product-'+ matches).val(row.product);
 		        	$("#Unit-"+ matches).val(row.Unit);
 		        	$("#raw_qty-"+ matches).val(row.Raw_qty);
-		        	
-		        	
 		        }
 		     });
-			 
 			 $("#medicineModel").modal('hide');
-			  
 		} 
-	
-
-		//Class definition
-				
-
  var production_id;
 	var html = "";
-
 	$.ajax({
 		url : base + "/bakeshackAPI/api/getProductionDetails",
 		type : "post",
@@ -613,60 +433,36 @@ translateX(
 		data : {"production_id": production_id},
 		success:function(data)
 		{
-			  
-			
 			const row = data.find(d => d.production_id == production_id);
 			data.forEach((row)=> {
 				html +="<tr id= tr-id-2 class= tr-class-2>"
 				html += "<td>"+row.production_id+"</td>"; 
-				 html += "<td>"+row.product_name+"</td>";
-		            html += "<td>"+row.product_qty+"</td>";
-					 html += "<td>"+row.product_req+"</td>";
-
-		         
-	     	       	 html += '<td><a href="javascript:update('+row.production_id+');" class="btn_action btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="12" height="2" rx="1"/></g></svg></span>'
-	         
-
-	     	       	+ '<a href="javascript:deleteById('+row.production_id+');" class="btn_action btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
-		            html +="</tr>"
-			
-			
+				html += "<td>"+row.product_name+"</td>";
+		        html += "<td>"+row.product_qty+"</td>";
+				html += "<td>"+row.product_req+"</td>";
+	     	    html += '<td><a href="javascript:update('+row.production_id+');" class="btn_action btn-sm btn-clean btn-icon mr-2" title="Edit details"><span class="svg-icon svg-icon-md"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#B5B5C3" fill-rule="nonzero" transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/><rect fill="#000000" opacity="0.3" x="5" y="20" width="12" height="2" rx="1"/></g></svg></span>'
+	     	    	+ '<a href="javascript:deleteById('+row.production_id+');" class="btn_action btn-sm btn-clean btn-icon" title="Delete"><span class="svg-icon svg-icon-md"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="20" height="20"/><path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#B5B5C3" fill-rule="nonzero"/>\ <path d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/></g> </svg></span></a></td>';
+		        html +="</tr>"
 			});
 			 $(".data").html(html);
 		}
-		
 	});	
-
-
-
 	$(document).ready(function (){
 		   var table = $('#table-id').DataTable();
-		 
 		});
-
-	
-	
-	
-	
-	
-
 jQuery(document).ready(function() {
 KTBootstrapDaterangepicker.init();
 });	
-
-
 // Delete data by Production_id
 function deleteById(id) {
 	var production_id = id;
 	var flag = 3;
-	$
-			.ajax({
+	$.ajax({
 				url : base + "/bakeshackAPI/api/insertUpdateProduction",
 				type : "post",
 				dataType : "json",
 				async : false,
 				data : {
-					
 					"production_id" : production_id,
 					"product_name" :"",
 					"product_qty" : "",
@@ -675,7 +471,6 @@ function deleteById(id) {
 					"product_req" : "",
 					"flag" : flag
 				},
-
 				error : function(xhr) {
 					var msg = "(insertUpdateProduction)Sorry but there was an error : "
 							+ xhr.status + " " + xhr.statusText;
@@ -694,7 +489,6 @@ function deleteById(id) {
 					           },2000);
                             locotion.reload(true);
 						if (response >= 1) {
-
 							var msg = "Production Data deleted Successfully.";
 							$('#success_msg').text(msg);
 							 $('#success_alert').addClass("show");
@@ -705,38 +499,22 @@ function deleteById(id) {
 					             $('#success_alert').addClass("hide");
 					           },2000);
 							location.reload(true);
-
 						}
 					}
 				}
-
 			});
 }
-
-
-
-
-
 $('#addProduction').click(function() {
-
-			
-	
  var product_name = $('#product_name').val();
 	var product_qty = $('#product_qty').val();
 	var product_date = $('#product_date').val();
 	var expiry_date = $('#expiry_date').val();
-	
 	var flag 		  = 1; // Addition
-	
 	 $("table tbody tr").each(function(index) {
 		 	if($(this).find('.product_name').val() != null){
-		 		
 		       var product = $(this).find('.product_name').val();
 		       var unit =  $(this).find('.unit').val();
 		       var quantity =  $(this).find('.actual_qty').val();
-		      
-		     
-		       
 		    $.ajax({
 					url : base + "/bakeshackAPI/api/insertUpdateQuantityDetails",
 					type : "post",
@@ -774,11 +552,8 @@ $('#addProduction').click(function() {
 					},
 					success : function(response) {
 						if (response != null) {
-
 							if (response >= 1) {
-
 								var msg = "Product Quantity Data inserted Successfully.";
-							//	alert(msg);
 								$('#success_msg').text(msg);
 								 $('#success_alert').addClass("show");
 						           $('#success_alert').removeClass("hide");
@@ -790,33 +565,22 @@ $('#addProduction').click(function() {
 							} 
 						}
 					}
-
 				});
 		 	}
 		 });
-
 	 var product_req = [];
 	 $("table tbody tr").each(function(index) {
 	 	if($(this).find('.product_name').val() != null){
 	 		product_req.push({ 
-	         
 	         "product_name": $(this).find('.product_name').val(),
 	         "unit": $(this).find('.unit').val(),
 	         "raw_qty": $(this).find('.raw_qty').val(),
-
 	         "req_qty": $(this).find('.Req_qty').val(),
 	         "actual_qty": $(this).find('.actual_qty').val()
 	     	});
-	 		
-	 		
-	 		
 	 	}
 	 });
-	
 var jsonString = JSON.stringify(product_req);
-							// alert(jsonString); 
-							
-							
 					  $.ajax({
 								url : base + "/bakeshackAPI/api/insertUpdateProduction",
 								type : "post",
@@ -847,9 +611,7 @@ var jsonString = JSON.stringify(product_req);
 								},
 								success : function(response) {
 									if (response != null) {
-
 										if (response >= 1) {
-
 											var msg = "Production Data inserted Successfully.";
 											$('#success_msg').text(msg);
 											 $('#success_alert').addClass("show");
@@ -859,14 +621,10 @@ var jsonString = JSON.stringify(product_req);
 									             $('#success_alert').removeClass("show");
 									             $('#success_alert').addClass("hide");
 									           },2000);
-
 										} 
 									}
 								}
-
 							});
-							
-							  
 							  var product1 = 0;
 							  $.ajax({
 				     				url : base + "/bakeshackAPI/api/getRecipeDetails",
@@ -878,10 +636,8 @@ var jsonString = JSON.stringify(product_req);
 				     			    {
 				     					const row = data.find(d => d.recipe_id == product_name);
 				     					product1 = row.product; 
-				     					
 				     			    }
 				     			});	
-							  
 							  var production_id = 0;
 							  $.ajax({
 				     				url : base + "/bakeshackAPI/api/getLatestProductionId",
@@ -891,14 +647,10 @@ var jsonString = JSON.stringify(product_req);
 				     				data : {"flag":1},
 				     				success:function(data)
 				     			    {
-				     					
 				     					const row = data.find(d => d.production_id != '');
 				     					production_id = row.production_id; 
-				     					
-				     					
 				     			    }
 				     			});	
-							  
 								$.ajax({
 									url : base
 											+ "/bakeshackAPI/api/insertUpdateQuantityDetails",
@@ -939,9 +691,7 @@ var jsonString = JSON.stringify(product_req);
 									},
 									success : function(response) {
 										if (response != null) {
-
 											if (response >= 1) {
-
 											var msg = "Product Quantity Data inserted Successfully.";
 											$('#success_msg').text(msg);
 											 $('#success_alert').addClass("show");
@@ -951,11 +701,9 @@ var jsonString = JSON.stringify(product_req);
 									             $('#success_alert').removeClass("show");
 									             $('#success_alert').addClass("hide");
 									           },2000);//alert(msg);
-
 											} 
 										}
 									}
-
 								});
 								 Swal.fire({
 								        title: "Are you sure?",
@@ -967,26 +715,22 @@ var jsonString = JSON.stringify(product_req);
 								        reverseButtons: true
 								    }).then(function(result) {
 								        if (result.value) {
-									  
 								 		var url = "production_print.jsp" + '?production_id=' + production_id ;
-
 									  window.location.assign(url);
 								        } else if (result.dismiss === "cancel") {
 								        	window.location.reload();
 								        }
 								    });
-  
-								   
-								
 })
-								
-							 
-							 
-		
+document.addEventListener('keypress', function (e) {
+    if (e.keyCode === 13 || e.which === 13) {
+        e.preventDefault();
+        return false;
+    }
+}); 
 </script>
 </body>
 </html>
-
 <%
 	} catch (Exception e) {
 		Logger.log(dbConnVar, "" + e);

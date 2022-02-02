@@ -108,7 +108,7 @@ var base='<%=base%>';
         		
             	
             	$.ajax({
-	 				url : base + "/bakeshackAPI/api/getUsersDetails",
+	 				url : base + "/bakeshackAPI/api/getUser_Role_Details",
 	 				type : "post",
 	 				dataType : "json",
 	 				async : false,
@@ -150,47 +150,8 @@ var base='<%=base%>';
 	 		        }
 	 		        } 
 	 			});	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	
-            	/* if(login_id == "admin"  && password == "admin@123")
-            	{
-            		
-            		var url = "/bakeshackWeb/form/home/index.jsp";
-          		    Swal.fire({
-            		        title: "WelCome!",
-            		        text: "Have A Good Day Admin.",
-            		        icon: "success",
-            		        timer: 3000,
-            		        onOpen: function() {
-            		            Swal.showLoading()
-            		        }
-            		    }).then(function(result) {
-            		        if (result.dismiss === "timer") {
-            		        	window.location.assign(url);
-            		        }
-            		    })
-    
-            	}
-            	else{
-            		alert("login id and password doesn't match !");
-            		
-            	} */
         	});
-        	
-        	            	 
-    
-    	
-   
-    
     </script>
-		
 	</body>
 	<!--end::Body-->
 </html>
